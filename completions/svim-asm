@@ -1,0 +1,46 @@
+# Auto-generated with h2o
+
+_svimasm()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" haploid diploid"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        haploid) _svimasm_haploid
+            return
+            ;;
+
+        diploid) _svimasm_diploid
+            return
+            ;;
+
+    esac
+
+    local word_list=" haploid diploid -h --help --version -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_svimasm_haploid()
+{
+    local word_list="  -h --help --verbose --min_mapq --min_sv_size --max_sv_size --query_gap_tolerance --query_overlap_tolerance --reference_gap_tolerance --reference_overlap_tolerance --sample --types --symbolic_alleles --tandem_duplications_as_insertions --interspersed_duplications_as_insertions --query_names"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_svimasm_diploid()
+{
+    local word_list="  -h --help --verbose --min_mapq --min_sv_size --max_sv_size --query_gap_tolerance --query_overlap_tolerance --reference_gap_tolerance --reference_overlap_tolerance --partition_max_distance --max_edit_distance --sample --types --symbolic_alleles --tandem_duplications_as_insertions --interspersed_duplications_as_insertions --query_names"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _svimasm svim-asm

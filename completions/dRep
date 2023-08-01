@@ -1,0 +1,56 @@
+# Auto-generated with h2o
+
+_dRep()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" compare dereplicate check_dependencies"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        compare) _dRep_compare
+            return
+            ;;
+
+        dereplicate) _dRep_dereplicate
+            return
+            ;;
+
+        check_dependencies) _dRep_checkdependencies
+            return
+            ;;
+
+    esac
+
+    local word_list=" compare dereplicate check_dependencies "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dRep_compare()
+{
+    local word_list="  -p --processors -d --debug -h --help -g --genomes --S_algorithm -ms --MASH_sketch --SkipMash --SkipSecondary --n_PRESET -pa --P_ani -sa --S_ani -nc --cov_thresh -cm --coverage_method --clusterAlg --multiround_primary_clustering --primary_chunksize --greedy_secondary_clustering --run_tertiary_clustering --gen_warnings --warn_dist --warn_sim --warn_aln"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dRep_dereplicate()
+{
+    local word_list="  -p --processors -d --debug -h --help -g --genomes -l --length -comp --completeness -con --contamination --ignoreGenomeQuality --genomeInfo --checkM_method --set_recursion --checkm_group_size --S_algorithm -ms --MASH_sketch --SkipMash --SkipSecondary --n_PRESET -pa --P_ani -sa --S_ani -nc --cov_thresh -cm --coverage_method --clusterAlg --multiround_primary_clustering --primary_chunksize --greedy_secondary_clustering --run_tertiary_clustering -comW --completeness_weight -conW --contamination_weight -strW --strain_heterogeneity_weight -N50W --N50_weight -sizeW --size_weight -centW --centrality_weight -extraW --extra_weight_table --gen_warnings --warn_dist --warn_sim --warn_aln --skip_plots"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dRep_checkdependencies()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _dRep dRep

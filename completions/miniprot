@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_miniprot()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -k -s -b -d -S -c -G -w -n -m -l -e -p -N -O -E -J -F -C -B -t --gff -P -u --outn -K"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _miniprot miniprot

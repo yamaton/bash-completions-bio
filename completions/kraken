@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_kraken()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --db --threads --fasta-input --fastq-input --fastq-output --gzip-compressed --bzip2-compressed --quick --min-hits --unclassified-out --classified-out --out-fmt --output --only-classified-output --preload --paired --check-names --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _kraken kraken

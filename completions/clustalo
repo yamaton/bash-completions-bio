@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_clustalo()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -i --in --infile --hmm-in --hmm-batch --dealign --profile1 --p1 --profile2 --p2 --is-profile -t --seqtype --infmt --distmat-in --distmat-out --guidetree-in --guidetree-out --pileup --full --full-iter --cluster-size --clustering-out --trans --posterior-out --use-kimura --percent-id -o --out --outfile --outfmt --residuenumber --resno --wrap --output-order --iterations --iter --max-guidetree-iterations --max-hmm-iterations --maxnumseq --maxseqlen --auto --threads --pseudo -l --log -h --help -v --verbose --version --long-version --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _clustalo clustalo

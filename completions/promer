@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_promer()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --mum --mumcand --mumreference --maxmatch -b --breaklen -c --mincluster --delta --nodelta --depend -d --diagfactor --extend --noextend -g --maxgap -h --help -l --minmatch -m --masklen -o --coords --optimize --nooptimize -p --prefix -V --version -x --matrix"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _promer promer

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_seqret()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -sequence -outseq -feature -firstonly -sbegin1 -send1 -sreverse1 -sask1 -snucleotide1 -sprotein1 -slower1 -supper1 -scircular1 -squick1 -sformat1 -iquery1 -ioffset1 -sdbname1 -sid1 -ufo1 -fformat1 -fopenfile1 -osformat2 -osextension2 -osname2 -osdirectory2 -osdbname2 -ossingle2 -oufo2 -offormat2 -ofname2 -ofdirectory2 -auto -stdout -filter -options -debug -verbose -help -warning -error -fatal -die -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _seqret seqret

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_agatconvertspgff2bedpl()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --gff --nc --sub -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _agatconvertspgff2bedpl agat_convert_sp_gff2bed.pl

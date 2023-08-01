@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_racon()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -u --include-unpolished -f --fragment-correction -w --window-length -q --quality-threshold -e --error-threshold --no-trimming -m --match -x --mismatch -g --gap -t --threads --version -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _racon racon

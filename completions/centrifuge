@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_centrifuge()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -x -1 -2 -U --sample-sheet --report-file -S -q --qseq -f -r -c -s --skip -u --upto -5 --trim5 -3 --trim3 --phred33 --phred64 --int-quals --ignore-quals --nofw --norc --min-hitlen -k --host-taxids --exclude-taxids --out-fmt --tab-fmt-cols -t --time --un --al --un-conc --al-conc --quiet --met-file --met-stderr --met -p --threads --mm --qc-filter --seed --non-deterministic --version -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _centrifuge centrifuge

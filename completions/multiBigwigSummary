@@ -1,0 +1,46 @@
+# Auto-generated with h2o
+
+_multiBigwigSummary()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" bins BED-file"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        bins) _multiBigwigSummary_bins
+            return
+            ;;
+
+        BED-file) _multiBigwigSummary_BEDfile
+            return
+            ;;
+
+    esac
+
+    local word_list=" bins BED-file -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_multiBigwigSummary_bins()
+{
+    local word_list="  --bwfiles -b --outFileName -out -o --help -h --labels -l --smartLabels --chromosomesToSkip --binSize -bs --distanceBetweenBins -n --version --region -r --blackListFileName -bl --numberOfProcessors -p --verbose -v --outRawCounts --deepBlueURL --userKey --deepBlueTempDir --deepBlueKeepTemp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_multiBigwigSummary_BEDfile()
+{
+    local word_list="  --bwfiles -b --outFileName -out -o --BED --help -h --labels -l --smartLabels --chromosomesToSkip --version --region -r --blackListFileName -bl --numberOfProcessors -p --verbose -v --outRawCounts --metagene --transcriptID --exonID --transcript_id_designator --deepBlueURL --userKey --deepBlueTempDir --deepBlueKeepTemp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _multiBigwigSummary multiBigwigSummary

@@ -1,0 +1,186 @@
+# Auto-generated with h2o
+
+_bio()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" search fetch fasta gff table align format taxon explain meta mygene gprofiler enrichr code comm uniq"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        search) _bio_search
+            return
+            ;;
+
+        fetch) _bio_fetch
+            return
+            ;;
+
+        fasta) _bio_fasta
+            return
+            ;;
+
+        gff) _bio_gff
+            return
+            ;;
+
+        table) _bio_table
+            return
+            ;;
+
+        align) _bio_align
+            return
+            ;;
+
+        format) _bio_format
+            return
+            ;;
+
+        taxon) _bio_taxon
+            return
+            ;;
+
+        explain) _bio_explain
+            return
+            ;;
+
+        meta) _bio_meta
+            return
+            ;;
+
+        mygene) _bio_mygene
+            return
+            ;;
+
+        gprofiler) _bio_gprofiler
+            return
+            ;;
+
+        enrichr) _bio_enrichr
+            return
+            ;;
+
+        code) _bio_code
+            return
+            ;;
+
+        comm) _bio_comm
+            return
+            ;;
+
+        uniq) _bio_uniq
+            return
+            ;;
+
+    esac
+
+    local word_list=" search fetch fasta gff table align format taxon explain meta mygene gprofiler enrichr code comm uniq "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_search()
+{
+    local word_list="  -h --help -a --all -c --csv -t --tab -H --header -s --species -S --scopes -u --update -l --limit -f --fields"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_fetch()
+{
+    local word_list="  -h --help -d --db -t --type -f --format -l --limit"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_fasta()
+{
+    local word_list="  -h --help -s --start -e --end -t --type -i --id -m --match -g --gene -r --rename -p --protein -T --translate -R --revcomp -G --features -A --trim -o --olap -F --frame"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_gff()
+{
+    local word_list="  -h --help -s --start -e --end -t --type -i --id -m --match -g --gene -o --olap -r --rename"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_table()
+{
+    local word_list="  -h --help -s --start -e --end -t --type -i --id -m --match -g --gene -r --rename -o --olap -f --fields"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_align()
+{
+    local word_list="  -h --help -o --open -x --extend -M --matrix -L --local -G --global -m --match -i --mismatch -S --semiglobal -V --vcf -T --table -d --diff -p --pile -F --fasta -A --all"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_format()
+{
+    local word_list="  -h --help -s --start -e --end -d --diff -v --vcf -T --table -p --paired"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_taxon()
+{
+    local word_list="  -h --help -L --lineage -b --build -a --accessions -K --keep -R --remove -f --field -l --list -d --depth -p --preload -i --indent -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_explain()
+{
+    local word_list="  -h --help -b --build -P --preload -s --so -g --go -l --lineage -p --plot -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_meta()
+{
+    local word_list="  -h --help -H --header -L --limit"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_mygene()
+{
+    local word_list="  -h --help -l --limit -s --species -f --fields -S --scopes"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_gprofiler()
+{
+    local word_list="  -h --help -c --counts -d --organism -n --colname -t --pval-cutoff -p --pval-column -o --output"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_enrichr()
+{
+    local word_list="  -h --help -c --counts -d --organism -n --colname -t --pval-cutoff -p --pval-column -o --output"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_code()
+{
+    local word_list="  -h --help -u --update"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_comm()
+{
+    local word_list="  -h --help -1 --uniq1 -2 --uniq2 -3 --union -t --tab -x --col1 -y --col2"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bio_uniq()
+{
+    local word_list="  -h --help -f --field -c --count -t --tab"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bio bio

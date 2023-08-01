@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_hmmscan()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -o --tblout --domtblout --pfamtblout --acc --noali --notextw --textw -E -T --domE --domT --incE --incT --incdomE --incdomT --cut_ga --cut_nc --cut_tc --max --F1 --F2 --F3 --nobias --nonull2 -Z --domZ --seed --qformat --cpu"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _hmmscan hmmscan

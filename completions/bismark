@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_bismark()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -1 -2 --se --single_end -q --fastq -f --fasta -s --skip -u --upto --phred33-quals --phred64-quals --path_to_bowtie2 --path_to_hisat2 --path_to_minimap2 -N -L --ignore-quals -I --minins -X --maxins --parallel --local --non_directional --pbat --sam-no-hd --rg_tag --rg_id --rg_sample --strandID -un --unmapped --ambiguous -o --output_dir --temp_dir --non_bs_mm --gzip --sam --bam --cram --cram_ref --samtools_path --prefix -B --basename --old_flag --ambig_bam --nucleotide_coverage --icpc -h --help -v --version --bowtie2 --no_dovetail --hisat2 --no-spliced-alignment --known-splicesite-infile --no-mixed --no-discordant -D -R -p --score_min --rdg --rfg --minimap2 --mm2 --mm2_nanopore --mm2_pacbio --mm2_short_reads --mm2_maximum_length"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bismark bismark

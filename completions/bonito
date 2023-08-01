@@ -1,0 +1,96 @@
+# Auto-generated with h2o
+
+_bonito()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" basecaller train evaluate view convert download export"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        basecaller) _bonito_basecaller
+            return
+            ;;
+
+        train) _bonito_train
+            return
+            ;;
+
+        evaluate) _bonito_evaluate
+            return
+            ;;
+
+        view) _bonito_view
+            return
+            ;;
+
+        convert) _bonito_convert
+            return
+            ;;
+
+        download) _bonito_download
+            return
+            ;;
+
+        export) _bonito_export
+            return
+            ;;
+
+    esac
+
+    local word_list=" basecaller train evaluate view convert download export -h --help -v --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bonito_basecaller()
+{
+    local word_list="  -h --help --reference --modified-base-model --modified-device --device --weights --no-trim --revcomp --quantize --overlap --batchsize --min-qscore"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bonito_train()
+{
+    local word_list="  -h --help --config --directory --lr --epochs --chunks --no-amp --restore-optim --save-optim-every"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bonito_evaluate()
+{
+    local word_list="  -h --help --directory --seed --chunks --beamsize"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bonito_view()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bonito_convert()
+{
+    local word_list="  -h --help --seed"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bonito_download()
+{
+    local word_list="  -h --help --all --training"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bonito_export()
+{
+    local word_list="  -h --help --format --config --fuse-bn"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bonito bonito

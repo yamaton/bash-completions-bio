@@ -1,0 +1,146 @@
+# Auto-generated with h2o
+
+_macs2()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" callpeak bdgpeakcall bdgbroadcall bdgcmp bdgopt cmbreps bdgdiff filterdup predictd pileup randsample refinepeak"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        callpeak) _macs2_callpeak
+            return
+            ;;
+
+        bdgpeakcall) _macs2_bdgpeakcall
+            return
+            ;;
+
+        bdgbroadcall) _macs2_bdgbroadcall
+            return
+            ;;
+
+        bdgcmp) _macs2_bdgcmp
+            return
+            ;;
+
+        bdgopt) _macs2_bdgopt
+            return
+            ;;
+
+        cmbreps) _macs2_cmbreps
+            return
+            ;;
+
+        bdgdiff) _macs2_bdgdiff
+            return
+            ;;
+
+        filterdup) _macs2_filterdup
+            return
+            ;;
+
+        predictd) _macs2_predictd
+            return
+            ;;
+
+        pileup) _macs2_pileup
+            return
+            ;;
+
+        randsample) _macs2_randsample
+            return
+            ;;
+
+        refinepeak) _macs2_refinepeak
+            return
+            ;;
+
+    esac
+
+    local word_list=" callpeak bdgpeakcall bdgbroadcall bdgcmp bdgopt cmbreps bdgdiff filterdup predictd pileup randsample refinepeak -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs2_callpeak()
+{
+    local word_list="  -h --help -t --treatment -c --control -f --format -g --gsize -s --tsize --keep-dup --outdir -n --name -B --bdg --verbose --trackline --SPMR --nomodel --shift --extsize --bw --d-min -m --mfold --fix-bimodal -q --qvalue -p --pvalue --scale-to --down-sample --seed --tempdir --nolambda --slocal --llocal --max-gap --min-length --broad --broad-cutoff --cutoff-analysis --call-summits --fe-cutoff --buffer-size --to-large --ratio"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs2_bdgpeakcall()
+{
+    local word_list="  -h --help -i --ifile -c --cutoff -l --min-length -g --max-gap --cutoff-analysis --no-trackline --outdir -o --ofile --o-prefix"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs2_bdgbroadcall()
+{
+    local word_list="  -h --help -i --ifile -c --cutoff-peak -C --cutoff-link -l --min-length -g --lvl1-max-gap -G --lvl2-max-gap --no-trackline --outdir -o --ofile --o-prefix"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs2_bdgcmp()
+{
+    local word_list="  -h --help -t --tfile -c --cfile -S --scaling-factor -p --pseudocount -m --method --outdir --o-prefix -o --ofile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs2_bdgopt()
+{
+    local word_list="  -h --help -i --ifile -m --method -p --extra-param --outdir -o --ofile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs2_cmbreps()
+{
+    local word_list="  -h --help -i -m --method --outdir -o --ofile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs2_bdgdiff()
+{
+    local word_list="  -h --help --t1 --t2 --c1 --c2 -C --cutoff -l --min-len -g --max-gap --d1 --depth1 --d2 --depth2 --outdir --o-prefix -o --ofile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs2_filterdup()
+{
+    local word_list="  -h --help -i --ifile -f --format -g --gsize -s --tsize -p --pvalue --keep-dup --buffer-size --verbose --outdir -o --ofile -d --dry-run"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs2_predictd()
+{
+    local word_list="  -h --help -i --ifile -f --format -g --gsize -s --tsize --bw --d-min -m --mfold --outdir --rfile --buffer-size --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs2_pileup()
+{
+    local word_list="  -h --help -i --ifile -o --ofile --outdir -f --format -B --both-direction --extsize --buffer-size --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs2_randsample()
+{
+    local word_list="  -h --help -i --ifile -p --percentage -n --number --seed -o --ofile --outdir -s --tsize -f --format --buffer-size --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs2_refinepeak()
+{
+    local word_list="  -h --help -b -i --ifile -f --format -c --cutoff -w --window-size --buffer-size --verbose --outdir -o --ofile --o-prefix"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _macs2 macs2

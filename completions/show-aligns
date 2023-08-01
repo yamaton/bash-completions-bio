@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_showaligns()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -q -r -w -c -x -m"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _showaligns show-aligns

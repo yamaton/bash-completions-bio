@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_featureCounts()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -a -o -F -t -g --extraAttributes -A -f -O --minOverlap --fracOverlap --fracOverlapFeature --largestOverlap --nonOverlap --nonOverlapFeature --readExtension5 --readExtension3 --read2pos -M --fraction -Q --splitOnly --nonSplitOnly --primary --ignoreDup -s -J -G -p --countReadPairs -B -P -d -D -C --donotsort -T --byReadGroup -L -R --Rpath --tmpDir --maxMOp --verbose -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _featureCounts featureCounts

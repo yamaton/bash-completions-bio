@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_repeatmatch()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -E -f -n -t -V"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _repeatmatch repeat-match

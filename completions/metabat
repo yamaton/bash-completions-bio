@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_metabat()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -i --inFile -o --outFile -a --abdFile -m --minContig --maxP --minS --maxEdges --pTNF --noAdd --cvExt -x --minCV --minCVSum -s --minClsSize -t --numThreads -l --onlyLabel --saveCls --unbinned --noBinOut --seed -d --debug -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _metabat metabat

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_nucmer()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --mum --maxmatch -b --breaklen -c --mincluster -D --diagdiff -d --diagfactor --noextend -f --forward -g --maxgap -l --minmatch -L --minalign --nooptimize -r --reverse --nosimplify -p --prefix --delta --sam-short --sam-long --save --load --batch -t --threads -U --usage -h --help --full-help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _nucmer nucmer

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_abyssfixmate()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --no-qname --qname --all --diff -l --min-align -s --same -h --hist -c --cov -v --verbose --help --version --db --library --strain --species"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _abyssfixmate abyss-fixmate

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_raven()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -k --kmer-len -w --window-len -f --frequency -p --polishing-rounds -m --match -n --mismatch -g --gap --graphical-fragment-assembly --resume --disable-checkpoints -t --threads --version -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _raven raven

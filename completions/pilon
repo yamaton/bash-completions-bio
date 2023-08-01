@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_pilon()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --genome --frags --jumps --unpaired --bam --nanopore --pacbio --output --outdir --changes --vcf --vcfqe --tracks --variant --chunksize --diploid --fix --dumpreads --duplicates --iupac --nonpf --targets --verbose --debug --version --defaultqual --flank --gapmargin --K --mindepth --mingap --minmq --minqual --nostrays"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _pilon pilon

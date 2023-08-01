@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_fastqe()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --minlen --scale --version --mean --custom --bin --noemoji --noheader --min --max --output --long --log"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _fastqe fastqe

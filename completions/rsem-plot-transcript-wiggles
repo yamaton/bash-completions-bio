@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_rsemplottranscriptwiggles()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --gene-list --transcript-list --show-unique -p --num-threads --memory-per-thread -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _rsemplottranscriptwiggles rsem-plot-transcript-wiggles

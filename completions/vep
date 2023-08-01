@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_vep()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --help -i --input_file -o --output_file --force_overwrite --species --everything --fork --cache --offline --database"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _vep vep

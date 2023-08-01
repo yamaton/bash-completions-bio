@@ -1,0 +1,36 @@
+# Auto-generated with h2o
+
+_any2fasta()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" any2fasta"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        any2fasta) _any2fasta_any2fasta
+            return
+            ;;
+
+    esac
+
+    local word_list=" any2fasta -h -v -q -n -l -u"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_any2fasta_any2fasta()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _any2fasta any2fasta

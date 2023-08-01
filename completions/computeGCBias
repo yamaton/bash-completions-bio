@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_computeGCBias()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --bamfile -b --effectiveGenomeSize --genome -g --GCbiasFrequenciesFile -freq -o --fragmentLength -l --help -h --sampleSize --extraSampling --version --region -r --blackListFileName -bl --numberOfProcessors -p --verbose -v --biasPlot --plotFileFormat --regionSize"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _computeGCBias computeGCBias

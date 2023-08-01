@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_plotEnrichment()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --bamfiles -b --BED --plotFile -o --attributeKey --labels -l --smartLabels --regionLabels --plotTitle -T --plotFileFormat --outRawCounts --perSample --variableScales --plotHeight --plotWidth --colors --numPlotsPerRow --alpha --Offset --version --region -r --blackListFileName -bl --numberOfProcessors -p --verbose -v --keepExons --extendReads -e --ignoreDuplicates --minMappingQuality --centerReads --samFlagInclude --samFlagExclude --minFragmentLength --maxFragmentLength"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _plotEnrichment plotEnrichment

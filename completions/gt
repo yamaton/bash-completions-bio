@@ -1,0 +1,1008 @@
+# Auto-generated with h2o
+
+_gt()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" bed_to_gff3 cds chain2dim chseqids clean compreads condenseq congruence convertseq csa dot dupfeat encseq encseq2spm eval extractfeat extractseq fastq_sample featureindex fingerprint genomediff gff3 gff3_to_gtf gff3validator gtf_to_gff3 hop id_to_md5 inlineseq_add inlineseq_split interfeat loccheck ltrclustering ltrdigest ltrharvest matchtool matstat md5_to_id merge mergefeat mgth mkfeatureindex mkfmindex mmapandread orffinder packedindex prebwt readjoiner repfind scriptfilter seed_extend select seq seqfilter seqids seqmutate seqorder seqstat seqtransform seqtranslate sequniq shredder shulengthdist simreads sketch sketch_page snpper speck splicesiteinfo splitfasta stat suffixerator tagerator tallymer tirvish uniq uniquesub wtree"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        bed_to_gff3) _gt_bedtogff3
+            return
+            ;;
+
+        cds) _gt_cds
+            return
+            ;;
+
+        chain2dim) _gt_chain2dim
+            return
+            ;;
+
+        chseqids) _gt_chseqids
+            return
+            ;;
+
+        clean) _gt_clean
+            return
+            ;;
+
+        compreads) _gt_compreads
+            return
+            ;;
+
+        condenseq) _gt_condenseq
+            return
+            ;;
+
+        congruence) _gt_congruence
+            return
+            ;;
+
+        convertseq) _gt_convertseq
+            return
+            ;;
+
+        csa) _gt_csa
+            return
+            ;;
+
+        dot) _gt_dot
+            return
+            ;;
+
+        dupfeat) _gt_dupfeat
+            return
+            ;;
+
+        encseq) _gt_encseq
+            return
+            ;;
+
+        encseq2spm) _gt_encseq2spm
+            return
+            ;;
+
+        eval) _gt_eval
+            return
+            ;;
+
+        extractfeat) _gt_extractfeat
+            return
+            ;;
+
+        extractseq) _gt_extractseq
+            return
+            ;;
+
+        fastq_sample) _gt_fastqsample
+            return
+            ;;
+
+        featureindex) _gt_featureindex
+            return
+            ;;
+
+        fingerprint) _gt_fingerprint
+            return
+            ;;
+
+        genomediff) _gt_genomediff
+            return
+            ;;
+
+        gff3) _gt_gff3
+            return
+            ;;
+
+        gff3_to_gtf) _gt_gff3togtf
+            return
+            ;;
+
+        gff3validator) _gt_gff3validator
+            return
+            ;;
+
+        gtf_to_gff3) _gt_gtftogff3
+            return
+            ;;
+
+        hop) _gt_hop
+            return
+            ;;
+
+        id_to_md5) _gt_idtomd5
+            return
+            ;;
+
+        inlineseq_add) _gt_inlineseqadd
+            return
+            ;;
+
+        inlineseq_split) _gt_inlineseqsplit
+            return
+            ;;
+
+        interfeat) _gt_interfeat
+            return
+            ;;
+
+        loccheck) _gt_loccheck
+            return
+            ;;
+
+        ltrclustering) _gt_ltrclustering
+            return
+            ;;
+
+        ltrdigest) _gt_ltrdigest
+            return
+            ;;
+
+        ltrharvest) _gt_ltrharvest
+            return
+            ;;
+
+        matchtool) _gt_matchtool
+            return
+            ;;
+
+        matstat) _gt_matstat
+            return
+            ;;
+
+        md5_to_id) _gt_md5toid
+            return
+            ;;
+
+        merge) _gt_merge
+            return
+            ;;
+
+        mergefeat) _gt_mergefeat
+            return
+            ;;
+
+        mgth) _gt_mgth
+            return
+            ;;
+
+        mkfeatureindex) _gt_mkfeatureindex
+            return
+            ;;
+
+        mkfmindex) _gt_mkfmindex
+            return
+            ;;
+
+        mmapandread) _gt_mmapandread
+            return
+            ;;
+
+        orffinder) _gt_orffinder
+            return
+            ;;
+
+        packedindex) _gt_packedindex
+            return
+            ;;
+
+        prebwt) _gt_prebwt
+            return
+            ;;
+
+        readjoiner) _gt_readjoiner
+            return
+            ;;
+
+        repfind) _gt_repfind
+            return
+            ;;
+
+        scriptfilter) _gt_scriptfilter
+            return
+            ;;
+
+        seed_extend) _gt_seedextend
+            return
+            ;;
+
+        select) _gt_select
+            return
+            ;;
+
+        seq) _gt_seq
+            return
+            ;;
+
+        seqfilter) _gt_seqfilter
+            return
+            ;;
+
+        seqids) _gt_seqids
+            return
+            ;;
+
+        seqmutate) _gt_seqmutate
+            return
+            ;;
+
+        seqorder) _gt_seqorder
+            return
+            ;;
+
+        seqstat) _gt_seqstat
+            return
+            ;;
+
+        seqtransform) _gt_seqtransform
+            return
+            ;;
+
+        seqtranslate) _gt_seqtranslate
+            return
+            ;;
+
+        sequniq) _gt_sequniq
+            return
+            ;;
+
+        shredder) _gt_shredder
+            return
+            ;;
+
+        shulengthdist) _gt_shulengthdist
+            return
+            ;;
+
+        simreads) _gt_simreads
+            return
+            ;;
+
+        sketch) _gt_sketch
+            return
+            ;;
+
+        sketch_page) _gt_sketchpage
+            return
+            ;;
+
+        snpper) _gt_snpper
+            return
+            ;;
+
+        speck) _gt_speck
+            return
+            ;;
+
+        splicesiteinfo) _gt_splicesiteinfo
+            return
+            ;;
+
+        splitfasta) _gt_splitfasta
+            return
+            ;;
+
+        stat) _gt_stat
+            return
+            ;;
+
+        suffixerator) _gt_suffixerator
+            return
+            ;;
+
+        tagerator) _gt_tagerator
+            return
+            ;;
+
+        tallymer) _gt_tallymer
+            return
+            ;;
+
+        tirvish) _gt_tirvish
+            return
+            ;;
+
+        uniq) _gt_uniq
+            return
+            ;;
+
+        uniquesub) _gt_uniquesub
+            return
+            ;;
+
+        wtree) _gt_wtree
+            return
+            ;;
+
+    esac
+
+    local word_list=" bed_to_gff3 cds chain2dim chseqids clean compreads condenseq congruence convertseq csa dot dupfeat encseq encseq2spm eval extractfeat extractseq fastq_sample featureindex fingerprint genomediff gff3 gff3_to_gtf gff3validator gtf_to_gff3 hop id_to_md5 inlineseq_add inlineseq_split interfeat loccheck ltrclustering ltrdigest ltrharvest matchtool matstat md5_to_id merge mergefeat mgth mkfeatureindex mkfmindex mmapandread orffinder packedindex prebwt readjoiner repfind scriptfilter seed_extend select seq seqfilter seqids seqmutate seqorder seqstat seqtransform seqtranslate sequniq shredder shulengthdist simreads sketch sketch_page snpper speck splicesiteinfo splitfasta stat suffixerator tagerator tallymer tirvish uniq uniquesub wtree -i -q -test -seed -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_bedtogff3()
+{
+    local word_list="  -featuretype -thicktype -blocktype -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_cds()
+{
+    local word_list="  -minorflen -startcodon -finalstopcodon -seqfile -encseq -seqfiles -matchdesc -matchdescstart -usedesc -regionmapping -v -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_chain2dim()
+{
+    local word_list="  - -local -global"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_chseqids()
+{
+    local word_list="  -sort -v -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_clean()
+{
+    local word_list="  -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_compreads()
+{
+    local cmd i subcommands
+    local subcommands=" compress decompress refcompress refdecompress"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        compress) _gt_compreads_compress
+            return
+            ;;
+
+        decompress) _gt_compreads_decompress
+            return
+            ;;
+
+        refcompress) _gt_compreads_refcompress
+            return
+            ;;
+
+        refdecompress) _gt_compreads_refdecompress
+            return
+            ;;
+
+    esac
+
+    local word_list=" compress decompress refcompress refdecompress -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_compreads_compress()
+{
+    local word_list="  -descs -files -name -smap -qrange -srate -stype -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_compreads_decompress()
+{
+    local word_list="  -v -descs -file -name -smap -range -width -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_compreads_refcompress()
+{
+    local word_list="  -v -mquals -quals -vquals -descs -ureads -ref -bam -name -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_compreads_refdecompress()
+{
+    local word_list="  -v -qnames -ref -rcr -name -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_condenseq()
+{
+    local word_list="  -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_congruence()
+{
+    local cmd i subcommands
+    local subcommands=" spacedseed"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        spacedseed) _gt_congruence_spacedseed
+            return
+            ;;
+
+    esac
+
+    local word_list=" spacedseed -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_congruence_spacedseed()
+{
+    local word_list="  -esa -pck -q -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_convertseq()
+{
+    local word_list="  -v -r -showfilelengthvalues -noseq -fastawidth -contractdnawc -contractproteinwc -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_csa()
+{
+    local word_list="  -join-length -v -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_dot()
+{
+    local word_list="  -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_dupfeat()
+{
+    local word_list="  -dest -source -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_encseq()
+{
+    local cmd i subcommands
+    local subcommands=" bench bitextract check decode encode info md5 sample"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        bench) _gt_encseq_bench
+            return
+            ;;
+
+        bitextract) _gt_encseq_bitextract
+            return
+            ;;
+
+        check) _gt_encseq_check
+            return
+            ;;
+
+        decode) _gt_encseq_decode
+            return
+            ;;
+
+        encode) _gt_encseq_encode
+            return
+            ;;
+
+        info) _gt_encseq_info
+            return
+            ;;
+
+        md5) _gt_encseq_md5
+            return
+            ;;
+
+        sample) _gt_encseq_sample
+            return
+            ;;
+
+    esac
+
+    local word_list=" bench bitextract check decode encode info md5 sample -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_encseq_bench()
+{
+    local word_list="  -ccext -solepr -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_encseq_bitextract()
+{
+    local word_list="  -mirrored -stoppos -specialranges -bitpos -dir -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_encseq_check()
+{
+    local word_list="  -scantrials -multicharcmptrials -prefixlength -nocheckunit -mirrored -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_encseq_decode()
+{
+    local word_list="  -mirrored -lossless -dir -seq -seqrange -output -range -sepchar -help -help+ -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_encseq_encode()
+{
+    local word_list="  -showstats -ssp -des -sds -md5 -clipdesc -sat -dna -protein -dust -dustwindow -dustthreshold -dustlink -indexname -smap -lossless -v -help -help+ -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_encseq_info()
+{
+    local word_list="  -nomap -mirrored -noindexname -show_alphabet -n50 -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_encseq_md5()
+{
+    local word_list="  -fromindex -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_encseq_sample()
+{
+    local word_list="  -mirrored -lossless -dir -length -seqrange -output -sepchar -help -help+ -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_encseq2spm()
+{
+    local word_list="  -l -parts -memlimit -singlestrand -spm -ii -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_eval()
+{
+    local word_list="  -nuc -ltr -ltrdelta -v -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_extractfeat()
+{
+    local word_list="  -type -join -translate -seqid -target -coords -retainids -gcode -seqfile -encseq -seqfiles -matchdesc -matchdescstart -usedesc -regionmapping -v -width -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_extractseq()
+{
+    local word_list="  -frompos -topos -match -keys -width -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_fastqsample()
+{
+    local word_list="  -length -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_featureindex()
+{
+    local word_list="  -range -seqid -retain -backend -filename -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_fingerprint()
+{
+    local word_list="  -check -duplicates -extract -width -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_genomediff()
+{
+    local word_list="  -indextype -indexname -unitfile -mirrored -pl -dc -memlimit -v -help -help+ -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_gff3()
+{
+    local word_list="  -sort -sortlines -sortnum -tidy -retainids -checkids -addids -fixregionboundaries -addintrons -offset -offsetfile -setsource -typecheck -xrfcheck -show -v -width -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_gff3togtf()
+{
+    local word_list="  -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_gff3validator()
+{
+    local word_list="  -typecheck -xrfcheck -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_gtftogff3()
+{
+    local word_list="  -tidy -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_hop()
+{
+    local word_list="  -c -map -sam -aggressive -moderate -conservative -expert -reads -outprefix -o -v -help -help+ -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_idtomd5()
+{
+    local word_list="  -seqfile -encseq -seqfiles -matchdesc -matchdescstart -usedesc -regionmapping -subtargetids -v -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_inlineseqadd()
+{
+    local word_list="  -seqfile -encseq -seqfiles -matchdesc -matchdescstart -usedesc -regionmapping -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_inlineseqsplit()
+{
+    local word_list="  -seqfile -gff3file -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_interfeat()
+{
+    local word_list="  -outside -inter -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_loccheck()
+{
+    local word_list="  -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_ltrclustering()
+{
+    local word_list="  -psmall -plarge -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_ltrdigest()
+{
+    local word_list="  -outfileprefix -metadata -seqnamelen -pptlen -uboxlen -uboxdist -pptradius -trnas -pbsalilen -pbsoffset -pbstrnaoffset -pbsmaxedist -pbsradius -hmms -pdomcutoff -aliout -aaout -allchains -force_recreate -v -o -gzip -bzip2 -force -seqfile -encseq -seqfiles -matchdesc -matchdescstart -usedesc -regionmapping -help -help+ -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_ltrharvest()
+{
+    local word_list="  -index -range -seed -minlenltr -maxlenltr -mindistltr -maxdistltr -similar -mintsd -maxtsd -motif -motifmis -vic -overlaps -xdrop -mat -mis -ins -del -v -tabout -seqids -md5 -longoutput -out -outinner -gff3 -help -help+ -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_matchtool()
+{
+    local word_list="  -type -matchfile -db -swminlen -swmaxedist -query -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_matstat()
+{
+    local word_list="  -fmi -esa -pck -query -min -max -output -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_md5toid()
+{
+    local word_list="  -v -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_merge()
+{
+    local word_list="  -retainids -tidy -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_mergefeat()
+{
+    local word_list="  -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_mgth()
+{
+    local word_list="  -s -n -b -q -h -l -p -f -c -o -k -t -r -a -d -e -m -g -x -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_mkfeatureindex()
+{
+    local word_list="  -force -backend -input -filename -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_mkfmindex()
+{
+    local word_list="  -fmout -ii -size -noindexpos -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_mmapandread()
+{
+    local word_list="  -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_orffinder()
+{
+    local word_list="  -types -allorfs -min -max -v -o -gzip -bzip2 -force -seqfile -encseq -seqfiles -matchdesc -matchdescstart -usedesc -regionmapping -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_packedindex()
+{
+    local word_list="  -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_prebwt()
+{
+    local word_list="  -pck -maxdepth -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_readjoiner()
+{
+    local word_list="  -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_repfind()
+{
+    local word_list="  -l -f -r -p -seedlength -maxfreq -extendxdrop -xdropbelow -extendgreedy -minidentity -ii -outfmt -evalue -scan -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_scriptfilter()
+{
+    local word_list="  -showinfo -validate -oneline -scriptname -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_seedextend()
+{
+    local word_list="  -ii -qii -seedlength -spacedseed -diagbandwidth -mincoverage -diagband-stat -maxfreq -memlimit -extendxdrop -xdropbelow -extendgreedy -maxmat -l -minidentity -evalue -outfmt -ani -no-reverse -no-forward -use-apos -parts -kmerfile -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_select()
+{
+    local word_list="  -retainids -seqid -source -contain -overlap -strand -targetstrand -targetbest -hascds --maxgenelength -maxgenenum -mingenescore -maxgenescore -minaveragessp -rule_files -rule_logic -dropped_file -v -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_seq()
+{
+    local word_list="  -recreate -showfasta -showseqnum -showseqlength -showseqnum_inputfile -seqnum_from_0 -gc-content -stat -seqlengthdistri -width -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_seqfilter()
+{
+    local word_list="  -minlength -maxlength -maxseqnum -sample -step -nowildcards -width -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_seqids()
+{
+    local word_list="  -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_seqmutate()
+{
+    local word_list="  -rate -width -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_seqorder()
+{
+    local word_list="  -invert -sort -revsort -sorthdr -sorthdrnum -shuffle -sortlength -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_seqstat()
+{
+    local word_list="  -v -distlen -b -binary -contigs -nstats -genome -help -help+ -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_seqtransform()
+{
+    local word_list="  -addstopaminos -width -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_seqtranslate()
+{
+    local word_list="  -reverse -fastawidth -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_sequniq()
+{
+    local word_list="  -rev -v -width -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_shredder()
+{
+    local word_list="  -coverage -minlength -maxlength -overlap -sample -clipdesc -width -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_shulengthdist()
+{
+    local word_list="  -ii -scan -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_simreads()
+{
+    local word_list="  -num -coverage -len -minlen -maxlen -distlen -o -gzip -bzip2 -force -p -v -ss -help -help+ -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_sketch()
+{
+    local word_list="  -pipe -flattenfiles -seqid -start -end -width -style -format -input -addintrons -unsafe -v -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_sketchpage()
+{
+    local word_list="  -seqid -text -fontsize -range -linewidth -width -height -format -style -help -help+ -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_snpper()
+{
+    local word_list="  -trans_table -seqfile -encseq -seqfiles -matchdesc -matchdescstart -usedesc -regionmapping -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_speck()
+{
+    local word_list="  -specfile -colored -provideindex -sort -failhard -output -typecheck -seqfile -encseq -seqfiles -matchdesc -matchdescstart -usedesc -regionmapping -o -gzip -bzip2 -force -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_splicesiteinfo()
+{
+    local word_list="  -seqfile -encseq -seqfiles -matchdesc -matchdescstart -usedesc -regionmapping -addintrons -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_splitfasta()
+{
+    local word_list="  -numfiles -targetsize -splitdesc -width -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_stat()
+{
+    local word_list="  -genelengthdistri -genescoredistri -exonlengthdistri -exonnumberdistri -intronlengthdistri -cdslengthdistri -source -addintrons -v -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_suffixerator()
+{
+    local word_list="  -ssp -des -sds -md5 -clipdesc -sat -dna -protein -dust -dustwindow -dustthreshold -dustlink -indexname -db -smap -lossless -mirrored -pl -dc -spmopt -memlimit -kys -dir -suf -lcp -bwt -bck -v -showprogress -ii -help -help+ -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_tagerator()
+{
+    local word_list="  -q -e -esa -pck -nod -nop -best -maxocc -skpp -withwildcards -output -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_tallymer()
+{
+    local cmd i subcommands
+    local subcommands=" mkindex occratio search"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        mkindex) _gt_tallymer_mkindex
+            return
+            ;;
+
+        occratio) _gt_tallymer_occratio
+            return
+            ;;
+
+        search) _gt_tallymer_search
+            return
+            ;;
+
+    esac
+
+    local word_list=" mkindex occratio search -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_tallymer_mkindex()
+{
+    local word_list="  -esa -mersize -minocc -maxocc -pl -indexname -counts -scan -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_tallymer_occratio()
+{
+    local word_list="  -esa -minmersize -maxmersize -step -mersizes -output -scan -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_tallymer_search()
+{
+    local word_list="  -tyr -q -strand -output -v -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_tirvish()
+{
+    local word_list="  -index -seed -mintirlen -maxtirlen -mintirdist -maxtirdist -mat -mis -ins -del -xdrop -similar -overlaps -mintsd -maxtsd -vic -hmms -pdomevalcutoff -pdomcutoff -refseqs -seqids -md5 -help -help+ -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_uniq()
+{
+    local word_list="  -v -o -gzip -bzip2 -force -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_uniquesub()
+{
+    local word_list="  -fmi -esa -pck -query -min -max -output -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gt_wtree()
+{
+    local word_list="  -help -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _gt gt

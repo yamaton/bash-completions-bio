@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_unicycler()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --help_all --version -1 --short1 -2 --short2 -s --unpaired -l --long -o --out --keep --min_fasta_length -t --threads --mode --min_bridge_qual --linear_seqs --min_anchor_seg_len --spades_path --min_kmer_frac --max_kmer_frac --kmers --kmer_count --depth_filter --largest_component --spades_options --no_miniasm --racon_path --existing_long_read_assembly --no_simple_bridges --no_long_read_alignment --contamination --scores --low_score --min_component_size --min_dead_end_size --no_rotate --start_genes --start_gene_id --start_gene_cov --makeblastdb_path --tblastn_path"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _unicycler unicycler

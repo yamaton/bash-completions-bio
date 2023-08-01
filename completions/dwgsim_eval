@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_dwgsimeval()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -a -b -c -d -g -m -n -q -z -S -p -s -e -i -P -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _dwgsimeval dwgsim_eval

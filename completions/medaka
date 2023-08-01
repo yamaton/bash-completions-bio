@@ -1,0 +1,269 @@
+# Auto-generated with h2o
+
+_medaka()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" compress_bam features train consensus smolecule consensus_from_features fastrle stitch variant snp tools"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        compress_bam) _medaka_compressbam
+            return
+            ;;
+
+        features) _medaka_features
+            return
+            ;;
+
+        train) _medaka_train
+            return
+            ;;
+
+        consensus) _medaka_consensus
+            return
+            ;;
+
+        smolecule) _medaka_smolecule
+            return
+            ;;
+
+        consensus_from_features) _medaka_consensusfromfeatures
+            return
+            ;;
+
+        fastrle) _medaka_fastrle
+            return
+            ;;
+
+        stitch) _medaka_stitch
+            return
+            ;;
+
+        variant) _medaka_variant
+            return
+            ;;
+
+        snp) _medaka_snp
+            return
+            ;;
+
+        tools) _medaka_tools
+            return
+            ;;
+
+    esac
+
+    local word_list=" compress_bam features train consensus smolecule consensus_from_features fastrle stitch variant snp tools -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_compressbam()
+{
+    local word_list="  -h --help --debug --quiet --regions --threads --use_fast5_info"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_features()
+{
+    local word_list="  -h --help --debug --quiet --batch_size --chunk_len --chunk_ovlp --regions --truth --truth_haplotag --threads --label_scheme --label_scheme_args --feature_encoder --feature_encoder_args"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_train()
+{
+    local word_list="  -h --help --debug --quiet --train_name --model --epochs --batch_size --max_samples --mini_epochs --seed --threads_io --device --optimizer --optim_args --validation_split --validation_features"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_consensus()
+{
+    local word_list="  -h --help --debug --quiet --batch_size --chunk_len --chunk_ovlp --regions --model --threads --bam_workers --bam_chunk --check_output --save_features --RG --tag_name --tag_value --tag_keep_missing"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_smolecule()
+{
+    local word_list="  -h --help --debug --quiet --batch_size --chunk_len --chunk_ovlp --model --min_depth --method --depth --length --threads --check_output --save_features --qualities"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_consensusfromfeatures()
+{
+    local word_list="  -h --help --debug --quiet --model"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_fastrle()
+{
+    local word_list="  -h --help --debug --quiet --block_size"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_stitch()
+{
+    local word_list="  -h --help --debug --quiet --regions --min_depth --threads --no-fillgaps --fill_char --qualities"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_variant()
+{
+    local word_list="  -h --help --debug --quiet --regions --verbose --ambig_ref --gvcf"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_snp()
+{
+    local word_list="  -h --help --debug --quiet --regions --threshold --ref_vcf --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools()
+{
+    local cmd i subcommands
+    local subcommands=" haploid2diploid diploid2haploid classify_variants annotate consensus2vcf vcf2tsv homozygous_regions resolve_model is_rle_model list_models hdf_to_bed download_models"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        haploid2diploid) _medaka_tools_haploid2diploid
+            return
+            ;;
+
+        diploid2haploid) _medaka_tools_diploid2haploid
+            return
+            ;;
+
+        classify_variants) _medaka_tools_classifyvariants
+            return
+            ;;
+
+        annotate) _medaka_tools_annotate
+            return
+            ;;
+
+        consensus2vcf) _medaka_tools_consensus2vcf
+            return
+            ;;
+
+        vcf2tsv) _medaka_tools_vcf2tsv
+            return
+            ;;
+
+        homozygous_regions) _medaka_tools_homozygousregions
+            return
+            ;;
+
+        resolve_model) _medaka_tools_resolvemodel
+            return
+            ;;
+
+        is_rle_model) _medaka_tools_isrlemodel
+            return
+            ;;
+
+        list_models) _medaka_tools_listmodels
+            return
+            ;;
+
+        hdf_to_bed) _medaka_tools_hdftobed
+            return
+            ;;
+
+        download_models) _medaka_tools_downloadmodels
+            return
+            ;;
+
+    esac
+
+    local word_list=" haploid2diploid diploid2haploid classify_variants annotate consensus2vcf vcf2tsv homozygous_regions resolve_model is_rle_model list_models hdf_to_bed download_models -h --help --debug --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools_haploid2diploid()
+{
+    local word_list="  -h --help --debug --quiet --discard_phase --adjacent --split_mnp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools_diploid2haploid()
+{
+    local word_list="  -h --help --debug --quiet --notrim"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools_classifyvariants()
+{
+    local word_list="  -h --help --debug --quiet --replace_info"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools_annotate()
+{
+    local word_list="  -h --help --debug --quiet --chunk_size --pad --dpsp --RG"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools_consensus2vcf()
+{
+    local word_list="  -h --help --debug --quiet --regions --bam --out_prefix --chunk_size --pad --mode"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools_vcf2tsv()
+{
+    local word_list="  -h --help --debug --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools_homozygousregions()
+{
+    local word_list="  -h --help --debug --quiet --min_len --suffix"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools_resolvemodel()
+{
+    local word_list="  -h --help --debug --quiet --model"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools_isrlemodel()
+{
+    local word_list="  -h --help --model"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools_listmodels()
+{
+    local word_list="  -h --help --debug --quiet --model"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools_hdftobed()
+{
+    local word_list="  -h --help --debug --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_medaka_tools_downloadmodels()
+{
+    local word_list="  -h --help --debug --quiet --models"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _medaka medaka

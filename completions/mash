@@ -1,0 +1,106 @@
+# Auto-generated with h2o
+
+_mash()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" bounds dist info paste screen sketch taxscreen triangle"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        bounds) _mash_bounds
+            return
+            ;;
+
+        dist) _mash_dist
+            return
+            ;;
+
+        info) _mash_info
+            return
+            ;;
+
+        paste) _mash_paste
+            return
+            ;;
+
+        screen) _mash_screen
+            return
+            ;;
+
+        sketch) _mash_sketch
+            return
+            ;;
+
+        taxscreen) _mash_taxscreen
+            return
+            ;;
+
+        triangle) _mash_triangle
+            return
+            ;;
+
+    esac
+
+    local word_list=" bounds dist info paste screen sketch taxscreen triangle "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mash_bounds()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mash_dist()
+{
+    local word_list="  -h -p -l -t -v -d -C -k -s -i -S -w -r -b -m -c -g -n -a -z -Z"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mash_info()
+{
+    local word_list="  -h -H -t -c -d"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mash_paste()
+{
+    local word_list="  -h -l"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mash_screen()
+{
+    local word_list="  -h -p -w -i -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mash_sketch()
+{
+    local word_list="  -h -p -l -o -I -C -k -s -i -S -w -r -b -m -c -g -n -a -z -Z"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mash_taxscreen()
+{
+    local word_list="  -h -p -m -t -i -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mash_triangle()
+{
+    local word_list="  -h -p -l -C -E -v -d -k -s -i -S -w -r -b -m -c -g -n -a -z -Z"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _mash mash

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_hmmalign()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -o --mapali --trim --amino --dna --rna --informat --outformat"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _hmmalign hmmalign

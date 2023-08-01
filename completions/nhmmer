@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_nhmmer()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -o -A --tblout --dfamtblout --aliscoresout --hmmout --acc --noali --notextw --textw --singlemx --popen --pextend --mxfile -E -T --incE --incT --cut_ga --cut_nc --cut_tc --max --F1 --F2 --F3 --nobias --dna --rna --seed_max_depth --seed_sc_thresh --seed_sc_density --seed_drop_max_len --seed_drop_lim --seed_req_pos --seed_consens_match --seed_ssv_length --qformat --qsingle_seqs --tformat --nonull2 -Z --seed --w_beta --w_length --block_length --watson --crick --cpu"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _nhmmer nhmmer

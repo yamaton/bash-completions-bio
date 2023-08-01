@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_mview()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -in -out -ruler -alignment -conservation -consensus -width -pcid -reference -minident -maxident -sort -top -show -hide -nops -range -moltype -coloring -colormap -groupmap -threshold -ignore -con_coloring -con_colormap -con_groupmap -con_threshold -con_ignore -con_gaps -find -label0 -label1 -label2 -label3 -label4 -label5 -label6 -label7 -label8 -gap -sequences -register -html -bold -css -title -pagecolor -textcolor -alncolor -labcolor -symcolor -gapcolor -srs -linkcolor -alinkcolor -vlinkcolor -hsp -maxpval -minscore -strand -keepinserts -maxeval -minbits -cycle -minopt -chain -block -colorfile -groupfile -help -listcolors -listgroups -listcss"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _mview mview

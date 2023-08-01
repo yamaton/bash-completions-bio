@@ -1,0 +1,36 @@
+# Auto-generated with h2o
+
+_vdbconfig()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" vdb-config"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        vdb-config) _vdbconfig_vdbconfig
+            return
+            ;;
+
+    esac
+
+    local word_list=" vdb-config -a --all -p --cfg -f --files -d --load-path -e --env -m --modules -s --set -i --interactive --interactive-mode --restore-defaults --ignore-protected-repositories -o --output -Q --simplified-quality-scores -C --cloud-info --report-cloud-identity --accept-aws-charges --set-aws-credentials --set-aws-profile --accept-gcp-charges --set-gcp-credentials --prefetch-to-cwd --prefetch-to-user-repo --proxy --proxy-disable --cfg-dir --root -h --help -V --version -L --log-level -v --verbose -q --quiet --option-file"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vdbconfig_vdbconfig()
+{
+    local word_list="  -a --all -p --cfg -f --files -d --load-path -e --env -m --modules -s --set -i --interactive --interactive-mode --restore-defaults --ignore-protected-repositories -o --output -C --cloud-info --accept-aws-charges --set-aws-credentials --set-aws-profile --accept-gcp-charges --set-gcp-credentials --prefetch-to-cwd --prefetch-to-user-repo --proxy --proxy-disable --cfg-dir --root -h --help -V --version -L --log-level -v --verbose -q --quiet --option-file"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _vdbconfig vdb-config

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_rsemcontrolfdr()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --hard-threshold --soft-threshold -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _rsemcontrolfdr rsem-control-fdr

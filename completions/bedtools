@@ -1,0 +1,466 @@
+# Auto-generated with h2o
+
+_bedtools()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" intersect window closest coverage map genomecov merge cluster complement shift subtract slop flank sort random shuffle sample spacing annotate multiinter unionbedg pairtobed pairtopair bamtobed bedtobam bamtofastq bedpetobam bed12tobed6 getfasta maskfasta nuc multicov tag jaccard reldist fisher overlap igv links makewindows groupby expand split summary"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        intersect) _bedtools_intersect
+            return
+            ;;
+
+        window) _bedtools_window
+            return
+            ;;
+
+        closest) _bedtools_closest
+            return
+            ;;
+
+        coverage) _bedtools_coverage
+            return
+            ;;
+
+        map) _bedtools_map
+            return
+            ;;
+
+        genomecov) _bedtools_genomecov
+            return
+            ;;
+
+        merge) _bedtools_merge
+            return
+            ;;
+
+        cluster) _bedtools_cluster
+            return
+            ;;
+
+        complement) _bedtools_complement
+            return
+            ;;
+
+        shift) _bedtools_shift
+            return
+            ;;
+
+        subtract) _bedtools_subtract
+            return
+            ;;
+
+        slop) _bedtools_slop
+            return
+            ;;
+
+        flank) _bedtools_flank
+            return
+            ;;
+
+        sort) _bedtools_sort
+            return
+            ;;
+
+        random) _bedtools_random
+            return
+            ;;
+
+        shuffle) _bedtools_shuffle
+            return
+            ;;
+
+        sample) _bedtools_sample
+            return
+            ;;
+
+        spacing) _bedtools_spacing
+            return
+            ;;
+
+        annotate) _bedtools_annotate
+            return
+            ;;
+
+        multiinter) _bedtools_multiinter
+            return
+            ;;
+
+        unionbedg) _bedtools_unionbedg
+            return
+            ;;
+
+        pairtobed) _bedtools_pairtobed
+            return
+            ;;
+
+        pairtopair) _bedtools_pairtopair
+            return
+            ;;
+
+        bamtobed) _bedtools_bamtobed
+            return
+            ;;
+
+        bedtobam) _bedtools_bedtobam
+            return
+            ;;
+
+        bamtofastq) _bedtools_bamtofastq
+            return
+            ;;
+
+        bedpetobam) _bedtools_bedpetobam
+            return
+            ;;
+
+        bed12tobed6) _bedtools_bed12tobed6
+            return
+            ;;
+
+        getfasta) _bedtools_getfasta
+            return
+            ;;
+
+        maskfasta) _bedtools_maskfasta
+            return
+            ;;
+
+        nuc) _bedtools_nuc
+            return
+            ;;
+
+        multicov) _bedtools_multicov
+            return
+            ;;
+
+        tag) _bedtools_tag
+            return
+            ;;
+
+        jaccard) _bedtools_jaccard
+            return
+            ;;
+
+        reldist) _bedtools_reldist
+            return
+            ;;
+
+        fisher) _bedtools_fisher
+            return
+            ;;
+
+        overlap) _bedtools_overlap
+            return
+            ;;
+
+        igv) _bedtools_igv
+            return
+            ;;
+
+        links) _bedtools_links
+            return
+            ;;
+
+        makewindows) _bedtools_makewindows
+            return
+            ;;
+
+        groupby) _bedtools_groupby
+            return
+            ;;
+
+        expand) _bedtools_expand
+            return
+            ;;
+
+        split) _bedtools_split
+            return
+            ;;
+
+        summary) _bedtools_summary
+            return
+            ;;
+
+    esac
+
+    local word_list=" intersect window closest coverage map genomecov merge cluster complement shift subtract slop flank sort random shuffle sample spacing annotate multiinter unionbedg pairtobed pairtopair bamtobed bedtobam bamtofastq bedpetobam bed12tobed6 getfasta maskfasta nuc multicov tag jaccard reldist fisher overlap igv links makewindows groupby expand split summary --cram-ref --help --version --contact"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_intersect()
+{
+    local word_list="  -wa -wb -loj -wo -wao -u -c -C -v -ubam -s -S -f -F -r -e -split -g -nonamecheck -sorted -names -filenames -sortout -bed -header -nobuf -iobuf"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_window()
+{
+    local word_list="  -abam -ubam -bed -w -l -r -sw -sm -Sm -u -c -v -header"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_closest()
+{
+    local word_list="  -d -D -io -iu -id -fu -fd -t -mdb -k -N -s -S -f -F -r -e -split -g -nonamecheck -names -filenames -sortout -bed -header -nobuf -iobuf"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_coverage()
+{
+    local word_list="  -hist -d -counts -mean -s -S -f -F -r -e -split -g -nonamecheck -sorted -bed -header -nobuf -iobuf"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_map()
+{
+    local word_list="  -c -o -delim -prec -s -S -f -F -r -e -split -g -nonamecheck -bed -header -nobuf -iobuf"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_genomecov()
+{
+    local word_list="  -ibam -d -dz -bg -bga -split -ignoreD -strand -pc -fs -du -5 -3 -max -scale -trackline -trackopts"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_merge()
+{
+    local word_list="  -s -S -d -c -o -delim -prec -bed -header -nobuf -iobuf"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_cluster()
+{
+    local word_list="  -s -d"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_complement()
+{
+    local word_list="  -L"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_shift()
+{
+    local word_list="  -s -p -m -pct -header"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_subtract()
+{
+    local word_list="  -A -N -wb -wo -s -S -f -F -r -e -split -g -nonamecheck -sorted -bed -header -nobuf -iobuf"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_slop()
+{
+    local word_list="  -b -l -r -s -pct -header"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_flank()
+{
+    local word_list="  -b -l -r -s -pct -header"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_sort()
+{
+    local word_list="  -sizeA -sizeD -chrThenSizeA -chrThenSizeD -chrThenScoreA -chrThenScoreD -g -faidx -header"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_random()
+{
+    local word_list="  -l -n -seed"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_shuffle()
+{
+    local word_list="  -excl -incl -chrom -seed -f -chromFirst -bedpe -maxTries -noOverlapping -allowBeyondChromEnd"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_sample()
+{
+    local word_list="  -n -seed -ubam -s -header -bed -header -nobuf -iobuf"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_spacing()
+{
+    local word_list="  -bed -header -nobuf -iobuf"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_annotate()
+{
+    local word_list="  -names -counts -both -s -S"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_multiinter()
+{
+    local word_list="  -cluster -header -names -g -empty -filler -examples"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_unionbedg()
+{
+    local word_list="  -header -names -g -empty -filler -examples"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_pairtobed()
+{
+    local word_list="  -abam -ubam -bedpe -ed -f -s -S -type"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_pairtopair()
+{
+    local word_list="  -f -type -slop -ss -is -rdn"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_bamtobed()
+{
+    local word_list="  -bedpe -mate1 -bed12 -split -splitD -ed -tag -color -cigar"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_bedtobam()
+{
+    local word_list="  -mapq -bed12 -ubam"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_bamtofastq()
+{
+    local word_list="  -fq2 -tags"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_bedpetobam()
+{
+    local word_list="  -mapq -ubam"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_bed12tobed6()
+{
+    local word_list="  -n"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_getfasta()
+{
+    local word_list="  -fi -fo -bed -name -name+ -nameOnly -split -tab -bedOut -s -fullHeader -rna"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_maskfasta()
+{
+    local word_list="  -fi -bed -fo -soft -mc -fullHeader"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_nuc()
+{
+    local word_list="  -fi -bed -s -seq -pattern -C -fullHeader"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_multicov()
+{
+    local word_list="  -bams -bed -split -s -S -f -r -q -D -F -p"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_tag()
+{
+    local word_list="  -s -S -f -tag -names -scores -intervals"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_jaccard()
+{
+    local word_list="  -s -S -f -F -r -e -split -g -bed -header -nobuf -iobuf -nonamecheck"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_reldist()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_fisher()
+{
+    local word_list="  -m -s -S -f -F -r -e -split -g -bed -header -nobuf -iobuf -nonamecheck"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_overlap()
+{
+    local word_list="  -i -cols"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_igv()
+{
+    local word_list="  -path -sess -sort -clps -name -slop -img"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_links()
+{
+    local word_list="  -base -org -db"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_makewindows()
+{
+    local word_list="  -g -b -w -s -n -reverse -i"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_groupby()
+{
+    local word_list="  -i -g -grp -c -opCols -o -ops -full -inheader -outheader -header -ignorecase -prec -delim"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_expand()
+{
+    local word_list="  -i -c"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_split()
+{
+    local word_list="  -i --input -n --number -p --prefix -a --algorithm -h --help -v --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtools_summary()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bedtools bedtools

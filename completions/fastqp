@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_fastqp()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -q --quiet -s --binsize -a --name -n --nreads -p --base-probs -k --kmer -o --output -e --text -t --type -ll --leftlimit -rl --rightlimit -mq --median-qual --aligned-only --unaligned-only -d --count-duplicates"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _fastqp fastqp

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_shovill()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --help --version --check --R1 --R2 --depth --gsize --outdir --force --minlen --mincov --namefmt --keepfiles --tmpdir --cpus --ram --assembler --opts --kmers --trim --noreadcorr --nostitch --nocorr"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _shovill shovill

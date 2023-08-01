@@ -1,0 +1,156 @@
+# Auto-generated with h2o
+
+_bamtools()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" convert count coverage filter header index merge random resolve revert sort split stats"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        convert) _bamtools_convert
+            return
+            ;;
+
+        count) _bamtools_count
+            return
+            ;;
+
+        coverage) _bamtools_coverage
+            return
+            ;;
+
+        filter) _bamtools_filter
+            return
+            ;;
+
+        header) _bamtools_header
+            return
+            ;;
+
+        index) _bamtools_index
+            return
+            ;;
+
+        merge) _bamtools_merge
+            return
+            ;;
+
+        random) _bamtools_random
+            return
+            ;;
+
+        resolve) _bamtools_resolve
+            return
+            ;;
+
+        revert) _bamtools_revert
+            return
+            ;;
+
+        sort) _bamtools_sort
+            return
+            ;;
+
+        split) _bamtools_split
+            return
+            ;;
+
+        stats) _bamtools_stats
+            return
+            ;;
+
+    esac
+
+    local word_list=" convert count coverage filter header index merge random resolve revert sort split stats "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_convert()
+{
+    local word_list="  -in -list -out -format -region -fasta -mapqual -noheader --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_count()
+{
+    local word_list="  -in -list -region --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_coverage()
+{
+    local word_list="  -in -out --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_filter()
+{
+    local word_list="  -in -list -out -region -script -forceCompression -alignmentFlag -insertSize -length -mapQuality -name -queryBases -tag -isDuplicate -isFailedQC -isFirstMate -isMapped -isMateMapped -isMateReverseStrand -isPaired -isPrimaryAlignment -isProperPair -isReverseStrand -isSecondMate -isSingleton --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_header()
+{
+    local word_list="  -in -list --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_index()
+{
+    local word_list="  -in -bti --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_merge()
+{
+    local word_list="  -in -list -out -forceCompression -region --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_random()
+{
+    local word_list="  -in -list -out -region -forceCompression -n -seed --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_resolve()
+{
+    local word_list="  -in -out -stats -forceCompression -makeStats -markPairs -twoPass -minMQ -ci -umt -force --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_revert()
+{
+    local word_list="  -in -out -forceCompression -keepDuplicate -keepQualities --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_sort()
+{
+    local word_list="  -in -out -byname -n -mem --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_split()
+{
+    local word_list="  -in -refPrefix -tagPrefix -stub -tagListDelim -mapped -paired -reference -tag --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bamtools_stats()
+{
+    local word_list="  -in -list -insert --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bamtools bamtools

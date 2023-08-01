@@ -1,0 +1,76 @@
+# Auto-generated with h2o
+
+_compleasm()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" download list miniprot analyze run"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        download) _compleasm_download
+            return
+            ;;
+
+        list) _compleasm_list
+            return
+            ;;
+
+        miniprot) _compleasm_miniprot
+            return
+            ;;
+
+        analyze) _compleasm_analyze
+            return
+            ;;
+
+        run) _compleasm_run
+            return
+            ;;
+
+    esac
+
+    local word_list=" download list miniprot analyze run -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_compleasm_download()
+{
+    local word_list="  -h --help -L --library_path"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_compleasm_list()
+{
+    local word_list="  -h --help --remote --local -L --library_path"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_compleasm_miniprot()
+{
+    local word_list="  -h --help -a --assembly -p --protein -o --outdir -t --threads --outs --miniprot_execute_path"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_compleasm_analyze()
+{
+    local word_list="  -h --help -g --gff -l --lineage -o --output_dir -t --threads -L --library_path -m --mode --hmmsearch_execute_path --specified_contigs --min_diff --min_identity --min_length_percent --min_complete --min_rise"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_compleasm_run()
+{
+    local word_list="  -h --help -a --assembly_path -o --output_dir -t --threads -l --lineage -L --library_path -m --mode --specified_contigs --outs --miniprot_execute_path --hmmsearch_execute_path --autolineage --sepp_execute_path --min_diff --min_identity --min_length_percent --min_complete --min_rise"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _compleasm compleasm

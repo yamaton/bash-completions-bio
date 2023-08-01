@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_rsemrunem()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -p -b -q --gibbs-out --sampling --seed --append-names"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _rsemrunem rsem-run-em

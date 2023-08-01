@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_DASTool()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -i --bins -c --contigs -o --outputbasename -l --labels --search_engine -p --proteins --write_bin_evals --write_bins --write_unbinned -t --threads --score_threshold --duplicate_penalty --megabin_penalty --dbDirectory --resume --debug -v --version -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _DASTool DAS_Tool

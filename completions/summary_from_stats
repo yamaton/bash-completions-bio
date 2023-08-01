@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_summaryfromstats()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -i --input -o --output -p --percentiles -pr --per_reference -a --accumulate"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _summaryfromstats summary_from_stats

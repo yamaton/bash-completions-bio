@@ -1,0 +1,702 @@
+# Auto-generated with h2o
+
+_hailctl()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" dataproc describe hdinsight auth dev batch config"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        dataproc) _hailctl_dataproc
+            return
+            ;;
+
+        describe) _hailctl_describe
+            return
+            ;;
+
+        hdinsight) _hailctl_hdinsight
+            return
+            ;;
+
+        auth) _hailctl_auth
+            return
+            ;;
+
+        dev) _hailctl_dev
+            return
+            ;;
+
+        batch) _hailctl_batch
+            return
+            ;;
+
+        config) _hailctl_config
+            return
+            ;;
+
+    esac
+
+    local word_list=" dataproc describe hdinsight auth dev batch config -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dataproc()
+{
+    local cmd i subcommands
+    local subcommands=" start submit connect diagnose stop list modify describe"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        start) _hailctl_dataproc_start
+            return
+            ;;
+
+        submit) _hailctl_dataproc_submit
+            return
+            ;;
+
+        connect) _hailctl_dataproc_connect
+            return
+            ;;
+
+        diagnose) _hailctl_dataproc_diagnose
+            return
+            ;;
+
+        stop) _hailctl_dataproc_stop
+            return
+            ;;
+
+        list) _hailctl_dataproc_list
+            return
+            ;;
+
+        modify) _hailctl_dataproc_modify
+            return
+            ;;
+
+        describe) _hailctl_dataproc_describe
+            return
+            ;;
+
+    esac
+
+    local word_list=" start submit connect diagnose stop list modify describe -h --help --beta"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dataproc_start()
+{
+    local word_list="  -h --help --master-machine-type --master -m --master-memory-fraction --master-boot-disk-size --num-master-local-ssds --num-secondary-workers --num-worker-local-ssds --num-workers --n-workers -w --secondary-worker-boot-disk-size --preemptible-worker-boot-disk-size --worker-boot-disk-size --worker-machine-type --worker --region --zone --properties --metadata --packages --pkgs --project --configuration --max-idle --expiration-time --max-age --bucket --temp-bucket --network --service-account --master-tags --scopes --wheel --init --init_timeout --vep --dry-run --no-off-heap-memory --big-executors --off-heap-memory-fraction --off-heap-memory-hard-limit --yarn-memory-fraction --requester-pays-allow-all --requester-pays-allow-buckets --requester-pays-allow-annotation-db --debug-mode"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dataproc_submit()
+{
+    local word_list="  -h --help --files --pyfiles --properties -p --gcloud_configuration --dry-run --region"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dataproc_connect()
+{
+    local word_list="  -h --help --project --port -p --zone -z --dry-run"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dataproc_diagnose()
+{
+    local word_list="  -h --help --dest -d --hail-log -l --overwrite --no-diagnose --compress -z --workers --take"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dataproc_stop()
+{
+    local word_list="  -h --help --async --dry-run"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dataproc_list()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dataproc_modify()
+{
+    local word_list="  -h --help --num-workers --n-workers -w --num-secondary-workers --graceful-decommission-timeout --graceful --max-idle --no-max-idle --expiration-time --max-age --no-max-age --dry-run --zone -z --update-hail-version --wheel"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dataproc_describe()
+{
+    local word_list="  -h --help --requester-pays-project-id -u"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_describe()
+{
+    local word_list="  -h --help --requester-pays-project-id -u"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_hdinsight()
+{
+    local cmd i subcommands
+    local subcommands=" start stop submit list"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        start) _hailctl_hdinsight_start
+            return
+            ;;
+
+        stop) _hailctl_hdinsight_stop
+            return
+            ;;
+
+        submit) _hailctl_hdinsight_submit
+            return
+            ;;
+
+        list) _hailctl_hdinsight_list
+            return
+            ;;
+
+    esac
+
+    local word_list=" start stop submit list -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_hdinsight_start()
+{
+    local word_list="  -h --help --http-password --sshuser-password --location --num-workers --install-hail-uri --install-native-deps-uri --wheel-uri --vep --vep-loftee-uri --vep-homo-sapiens-uri --vep-config-uri --install-vep-uri"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_hdinsight_stop()
+{
+    local word_list="  -h --help --extra-hdinsight-delete-args --extra-storage-delete-args"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_hdinsight_submit()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_hdinsight_list()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_auth()
+{
+    local cmd i subcommands
+    local subcommands=" login copy-paste-login logout list user create-user delete-user"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        login) _hailctl_auth_login
+            return
+            ;;
+
+        copy-paste-login) _hailctl_auth_copypastelogin
+            return
+            ;;
+
+        logout) _hailctl_auth_logout
+            return
+            ;;
+
+        list) _hailctl_auth_list
+            return
+            ;;
+
+        user) _hailctl_auth_user
+            return
+            ;;
+
+        create-user) _hailctl_auth_createuser
+            return
+            ;;
+
+        delete-user) _hailctl_auth_deleteuser
+            return
+            ;;
+
+    esac
+
+    local word_list=" login copy-paste-login logout list user create-user delete-user -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_auth_login()
+{
+    local word_list="  -h --help --namespace -n"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_auth_copypastelogin()
+{
+    local word_list="  -h --help --namespace -n"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_auth_logout()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_auth_list()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_auth_user()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_auth_createuser()
+{
+    local word_list="  -h --help --developer --service-account --namespace -n --wait"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_auth_deleteuser()
+{
+    local word_list="  -h --help --namespace -n --wait"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dev()
+{
+    local cmd i subcommands
+    local subcommands=" config deploy"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        config) _hailctl_dev_config
+            return
+            ;;
+
+        deploy) _hailctl_dev_deploy
+            return
+            ;;
+
+    esac
+
+    local word_list=" config deploy -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dev_config()
+{
+    local cmd i subcommands
+    local subcommands=" set show list"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        set) _hailctl_dev_config_set
+            return
+            ;;
+
+        show) _hailctl_dev_config_show
+            return
+            ;;
+
+        list) _hailctl_dev_config_list
+            return
+            ;;
+
+    esac
+
+    local word_list=" set show list -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dev_config_set()
+{
+    local cmd i subcommands
+    local subcommands=" value"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        value) _hailctl_dev_config_set_value
+            return
+            ;;
+
+    esac
+
+    local word_list=" value -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dev_config_set_value()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dev_config_show()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dev_config_list()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_dev_deploy()
+{
+    local word_list="  -h --help --branch -b --steps -s --excluded_steps -e --extra-config -c --open -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch()
+{
+    local cmd i subcommands
+    local subcommands=" billing list get cancel delete submit log job wait"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        billing) _hailctl_batch_billing
+            return
+            ;;
+
+        list) _hailctl_batch_list
+            return
+            ;;
+
+        get) _hailctl_batch_get
+            return
+            ;;
+
+        cancel) _hailctl_batch_cancel
+            return
+            ;;
+
+        delete) _hailctl_batch_delete
+            return
+            ;;
+
+        submit) _hailctl_batch_submit
+            return
+            ;;
+
+        log) _hailctl_batch_log
+            return
+            ;;
+
+        job) _hailctl_batch_job
+            return
+            ;;
+
+        wait) _hailctl_batch_wait
+            return
+            ;;
+
+    esac
+
+    local word_list=" billing list get cancel delete submit log job wait -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_billing()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_list()
+{
+    local word_list="  -h --help --query -q --limit -l --all -a --before --full --no-header -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_get()
+{
+    local cmd i subcommands
+    local subcommands=" batch_id"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        batch_id) _hailctl_batch_get_batchid
+            return
+            ;;
+
+    esac
+
+    local word_list=" batch_id -h --help -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_get_batchid()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_cancel()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_delete()
+{
+    local cmd i subcommands
+    local subcommands=" batch_id"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        batch_id) _hailctl_batch_delete_batchid
+            return
+            ;;
+
+    esac
+
+    local word_list=" batch_id -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_delete_batchid()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_submit()
+{
+    local word_list="  -h --help --name --image-name --files -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_log()
+{
+    local cmd i subcommands
+    local subcommands=" batch_id job_id"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        batch_id) _hailctl_batch_log_batchid
+            return
+            ;;
+
+        job_id) _hailctl_batch_log_jobid
+            return
+            ;;
+
+    esac
+
+    local word_list=" batch_id job_id -h --help -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_log_batchid()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_log_jobid()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_job()
+{
+    local cmd i subcommands
+    local subcommands=" batch_id job_id"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        batch_id) _hailctl_batch_job_batchid
+            return
+            ;;
+
+        job_id) _hailctl_batch_job_jobid
+            return
+            ;;
+
+    esac
+
+    local word_list=" batch_id job_id -h --help -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_job_batchid()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_job_jobid()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_batch_wait()
+{
+    local word_list="  -h --help --quiet -q"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_config()
+{
+    local cmd i subcommands
+    local subcommands=" set unset get config-location list"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        set) _hailctl_config_set
+            return
+            ;;
+
+        unset) _hailctl_config_unset
+            return
+            ;;
+
+        get) _hailctl_config_get
+            return
+            ;;
+
+        config-location) _hailctl_config_configlocation
+            return
+            ;;
+
+        list) _hailctl_config_list
+            return
+            ;;
+
+    esac
+
+    local word_list=" set unset get config-location list -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_config_set()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_config_unset()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_config_get()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_config_configlocation()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hailctl_config_list()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _hailctl hailctl

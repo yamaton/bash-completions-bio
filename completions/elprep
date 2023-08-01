@@ -1,0 +1,106 @@
+# Auto-generated with h2o
+
+_elprep()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" filter split merge merge-optical-duplicates-metrics sfm vcf-to-elsites bed-to-elsites fasta-to-elfasta"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        filter) _elprep_filter
+            return
+            ;;
+
+        split) _elprep_split
+            return
+            ;;
+
+        merge) _elprep_merge
+            return
+            ;;
+
+        merge-optical-duplicates-metrics) _elprep_mergeopticalduplicatesmetrics
+            return
+            ;;
+
+        sfm) _elprep_sfm
+            return
+            ;;
+
+        vcf-to-elsites) _elprep_vcftoelsites
+            return
+            ;;
+
+        bed-to-elsites) _elprep_bedtoelsites
+            return
+            ;;
+
+        fasta-to-elfasta) _elprep_fastatoelfasta
+            return
+            ;;
+
+    esac
+
+    local word_list=" filter split merge merge-optical-duplicates-metrics sfm vcf-to-elsites bed-to-elsites fasta-to-elfasta "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_elprep_filter()
+{
+    local word_list="  --replace-reference-sequences --filter-unmapped-reads --filter-unmapped-reads-strict --filter-mapping-quality --filter-non-exact-mapping-reads --filter-non-exact-mapping-reads-strict --filter-non-overlapping-reads --replace-read-group --mark-duplicates --mark-optical-duplicates --optical-duplicates-pixel-distance --remove-duplicates --remove-optional-fields --keep-optional-fields --clean-sam --bqsr --reference --known-sites --known-sites --sqq --max-cycle --target-regions --bqsr-tablename-prefix --mark-optical-duplicates-intermediate --bqsr-tables-only --bqsr-apply --haplotypecaller --reference --reference-confidence --sample-name --activity-profile --activity-regions --assembly-region-padding --target-regions --sorting-order --nr-of-threads --timed --log-path"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_elprep_split()
+{
+    local word_list="  -output-prefix --output-type --nr-of-threads --single-end --log-path --contig-group-size"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_elprep_merge()
+{
+    local word_list="  -nr-of-threads --single-end --log-path"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_elprep_mergeopticalduplicatesmetrics()
+{
+    local word_list="  -nr-of-threads --remove-duplicates"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_elprep_sfm()
+{
+    local word_list="  -intermediate-files-output-type --tmp-path --single-end --contig-group-size"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_elprep_vcftoelsites()
+{
+    local word_list="  --log-path"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_elprep_bedtoelsites()
+{
+    local word_list="  --log-path"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_elprep_fastatoelfasta()
+{
+    local word_list="  --log-path"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _elprep elprep

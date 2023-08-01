@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_vcfremap()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -w --ref-window-size -s --alt-window-size -r --reference -m --match-score -x --mismatch-score -o --gap-open-penalty -e --gap-extend-penalty -z --entropy-gap-open -R --repeat-gap-extend -a --adjust-vcf"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _vcfremap vcfremap

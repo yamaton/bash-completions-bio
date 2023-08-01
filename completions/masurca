@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_masurca()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -t --threads -i --illumina -r --reads -v --version -o --output -g --generate -p --path -l --ld-library-path --skip-checking -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _masurca masurca

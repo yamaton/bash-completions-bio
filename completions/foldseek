@@ -1,0 +1,146 @@
+# Auto-generated with h2o
+
+_foldseek()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" easy-search easy-rbh createdb search rbh databases createindex convertalis tmalign structurealign aln2tmscore clust"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        easy-search) _foldseek_easysearch
+            return
+            ;;
+
+        easy-rbh) _foldseek_easyrbh
+            return
+            ;;
+
+        createdb) _foldseek_createdb
+            return
+            ;;
+
+        search) _foldseek_search
+            return
+            ;;
+
+        rbh) _foldseek_rbh
+            return
+            ;;
+
+        databases) _foldseek_databases
+            return
+            ;;
+
+        createindex) _foldseek_createindex
+            return
+            ;;
+
+        convertalis) _foldseek_convertalis
+            return
+            ;;
+
+        tmalign) _foldseek_tmalign
+            return
+            ;;
+
+        structurealign) _foldseek_structurealign
+            return
+            ;;
+
+        aln2tmscore) _foldseek_aln2tmscore
+            return
+            ;;
+
+        clust) _foldseek_clust
+            return
+            ;;
+
+    esac
+
+    local word_list=" easy-search easy-rbh createdb search rbh databases createindex convertalis tmalign structurealign aln2tmscore clust "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_foldseek_easysearch()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --seed-sub-mat -s -k --k-score --max-seqs --split --split-mode --split-memory-limit --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --spaced-kmer-mode --spaced-kmer-pattern --local-tmp --min-seq-id -c --cov-mode --max-rejected --max-accept -a --alignment-mode --alignment-output-mode -e --min-aln-len --seq-id-mode --alt-ali --gap-open --gap-extend --tmscore-threshold --tmalign-fast --alignment-type --tar-include --tar-exclude --format-mode --format-output --db-load-mode --threads -v --sub-mat --max-seq-len --compressed --remove-tmp-files --mpi-runner --force-reuse --zdrop --chain-name-mode --write-lookup --db-output"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_foldseek_easyrbh()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --seed-sub-mat -s -k --k-score --max-seqs --split --split-mode --split-memory-limit --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --spaced-kmer-mode --spaced-kmer-pattern --local-tmp --min-seq-id -c --cov-mode --max-rejected --max-accept -a --alignment-mode --alignment-output-mode -e --min-aln-len --seq-id-mode --alt-ali --gap-open --gap-extend --tmscore-threshold --tmalign-fast --alignment-type --tar-include --tar-exclude --format-mode --format-output --db-load-mode --threads -v --sub-mat --max-seq-len --compressed --remove-tmp-files --mpi-runner --force-reuse --pca --pcb --zdrop --chain-name-mode --write-lookup --translation-table --db-output"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_foldseek_createdb()
+{
+    local word_list="  --tar-include --tar-exclude --threads -v --chain-name-mode --write-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_foldseek_search()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --seed-sub-mat -s -k --k-score --max-seqs --split --split-mode --split-memory-limit --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --spaced-kmer-mode --spaced-kmer-pattern --local-tmp --min-seq-id -c --cov-mode --max-rejected --max-accept -a --alignment-mode --alignment-output-mode -e --min-aln-len --seq-id-mode --alt-ali --gap-open --gap-extend --tmscore-threshold --tmalign-fast --alignment-type --db-load-mode --threads -v --sub-mat --max-seq-len --compressed --remove-tmp-files --mpi-runner --force-reuse"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_foldseek_rbh()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --seed-sub-mat -s -k --k-score --max-seqs --split --split-mode --split-memory-limit --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --spaced-kmer-mode --spaced-kmer-pattern --local-tmp --min-seq-id -c --cov-mode --max-rejected --max-accept -a --alignment-mode --alignment-output-mode -e --min-aln-len --seq-id-mode --alt-ali --gap-open --gap-extend --tmscore-threshold --tmalign-fast --alignment-type --db-load-mode --threads -v --sub-mat --max-seq-len --compressed --remove-tmp-files --mpi-runner --force-reuse"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_foldseek_databases()
+{
+    local word_list="  --force-reuse --remove-tmp-files --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_foldseek_createindex()
+{
+    local word_list="  --seed-sub-mat -k --comp-bias-corr --comp-bias-corr-scale --max-seqs --mask --mask-prob --mask-lower-case --spaced-kmer-mode --spaced-kmer-pattern -s --k-score --split --split-memory-limit --check-compatible --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translate --use-all-table-starts --id-offset --add-orf-stop --sequence-overlap --sequence-split-mode --headers-split-mode --max-seq-len -v --threads --compressed --remove-tmp-files --translation-table --create-lookup --strand"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_foldseek_convertalis()
+{
+    local word_list="  --gap-open --gap-extend --format-mode --format-output --sub-mat --db-load-mode --threads --compressed -v --db-output"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_foldseek_tmalign()
+{
+    local word_list="  --min-seq-id -c --cov-mode --max-rejected --max-accept -a --tmalign-fast --db-load-mode --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_foldseek_structurealign()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale -a --alignment-mode --alignment-output-mode -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --gap-open --gap-extend --sub-mat --max-seq-len --db-load-mode --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_foldseek_aln2tmscore()
+{
+    local word_list="  --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_foldseek_clust()
+{
+    local word_list="  --cluster-mode --max-iterations --similarity-type --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _foldseek foldseek

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_RepeatModeler()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -database -pa -recoverDir -srand -LTRStruct -genomeSampleSizeMax -ucsctools_dir -repeatmasker_dir -ltr_retriever_dir -rmblast_dir -cdhit_dir -recon_dir -genometools_dir -mafft_dir -abblast_dir -rscout_dir -trf_dir -ninja_dir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _RepeatModeler RepeatModeler

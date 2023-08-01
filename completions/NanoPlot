@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_NanoPlot()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -v --version -t --threads --verbose --store --raw --huge -o --outdir --no_static -p --prefix --tsv_stats --info_in_report --maxlength --minlength --drop_outliers --downsample --loglength --percentqual --alength --minqual --runtime_until --readtype --barcoded --no_supplementary -c --color -cm --colormap -f --format --plots --legacy --listcolors --listcolormaps --no-N50 --N50 --title --font_scale --dpi --hide_stats --fastq --fasta --fastq_rich --fastq_minimal --summary --bam --ubam --cram --pickle --feather"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _NanoPlot NanoPlot

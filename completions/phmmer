@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_phmmer()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -o -A --tblout --domtblout --pfamtblout --acc --noali --notextw --textw --popen --pextend --mx --mxfile -E -T --domE --domT --incE --incT --incdomE --incdomT --max --F1 --F2 --F3 --nobias --EmL --EmN --EvL --EvN --EfL --EfN --Eft --nonull2 -Z --domZ --seed --qformat --tformat --cpu"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _phmmer phmmer

@@ -1,0 +1,199 @@
+# Auto-generated with h2o
+
+_kmcp()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" autocompletion compute index merge profile search utils version"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        autocompletion) _kmcp_autocompletion
+            return
+            ;;
+
+        compute) _kmcp_compute
+            return
+            ;;
+
+        index) _kmcp_index
+            return
+            ;;
+
+        merge) _kmcp_merge
+            return
+            ;;
+
+        profile) _kmcp_profile
+            return
+            ;;
+
+        search) _kmcp_search
+            return
+            ;;
+
+        utils) _kmcp_utils
+            return
+            ;;
+
+        version) _kmcp_version
+            return
+            ;;
+
+    esac
+
+    local word_list=" autocompletion compute index merge profile search utils version -h --help -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_autocompletion()
+{
+    local word_list="  --file -h --help --shell -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_compute()
+{
+    local word_list="  --by-seq --circular -c --compress -r --file-regexp --force -h --help -I --in-dir -k --kmer -W --minimizer-w -O --out-dir -N --ref-name-regexp -D --scale -B --seq-name-filter -m --split-min-ref -n --split-number -l --split-overlap -s --split-size -S --syncmer-s -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_index()
+{
+    local word_list="  -a --alias -b --block-size -1 --block-size1-kmers-t -8 --block-size8-kmers-t -X --block-sizeX -x --block-sizeX-kmers-t --dry-run -f --false-positive-rate --file-regexp --force -h --help -I --in-dir -F --max-open-files -n --num-hash -O --out-dir -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_merge()
+{
+    local word_list="  -n --field-hits -f --field-queryIdx -h --help -H --no-header-row -o --out-file -s --sort-by -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_profile()
+{
+    local word_list="  -r --min-chunks-reads -p --min-chunks-fraction -d --max-chunks-depth-stdev -u --min-uniq-reads -U --min-hic-ureads -H --min-hic-ureads-qcov -P --min-hic-ureads-prop - - -C -s -I --abund-max-iters --abund-pct-threshold -B --binning-result -C --cami-report --debug -F --filter-low-pct -h --help --keep-main-matches --keep-perfect-matches -n --keep-top-qcovs --level --line-chunk-size -d --max-chunks-depth-stdev -f --max-fpr -R --max-mismatch-err --max-qcov-gap -M --metaphlan-report --metaphlan-report-version -p --min-chunks-fraction -r --min-chunks-reads -D --min-dreads-prop -U --min-hic-ureads -P --min-hic-ureads-prop -H --min-hic-ureads-qcov -t --min-query-cov -u --min-uniq-reads -m --mode -N --name-map --no-amb-corr --norm-abund -o --out-prefix --rank-prefix -s --sample-id -S --separator --show-rank -X --taxdump -T --taxid-map --taxonomy-id -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_search()
+{
+    local word_list="  - - - - - -1 -2 -1 -d --db-dir -D --default-name-map -S --do-not-sort -h --help -n --keep-top-scores -K --keep-unmatched -u --kmer-dedup-threshold -w --load-whole-db --low-mem -f --max-fpr -c --min-kmers -t --min-query-cov -m --min-query-len -T --min-target-cov -N --name-map -H --no-header-row -o --out-file --query-id -g --query-whole-file -1 --read1 -2 --read2 -s --sort-by --try-se -G --use-filename -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_utils()
+{
+    local cmd i subcommands
+    local subcommands=" cov2simi filter index-info merge-regions query-fpr ref-info split-genomes unik-info"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        cov2simi) _kmcp_utils_cov2simi
+            return
+            ;;
+
+        filter) _kmcp_utils_filter
+            return
+            ;;
+
+        index-info) _kmcp_utils_indexinfo
+            return
+            ;;
+
+        merge-regions) _kmcp_utils_mergeregions
+            return
+            ;;
+
+        query-fpr) _kmcp_utils_queryfpr
+            return
+            ;;
+
+        ref-info) _kmcp_utils_refinfo
+            return
+            ;;
+
+        split-genomes) _kmcp_utils_splitgenomes
+            return
+            ;;
+
+        unik-info) _kmcp_utils_unikinfo
+            return
+            ;;
+
+    esac
+
+    local word_list=" cov2simi filter index-info merge-regions query-fpr ref-info split-genomes unik-info -h --help -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_utils_cov2simi()
+{
+    local word_list="  -h --help -o --out-prefix -t --query-cov -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_utils_filter()
+{
+    local word_list="  -h --help --level --line-chunk-size -f --max-fpr -t --min-query-cov -H --no-header-row -o --out-prefix -X --taxdump -T --taxid-map -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_utils_indexinfo()
+{
+    local word_list="  -a --all -b --basename -h --help -o --out-prefix -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_utils_mergeregions()
+{
+    local word_list="  -o -h --help -I --ignore-type --line-chunk-size -f --max-fpr -g --max-gap -l --min-overlap -t --min-query-cov -a --name-assembly -s --name-species -o --out-prefix -r --regexp -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_utils_queryfpr()
+{
+    local word_list="  -H --add-header -a --all -f --false-positive-rate -h --help -m --matched-kmers -n --num-kmers -o --out-prefix -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_utils_refinfo()
+{
+    local word_list="  -d --db-dir -h --help -H --no-header-row -o --out-file -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_utils_splitgenomes()
+{
+    local word_list="  --circular -r --file-regexp --force -f --frag-size -h --help -I --in-dir --info-file -k --kmer -O --out-dir -B --seq-name-filter -m --split-min-ref -n --split-number -l --split-overlap -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_utils_unikinfo()
+{
+    local word_list="  -a --all -b --basename -h --help -o --out-file -e --skip-err --symbol-false --symbol-true -T --tabular -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmcp_version()
+{
+    local word_list="  -u --check-update -h --help -i --infile-list --log -q --quiet -j --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _kmcp kmcp

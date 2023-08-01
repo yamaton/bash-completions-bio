@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_htseqcount()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --version -f --format -r --order --max-reads-in-buffer -s --stranded -a --minaqual -t --type -i --idattr --additional-attr --add-chromosome-info -m --mode --nonunique --secondary-alignments --supplementary-alignments -o --samout -p --samout-format -d --delimiter -c --counts_output --counts-output-sparse --append-output -n --nprocesses --feature-query -q --quiet --with-header"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _htseqcount htseq-count

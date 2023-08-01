@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_psiblast()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -help -version -query -query_loc -db -out -evalue -word_size -gapopen -gapextend -matrix -threshold -comp_based_stats -subject -subject_loc -outfmt -show_gis -num_descriptions -num_alignments -line_length -html -sorthits -sorthsps -seg -soft_masking -lcase_masking -gilist -seqidlist -negative_gilist -negative_seqidlist -taxids -negative_taxids -taxidlist -negative_taxidlist -ipglist -negative_ipglist -entrez_query -qcov_hsp_perc -max_hsps -culling_limit -best_hit_overhang -best_hit_score_edge -subject_besthit -max_target_seqs -dbsize -searchsp -sum_stats -import_search_strategy -export_search_strategy -xdrop_ungap -xdrop_gap -xdrop_gap_final -window_size -gap_trigger -parse_deflines -num_threads -remote -use_sw_tback -num_iterations -out_pssm -out_ascii_pssm -save_pssm_after_last_round -save_each_pssm -in_msa -msa_master_idx -ignore_msa_master -in_pssm -pseudocount -inclusion_ethresh -phi_pattern"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _psiblast psiblast

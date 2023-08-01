@@ -1,0 +1,86 @@
+# Auto-generated with h2o
+
+_treetime()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" homoplasy ancestral mugration clock arg version"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        homoplasy) _treetime_homoplasy
+            return
+            ;;
+
+        ancestral) _treetime_ancestral
+            return
+            ;;
+
+        mugration) _treetime_mugration
+            return
+            ;;
+
+        clock) _treetime_clock
+            return
+            ;;
+
+        arg) _treetime_arg
+            return
+            ;;
+
+        version) _treetime_version
+            return
+            ;;
+
+    esac
+
+    local word_list=" homoplasy ancestral mugration clock arg version -h --help --tree --sequence-length --aln --vcf-reference --dates --name-column --date-column --clock-rate --clock-std-dev --branch-length-mode --confidence --time-marginal --keep-polytomies --relax --max-iter --coalescent --n-skyline --n-branches-posterior --plot-tree --plot-rtt --tip-labels --no-tip-labels --clock-filter --reroot --keep-root --tip-slack --covariation --gtr --gtr-params --aa --keep-overhangs --zero-based --reconstruct-tip-states --report-ambiguous --method-anc --verbose --outdir --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_treetime_homoplasy()
+{
+    local word_list="  -h --help --aln --vcf-reference --tree --const --rescale --detailed --gtr --gtr-params --aa --zero-based -n --drms --verbose --outdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_treetime_ancestral()
+{
+    local word_list="  -h --help --aln --vcf-reference --tree --gtr --gtr-params --aa --marginal --keep-overhangs --zero-based --reconstruct-tip-states --report-ambiguous --method-anc --verbose --outdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_treetime_mugration()
+{
+    local word_list="  -h --help --tree --name-column --attribute --states --weights --confidence --pc --missing-data --sampling-bias-correction --verbose --outdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_treetime_clock()
+{
+    local word_list="  -h --help --tree --dates --name-column --date-column --sequence-length --aln --vcf-reference --clock-filter --reroot --keep-root --tip-slack --covariation --allow-negative-rate --plot-rtt --verbose --outdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_treetime_arg()
+{
+    local word_list="  -h --help --trees --alignments --mccs --clock-rate --clock-std-dev --branch-length-mode --confidence --time-marginal --keep-polytomies --relax --max-iter --coalescent --n-skyline --n-branches-posterior --plot-tree --plot-rtt --tip-labels --no-tip-labels --dates --name-column --date-column --sequence-length --aln --vcf-reference --keep-overhangs --zero-based --reconstruct-tip-states --report-ambiguous --method-anc --clock-filter --reroot --keep-root --tip-slack --covariation --verbose --outdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_treetime_version()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _treetime treetime

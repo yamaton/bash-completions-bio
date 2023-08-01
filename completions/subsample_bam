@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_subsamplebam()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -o --output_prefix -r --regions -p --profile -O --orientation -t --threads -q --quality -a --accuracy -c --coverage -l --length --any_fail --all_fail -x --patience -s --stride -P --proportional -S --seed"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _subsamplebam subsample_bam

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_fasttree()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -n -intree -intree1 -quiet -nopr -log -quote -pseudo -nni -noml -sprlength -mlnni -mlacc -mllen -slownni -lg -wag -gtr -cat -nocat -gamma -nosupport -seed -slow -notop -topm -close -refresh -2nd -no2nd -nj -bionj -constraints -constraintWeight"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _fasttree fasttree

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_megahit()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -1 -2 --12 -r --read --min-count --k-list --k-min --k-max --k-step --no-mercy --bubble-level --merge-level --prune-level --prune-depth --disconnect-ratio --low-local-ratio --max-tip-len --cleaning-rounds --no-local --kmin-1pass --presets -m --memory --mem-flag -t --num-cpu-threads --no-hw-accel -o --out-dir --out-prefix --min-contig-len --keep-tmp-files --tmp-dir --continue --test -h --help -v --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _megahit megahit

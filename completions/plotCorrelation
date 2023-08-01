@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_plotCorrelation()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --corData -in --corMethod -c --whatToPlot -p --plotFile -o --skipZeros --labels -l --plotTitle -T --plotFileFormat --removeOutliers --version --outFileCorMatrix --plotHeight --plotWidth --zMin -min --zMax -max --colorMap --plotNumbers --xRange --yRange --log1p"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _plotCorrelation plotCorrelation

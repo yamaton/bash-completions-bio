@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_bigwigCompare()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --bigwig1 -b1 --bigwig2 -b2 --scaleFactors --pseudocount --skipZeroOverZero --operation --skipNonCoveredRegions --skipNAs --version --binSize -bs --region -r --blackListFileName -bl --numberOfProcessors -p --verbose -v --outFileName -o --outFileFormat -of --deepBlueURL --userKey --deepBlueTempDir --deepBlueKeepTemp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bigwigCompare bigwigCompare

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_srapath()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -f --function -t --timeout -a --protocol -e --vers -u --url -p --param -r --raw -j --json -d --project -c --cache -P --path --ngc --perm --location --cart -V --version -v --verbose -L --log-level --option-file -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _srapath srapath

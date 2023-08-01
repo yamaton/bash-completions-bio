@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_flye()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --pacbio-raw --pacbio-corr --pacbio-hifi --nano-raw --nano-corr --nano-hq --subassemblies -g --genome-size -o --out-dir -t --threads -i --iterations -m --min-overlap --asm-coverage --hifi-error --read-error --extra-params --plasmids --meta --keep-haplotypes --no-alt-contigs --scaffold --trestle --polish-target --resume --resume-from --stop-after --debug -v --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _flye flye

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_humann()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -i --input -o --output --threads --version -r --resume --bypass-nucleotide-index --bypass-nucleotide-search --bypass-prescreen --bypass-translated-search --taxonomic-profile --memory-use --input-format --search-mode -v --verbose --metaphlan --metaphlan-options --prescreen-threshold --bowtie2 --bowtie-options --nucleotide-database --nucleotide-identity-threshold --nucleotide-query-coverage-threshold --nucleotide-subject-coverage-threshold --diamond --diamond-options --evalue --protein-database --rapsearch --translated-alignment --translated-identity-threshold --translated-query-coverage-threshold --translated-subject-coverage-threshold --usearch --gap-fill --minpath --pathways --pathways-database --xipe --annotation-gene-index --id-mapping --remove-temp-output --log-level --o-log --output-basename --output-format --output-max-decimals --remove-column-description-output --remove-stratified-output"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _humann humann

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_estimateScaleFactor()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -b --bamfiles --ignoreForNormalization -ignore --sampleWindowLength -l --numberOfSamples -n --normalizationLength -nl --skipZeros --numberOfProcessors -p --verbose -v --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _estimateScaleFactor estimateScaleFactor

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_skesa()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -v --version --cores --memory --hash_count --estimated_kmers --skip_bloom_filter --reads --use_paired_ends --contigs_out --kmer --min_count --max_kmer --max_kmer_count --vector_percent --insert_size --steps --fraction --max_snp_len --min_contig --allow_snps --force_single_ends --seeds --all --dbg_out --hist --connected_reads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _skesa skesa

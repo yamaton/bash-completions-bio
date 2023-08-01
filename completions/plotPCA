@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_plotPCA()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --transpose --rowCenter --corData -in --plotFile -o --labels -l --plotTitle -T --plotFileFormat --plotHeight --plotWidth --outFileNameData --ntop --PCs --log2 --colors --markers --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _plotPCA plotPCA

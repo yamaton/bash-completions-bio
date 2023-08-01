@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_subreadbuildindex()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -o -F -B -M -f -c -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _subreadbuildindex subread-buildindex

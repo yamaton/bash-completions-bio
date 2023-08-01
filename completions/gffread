@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_gffread()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --ids --nids -i -l -r -R --jmatch -U -C --nc --ignore-locus -A -s --sort-alpha --sort-by -F --keep-exon-attrs -G --attrs --keep-genes --keep-comments -O -V -H -B -P --add-hasCDS --adj-stop -N -J --no-pseudo --in-bed --in-tlf --stream -M --merge -d --cluster-only -K -Q -Y --force-exons --gene2exon --t-adopt -D -Z -g -j -w --w-add --w-nocds -x -y -W -S -L -m -t -o -T --bed --tlf --table -v -E"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _gffread gffread

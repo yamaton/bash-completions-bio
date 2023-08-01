@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_plotCoverage()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --version --bamfiles --help -h --plotFile -o --labels -l --smartLabels --plotTitle -T --skipZeros --numberOfSamples -n --BED --outRawCounts --outCoverageMetrics --coverageThresholds -ct --plotHeight --plotWidth --plotFileFormat --region -r --blackListFileName -bl --numberOfProcessors -p --verbose -v --extendReads -e --ignoreDuplicates --minMappingQuality --centerReads --samFlagInclude --samFlagExclude --minFragmentLength --maxFragmentLength"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _plotCoverage plotCoverage

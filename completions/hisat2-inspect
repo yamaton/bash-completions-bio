@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_hisat2inspect()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --large-index -a --across -s --summary -n --names --snp --ss --ss-all --exon -e --ht2-ref -v --verbose -h --help --usage"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _hisat2inspect hisat2-inspect

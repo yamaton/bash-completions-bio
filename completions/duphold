@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_duphold()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -v --vcf -b --bam -f --fasta -s --snp -t --threads -o --output -d --drop -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _duphold duphold

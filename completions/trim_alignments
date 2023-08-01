@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_trimalignments()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -r --ref_name -o --output_prefix -f --reference_fasta"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _trimalignments trim_alignments

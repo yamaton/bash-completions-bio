@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_bowtie2inspect()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --large-index --debug --sanitized -a --across -n --names -s --summary -o --output -v --verbose -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bowtie2inspect bowtie2-inspect

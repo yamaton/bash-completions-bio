@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_unicyclerscrub()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -i --input -o --out -r --reads --trim --split --min_split_size --discard_chimeras -t --threads --keep_paf --parameters --verbosity"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _unicyclerscrub unicycler_scrub

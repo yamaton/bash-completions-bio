@@ -1,0 +1,185 @@
+# Auto-generated with h2o
+
+_remora()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" dataset model infer validate"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        dataset) _remora_dataset
+            return
+            ;;
+
+        model) _remora_model
+            return
+            ;;
+
+        infer) _remora_infer
+            return
+            ;;
+
+        validate) _remora_validate
+            return
+            ;;
+
+    esac
+
+    local word_list=" dataset model infer validate -h --help -v --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_remora_dataset()
+{
+    local cmd i subcommands
+    local subcommands=" prepare split merge inspect"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        prepare) _remora_dataset_prepare
+            return
+            ;;
+
+        split) _remora_dataset_split
+            return
+            ;;
+
+        merge) _remora_dataset_merge
+            return
+            ;;
+
+        inspect) _remora_dataset_inspect
+            return
+            ;;
+
+    esac
+
+    local word_list=" prepare split merge inspect -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_remora_dataset_prepare()
+{
+    local word_list="  -h --help --output-remora-training-file --output-remora-reads-file --log-filename --mod-base --motif --chunk-context --min-samples-per-base --kmer-context-bases --max-chunks-per-read --base-start-justify --offset --refine-kmer-level-table --refine-rough-rescale --refine-scale-iters --refine-half-bandwidth --refine-algo --refine-short-dwell-parameters --mod-base-control --base-pred --processes"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_remora_dataset_split()
+{
+    local word_list="  -h --help --output-basename --val-prop --val-num --unstratified --by-label"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_remora_dataset_merge()
+{
+    local word_list="  -h --help --input-dataset --output-dataset --balance"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_remora_dataset_inspect()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_remora_model()
+{
+    local cmd i subcommands
+    local subcommands=" train export list_pretrained"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        train) _remora_model_train
+            return
+            ;;
+
+        export) _remora_model_export
+            return
+            ;;
+
+        list_pretrained) _remora_model_listpretrained
+            return
+            ;;
+
+    esac
+
+    local word_list=" train export list_pretrained -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_remora_model_train()
+{
+    local word_list="  -h --help --val-prop --batch-size --chunk-context --kmer-context-bases --ext-val --balance --output-path --save-freq --overwrite --model --size --epochs --optimizer --scheduler --lr --weight-decay --early-stopping --seed --filter-fraction --lr-sched-kwargs --balanced-batch --device"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_remora_model_export()
+{
+    local word_list="  -h --help --model-path"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_remora_model_listpretrained()
+{
+    local word_list="  -h --help --pore --basecall-model-type --basecall-model-version --modified-bases --remora-model-type --remora-model-version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_remora_infer()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_remora_validate()
+{
+    local cmd i subcommands
+    local subcommands=" from_modbams"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        from_modbams) _remora_validate_frommodbams
+            return
+            ;;
+
+    esac
+
+    local word_list=" from_modbams -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_remora_validate_frommodbams()
+{
+    local word_list="  -h --help --bams --ground-truth-positions --name --regions-bed --mod-base"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _remora remora

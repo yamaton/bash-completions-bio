@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_abyssmap()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -l --min-align -j --threads -C --append-comment -s --sample -d --dup --order --no-order --multi --no-multi --SS --no-SS --rc --no-rc -a --alphabet --alpha --dna --protein --chastity --no-chastity -v --verbose --help --version --db --library --strain --species"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _abyssmap abyss-map

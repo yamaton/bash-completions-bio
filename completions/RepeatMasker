@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_RepeatMasker()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -help -e -engine -par -parallel -s -q -qq -nolow -noint -norna -alu -div -lib -cutoff -species -is_only -is_clip -no_is -gc -gccalc -frag -nocut -noisy -nopost -dir -a -alignments -inv -lcambig -small -xsmall -x -poly -source -html -ace -gff -u -xm -no_id -e -default_search_engine -hmmer_dir -abblast_dir -libdir -rmblast_dir -crossmatch_dir -trf_prgm"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _RepeatMasker RepeatMasker

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_snippy()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --help --version --citation --check --force --quiet --cpus --ram --tmpdir --reference --R1 --R2 --se --ctgs --peil --bam --targets --subsample --outdir --prefix --report --cleanup --rgid --unmapped --mapqual --basequal --mincov --minfrac --minqual --maxsoft --bwaopt --fbopt"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _snippy snippy

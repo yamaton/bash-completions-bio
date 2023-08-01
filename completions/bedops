@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_bedops()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --chrom --ec --header --help --range --range --version -c --complement -d --difference -e --element-of -i --intersect -m --merge -n --not-element-of -p --partition -s --symmdiff -u --everything -w --chop"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bedops bedops

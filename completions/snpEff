@@ -1,0 +1,176 @@
+# Auto-generated with h2o
+
+_snpEff()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" build buildNextProt cds closest count databases download dump genes2bed len pdb protein seq show translocReport"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        build) _snpEff_build
+            return
+            ;;
+
+        buildNextProt) _snpEff_buildNextProt
+            return
+            ;;
+
+        cds) _snpEff_cds
+            return
+            ;;
+
+        closest) _snpEff_closest
+            return
+            ;;
+
+        count) _snpEff_count
+            return
+            ;;
+
+        databases) _snpEff_databases
+            return
+            ;;
+
+        download) _snpEff_download
+            return
+            ;;
+
+        dump) _snpEff_dump
+            return
+            ;;
+
+        genes2bed) _snpEff_genes2bed
+            return
+            ;;
+
+        len) _snpEff_len
+            return
+            ;;
+
+        pdb) _snpEff_pdb
+            return
+            ;;
+
+        protein) _snpEff_protein
+            return
+            ;;
+
+        seq) _snpEff_seq
+            return
+            ;;
+
+        show) _snpEff_show
+            return
+            ;;
+
+        translocReport) _snpEff_translocReport
+            return
+            ;;
+
+    esac
+
+    local word_list=" build buildNextProt cds closest count databases download dump genes2bed len pdb protein seq show translocReport -c -config -configOption -d -debug -dataDir -download -nodownload -h -help -noLog -q -quiet -v -verbose -version -canon -canonList -interaction -interval -maxTSL -motif -nextProt -noGenome -noExpandIUB -noInteraction -noMotif -noNextProt -onlyReg -onlyProtein -onlyTr -reg -ss -spliceSiteSize -spliceRegionExonSize -spliceRegionIntronMin -spliceRegionIntronMax -strict -ud -upDownStreamLen"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_build()
+{
+    local word_list="  -embl -genbank -gff2 -gff3 -gtf22 -knowngenes -refseq -cellType -maxErrorRate -noCheckCds -noCheckProtein -noStoreSeqs -onlyReg -regSortedByType -storeSeqs -c -config -configOption -d -debug -dataDir -download -nodownload -h -help -noLog -q -quiet -v -verbose -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_buildNextProt()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_cds()
+{
+    local word_list="  -c -config -noLog -v -d"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_closest()
+{
+    local word_list="  -bed -tss"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_count()
+{
+    local word_list="  -n -p -c -config -configOption -d -debug -dataDir -download -nodownload -h -help -noLog -q -quiet -v -verbose -version -canon -canonList -interaction -interval -maxTSL -motif -nextProt -noGenome -noExpandIUB -noInteraction -noMotif -noNextProt -onlyReg -onlyProtein -onlyTr -reg -ss -spliceSiteSize -spliceRegionExonSize -spliceRegionIntronMin -spliceRegionIntronMax -strict -ud -upDownStreamLen"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_databases()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_download()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_dump()
+{
+    local word_list="  -bed -chr -txt -0 -1"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_genes2bed()
+{
+    local word_list="  -cds -e -f -i -pc -tr -ud"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_len()
+{
+    local word_list="  -r -iter -reads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_pdb()
+{
+    local word_list="  -aaSep -idMap -interactList -maxDist -maxErr -org -orgScientific -pdbDir -res -c -config -configOption -d -debug -dataDir -download -nodownload -h -help -noLog -q -quiet -v -verbose -version -canon -canonList -interaction -interval -maxTSL -motif -nextProt -noGenome -noExpandIUB -noInteraction -noMotif -noNextProt -onlyReg -onlyProtein -onlyTr -reg -ss -spliceSiteSize -spliceRegionExonSize -spliceRegionIntronMin -spliceRegionIntronMax -strict -ud -upDownStreamLen"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_protein()
+{
+    local word_list="  -codonTables"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_seq()
+{
+    local word_list="  -r"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_show()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_snpEff_translocReport()
+{
+    local word_list="  -onlyOneTr -outPath -report"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _snpEff snpEff

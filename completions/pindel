@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_pindel()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -f --fasta -p --pindel-file -i --config-file -o --output-prefix -P --pindel-config-file -c --chromosome -h --help -R --RP -H --min_distance_to_the_end -T --number_of_threads -x --max_range_index -w --window_size -e --sequencing_error_rate -E --sensitivity -u --maximum_allowed_mismatch_rate -n --NM -r --report_inversions -t --report_duplications -l --report_long_insertions -k --report_breakpoints -s --report_close_mapped_reads -S --report_only_close_mapped_reads -I --report_interchromosomal_events -C --IndelCorrection -N --NormalSamples -b --breakdancer -j --include -J --exclude -a --additional_mismatch -m --min_perfect_match_around_BP -v --min_inversion_size -d --min_num_matched_bases -B --balance_cutoff -A --anchor_quality -M --minimum_support_for_event -z --input_SV_Calls_for_assembly -g --genotyping -Q --output_of_breakdancer_events -L --name_of_logfile -Y --Ploidy -q --detect_DD --MAX_DD_BREAKPOINT_DISTANCE --MAX_DISTANCE_CLUSTER_READS --MIN_DD_CLUSTER_SIZE --MIN_DD_BREAKPOINT_SUPPORT --MIN_DD_MAP_DISTANCE --DD_REPORT_DUPLICATION_READS"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _pindel pindel

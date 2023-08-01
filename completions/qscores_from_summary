@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_qscoresfromsummary()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --median --ref"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _qscoresfromsummary qscores_from_summary

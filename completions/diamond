@@ -1,0 +1,136 @@
+# Auto-generated with h2o
+
+_diamond()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" makedb prepdb blastp blastx view help version getseq dbinfo test makeidx"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        makedb) _diamond_makedb
+            return
+            ;;
+
+        prepdb) _diamond_prepdb
+            return
+            ;;
+
+        blastp) _diamond_blastp
+            return
+            ;;
+
+        blastx) _diamond_blastx
+            return
+            ;;
+
+        view) _diamond_view
+            return
+            ;;
+
+        help) _diamond_help
+            return
+            ;;
+
+        version) _diamond_version
+            return
+            ;;
+
+        getseq) _diamond_getseq
+            return
+            ;;
+
+        dbinfo) _diamond_dbinfo
+            return
+            ;;
+
+        test) _diamond_test
+            return
+            ;;
+
+        makeidx) _diamond_makeidx
+            return
+            ;;
+
+    esac
+
+    local word_list=" makedb prepdb blastp blastx view help version getseq dbinfo test makeidx "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_diamond_makedb()
+{
+    local word_list="  --in --taxonmap --taxonnodes --taxonnames"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_diamond_prepdb()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_diamond_blastp()
+{
+    local word_list="  --query -q --strand --un --al --unfmt --alfmt --unal --max-target-seqs -k --top --max-hsps --range-culling --compress --evalue -e --min-score --id --query-cover --subject-cover --fast --mid-sensitive --sensitive --more-sensitive --very-sensitive --ultra-sensitive --iterate --global-ranking -g --block-size -b --index-chunks -c --tmpdir -t --parallel-tmpdir --gapopen --gapextend --frameshift -F --long-reads --matrix --custom-matrix --comp-based-stats --masking --query-gencode --salltitles --sallseqid --no-self-hits --taxonlist --taxon-exclude --seqidlist --skip-missing-seqids"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_diamond_blastx()
+{
+    local word_list="  --query -q --strand --un --al --unfmt --alfmt --unal --max-target-seqs -k --top --max-hsps --range-culling --compress --evalue -e --min-score --id --query-cover --subject-cover --fast --mid-sensitive --sensitive --more-sensitive --very-sensitive --ultra-sensitive --iterate --global-ranking -g --block-size -b --index-chunks -c --tmpdir -t --parallel-tmpdir --gapopen --gapextend --frameshift -F --long-reads --matrix --custom-matrix --comp-based-stats --masking --query-gencode --salltitles --sallseqid --no-self-hits --taxonlist --taxon-exclude --seqidlist --skip-missing-seqids"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_diamond_view()
+{
+    local word_list="  --daa -a --forwardonly"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_diamond_help()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_diamond_version()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_diamond_getseq()
+{
+    local word_list="  --seq"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_diamond_dbinfo()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_diamond_test()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_diamond_makeidx()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _diamond diamond

@@ -1,0 +1,116 @@
+# Auto-generated with h2o
+
+_motus()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" downloadDB profile merge map_tax calc_mgc calc_motu prep_long map_snv snv_call"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        downloadDB) _motus_downloadDB
+            return
+            ;;
+
+        profile) _motus_profile
+            return
+            ;;
+
+        merge) _motus_merge
+            return
+            ;;
+
+        map_tax) _motus_maptax
+            return
+            ;;
+
+        calc_mgc) _motus_calcmgc
+            return
+            ;;
+
+        calc_motu) _motus_calcmotu
+            return
+            ;;
+
+        prep_long) _motus_preplong
+            return
+            ;;
+
+        map_snv) _motus_mapsnv
+            return
+            ;;
+
+        snv_call) _motus_snvcall
+            return
+            ;;
+
+    esac
+
+    local word_list=" downloadDB profile merge map_tax calc_mgc calc_motu prep_long map_snv snv_call "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_motus_downloadDB()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_motus_profile()
+{
+    local word_list="  -f -r -s -n -i -m -db -o -I -M -e -u -c -p -B -C -q -A -k -g -l -t -v -y"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_motus_merge()
+{
+    local word_list="  -i -d -a -o -B -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_motus_maptax()
+{
+    local word_list="  -f -r -s -db -o -b -l -t -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_motus_calcmgc()
+{
+    local word_list="  -n -i -db -o -l -v -y"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_motus_calcmotu()
+{
+    local word_list="  -n -i -db -o -e -B -C -A -c -p -u -q -k -g -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_motus_preplong()
+{
+    local word_list="  -i -o -no_gz -sl -ml -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_motus_mapsnv()
+{
+    local word_list="  -f -r -s -db -o -l -t -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_motus_snvcall()
+{
+    local word_list="  -d -db -o -K -fb -fd -fm -fp -fc -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _motus motus

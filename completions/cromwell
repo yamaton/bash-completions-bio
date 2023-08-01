@@ -1,0 +1,56 @@
+# Auto-generated with h2o
+
+_cromwell()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" server run submit"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        server) _cromwell_server
+            return
+            ;;
+
+        run) _cromwell_run
+            return
+            ;;
+
+        submit) _cromwell_submit
+            return
+            ;;
+
+    esac
+
+    local word_list=" server run submit --help --veresion"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cromwell_server()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cromwell_run()
+{
+    local word_list="  --workflow-root -i --inputs -o --options -t --type -v --type-version -l --labels -p --imports -m --metadata-output"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cromwell_submit()
+{
+    local word_list="  --workflow-root -i --inputs -o --options -t --type -v --type-version -l --labels -p --imports -h --host"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _cromwell cromwell

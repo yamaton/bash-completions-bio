@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_showcoords()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -b -B -c -d -g -h -H -I -k -l -L -o -q -r -T"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _showcoords show-coords

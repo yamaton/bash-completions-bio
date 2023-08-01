@@ -1,0 +1,416 @@
+# Auto-generated with h2o
+
+_samtools()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" dict faidx fqidx index calmd fixmate reheader targetcut addreplacerg markdup ampliconclip collate cat consensus merge mpileup sort split quickcheck fastq fasta import reference reset bedcov coverage depth flagstat idxstats cram-size phase stats ampliconstats flags head tview view depad samples"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        dict) _samtools_dict
+            return
+            ;;
+
+        faidx) _samtools_faidx
+            return
+            ;;
+
+        fqidx) _samtools_fqidx
+            return
+            ;;
+
+        index) _samtools_index
+            return
+            ;;
+
+        calmd) _samtools_calmd
+            return
+            ;;
+
+        fixmate) _samtools_fixmate
+            return
+            ;;
+
+        reheader) _samtools_reheader
+            return
+            ;;
+
+        targetcut) _samtools_targetcut
+            return
+            ;;
+
+        addreplacerg) _samtools_addreplacerg
+            return
+            ;;
+
+        markdup) _samtools_markdup
+            return
+            ;;
+
+        ampliconclip) _samtools_ampliconclip
+            return
+            ;;
+
+        collate) _samtools_collate
+            return
+            ;;
+
+        cat) _samtools_cat
+            return
+            ;;
+
+        consensus) _samtools_consensus
+            return
+            ;;
+
+        merge) _samtools_merge
+            return
+            ;;
+
+        mpileup) _samtools_mpileup
+            return
+            ;;
+
+        sort) _samtools_sort
+            return
+            ;;
+
+        split) _samtools_split
+            return
+            ;;
+
+        quickcheck) _samtools_quickcheck
+            return
+            ;;
+
+        fastq) _samtools_fastq
+            return
+            ;;
+
+        fasta) _samtools_fasta
+            return
+            ;;
+
+        import) _samtools_import
+            return
+            ;;
+
+        reference) _samtools_reference
+            return
+            ;;
+
+        reset) _samtools_reset
+            return
+            ;;
+
+        bedcov) _samtools_bedcov
+            return
+            ;;
+
+        coverage) _samtools_coverage
+            return
+            ;;
+
+        depth) _samtools_depth
+            return
+            ;;
+
+        flagstat) _samtools_flagstat
+            return
+            ;;
+
+        idxstats) _samtools_idxstats
+            return
+            ;;
+
+        cram-size) _samtools_cramsize
+            return
+            ;;
+
+        phase) _samtools_phase
+            return
+            ;;
+
+        stats) _samtools_stats
+            return
+            ;;
+
+        ampliconstats) _samtools_ampliconstats
+            return
+            ;;
+
+        flags) _samtools_flags
+            return
+            ;;
+
+        head) _samtools_head
+            return
+            ;;
+
+        tview) _samtools_tview
+            return
+            ;;
+
+        view) _samtools_view
+            return
+            ;;
+
+        depad) _samtools_depad
+            return
+            ;;
+
+        samples) _samtools_samples
+            return
+            ;;
+
+    esac
+
+    local word_list=" dict faidx fqidx index calmd fixmate reheader targetcut addreplacerg markdup ampliconclip collate cat consensus merge mpileup sort split quickcheck fastq fasta import reference reset bedcov coverage depth flagstat idxstats cram-size phase stats ampliconstats flags head tview view depad samples "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_dict()
+{
+    local word_list="  -a --assembly -A --alias --alternative-name -H --no-header -l --alt -o --output -s --species -u --uri"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_faidx()
+{
+    local word_list="  -o --output -n --length -c --continue -r --region-file -f --fastq -i --reverse-complement --mark-strand --fai-idx --gzi-idx -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_fqidx()
+{
+    local word_list="  -o --output -n --length -c --continue -r --region-file -i --reverse-complement --mark-strand --fai-idx --gzi-idx -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_index()
+{
+    local word_list="  -b -c -m -M -o -@ --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_calmd()
+{
+    local word_list="  -A -e -u -b -C -r -E --no-PG -@ --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_fixmate()
+{
+    local word_list="  -r -p -c -m -u -O --no-PG -@ --threads -z --sanitize"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_reheader()
+{
+    local word_list="  -P --no-PG -i --in-place -c --command"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_targetcut()
+{
+    local word_list="  -Q -i -0 -1 -2 -f"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_addreplacerg()
+{
+    local word_list="  -r -R -m -o -u -w --no-PG -@ --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_markdup()
+{
+    local word_list="  -l -r -T -S -s -f --json -d -c -t --duplicate-count -m --mode -u --include-fails --no-multi-dup --read-coords --coords-order --barcode-tag --barcode-name --barcode-rgx --use-read-groups --no-PG -@ --threads --coords-order --coords-order"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_ampliconclip()
+{
+    local word_list="  -b -o -f -u --soft-clip --hard-clip --both-ends --strand --clipped --fail --filter-len --fail-len --no-excluded --rejects-file --original --keep-tag --tolerance --no-PG"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_collate()
+{
+    local word_list="  -O -o -T -u -l -n -f -r --no-PG -@ --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_cat()
+{
+    local word_list="  -b -h -o --no-PG -@ --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_consensus()
+{
+    local word_list="  -r --region -f --format -l --line-len -o --output -m --mode -a --rf --incl-flags --ff --excl-flags --min-MQ --min-BQ --show-del --show-ins --mark-ins -A --ambig -q --use-qual -d --min-depth -H --het-fract -c --call-fract -5 -C --cutoff --use-MQ --no-use-MQ --adj-MQ --no-adj-MQ --NM-halo --low-MQ --high-MQ --scale-MQ --P-het --P-indel --het-scale -p --homopoly-fix --homopoly-score -X --config -"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_merge()
+{
+    local word_list="  -1 -b -f -h -n -o -t -R -r -u -c -p -X -L --no-PG -@ --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_mpileup()
+{
+    local word_list="  -6 --illumina1.3+ -A --count-orphans -b --bam-list -B --no-BAQ -C --adjust-MQ -d --max-depth -E --redo-BAQ -f --fasta-ref -G --exclude-RG -l --positions -q --min-MQ -Q --min-BQ -r --region -R --ignore-RG --rf --incl-flags --ff --excl-flags -x --ignore-overlaps-removal --disable-overlap-removal -X -o --output -O --output-BP --output-BP-5 -s --output-MQ --output-QNAME --output-extra --output-sep --output-empty -M --output-mods --no-output-ins --no-output-ins-mods --no-output-del --no-output-ends --reverse-del -a -a -aa"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_sort()
+{
+    local word_list="  -l -u -m -n -t -M -R -K -I -w -H -o -O -T -@ --no-PG --template-coordinate"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_split()
+{
+    local word_list="  -u -h -f -v --no-PG -@ --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_quickcheck()
+{
+    local word_list="  -v -q -u"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_fastq()
+{
+    local word_list="  -n -N -O -s -t -T -1 -2 -o -0 -f --rf --incl-flags --include-flags -G -i -c --i1 --i2 --barcode-tag --quality-tag -@ --threads --index-format"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_fasta()
+{
+    local word_list="  -n -N -O -s -t -T -1 -2 -o -0 -f --rf --incl-flags --include-flags -G -i -c --i1 --i2 --barcode-tag --quality-tag -@ --threads --index-format"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_import()
+{
+    local word_list="  -s -0 -1 -2 --i1 --i2 -i -N --name2 --barcode-tag --quality-tag -oFILE --order -r --rg-line -R --rg -u -T"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_reference()
+{
+    local word_list="  -e -q -r -o -@"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_reset()
+{
+    local word_list="  -o -x --remove-tag --keep-tag --reject-PG --no-RG --no-PG -@ --thread -O --output-fmt"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_bedcov()
+{
+    local word_list="  -Q --min-MQ -g -G -j -d -c -X"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_coverage()
+{
+    local word_list="  -b --bam-list -l --min-read-len -q --min-MQ -Q --min-BQ --rf --incl-flags --ff --excl-flags -d --depth -m --histogram -A --ascii -o --output -H --no-header -w --n-bins -r --region -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_depth()
+{
+    local word_list="  -a -a -aa -b -f -H -l -m -d -o -q --min-BQ -Q --min-MQ -r -X -g -G --excl-flags --incl-flags --require-flags -J -s"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_flagstat()
+{
+    local word_list="  -@"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_idxstats()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_cramsize()
+{
+    local word_list="  -o -v -e --encodings -"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_phase()
+{
+    local word_list="  -A -b -F -k -q -Q --min-BQ --no-PG"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_stats()
+{
+    local word_list="  -c --coverage -d --remove-dups -f --required-flag -F --filtering-flag --GC-depth -h --help -i --insert-size -I --id -l --read-length -m --most-inserts -P --split-prefix -q --trim-quality -r --ref-seq -S --split -t --target-regions -x --sparse -p --remove-overlaps -g --cov-threshold -X -@ --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_ampliconstats()
+{
+    local word_list="  -f --required-flag -F --filter-flag -a --max-amplicons -b --tcoord-bin -c --tcoord-min-count -d --min-depth -D --depth-bin -l --max-amplicon-length -m --pos-margin -o -s --use-sample-name -S --single-ref -t --tlen-adjust -@"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_flags()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_head()
+{
+    local word_list="  -h --headers -n --records"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_tview()
+{
+    local word_list="  -d -p -s -w -X"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_view()
+{
+    local word_list="  -b --bam -C --cram -1 --fast -u --uncompressed -h --with-header -H --header-only --no-header -c --count -? --help -o --output -U --unoutput --output-unselected -p --unmap -t --fai-reference -T --reference -L --target-file --targets-file -M --use-index --region-file --regions-file -N --qname-file -r --read-group -R --read-group-file -d --tag -D --tag-file -q --min-MQ -l --library -m --min-qlen -e --expr -f --require-flags -F --excl-flags --exclude-flags --rf --incl-flags --include-flags -G -x --remove-tag --keep-tag -B --remove-B --add-flags --remove-flags --subsample --subsample-seed -s -@ --threads -P --fetch-pairs -S -X --customized-index -z --sanitize --no-PG"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_depad()
+{
+    local word_list="  -S -s -C -u -1 -T -o --no-PG"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_samtools_samples()
+{
+    local word_list="  -? -h -i -T -o -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _samtools samtools

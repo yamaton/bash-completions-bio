@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_spadesgbuilder()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -k -c -t -tmp-dir -b --unitigs --fastg --gfa --spades"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _spadesgbuilder spades-gbuilder

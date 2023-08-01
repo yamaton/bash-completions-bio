@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_mummerplot()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -b --breaklen --color --nocolor -c --coverage -c --nocoverage --depend -f --filter -h --help -l --layout --fat -p --prefix -rv -r --IdR -q --IdQ -R --Rfile -Q --Qfile -r --rport -q --qport -s --size -S --SNP -t --terminal -t --title -x --xrange -y --yrange -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _mummerplot mummerplot

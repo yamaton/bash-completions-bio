@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_RepeatProteinMask()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -help -engine -pvalue -minscore -wordsize -querystatlen -maxaadist -noLowSimple -trf_prgm -crossmatch_dir -rmblast_dir -default_search_engine -libdir -abblast_dir -hmmer_dir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _RepeatProteinMask RepeatProteinMask

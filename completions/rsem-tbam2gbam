@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_rsemtbam2gbam()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -p"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _rsemtbam2gbam rsem-tbam2gbam

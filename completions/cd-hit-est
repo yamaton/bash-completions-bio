@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_cdhitest()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -i -j -o -op -c -G -b -M -T -n -l -d -s -S -aL -AL -aS -AS -A -uL -uS -U -B -P -cx -cy -ap -p -g -r -mask -match -mismatch -gap -gap-ext -bak -sc -sf -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _cdhitest cd-hit-est

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_krakenuniqbuild()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --download-taxonomy --download-library --add-to-library --build --rebuild --clean --shrink --standard --help --version --db --threads --new-db --kmer-len --minimizer-len --jellyfish-hash-size --jellyfish-bin --max-db-size --shrink-block-offset --work-on-disk --taxids-for-genomes --taxids-for-sequences --min-contig-size --library-dir --taxonomy-dir --uid-database --lca-database --no-lca-database --lca-order"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _krakenuniqbuild krakenuniq-build

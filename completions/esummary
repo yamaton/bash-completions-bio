@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_esummary()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -format -mode -style -db -id -seq_start -seq_stop -strand -chr_start -chr_stop -complexity -extend -extrafeat -raw -json -help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _esummary esummary

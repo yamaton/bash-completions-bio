@@ -1,0 +1,1216 @@
+# Auto-generated with h2o
+
+_mmseqs()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" easy-search easy-linsearch easy-cluster easy-linclust easy-taxonomy easy-rbh search linsearch map rbh linclust cluster clusterupdate taxonomy databases createdb createindex createlinindex convertmsa tsv2db tar2db db2tar msa2profile compress decompress rmdb mvdb cpdb lndb aliasdb unpackdb touchdb createsubdb concatdbs splitdb mergedbs subtractdbs convertalis createtsv convert2fasta result2flat createseqfiledb taxonomyreport extractorfs extractframes orftocontig reverseseq translatenucs translateaa splitsequence masksequence extractalignedregion swapresults result2rbh result2msa result2dnamsa result2stats filterresult offsetalignment proteinaln2nucl result2repseq sortresult summarizealis summarizeresult createtaxdb createbintaxonomy createbintaxmapping addtaxonomy filtertaxdb filtertaxseqdb aggregatetax aggregatetaxweights lcaalign lca majoritylca multihitdb multihitsearch besthitperset combinepvalperset mergeresultsbyset prefilter ungappedprefilter kmermatcher kmersearch align alignall transitivealign rescorediagonal alignbykmer clust clusthash mergeclusters result2profile msa2result sequence2profile profile2pssm profile2consensus profile2repseq convertprofiledb tsv2exprofiledb convertca3m expandaln expand2profile view apply filterdb swapdb prefixid suffixid renamedbkeys diffseqdbs summarizetabs gff2db maskbygff convertkb summarizeheaders nrtotaxmapping extractdomains countkmer"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        easy-search) _mmseqs_easysearch
+            return
+            ;;
+
+        easy-linsearch) _mmseqs_easylinsearch
+            return
+            ;;
+
+        easy-cluster) _mmseqs_easycluster
+            return
+            ;;
+
+        easy-linclust) _mmseqs_easylinclust
+            return
+            ;;
+
+        easy-taxonomy) _mmseqs_easytaxonomy
+            return
+            ;;
+
+        easy-rbh) _mmseqs_easyrbh
+            return
+            ;;
+
+        search) _mmseqs_search
+            return
+            ;;
+
+        linsearch) _mmseqs_linsearch
+            return
+            ;;
+
+        map) _mmseqs_map
+            return
+            ;;
+
+        rbh) _mmseqs_rbh
+            return
+            ;;
+
+        linclust) _mmseqs_linclust
+            return
+            ;;
+
+        cluster) _mmseqs_cluster
+            return
+            ;;
+
+        clusterupdate) _mmseqs_clusterupdate
+            return
+            ;;
+
+        taxonomy) _mmseqs_taxonomy
+            return
+            ;;
+
+        databases) _mmseqs_databases
+            return
+            ;;
+
+        createdb) _mmseqs_createdb
+            return
+            ;;
+
+        createindex) _mmseqs_createindex
+            return
+            ;;
+
+        createlinindex) _mmseqs_createlinindex
+            return
+            ;;
+
+        convertmsa) _mmseqs_convertmsa
+            return
+            ;;
+
+        tsv2db) _mmseqs_tsv2db
+            return
+            ;;
+
+        tar2db) _mmseqs_tar2db
+            return
+            ;;
+
+        db2tar) _mmseqs_db2tar
+            return
+            ;;
+
+        msa2profile) _mmseqs_msa2profile
+            return
+            ;;
+
+        compress) _mmseqs_compress
+            return
+            ;;
+
+        decompress) _mmseqs_decompress
+            return
+            ;;
+
+        rmdb) _mmseqs_rmdb
+            return
+            ;;
+
+        mvdb) _mmseqs_mvdb
+            return
+            ;;
+
+        cpdb) _mmseqs_cpdb
+            return
+            ;;
+
+        lndb) _mmseqs_lndb
+            return
+            ;;
+
+        aliasdb) _mmseqs_aliasdb
+            return
+            ;;
+
+        unpackdb) _mmseqs_unpackdb
+            return
+            ;;
+
+        touchdb) _mmseqs_touchdb
+            return
+            ;;
+
+        createsubdb) _mmseqs_createsubdb
+            return
+            ;;
+
+        concatdbs) _mmseqs_concatdbs
+            return
+            ;;
+
+        splitdb) _mmseqs_splitdb
+            return
+            ;;
+
+        mergedbs) _mmseqs_mergedbs
+            return
+            ;;
+
+        subtractdbs) _mmseqs_subtractdbs
+            return
+            ;;
+
+        convertalis) _mmseqs_convertalis
+            return
+            ;;
+
+        createtsv) _mmseqs_createtsv
+            return
+            ;;
+
+        convert2fasta) _mmseqs_convert2fasta
+            return
+            ;;
+
+        result2flat) _mmseqs_result2flat
+            return
+            ;;
+
+        createseqfiledb) _mmseqs_createseqfiledb
+            return
+            ;;
+
+        taxonomyreport) _mmseqs_taxonomyreport
+            return
+            ;;
+
+        extractorfs) _mmseqs_extractorfs
+            return
+            ;;
+
+        extractframes) _mmseqs_extractframes
+            return
+            ;;
+
+        orftocontig) _mmseqs_orftocontig
+            return
+            ;;
+
+        reverseseq) _mmseqs_reverseseq
+            return
+            ;;
+
+        translatenucs) _mmseqs_translatenucs
+            return
+            ;;
+
+        translateaa) _mmseqs_translateaa
+            return
+            ;;
+
+        splitsequence) _mmseqs_splitsequence
+            return
+            ;;
+
+        masksequence) _mmseqs_masksequence
+            return
+            ;;
+
+        extractalignedregion) _mmseqs_extractalignedregion
+            return
+            ;;
+
+        swapresults) _mmseqs_swapresults
+            return
+            ;;
+
+        result2rbh) _mmseqs_result2rbh
+            return
+            ;;
+
+        result2msa) _mmseqs_result2msa
+            return
+            ;;
+
+        result2dnamsa) _mmseqs_result2dnamsa
+            return
+            ;;
+
+        result2stats) _mmseqs_result2stats
+            return
+            ;;
+
+        filterresult) _mmseqs_filterresult
+            return
+            ;;
+
+        offsetalignment) _mmseqs_offsetalignment
+            return
+            ;;
+
+        proteinaln2nucl) _mmseqs_proteinaln2nucl
+            return
+            ;;
+
+        result2repseq) _mmseqs_result2repseq
+            return
+            ;;
+
+        sortresult) _mmseqs_sortresult
+            return
+            ;;
+
+        summarizealis) _mmseqs_summarizealis
+            return
+            ;;
+
+        summarizeresult) _mmseqs_summarizeresult
+            return
+            ;;
+
+        createtaxdb) _mmseqs_createtaxdb
+            return
+            ;;
+
+        createbintaxonomy) _mmseqs_createbintaxonomy
+            return
+            ;;
+
+        createbintaxmapping) _mmseqs_createbintaxmapping
+            return
+            ;;
+
+        addtaxonomy) _mmseqs_addtaxonomy
+            return
+            ;;
+
+        filtertaxdb) _mmseqs_filtertaxdb
+            return
+            ;;
+
+        filtertaxseqdb) _mmseqs_filtertaxseqdb
+            return
+            ;;
+
+        aggregatetax) _mmseqs_aggregatetax
+            return
+            ;;
+
+        aggregatetaxweights) _mmseqs_aggregatetaxweights
+            return
+            ;;
+
+        lcaalign) _mmseqs_lcaalign
+            return
+            ;;
+
+        lca) _mmseqs_lca
+            return
+            ;;
+
+        majoritylca) _mmseqs_majoritylca
+            return
+            ;;
+
+        multihitdb) _mmseqs_multihitdb
+            return
+            ;;
+
+        multihitsearch) _mmseqs_multihitsearch
+            return
+            ;;
+
+        besthitperset) _mmseqs_besthitperset
+            return
+            ;;
+
+        combinepvalperset) _mmseqs_combinepvalperset
+            return
+            ;;
+
+        mergeresultsbyset) _mmseqs_mergeresultsbyset
+            return
+            ;;
+
+        prefilter) _mmseqs_prefilter
+            return
+            ;;
+
+        ungappedprefilter) _mmseqs_ungappedprefilter
+            return
+            ;;
+
+        kmermatcher) _mmseqs_kmermatcher
+            return
+            ;;
+
+        kmersearch) _mmseqs_kmersearch
+            return
+            ;;
+
+        align) _mmseqs_align
+            return
+            ;;
+
+        alignall) _mmseqs_alignall
+            return
+            ;;
+
+        transitivealign) _mmseqs_transitivealign
+            return
+            ;;
+
+        rescorediagonal) _mmseqs_rescorediagonal
+            return
+            ;;
+
+        alignbykmer) _mmseqs_alignbykmer
+            return
+            ;;
+
+        clust) _mmseqs_clust
+            return
+            ;;
+
+        clusthash) _mmseqs_clusthash
+            return
+            ;;
+
+        mergeclusters) _mmseqs_mergeclusters
+            return
+            ;;
+
+        result2profile) _mmseqs_result2profile
+            return
+            ;;
+
+        msa2result) _mmseqs_msa2result
+            return
+            ;;
+
+        sequence2profile) _mmseqs_sequence2profile
+            return
+            ;;
+
+        profile2pssm) _mmseqs_profile2pssm
+            return
+            ;;
+
+        profile2consensus) _mmseqs_profile2consensus
+            return
+            ;;
+
+        profile2repseq) _mmseqs_profile2repseq
+            return
+            ;;
+
+        convertprofiledb) _mmseqs_convertprofiledb
+            return
+            ;;
+
+        tsv2exprofiledb) _mmseqs_tsv2exprofiledb
+            return
+            ;;
+
+        convertca3m) _mmseqs_convertca3m
+            return
+            ;;
+
+        expandaln) _mmseqs_expandaln
+            return
+            ;;
+
+        expand2profile) _mmseqs_expand2profile
+            return
+            ;;
+
+        view) _mmseqs_view
+            return
+            ;;
+
+        apply) _mmseqs_apply
+            return
+            ;;
+
+        filterdb) _mmseqs_filterdb
+            return
+            ;;
+
+        swapdb) _mmseqs_swapdb
+            return
+            ;;
+
+        prefixid) _mmseqs_prefixid
+            return
+            ;;
+
+        suffixid) _mmseqs_suffixid
+            return
+            ;;
+
+        renamedbkeys) _mmseqs_renamedbkeys
+            return
+            ;;
+
+        diffseqdbs) _mmseqs_diffseqdbs
+            return
+            ;;
+
+        summarizetabs) _mmseqs_summarizetabs
+            return
+            ;;
+
+        gff2db) _mmseqs_gff2db
+            return
+            ;;
+
+        maskbygff) _mmseqs_maskbygff
+            return
+            ;;
+
+        convertkb) _mmseqs_convertkb
+            return
+            ;;
+
+        summarizeheaders) _mmseqs_summarizeheaders
+            return
+            ;;
+
+        nrtotaxmapping) _mmseqs_nrtotaxmapping
+            return
+            ;;
+
+        extractdomains) _mmseqs_extractdomains
+            return
+            ;;
+
+        countkmer) _mmseqs_countkmer
+            return
+            ;;
+
+    esac
+
+    local word_list=" easy-search easy-linsearch easy-cluster easy-linclust easy-taxonomy easy-rbh search linsearch map rbh linclust cluster clusterupdate taxonomy databases createdb createindex createlinindex convertmsa tsv2db tar2db db2tar msa2profile compress decompress rmdb mvdb cpdb lndb aliasdb unpackdb touchdb createsubdb concatdbs splitdb mergedbs subtractdbs convertalis createtsv convert2fasta result2flat createseqfiledb taxonomyreport extractorfs extractframes orftocontig reverseseq translatenucs translateaa splitsequence masksequence extractalignedregion swapresults result2rbh result2msa result2dnamsa result2stats filterresult offsetalignment proteinaln2nucl result2repseq sortresult summarizealis summarizeresult createtaxdb createbintaxonomy createbintaxmapping addtaxonomy filtertaxdb filtertaxseqdb aggregatetax aggregatetaxweights lcaalign lca majoritylca multihitdb multihitsearch besthitperset combinepvalperset mergeresultsbyset prefilter ungappedprefilter kmermatcher kmersearch align alignall transitivealign rescorediagonal alignbykmer clust clusthash mergeclusters result2profile msa2result sequence2profile profile2pssm profile2consensus profile2repseq convertprofiledb tsv2exprofiledb convertca3m expandaln expand2profile view apply filterdb swapdb prefixid suffixid renamedbkeys diffseqdbs summarizetabs gff2db maskbygff convertkb summarizeheaders nrtotaxmapping extractdomains countkmer "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_easysearch()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches --seed-sub-mat -s -k --k-score --alph-size --max-seqs --split --split-mode --split-memory-limit --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --spaced-kmer-mode --spaced-kmer-pattern --local-tmp --disk-space-limit -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --gap-pc --exhaustive-search-filter --pca --pcb --mask-profile --e-profile --wg --filter-msa --filter-min-enable --max-seq-id --qid --qsc --cov --diff --pseudo-cnt-mode --num-iterations --exhaustive-search --lca-search --taxon-list --rescore-mode --allow-deletion --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --sequence-overlap --sequence-split-mode --headers-split-mode --search-type --start-sens --sens-steps --format-mode --format-output --overlap --dbtype --shuffle --createdb-mode --greedy-best-hits --sub-mat --max-seq-len --db-load-mode --threads --compressed -v --mpi-runner --force-reuse --remove-tmp-files --filter-hits --sort-results --create-lookup --chain-alignments --merge-query --strand --db-output --write-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_easylinsearch()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches --seed-sub-mat --mask --mask-prob --mask-lower-case --split-memory-limit -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --kmer-per-seq --kmer-per-seq-scale --pick-n-sim-kmer --result-direction --pca --pcb --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --search-type --format-mode --format-output --sub-mat --max-seq-len --db-load-mode --threads --compressed -v --mpi-runner --force-reuse --remove-tmp-files --create-lookup --chain-alignments --merge-query --db-output"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_easycluster()
+{
+    local word_list="  --seed-sub-mat -s -k --k-score --alph-size --max-seqs --split --split-mode --split-memory-limit --comp-bias-corr --comp-bias-corr-scale --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --add-self-matches --spaced-kmer-mode --spaced-kmer-pattern --local-tmp -c --cov-mode -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --cluster-mode --max-iterations --similarity-type --single-step-clustering --cluster-steps --cluster-reassign --kmer-per-seq --kmer-per-seq-scale --adjust-kmer-len --hash-shift --include-only-extendable --ignore-multi-kmer --pca --pcb --taxon-list --rescore-mode --dbtype --shuffle --createdb-mode --id-offset --sub-mat --max-seq-len --db-load-mode --threads --compressed -v --remove-tmp-files --force-reuse --mpi-runner --filter-hits --sort-results --write-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_easylinclust()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches --alph-size --spaced-kmer-mode --spaced-kmer-pattern --mask --mask-prob --mask-lower-case -k --split-memory-limit -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --cluster-mode --max-iterations --similarity-type --kmer-per-seq --kmer-per-seq-scale --adjust-kmer-len --hash-shift --include-only-extendable --ignore-multi-kmer --pca --pcb --rescore-mode --dbtype --shuffle --createdb-mode --id-offset --threads --compressed -v --sub-mat --max-seq-len --db-load-mode --remove-tmp-files --force-reuse --mpi-runner --filter-hits --sort-results --write-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_easytaxonomy()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches --seed-sub-mat -s -k --k-score --alph-size --max-seqs --split --split-mode --split-memory-limit --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --spaced-kmer-mode --spaced-kmer-pattern --local-tmp --disk-space-limit -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --gap-pc --exhaustive-search-filter --pca --pcb --mask-profile --e-profile --wg --filter-msa --filter-min-enable --max-seq-id --qid --qsc --cov --diff --pseudo-cnt-mode --exhaustive-search --lca-search --orf-filter --orf-filter-e --orf-filter-s --lca-mode --majority --vote-mode --lca-ranks --tax-lineage --blacklist --taxon-list --rescore-mode --allow-deletion --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --sequence-overlap --sequence-split-mode --headers-split-mode --search-type --report-mode --format-mode --format-output --first-seq-as-repr --target-column --full-header --idx-seq-src --dbtype --shuffle --createdb-mode --compressed --threads -v --sub-mat --max-seq-len --db-load-mode --mpi-runner --force-reuse --remove-tmp-files --filter-hits --sort-results --create-lookup --chain-alignments --merge-query --strand --db-output --write-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_easyrbh()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches --seed-sub-mat -s -k --k-score --alph-size --max-seqs --split --split-mode --split-memory-limit --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --spaced-kmer-mode --spaced-kmer-pattern --local-tmp --disk-space-limit -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --gap-pc --exhaustive-search-filter --pca --pcb --mask-profile --e-profile --wg --filter-msa --filter-min-enable --max-seq-id --qid --qsc --cov --diff --pseudo-cnt-mode --num-iterations --exhaustive-search --lca-search --taxon-list --rescore-mode --allow-deletion --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --sequence-overlap --sequence-split-mode --headers-split-mode --search-type --start-sens --sens-steps --format-mode --format-output --overlap --dbtype --shuffle --createdb-mode --greedy-best-hits --sub-mat --max-seq-len --db-load-mode --threads --compressed -v --mpi-runner --force-reuse --remove-tmp-files --filter-hits --sort-results --create-lookup --chain-alignments --merge-query --strand --db-output --write-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_search()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches --seed-sub-mat -s -k --k-score --alph-size --max-seqs --split --split-mode --split-memory-limit --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --spaced-kmer-mode --spaced-kmer-pattern --local-tmp --disk-space-limit -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --gap-pc --exhaustive-search-filter --pca --pcb --mask-profile --e-profile --wg --filter-msa --filter-min-enable --max-seq-id --qid --qsc --cov --diff --pseudo-cnt-mode --num-iterations --exhaustive-search --lca-search --taxon-list --rescore-mode --allow-deletion --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --sequence-overlap --sequence-split-mode --headers-split-mode --search-type --start-sens --sens-steps --sub-mat --max-seq-len --db-load-mode --threads --compressed -v --mpi-runner --force-reuse --remove-tmp-files --filter-hits --sort-results --create-lookup --chain-alignments --merge-query --strand"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_linsearch()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches --seed-sub-mat --mask --mask-prob --mask-lower-case --split-memory-limit -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --kmer-per-seq --kmer-per-seq-scale --pick-n-sim-kmer --result-direction --pca --pcb --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --search-type --sub-mat --max-seq-len --db-load-mode --threads --compressed -v --mpi-runner --force-reuse --remove-tmp-files --create-lookup --chain-alignments --merge-query"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_map()
+{
+    local word_list="  --seed-sub-mat -s -k --k-score --alph-size --max-seqs --split --split-mode --split-memory-limit --comp-bias-corr --comp-bias-corr-scale --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --add-self-matches --spaced-kmer-mode --spaced-kmer-pattern --local-tmp -c --cov-mode --wrapped-scoring -e -a --min-seq-id --min-aln-len --seq-id-mode --pca --pcb --taxon-list --rescore-mode --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --start-sens --sens-steps --sub-mat --max-seq-len --db-load-mode --threads --compressed -v --mpi-runner --force-reuse --remove-tmp-files --filter-hits --sort-results --create-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_rbh()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches --seed-sub-mat -s -k --k-score --alph-size --max-seqs --split --split-mode --split-memory-limit --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --spaced-kmer-mode --spaced-kmer-pattern --local-tmp --disk-space-limit -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --gap-pc --exhaustive-search-filter --pca --pcb --mask-profile --e-profile --wg --filter-msa --filter-min-enable --max-seq-id --qid --qsc --cov --diff --pseudo-cnt-mode --num-iterations --exhaustive-search --lca-search --taxon-list --rescore-mode --allow-deletion --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --sequence-overlap --sequence-split-mode --headers-split-mode --search-type --start-sens --sens-steps --sub-mat --max-seq-len --db-load-mode --threads --compressed -v --mpi-runner --force-reuse --remove-tmp-files --filter-hits --sort-results --create-lookup --chain-alignments --merge-query --strand"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_linclust()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches --alph-size --spaced-kmer-mode --spaced-kmer-pattern --mask --mask-prob --mask-lower-case -k --split-memory-limit -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --cluster-mode --max-iterations --similarity-type --kmer-per-seq --kmer-per-seq-scale --adjust-kmer-len --hash-shift --include-only-extendable --ignore-multi-kmer --pca --pcb --rescore-mode --threads --compressed -v --sub-mat --max-seq-len --db-load-mode --remove-tmp-files --force-reuse --mpi-runner --filter-hits --sort-results --cov-mode"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_cluster()
+{
+    local word_list="  --seed-sub-mat -s -k --k-score --alph-size --max-seqs --split --split-mode --split-memory-limit --comp-bias-corr --comp-bias-corr-scale --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --add-self-matches --spaced-kmer-mode --spaced-kmer-pattern --local-tmp -c --cov-mode -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --cluster-mode --max-iterations --similarity-type --single-step-clustering --cluster-steps --cluster-reassign --kmer-per-seq --kmer-per-seq-scale --adjust-kmer-len --hash-shift --include-only-extendable --ignore-multi-kmer --pca --pcb --taxon-list --rescore-mode --sub-mat --max-seq-len --db-load-mode --threads --compressed -v --remove-tmp-files --force-reuse --mpi-runner --filter-hits --sort-results"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_clusterupdate()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches --seed-sub-mat -s -k --k-score --alph-size --split --split-mode --split-memory-limit --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --spaced-kmer-mode --spaced-kmer-pattern --local-tmp --disk-space-limit -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --gap-pc --exhaustive-search-filter --cluster-mode --max-iterations --similarity-type --single-step-clustering --cluster-steps --cluster-reassign --kmer-per-seq --kmer-per-seq-scale --adjust-kmer-len --hash-shift --include-only-extendable --ignore-multi-kmer --pca --pcb --mask-profile --e-profile --wg --filter-msa --filter-min-enable --max-seq-id --qid --qsc --cov --diff --pseudo-cnt-mode --num-iterations --exhaustive-search --lca-search --taxon-list --rescore-mode --allow-deletion --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --sequence-overlap --sequence-split-mode --headers-split-mode --search-type --start-sens --sens-steps --use-seq-id --recover-deleted --sub-mat --max-seq-len --db-load-mode --threads --compressed -v --mpi-runner --force-reuse --remove-tmp-files --filter-hits --sort-results --create-lookup --chain-alignments --merge-query --strand"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_taxonomy()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches --seed-sub-mat -s -k --k-score --alph-size --max-seqs --split --split-mode --split-memory-limit --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --spaced-kmer-mode --spaced-kmer-pattern --local-tmp --disk-space-limit -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --gap-pc --exhaustive-search-filter --pca --pcb --mask-profile --e-profile --wg --filter-msa --filter-min-enable --max-seq-id --qid --qsc --cov --diff --pseudo-cnt-mode --exhaustive-search --lca-search --orf-filter --orf-filter-e --orf-filter-s --lca-mode --tax-output-mode --majority --vote-mode --lca-ranks --tax-lineage --blacklist --taxon-list --rescore-mode --allow-deletion --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --sequence-overlap --sequence-split-mode --headers-split-mode --search-type --compressed --threads -v --sub-mat --max-seq-len --db-load-mode --mpi-runner --force-reuse --remove-tmp-files --filter-hits --sort-results --create-lookup --chain-alignments --merge-query --strand"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_databases()
+{
+    local word_list="  --tsv --force-reuse --remove-tmp-files --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_createdb()
+{
+    local word_list="  --dbtype --shuffle --createdb-mode --id-offset --compressed -v --write-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_createindex()
+{
+    local word_list="  --seed-sub-mat -k --alph-size --comp-bias-corr --comp-bias-corr-scale --max-seqs --mask --mask-prob --mask-lower-case --spaced-kmer-mode --spaced-kmer-pattern -s --k-score --split --split-memory-limit --check-compatible --search-type --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --sequence-overlap --sequence-split-mode --headers-split-mode --max-seq-len -v --threads --compressed --remove-tmp-files --create-lookup --strand"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_createlinindex()
+{
+    local word_list="  --seed-sub-mat -k --split-memory-limit --alph-size --mask --mask-prob --mask-lower-case --spaced-kmer-mode --spaced-kmer-pattern --min-seq-id --hash-shift --kmer-per-seq --kmer-per-seq-scale --adjust-kmer-len --ignore-multi-kmer --check-compatible --search-type --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --max-seq-len -v --threads --compressed --remove-tmp-files --create-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_convertmsa()
+{
+    local word_list="  --identifier-field --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_tsv2db()
+{
+    local word_list="  --add-self-matches --output-dbtype --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_tar2db()
+{
+    local word_list="  --output-dbtype --tar-include --tar-exclude --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_db2tar()
+{
+    local word_list="  -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_msa2profile()
+{
+    local word_list="  --comp-bias-corr --gap-open --gap-extend --gap-pc --match-mode --match-ratio --pseudo-cnt-mode --pca --pcb --wg --filter-msa --filter-min-enable --cov --qid --qsc --max-seq-id --diff --msa-type --sub-mat --threads --compressed -v --skip-query"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_compress()
+{
+    local word_list="  --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_decompress()
+{
+    local word_list="  --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_rmdb()
+{
+    local word_list="  -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_mvdb()
+{
+    local word_list="  -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_cpdb()
+{
+    local word_list="  -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_lndb()
+{
+    local word_list="  -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_aliasdb()
+{
+    local word_list="  -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_unpackdb()
+{
+    local word_list="  --unpack-name-mode --unpack-suffix --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_touchdb()
+{
+    local word_list="  --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_createsubdb()
+{
+    local word_list="  --subdb-mode --id-mode -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_concatdbs()
+{
+    local word_list="  --preserve-keys --take-larger-entry --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_splitdb()
+{
+    local word_list="  --split --compressed -v --split-aa"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_mergedbs()
+{
+    local word_list="  --compressed -v --prefixes --merge-stop-empty"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_subtractdbs()
+{
+    local word_list="  -e --e-profile --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_convertalis()
+{
+    local word_list="  --gap-open --gap-extend --format-mode --format-output --translation-table --search-type --sub-mat --db-load-mode --threads --compressed -v --db-output"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_createtsv()
+{
+    local word_list="  --first-seq-as-repr --target-column --full-header --idx-seq-src --threads --compressed -v --db-output"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_convert2fasta()
+{
+    local word_list="  --use-header-file -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_result2flat()
+{
+    local word_list="  --use-fasta-header -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_createseqfiledb()
+{
+    local word_list="  --min-sequences --max-sequences --hh-format --db-load-mode --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_taxonomyreport()
+{
+    local word_list="  --report-mode --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_extractorfs()
+{
+    local word_list="  --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --threads --compressed -v --create-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_extractframes()
+{
+    local word_list="  --forward-frames --reverse-frames --threads --compressed -v --create-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_orftocontig()
+{
+    local word_list="  --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_reverseseq()
+{
+    local word_list="  --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_translatenucs()
+{
+    local word_list="  --translation-table --add-orf-stop -v --compressed --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_translateaa()
+{
+    local word_list="  --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_splitsequence()
+{
+    local word_list="  --sequence-overlap --sequence-split-mode --headers-split-mode --max-seq-len --threads --compressed -v --create-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_masksequence()
+{
+    local word_list="  --mask-prob --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_extractalignedregion()
+{
+    local word_list="  --extract-mode --compressed --db-load-mode --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_swapresults()
+{
+    local word_list="  --split-memory-limit -e --gap-open --gap-extend --sub-mat --threads --compressed --db-load-mode -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_result2rbh()
+{
+    local word_list="  --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_result2msa()
+{
+    local word_list="  --comp-bias-corr --gap-open --gap-extend --filter-msa --filter-min-enable --max-seq-id --qid --qsc --cov --diff --allow-deletion --msa-format-mode --sub-mat --db-load-mode --threads --compressed -v --summary-prefix --skip-query"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_result2dnamsa()
+{
+    local word_list="  --threads --compressed -v --skip-query"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_result2stats()
+{
+    local word_list="  --stat --tsv --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_filterresult()
+{
+    local word_list="  --comp-bias-corr --add-self-matches --gap-open --gap-extend --filter-min-enable --max-seq-id --qid --qsc --cov --diff --allow-deletion --sub-mat --db-load-mode --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_offsetalignment()
+{
+    local word_list="  --search-type --threads --compressed --db-load-mode -v --chain-alignments --merge-query"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_proteinaln2nucl()
+{
+    local word_list="  --gap-open --gap-extend --sub-mat --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_result2repseq()
+{
+    local word_list="  --db-load-mode --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_sortresult()
+{
+    local word_list="  --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_summarizealis()
+{
+    local word_list="  --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_summarizeresult()
+{
+    local word_list="  -a -c --overlap --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_createtaxdb()
+{
+    local word_list="  --ncbi-tax-dump --tax-mapping-file --tax-mapping-mode --tax-db-mode --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_createbintaxonomy()
+{
+    local word_list="  -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_createbintaxmapping()
+{
+    local word_list="  -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_addtaxonomy()
+{
+    local word_list="  --tax-lineage --lca-ranks --pick-id-from --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_filtertaxdb()
+{
+    local word_list="  --taxon-list --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_filtertaxseqdb()
+{
+    local word_list="  --taxon-list --subdb-mode --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_aggregatetax()
+{
+    local word_list="  --lca-ranks --tax-lineage --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_aggregatetaxweights()
+{
+    local word_list="  --majority --vote-mode --lca-ranks --tax-lineage --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_lcaalign()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --pca --pcb --sub-mat --max-seq-len --db-load-mode --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_lca()
+{
+    local word_list="  --lca-ranks --blacklist --tax-lineage --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_majoritylca()
+{
+    local word_list="  --majority --vote-mode --lca-ranks --blacklist --tax-lineage --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_multihitdb()
+{
+    local word_list="  --dbtype --shuffle --createdb-mode --id-offset --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --add-orf-stop --stat --tsv --compressed -v --threads --write-lookup --create-lookup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_multihitsearch()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches --seed-sub-mat -s -k --k-score --alph-size --max-seqs --split --split-mode --split-memory-limit --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --spaced-kmer-mode --spaced-kmer-pattern --local-tmp --disk-space-limit -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --gap-pc --exhaustive-search-filter --pca --pcb --mask-profile --e-profile --wg --filter-msa --filter-min-enable --max-seq-id --qid --qsc --cov --diff --pseudo-cnt-mode --num-iterations --exhaustive-search --lca-search --taxon-list --rescore-mode --allow-deletion --min-length --max-length --max-gaps --contig-start-mode --contig-end-mode --orf-start-mode --forward-frames --reverse-frames --translation-table --translate --use-all-table-starts --id-offset --add-orf-stop --sequence-overlap --sequence-split-mode --headers-split-mode --search-type --start-sens --sens-steps --simple-best-hit --sub-mat --max-seq-len --db-load-mode --threads --compressed -v --mpi-runner --force-reuse --remove-tmp-files --filter-hits --sort-results --create-lookup --chain-alignments --merge-query --strand"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_besthitperset()
+{
+    local word_list="  --simple-best-hit --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_combinepvalperset()
+{
+    local word_list="  --alpha --aggregation-mode --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_mergeresultsbyset()
+{
+    local word_list="  --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_prefilter()
+{
+    local word_list="  --seed-sub-mat -s -k --k-score --alph-size --max-seqs --split --split-mode --split-memory-limit --comp-bias-corr --comp-bias-corr-scale --diag-score --exact-kmer-matching --mask --mask-prob --mask-lower-case --min-ungapped-score --add-self-matches --spaced-kmer-mode --spaced-kmer-pattern --local-tmp -c --cov-mode --pca --pcb --taxon-list --sub-mat --max-seq-len --db-load-mode --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_ungappedprefilter()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --min-ungapped-score --max-seqs -c -e --cov-mode --sub-mat --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_kmermatcher()
+{
+    local word_list="  --alph-size --spaced-kmer-mode --spaced-kmer-pattern --mask --mask-prob --mask-lower-case -k --split-memory-limit --min-seq-id --cov-mode -c --kmer-per-seq --kmer-per-seq-scale --adjust-kmer-len --hash-shift --include-only-extendable --ignore-multi-kmer --sub-mat --max-seq-len --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_kmersearch()
+{
+    local word_list="  --seed-sub-mat --mask --mask-prob --mask-lower-case --split-memory-limit --cov-mode -c --kmer-per-seq --kmer-per-seq-scale --pick-n-sim-kmer --result-direction --max-seq-len --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_align()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --pca --pcb --sub-mat --max-seq-len --db-load-mode --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_alignall()
+{
+    local word_list="  --comp-bias-corr --add-self-matches -a --alignment-mode -e --min-seq-id --min-aln-len --seq-id-mode -c --cov-mode --score-bias --gap-open --gap-extend --zdrop --pca --pcb --sub-mat --max-seq-len --db-load-mode --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_transitivealign()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --add-self-matches -a --alignment-mode --alignment-output-mode --wrapped-scoring -e --min-seq-id --min-aln-len --seq-id-mode --alt-ali -c --cov-mode --max-rejected --max-accept --score-bias --realign --realign-score-bias --realign-max-seqs --corr-score-weight --gap-open --gap-extend --zdrop --pca --pcb --sub-mat --max-seq-len --db-load-mode --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_rescorediagonal()
+{
+    local word_list="  --add-self-matches --wrapped-scoring -e -c -a --cov-mode --min-seq-id --min-aln-len --seq-id-mode --rescore-mode --sub-mat --db-load-mode --threads --compressed -v --filter-hits --sort-results"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_alignbykmer()
+{
+    local word_list="  -k --spaced-kmer-mode --spaced-kmer-pattern --alph-size --add-self-matches -c -e --cov-mode --min-seq-id --min-aln-len --gap-open --gap-extend --sub-mat --threads --compressed -v --filter-hits"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_clust()
+{
+    local word_list="  --cluster-mode --max-iterations --similarity-type --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_clusthash()
+{
+    local word_list="  --alph-size --min-seq-id --sub-mat --max-seq-len --db-load-mode --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_mergeclusters()
+{
+    local word_list="  --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_result2profile()
+{
+    local word_list="  --comp-bias-corr -e --gap-open --gap-extend --gap-pc --mask-profile --e-profile --wg --filter-msa --filter-min-enable --max-seq-id --qid --qsc --cov --diff --pseudo-cnt-mode --pca --pcb --allow-deletion --sub-mat --db-load-mode --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_msa2result()
+{
+    local word_list="  --comp-bias-corr --gap-open --gap-extend --gap-pc --match-mode --match-ratio --pseudo-cnt-mode --pca --pcb --wg --filter-msa --filter-min-enable --cov --qid --qsc --max-seq-id --diff --msa-type --sub-mat --threads --compressed -v --skip-query"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_sequence2profile()
+{
+    local word_list="  --pca --pcb --neff --tau --threads --sub-mat --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_profile2pssm()
+{
+    local word_list="  --comp-bias-corr --sub-mat --max-seq-len --threads --compressed -v --db-output"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_profile2consensus()
+{
+    local word_list="  --sub-mat --max-seq-len --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_profile2repseq()
+{
+    local word_list="  --sub-mat --max-seq-len --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_convertprofiledb()
+{
+    local word_list="  --sub-mat --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_tsv2exprofiledb()
+{
+    local word_list="  -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_convertca3m()
+{
+    local word_list="  --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_expandaln()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --gap-open --gap-extend --score-bias -e --min-seq-id -c --cov-mode --pseudo-cnt-mode --pca --pcb --filter-min-enable --max-seq-id --qid --qsc --cov --diff --expansion-mode --expand-filter-clusters --sub-mat --max-seq-len --db-load-mode --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_expand2profile()
+{
+    local word_list="  --comp-bias-corr --comp-bias-corr-scale --gap-open --gap-extend --gap-pc --score-bias -c --cov-mode --e-profile --mask-profile --wg --filter-msa --filter-min-enable --max-seq-id --qid --qsc --cov --diff --pseudo-cnt-mode --pca --pcb --expansion-mode --allow-deletion --expand-filter-clusters --sub-mat --max-seq-len --db-load-mode --compressed --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_view()
+{
+    local word_list="  --id-list --id-mode --idx-entry-type -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_apply()
+{
+    local word_list="  --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_filterdb()
+{
+    local word_list="  --add-self-matches --filter-expression --filter-column --column-to-take --filter-regex --positive-filter --filter-file --beats-first --mapping-file --trim-to-one-column --extract-lines --comparison-operator --comparison-value --sort-entries --join-db --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_swapdb()
+{
+    local word_list="  --split-memory-limit --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_prefixid()
+{
+    local word_list="  --prefix --mapping-file --tsv --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_suffixid()
+{
+    local word_list="  --prefix --mapping-file --tsv --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_renamedbkeys()
+{
+    local word_list="  --subdb-mode --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_diffseqdbs()
+{
+    local word_list="  --use-seq-id --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_summarizetabs()
+{
+    local word_list="  -e -c --overlap --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_gff2db()
+{
+    local word_list="  --gff-type --id-offset --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_maskbygff()
+{
+    local word_list="  --gff-type --id-offset --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_convertkb()
+{
+    local word_list="  --mapping-file --kb-columns --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_summarizeheaders()
+{
+    local word_list="  --header-type --threads --compressed -v --summary-prefix"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_nrtotaxmapping()
+{
+    local word_list="  --threads -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_extractdomains()
+{
+    local word_list="  -e -c --msa-type --sub-mat --threads --compressed -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_mmseqs_countkmer()
+{
+    local word_list="  -k --spaced-kmer-mode --spaced-kmer-pattern --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _mmseqs mmseqs

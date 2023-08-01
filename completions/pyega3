@@ -1,0 +1,56 @@
+# Auto-generated with h2o
+
+_pyega3()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" datasets files fetch"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        datasets) _pyega3_datasets
+            return
+            ;;
+
+        files) _pyega3_files
+            return
+            ;;
+
+        fetch) _pyega3_fetch
+            return
+            ;;
+
+    esac
+
+    local word_list=" datasets files fetch -h --help -d --debug -cf --config-file -sf --server-file -c --connections -t --test -ms --max-slice-size -j --json -v --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_pyega3_datasets()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_pyega3_files()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_pyega3_fetch()
+{
+    local word_list="  -h --help --reference-name -r --reference-md5 -m --start -s --end -e --format -f --max-retries -M --retry-wait -W --output-dir --delete-temp-files"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _pyega3 pyega3

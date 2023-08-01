@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_sql2csv()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -v --verbose -l --linenumbers -V --version --db --query -e --encoding -H --no-header-row"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _sql2csv sql2csv

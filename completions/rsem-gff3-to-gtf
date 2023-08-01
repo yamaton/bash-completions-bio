@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_rsemgff3togtf()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --make-genes-as-transcripts --RNA-patterns --extract-sequences"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _rsemgff3togtf rsem-gff3-to-gtf

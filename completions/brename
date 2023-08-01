@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_brename()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -d --dry-run -F --exclude-filters -U --force-undo -h --help -i --ignore-case -e --ignore-ext -f --include-filters -D --including-dir -K --keep-key -I --key-capt-idx -m --key-miss-repl -k --kv-file -l --list -a --list-abs -s --list-sep --max-depth -N --nature-sort --nr-width --only-dir -o --overwrite-mode -p --pattern -q --quiet -R --recursive -r --replacement -n --start-num -u --undo -v --verbose -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _brename brename

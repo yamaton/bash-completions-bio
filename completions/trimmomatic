@@ -1,0 +1,46 @@
+# Auto-generated with h2o
+
+_trimmomatic()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" PE SE"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        PE) _trimmomatic_PE
+            return
+            ;;
+
+        SE) _trimmomatic_SE
+            return
+            ;;
+
+    esac
+
+    local word_list=" PE SE "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_trimmomatic_PE()
+{
+    local word_list="  -threads -phred33 -phred64 -trimlog -summary -quiet -validatePairs -basein -baseout -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_trimmomatic_SE()
+{
+    local word_list="  -threads -phred33 -phred64 -trimlog -summary -quiet -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _trimmomatic trimmomatic

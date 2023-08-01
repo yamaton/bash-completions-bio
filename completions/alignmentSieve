@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_alignmentSieve()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --bam -b --outFile -o --numberOfProcessors -p --filterMetrics --filteredOutReads --label -l --smartLabels --verbose -v --version --shift --ATACshift --BED --filterRNAstrand --ignoreDuplicates --minMappingQuality --samFlagInclude --samFlagExclude --blackListFileName -bl --minFragmentLength --maxFragmentLength"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _alignmentSieve alignmentSieve

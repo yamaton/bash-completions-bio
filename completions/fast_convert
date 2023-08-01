@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_fastconvert()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --discard_q --mock_q"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _fastconvert fast_convert

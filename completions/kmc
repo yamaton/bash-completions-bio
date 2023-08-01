@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_kmc()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -v -k -m -sm -hc -p -f -ci -cs -cx -b -r -n -t -sf -sp -sr -j -w -o -hp -e --opt-out-size"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _kmc kmc

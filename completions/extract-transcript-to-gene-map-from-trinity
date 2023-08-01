@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_extracttranscripttogenemapfromtrinity()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _extracttranscripttogenemapfromtrinity extract-transcript-to-gene-map-from-trinity

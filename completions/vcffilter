@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_vcffilter()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -f --info-filter -g --genotype-filter -k --keep-info -s --filter-sites -t --tag-pass -F --tag-fail -A --append-filter -a --allele-tag -v --invert -o --or -r --region"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _vcffilter vcffilter

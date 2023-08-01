@@ -1,0 +1,146 @@
+# Auto-generated with h2o
+
+_nanopolish()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" call-methylation detect-polyi eventalign fast5-check help index methyltrain phase-reads polya scorereads variants vcf2fasta"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        call-methylation) _nanopolish_callmethylation
+            return
+            ;;
+
+        detect-polyi) _nanopolish_detectpolyi
+            return
+            ;;
+
+        eventalign) _nanopolish_eventalign
+            return
+            ;;
+
+        fast5-check) _nanopolish_fast5check
+            return
+            ;;
+
+        help) _nanopolish_help
+            return
+            ;;
+
+        index) _nanopolish_index
+            return
+            ;;
+
+        methyltrain) _nanopolish_methyltrain
+            return
+            ;;
+
+        phase-reads) _nanopolish_phasereads
+            return
+            ;;
+
+        polya) _nanopolish_polya
+            return
+            ;;
+
+        scorereads) _nanopolish_scorereads
+            return
+            ;;
+
+        variants) _nanopolish_variants
+            return
+            ;;
+
+        vcf2fasta) _nanopolish_vcf2fasta
+            return
+            ;;
+
+    esac
+
+    local word_list=" call-methylation detect-polyi eventalign fast5-check help index methyltrain phase-reads polya scorereads variants vcf2fasta --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nanopolish_callmethylation()
+{
+    local word_list="  -v --verbose --version --help -r --reads -b --bam -g --genome -q --methylation -o --modbam-output-name -s --modbam-style -t --threads --min-mapping-quality --watch --watch-write-bam -c --watch-process-total -i --watch-process-index --progress -K --batchsize"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nanopolish_detectpolyi()
+{
+    local word_list="  -v --verbose --version --help -w --window -r --reads -b --bam -g --genome -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nanopolish_eventalign()
+{
+    local word_list="  -v --verbose --version --help --sam -w --window -r --reads -b --bam -g --genome -t --threads -q --min-mapping-quality --scale-events --progress -n --print-read-names --summary --samples --signal-index --models-fofn"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nanopolish_fast5check()
+{
+    local word_list="  --help --version -r --reads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nanopolish_help()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nanopolish_index()
+{
+    local word_list="  --help --version -v --verbose --slow5 -d --directory -s --sequencing-summary -f --summary-fofn"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nanopolish_methyltrain()
+{
+    local word_list="  -v --verbose --version --help -m --models-fofn --train-kmers -c --calibrate --no-update-models --output-scores -r --reads -b --bam -g --genome -t --threads --filter-policy -s --out-suffix --out-fofn --rounds --max-reads --progress --stdv --max-events"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nanopolish_phasereads()
+{
+    local word_list="  -v --verbose --version --help -r --reads -b --bam -g --genome -w --window -t --threads --progress"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nanopolish_polya()
+{
+    local word_list="  -v --verbose --version --help -w --window -r --reads -b --bam -g --genome -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nanopolish_scorereads()
+{
+    local word_list="  -v --verbose --version --help -m --models-fofn -c --calibrate -z --zero-drift -i --individual-reads -r --reads -b --bam -g --genome -w --window -t --threads --train-transitions"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nanopolish_variants()
+{
+    local word_list="  -v --verbose --version --help --snps --consensus --fix-homopolymers --faster -w --window -r --reads -b --bam -e --event-bam -g --genome -p --ploidy -q --methylation-aware --genotype -o --outfile -t --threads -m --min-candidate-frequency -i --indel-bias -d --min-candidate-depth -x --max-haplotypes --min-flanking-sequence --max-rounds -c --candidates --read-group --calculate-all-support --models-fofn"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nanopolish_vcf2fasta()
+{
+    local word_list="  -v --verbose --version --help -g --genome -f --fofn --skip-checks"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _nanopolish nanopolish

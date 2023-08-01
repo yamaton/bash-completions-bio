@@ -1,0 +1,46 @@
+# Auto-generated with h2o
+
+_multiBamSummary()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" bins BED-file"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        bins) _multiBamSummary_bins
+            return
+            ;;
+
+        BED-file) _multiBamSummary_BEDfile
+            return
+            ;;
+
+    esac
+
+    local word_list=" bins BED-file -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_multiBamSummary_bins()
+{
+    local word_list="  --bamfiles -b --outFileName -out -o --help -h --labels -l --smartLabels --genomeChunkSize --binSize -bs --distanceBetweenBins -n --version --region -r --blackListFileName -bl --numberOfProcessors -p --verbose -v --outRawCounts --scalingFactors --extendReads -e --ignoreDuplicates --minMappingQuality --centerReads --samFlagInclude --samFlagExclude --minFragmentLength --maxFragmentLength"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_multiBamSummary_BEDfile()
+{
+    local word_list="  --bamfiles -b --outFileName -out -o --BED --help -h --labels -l --smartLabels --genomeChunkSize --version --region -r --blackListFileName -bl --numberOfProcessors -p --verbose -v --outRawCounts --scalingFactors --extendReads -e --ignoreDuplicates --minMappingQuality --centerReads --samFlagInclude --samFlagExclude --minFragmentLength --maxFragmentLength --metagene --transcriptID --exonID --transcript_id_designator"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _multiBamSummary multiBamSummary

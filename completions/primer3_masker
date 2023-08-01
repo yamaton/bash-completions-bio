@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_primer3masker()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -p --probability_cutoff -lh --kmer_lists_path -lp --list_prefix -a --absolute_value_cutoff -l --list -m5 --mask_5p -m3 --mask_3p -c --masking_char -s --soft_mask -d --masking_direction"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _primer3masker primer3_masker

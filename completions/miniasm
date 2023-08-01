@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_miniasm()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -R -m -i -s -c -o -h -I -g -d -e -f -n -r -F -p -b -1 -2 -V"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _miniasm miniasm

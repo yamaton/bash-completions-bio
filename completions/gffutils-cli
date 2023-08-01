@@ -1,0 +1,126 @@
+# Auto-generated with h2o
+
+_gffutilscli()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" fetch children parents region create common clean search sanitize rmdups"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        fetch) _gffutilscli_fetch
+            return
+            ;;
+
+        children) _gffutilscli_children
+            return
+            ;;
+
+        parents) _gffutilscli_parents
+            return
+            ;;
+
+        region) _gffutilscli_region
+            return
+            ;;
+
+        create) _gffutilscli_create
+            return
+            ;;
+
+        common) _gffutilscli_common
+            return
+            ;;
+
+        clean) _gffutilscli_clean
+            return
+            ;;
+
+        search) _gffutilscli_search
+            return
+            ;;
+
+        sanitize) _gffutilscli_sanitize
+            return
+            ;;
+
+        rmdups) _gffutilscli_rmdups
+            return
+            ;;
+
+    esac
+
+    local word_list=" fetch children parents region create common clean search sanitize rmdups -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gffutilscli_fetch()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gffutilscli_children()
+{
+    local word_list="  -h --help --limit --exclude --exclude-self"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gffutilscli_parents()
+{
+    local word_list="  -h --help --limit --exclude --exclude-self"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gffutilscli_region()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gffutilscli_create()
+{
+    local word_list="  -h --help --output --force --quiet --merge --disable-infer-genes --disable-infer-transcripts"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gffutilscli_common()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gffutilscli_clean()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gffutilscli_search()
+{
+    local word_list="  -h --help --featuretype"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gffutilscli_sanitize()
+{
+    local word_list="  -h --help --in-memory --in-place"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gffutilscli_rmdups()
+{
+    local word_list="  -h --help --in-place"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _gffutilscli gffutils-cli

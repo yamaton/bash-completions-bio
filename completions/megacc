@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_megacc()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -a --analysisOptions -c --calibration -ca --concatenate-alignments -d --data -date-format --date-format -f --format -find-tip-dates --find-tip-dates -g --groups -gs --gap-symbol -h --help -is --identical-base-symbol -l --list -ms --missing-base-symbol -n --noSummary -o --outfile -pfc --partition-frequency-cutoff -r --recursive -s --silent -t --tree"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _megacc megacc

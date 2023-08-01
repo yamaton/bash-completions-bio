@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_primer3core()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --default_version --format_output --strict_tags --p3_settings_file --echo_settings_file --io_version --output --error"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _primer3core primer3_core

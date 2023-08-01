@@ -1,0 +1,36 @@
+# Auto-generated with h2o
+
+_velvetg()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" directory"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        directory) _velvetg_directory
+            return
+            ;;
+
+    esac
+
+    local word_list=" directory -cov_cutoff -ins_length -read_trkg -min_contig_lgth -amos_file -exp_cov -long_cov_cutoff -ins_length -ins_length_long -ins_length -scaffolding -max_branch_length -max_divergence -max_gap_count -min_pair_count -max_coverage -coverage_mask -long_mult_cutoff -unused_reads -alignments -exportFiltered -clean -very_clean -paired_exp_fraction -shortMatePaired -conserveLong"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_velvetg_directory()
+{
+    local word_list="  -cov_cutoff -ins_length -read_trkg -min_contig_lgth -amos_file -exp_cov -long_cov_cutoff -ins_length -ins_length_long -ins_length -scaffolding -max_branch_length -max_divergence -max_gap_count -min_pair_count -max_coverage -coverage_mask -long_mult_cutoff -unused_reads -alignments -exportFiltered -clean -very_clean -paired_exp_fraction -shortMatePaired -conserveLong"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _velvetg velvetg

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_zindex()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --index-file -p --pipe --tab-delimiter -d --delimiter -c --config -f --field --skip-first --capture --regex --checkpoint-every -w --warnings -s --sparse -u --unique -n --numeric --color --colour --debug -v --verbose -- --ignore_rest --version -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _zindex zindex

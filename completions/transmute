@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_transmute()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -x2p -j2p -align -j2x -a2x -t2x -c2x -g2x -diff -extrac -hgvs -aa1to3 -aa3to1 -format -filter -normalize -revcomp -remove -retain -replace -molwt -encodeXML -decodeXML -plainXML -encodeURL -decodeURL -encode64 -decode64"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _transmute transmute

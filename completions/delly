@@ -1,0 +1,86 @@
+# Auto-generated with h2o
+
+_delly()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" call merge filter lr cnv classify"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        call) _delly_call
+            return
+            ;;
+
+        merge) _delly_merge
+            return
+            ;;
+
+        filter) _delly_filter
+            return
+            ;;
+
+        lr) _delly_lr
+            return
+            ;;
+
+        cnv) _delly_cnv
+            return
+            ;;
+
+        classify) _delly_classify
+            return
+            ;;
+
+    esac
+
+    local word_list=" call merge filter lr cnv classify "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_delly_call()
+{
+    local word_list="  -? --help -t --svtype -g --genome -x --exclude -o --outfile -q --map-qual -r --qual-tra -s --mad-cutoff -c --minclip -z --min-clique-size -m --minrefsep -n --maxreadsep -v --vcffile -u --geno-qual -d --dump"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_delly_merge()
+{
+    local word_list="  -? --help -o --outfile -u --chunks -a --vaf -v --coverage -m --minsize -n --maxsize -e --cnvmode -c --precise -p --pass -b --bp-offset -r --rec-overlap"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_delly_filter()
+{
+    local word_list="  -? --help -f --filter -o --outfile -y --quality -a --altaf -m --minsize -n --maxsize -r --ratiogeno -p --pass -s --samples -v --coverage -c --controlcontamination -q --gq -e --rddel -u --rddup"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_delly_lr()
+{
+    local word_list="  -? --help -t --svtype -y --technology -g --genome -x --exclude -o --outfile -q --mapqual -c --minclip -z --min-clique-size -m --minrefsep -n --maxreadsep -p --max-reads -f --flank-size -a --flank-quality -i --indel-size -r --max-isize -v --vcffile -u --geno-qual -d --dump"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_delly_cnv()
+{
+    local word_list="  -? --help -g --genome -q --quality -m --mappability -y --ploidy -o --outfile -c --covfile -x --sdrd -t --cn-offset -z --cnv-size -l --svfile -v --vcffile -u --segmentation -i --window-size -j --window-offset -b --bed-intervals -k --fraction-window -a --adaptive-windowing -w --scan-window -f --fraction-unique -r --scan-regions -d --mad-cutoff -p --percentile -n --no-window-selection"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_delly_classify()
+{
+    local word_list="  -? --help -f --filter -o --outfile -m --minsize -n --maxsize -p --pass -s --samples -e --pgerm -t --cn-offset -y --ploidy -q --qual -x --maxsd"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _delly delly

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_NanoStat()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -v --version -o --outdir -p --prefix -n --name -t --threads --tsv --barcoded --readtype --no_supplementary --fastq --fasta --summary --bam --ubam --cram --feather"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _NanoStat NanoStat

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_mafft()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --auto --6merpair --globalpair --localpair --genafpair --fastapair --weighti --retree --maxiterate --fft --nofft --noscore --memsave --parttree --dpparttree --fastaparttree --partsize --groupsize --op --ep --lop --lep --lexp --LOP --LEXP --bl --jtt --tm --aamatrix --fmodel --clustalout --inputorder --reorder --treeout --quiet --nuc --amino --seed --thread --dash"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _mafft mafft

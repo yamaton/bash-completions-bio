@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_kneaddata()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -v --verbose --version -i1 --input1 -i2 --input2 -un --unpaired -o --output -s --scratch -db --reference-db --bypass-trim --output-prefix -t --threads -p --processes -q --quality-scores --run-bmtagger --bypass-trf --run-trf --run-fastqc-start --run-fastqc-end --store-temp-output --remove-intermediate-output --cat-final-output --log-level --log --trimmomatic --run-trim-repetitive --max-memory --trimmomatic-options --sequencer-source --bowtie2 --bowtie2-options --decontaminate-pairs --reorder --serial --bmtagger --trf --match --mismatch --delta --pm --pi --minscore --maxperiod --fastqc"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _kneaddata kneaddata

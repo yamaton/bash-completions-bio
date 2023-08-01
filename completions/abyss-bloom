@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_abyssbloom()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -k --kmer -v --verbose --help --version -b --bloom-size -B --buffer-size -j --threads -h --hash-seed -H --num-hashes -l --levels -L --init-level --chastity --no-chastity --trim-masked --no-trim-masked -n --num-locks -q --trim-quality -t --bloom-type --standard-quality --illumina-quality -w --window -m --method -d --depth -R --root -f --root-fasta -a --fasta-attr --node-attr -A --bloom-attr -r --inverse --bed --fasta --raw"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _abyssbloom abyss-bloom

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_genbanktoddbj()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --gbk --gbff --genbank --metadata -p --prefix --locus_tag_prefix --transl_table --config_filter -o --out --output -v --version --log"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _genbanktoddbj genbank-to-ddbj

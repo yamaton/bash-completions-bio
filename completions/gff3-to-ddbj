@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_gff3toddbj()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --gff3 --gff --fasta --metadata -p --prefix --locus_tag_prefix --transl_table --config_rename --config_filter -o --out --output -v --version --log"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _gff3toddbj gff3-to-ddbj

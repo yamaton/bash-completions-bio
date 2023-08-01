@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_blastdbcmd()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -help -version -db -dbtype -entry -entry_batch -ipg -ipg_batch -taxids -taxidlist -info -metadata -metadata_output_prefix -tax_info -range -strand -mask_sequence_with -out -outfmt -target_only -get_dups -line_length -ctrl_a -show_blastdb_search_path -list -remove_redundant_dbs -recursive -list_outfmt -exact_length -long_seqids -logfile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _blastdbcmd blastdbcmd

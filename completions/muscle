@@ -1,0 +1,126 @@
+# Auto-generated with h2o
+
+_muscle()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" -align -super5 -efastats -efa_explode -fa2efa -disperse -addconfseqs -letterconf -maxcc -resample"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        -align) _muscle_align
+            return
+            ;;
+
+        -super5) _muscle_super5
+            return
+            ;;
+
+        -efastats) _muscle_efastats
+            return
+            ;;
+
+        -efa_explode) _muscle_efaexplode
+            return
+            ;;
+
+        -fa2efa) _muscle_fa2efa
+            return
+            ;;
+
+        -disperse) _muscle_disperse
+            return
+            ;;
+
+        -addconfseqs) _muscle_addconfseqs
+            return
+            ;;
+
+        -letterconf) _muscle_letterconf
+            return
+            ;;
+
+        -maxcc) _muscle_maxcc
+            return
+            ;;
+
+        -resample) _muscle_resample
+            return
+            ;;
+
+    esac
+
+    local word_list=" -align -super5 -efastats -efa_explode -fa2efa -disperse -addconfseqs -letterconf -maxcc -resample "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_muscle_align()
+{
+    local word_list="  -perm -stratified -diversified -replicates -consiters -refineiters -nt -amino -threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_muscle_super5()
+{
+    local word_list="  -perm -consiters -refineiters -nt -amino -threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_muscle_efastats()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_muscle_efaexplode()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_muscle_fa2efa()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_muscle_disperse()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_muscle_addconfseqs()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_muscle_letterconf()
+{
+    local word_list="  -html -jalview"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_muscle_maxcc()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_muscle_resample()
+{
+    local word_list="  -minconf -gapfract"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _muscle muscle

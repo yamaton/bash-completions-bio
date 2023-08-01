@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_hmmsim()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -a -v -L -N -o --afile --efile --ffile --pfile --xfile --fs --sw --ls --s --vit --fwd --hyb --msv --fast --tmin --tmax --tpoints --tlinear --EmL --EmN --EvL --EvN --EfL --EfN --Eft --stall --seed --bgflat --bgcomp --x-no-lengthmodel --nu --pthresh"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _hmmsim hmmsim

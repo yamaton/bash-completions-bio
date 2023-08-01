@@ -1,0 +1,46 @@
+# Auto-generated with h2o
+
+_catalogueerrors()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" count analyse"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        count) _catalogueerrors_count
+            return
+            ;;
+
+        analyse) _catalogueerrors_analyse
+            return
+            ;;
+
+    esac
+
+    local word_list=" count analyse -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_catalogueerrors_count()
+{
+    local word_list="  -h --help --bed -t --threads -o --outdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_catalogueerrors_analyse()
+{
+    local word_list="  -h --help -o --outdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _catalogueerrors catalogue_errors

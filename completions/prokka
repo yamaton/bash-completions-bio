@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_prokka()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --dbdir --listdb --setupdb --cleandb --depends --outdir --force --prefix --addgenes --addmrna --locustag --increment --gffver --compliant --centre --accver --genus --species --strain --plasmid --kingdom --gcode --prodigaltf --gram --usegenus --proteins --hmms --metagenome --rawproduct --cdsrnaolap --evalue --coverage --cpus --fast --noanno --mincontiglen --rfam --norrna --notrna --rnammer --help --version --citation --quiet --debug"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _prokka prokka

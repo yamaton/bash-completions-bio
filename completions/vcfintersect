@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_vcfintersect()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -b --bed -R --region -S --start-only -v --invert -i --intersect-vcf -u --union-vcf -w --window-size -r --reference -l --loci -m --ref-match -t --tag -V --tag-value -M --merge-from -T --merge-to"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _vcfintersect vcfintersect

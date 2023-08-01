@@ -1,0 +1,316 @@
+# Auto-generated with h2o
+
+_SnpSift()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" alleleMat annotate caseControl ccs concordance covMat dbnsfp extractFields filter geneSets gt gtfilter gwasCat hwe intersect intervals intIdx join op phastCons private rmRefGen rmInfo sort split tstv varType vcfCheck vcf2tped"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        alleleMat) _SnpSift_alleleMat
+            return
+            ;;
+
+        annotate) _SnpSift_annotate
+            return
+            ;;
+
+        caseControl) _SnpSift_caseControl
+            return
+            ;;
+
+        ccs) _SnpSift_ccs
+            return
+            ;;
+
+        concordance) _SnpSift_concordance
+            return
+            ;;
+
+        covMat) _SnpSift_covMat
+            return
+            ;;
+
+        dbnsfp) _SnpSift_dbnsfp
+            return
+            ;;
+
+        extractFields) _SnpSift_extractFields
+            return
+            ;;
+
+        filter) _SnpSift_filter
+            return
+            ;;
+
+        geneSets) _SnpSift_geneSets
+            return
+            ;;
+
+        gt) _SnpSift_gt
+            return
+            ;;
+
+        gtfilter) _SnpSift_gtfilter
+            return
+            ;;
+
+        gwasCat) _SnpSift_gwasCat
+            return
+            ;;
+
+        hwe) _SnpSift_hwe
+            return
+            ;;
+
+        intersect) _SnpSift_intersect
+            return
+            ;;
+
+        intervals) _SnpSift_intervals
+            return
+            ;;
+
+        intIdx) _SnpSift_intIdx
+            return
+            ;;
+
+        join) _SnpSift_join
+            return
+            ;;
+
+        op) _SnpSift_op
+            return
+            ;;
+
+        phastCons) _SnpSift_phastCons
+            return
+            ;;
+
+        private) _SnpSift_private
+            return
+            ;;
+
+        rmRefGen) _SnpSift_rmRefGen
+            return
+            ;;
+
+        rmInfo) _SnpSift_rmInfo
+            return
+            ;;
+
+        sort) _SnpSift_sort
+            return
+            ;;
+
+        split) _SnpSift_split
+            return
+            ;;
+
+        tstv) _SnpSift_tstv
+            return
+            ;;
+
+        varType) _SnpSift_varType
+            return
+            ;;
+
+        vcfCheck) _SnpSift_vcfCheck
+            return
+            ;;
+
+        vcf2tped) _SnpSift_vcf2tped
+            return
+            ;;
+
+    esac
+
+    local word_list=" alleleMat annotate caseControl ccs concordance covMat dbnsfp extractFields filter geneSets gt gtfilter gwasCat hwe intersect intervals intIdx join op phastCons private rmRefGen rmInfo sort split tstv varType vcfCheck vcf2tped -d -download -noDownload -noLog -h -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_alleleMat()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_annotate()
+{
+    local word_list="  -dbsnp -clinvar -a -exists -id -info -name -maxBlockSize -noAlt -noId -noInfo -sorted -tabix -c -config -d -db -download -noDownload -noLog -h -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_caseControl()
+{
+    local word_list="  -chi2 -name -tfam"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_ccs()
+{
+    local word_list="  -q -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_concordance()
+{
+    local word_list="  -s"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_covMat()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_dbnsfp()
+{
+    local word_list="  -a -collapse -db -g -noCollapse -m -n -f -c -config -d -db -download -g -noDownload -noLog -h -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_extractFields()
+{
+    local word_list="  -s -e"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_filter()
+{
+    local word_list="  -a --addFilter -e --exprFile -f --file -i --filterId -n --inverse -p --pass -r --rmFilter -s --set --errMissing --format --galaxy"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_geneSets()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_gt()
+{
+    local word_list="  -u"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_gtfilter()
+{
+    local word_list="  -e -f -gn --field -gv --value -n -s --errMissing --format"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_gwasCat()
+{
+    local word_list="  -c -config -d -db -download -g -noDownload -noLog -h -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_hwe()
+{
+    local word_list="  -q -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_intersect()
+{
+    local word_list="  -minOverlap -cluster -intersect -union -not"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_intervals()
+{
+    local word_list="  -i -x"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_intIdx()
+{
+    local word_list="  -if -i"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_join()
+{
+    local word_list="  -if1 -if2 -cols1 -cols2 -all -closest -empty"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_op()
+{
+    local word_list="  -fields -op -outfield"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_phastCons()
+{
+    local word_list="  -bed -extract -minScore"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_private()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_rmRefGen()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_rmInfo()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_sort()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_split()
+{
+    local word_list="  -j -l"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_tstv()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_varType()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_vcfCheck()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_SnpSift_vcf2tped()
+{
+    local word_list="  -f -num -onlySnp -onlyBiAllelic -useMissing -useMissingRef"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _SnpSift SnpSift

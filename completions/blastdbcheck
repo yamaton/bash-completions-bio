@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_blastdbcheck()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -help -version -db -dbtype -dir -recursive -verbosity -full -stride -random -ends -no_isam -legacy -must_have_taxids -cdd_delta"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _blastdbcheck blastdbcheck

@@ -1,0 +1,286 @@
+# Auto-generated with h2o
+
+_checkm()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" tree tree_qa lineage_set taxon_list taxon_set analyze qa lineage_wf taxonomy_wf gc_plot coding_plot tetra_plot dist_plot nx_plot len_hist marker_plot gc_bias_plot unique merge outliers modify unbinned coverage tetra profile ssu_finder"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        tree) _checkm_tree
+            return
+            ;;
+
+        tree_qa) _checkm_treeqa
+            return
+            ;;
+
+        lineage_set) _checkm_lineageset
+            return
+            ;;
+
+        taxon_list) _checkm_taxonlist
+            return
+            ;;
+
+        taxon_set) _checkm_taxonset
+            return
+            ;;
+
+        analyze) _checkm_analyze
+            return
+            ;;
+
+        qa) _checkm_qa
+            return
+            ;;
+
+        lineage_wf) _checkm_lineagewf
+            return
+            ;;
+
+        taxonomy_wf) _checkm_taxonomywf
+            return
+            ;;
+
+        gc_plot) _checkm_gcplot
+            return
+            ;;
+
+        coding_plot) _checkm_codingplot
+            return
+            ;;
+
+        tetra_plot) _checkm_tetraplot
+            return
+            ;;
+
+        dist_plot) _checkm_distplot
+            return
+            ;;
+
+        nx_plot) _checkm_nxplot
+            return
+            ;;
+
+        len_hist) _checkm_lenhist
+            return
+            ;;
+
+        marker_plot) _checkm_markerplot
+            return
+            ;;
+
+        gc_bias_plot) _checkm_gcbiasplot
+            return
+            ;;
+
+        unique) _checkm_unique
+            return
+            ;;
+
+        merge) _checkm_merge
+            return
+            ;;
+
+        outliers) _checkm_outliers
+            return
+            ;;
+
+        modify) _checkm_modify
+            return
+            ;;
+
+        unbinned) _checkm_unbinned
+            return
+            ;;
+
+        coverage) _checkm_coverage
+            return
+            ;;
+
+        tetra) _checkm_tetra
+            return
+            ;;
+
+        profile) _checkm_profile
+            return
+            ;;
+
+        ssu_finder) _checkm_ssufinder
+            return
+            ;;
+
+    esac
+
+    local word_list=" tree tree_qa lineage_set taxon_list taxon_set analyze qa lineage_wf taxonomy_wf gc_plot coding_plot tetra_plot dist_plot nx_plot len_hist marker_plot gc_bias_plot unique merge outliers modify unbinned coverage tetra profile ssu_finder "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_tree()
+{
+    local word_list="  -h --help -r --reduced_tree --ali --nt -g --genes -x --extension -t --threads --pplacer_threads -q --quiet --tmpdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_treeqa()
+{
+    local word_list="  -h --help -o --out_format -f --file --tab_table -q --quiet --tmpdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_lineageset()
+{
+    local word_list="  -h --help -u --unique -m --multi --force_domain --no_refinement -q --quiet --tmpdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_taxonlist()
+{
+    local word_list="  -h --help --rank --tmpdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_taxonset()
+{
+    local word_list="  -h --help -q --quiet --tmpdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_analyze()
+{
+    local word_list="  -h --help --ali --nt -g --genes -x --extension -t --threads -q --quiet --tmpdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_qa()
+{
+    local word_list="  -h --help -o --out_format --exclude_markers --individual_markers --skip_adj_correction --skip_pseudogene_correction --aai_strain -a --alignment_file --ignore_thresholds -e --e_value -l --length -c --coverage_file -f --file --tab_table -t --threads -q --quiet --tmpdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_lineagewf()
+{
+    local word_list="  -h --help -r --reduced_tree --ali --nt -g --genes -u --unique -m --multi --force_domain --no_refinement --individual_markers --skip_adj_correction --skip_pseudogene_correction --aai_strain -a --alignment_file --ignore_thresholds -e --e_value -l --length -f --file --tab_table -x --extension -t --threads --pplacer_threads -q --quiet --tmpdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_taxonomywf()
+{
+    local word_list="  -h --help --ali --nt -g --genes --individual_markers --skip_adj_correction --skip_pseudogene_correction --aai_strain -a --alignment_file --ignore_thresholds -e --e_value -l --length -c --coverage_file -f --file --tab_table -x --extension -t --threads -q --quiet --tmpdir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_gcplot()
+{
+    local word_list="  -h --help --image_type --dpi --font_size -x --extension --width --height -w --gc_window_size -b --gc_bin_width -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_codingplot()
+{
+    local word_list="  -h --help --image_type --dpi --font_size -x --extension --width --height -w --cd_window_size -b --cd_bin_width -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_tetraplot()
+{
+    local word_list="  -h --help --image_type --dpi --font_size -x --extension --width --height -w --td_window_size -b --td_bin_width -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_distplot()
+{
+    local word_list="  -h --help --image_type --dpi --font_size -x --extension --width --height -a --gc_window_size -b --td_window_size -c --cd_window_size -1 --gc_bin_width -2 --td_bin_width -3 --cd_bin_width -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_nxplot()
+{
+    local word_list="  -h --help --image_type --dpi --font_size -x --extension --width --height -s --step_size -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_lenhist()
+{
+    local word_list="  -h --help --image_type --dpi --font_size -x --extension --width --height -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_markerplot()
+{
+    local word_list="  -h --help --image_type --dpi --font_size -x --extension --width --height --fig_padding -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_gcbiasplot()
+{
+    local word_list="  -h --help --image_type --dpi --font_size -x --extension --width --height -w --window_size -r --all_reads -a --min_align -e --max_edit_dist -t --threads -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_unique()
+{
+    local word_list="  -h --help -x --extension"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_merge()
+{
+    local word_list="  -h --help -g --genes --delta_comp --delta_cont --merged_comp --merged_cont -x --extension -t --threads -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_outliers()
+{
+    local word_list="  -h --help -d --distributions -r --report_type -x --extension -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_modify()
+{
+    local word_list="  -h --help -a --add -r --remove -o --outlier_file -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_unbinned()
+{
+    local word_list="  -h --help -x --extension -s --min_seq_len -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_coverage()
+{
+    local word_list="  -h --help -x --extension -r --all_reads -a --min_align -e --max_edit_dist -m --min_qc -t --threads -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_tetra()
+{
+    local word_list="  -h --help -t --threads -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_profile()
+{
+    local word_list="  -h --help -f --file --tab_table -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_checkm_ssufinder()
+{
+    local word_list="  -h --help -x --extension -e --evalue -c --concatenate -t --threads -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _checkm checkm

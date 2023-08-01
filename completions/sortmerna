@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_sortmerna()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --ref --reads --workdir --kvdb --idx-dir --readb --fastx --sam --SQ --blast --aligned --other --num_alignments --no-best --min_lis --print_all_reads --paired --paired_in --paired_out --out2 --sout --zip-out --match --mismatch --gap_open --gap_ext -e -F -N -R --id --coverage --de_novo_otu --otu_map --passes --edges --num_seeds --full_search --pid -a --threads --index -L -m -v --interval --max_pos -h --version --dbg_put_db --cmd --task --dbg-level"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _sortmerna sortmerna

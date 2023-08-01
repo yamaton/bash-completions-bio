@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_blat()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -t -q -prot -ooc -tileSize -stepSize -oneOff -minMatch -minScore -minIdentity -maxGap -noHead -makeOoc -repMatch -mask -qMask -repeats -minRepDivergence -dots -trimT -noTrimA -trimHardA -fastMap -out -fine -maxIntron -extendThroughN"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _blat blat

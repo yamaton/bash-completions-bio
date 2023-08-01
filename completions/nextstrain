@@ -1,0 +1,169 @@
+# Auto-generated with h2o
+
+_nextstrain()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" build view deploy remote shell update check-setup login logout whoami version"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        build) _nextstrain_build
+            return
+            ;;
+
+        view) _nextstrain_view
+            return
+            ;;
+
+        deploy) _nextstrain_deploy
+            return
+            ;;
+
+        remote) _nextstrain_remote
+            return
+            ;;
+
+        shell) _nextstrain_shell
+            return
+            ;;
+
+        update) _nextstrain_update
+            return
+            ;;
+
+        check-setup) _nextstrain_checksetup
+            return
+            ;;
+
+        login) _nextstrain_login
+            return
+            ;;
+
+        logout) _nextstrain_logout
+            return
+            ;;
+
+        whoami) _nextstrain_whoami
+            return
+            ;;
+
+        version) _nextstrain_version
+            return
+            ;;
+
+    esac
+
+    local word_list=" build view deploy remote shell update check-setup login logout whoami version -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_build()
+{
+    local word_list="  --help -h --help-all --detach --attach --cpus --memory --download --no-download --docker --native --aws-batch --image --exec --augur --auspice --fauna --sacra --docker-arg --aws-batch-job --aws-batch-queue --aws-batch-s3-bucket --aws-batch-cpus --aws-batch-memory"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_view()
+{
+    local word_list="  --help -h --help-all --allow-remote-access --host --port --docker --native --image --exec --augur --auspice --fauna --sacra --docker-arg"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_deploy()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_remote()
+{
+    local cmd i subcommands
+    local subcommands=" upload download"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        upload) _nextstrain_remote_upload
+            return
+            ;;
+
+        download) _nextstrain_remote_download
+            return
+            ;;
+
+    esac
+
+    local word_list=" upload download -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_remote_upload()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_remote_download()
+{
+    local word_list="  -h --help --recursively -r"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_shell()
+{
+    local word_list="  --help -h --help-all --docker --image --exec --augur --auspice --fauna --sacra --docker-arg"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_update()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_checksetup()
+{
+    local word_list="  -h --help --set-default"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_login()
+{
+    local word_list="  -h --help --username -u --no-prompt --renew"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_logout()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_whoami()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextstrain_version()
+{
+    local word_list="  -h --help --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _nextstrain nextstrain

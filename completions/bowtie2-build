@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_bowtie2build()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -f -c --large-index --debug --sanitized --verbose -a --noauto -p --packed --bmax --bmaxdivn --dcv --nodc -r --noref -3 --justref -o --offrate -t --ftabchars --threads --seed -q --quiet --h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bowtie2build bowtie2-build

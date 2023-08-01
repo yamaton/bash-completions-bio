@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_dfast()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -g --genome -o --out -c --config --organism --strain --complete --use_original_name --sort_sequence --minimum_length --fix_origin --offset --locus_tag_prefix --step --use_separate_tags --threshold --database --references --aligner --use_prodigal --use_genemarks2 --use_trnascan --use_rnammer --gcode --no_func_anno --no_hmm --no_cdd --no_cds --no_rrna --no_trna --no_crispr --metagenome --gff --seq_names --seq_types --seq_topologies --additional_modifiers --metadata_file --center_name --cpu --use_locustag_as_gene_id --dbroot --force --debug --show_config --version -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _dfast dfast

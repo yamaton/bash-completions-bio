@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_rpsblast()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -help -version -query -query_loc -db -out -evalue -comp_based_stats -outfmt -show_gis -num_descriptions -num_alignments -line_length -html -sorthits -sorthsps -seg -soft_masking -lcase_masking -entrez_query -qcov_hsp_perc -max_hsps -culling_limit -best_hit_overhang -best_hit_score_edge -subject_besthit -max_target_seqs -dbsize -searchsp -sum_stats -import_search_strategy -export_search_strategy -xdrop_ungap -xdrop_gap -xdrop_gap_final -window_size -parse_deflines -num_threads -mt_mode -remote -use_sw_tback"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _rpsblast rpsblast

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_Genrich()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -t -o -c -f -k -b -R -r -e -E -m -s -y -w -x -j -d -D -p -q -a -l -g -X -P -z -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _Genrich Genrich

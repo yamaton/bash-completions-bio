@@ -1,0 +1,126 @@
+# Auto-generated with h2o
+
+_downloadncbidata()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" pmc-oa pmc-bioc bioconcepts generif meshtree taxnames journals oa-list oa-book carotene"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        pmc-oa) _downloadncbidata_pmcoa
+            return
+            ;;
+
+        pmc-bioc) _downloadncbidata_pmcbioc
+            return
+            ;;
+
+        bioconcepts) _downloadncbidata_bioconcepts
+            return
+            ;;
+
+        generif) _downloadncbidata_generif
+            return
+            ;;
+
+        meshtree) _downloadncbidata_meshtree
+            return
+            ;;
+
+        taxnames) _downloadncbidata_taxnames
+            return
+            ;;
+
+        journals) _downloadncbidata_journals
+            return
+            ;;
+
+        oa-list) _downloadncbidata_oalist
+            return
+            ;;
+
+        oa-book) _downloadncbidata_oabook
+            return
+            ;;
+
+        carotene) _downloadncbidata_carotene
+            return
+            ;;
+
+    esac
+
+    local word_list=" pmc-oa pmc-bioc bioconcepts generif meshtree taxnames journals oa-list oa-book carotene "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_downloadncbidata_pmcoa()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_downloadncbidata_pmcbioc()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_downloadncbidata_bioconcepts()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_downloadncbidata_generif()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_downloadncbidata_meshtree()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_downloadncbidata_taxnames()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_downloadncbidata_journals()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_downloadncbidata_oalist()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_downloadncbidata_oabook()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_downloadncbidata_carotene()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _downloadncbidata download-ncbi-data

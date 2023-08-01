@@ -1,0 +1,46 @@
+# Auto-generated with h2o
+
+_computeMatrix()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" scale-regions reference-point"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        scale-regions) _computeMatrix_scaleregions
+            return
+            ;;
+
+        reference-point) _computeMatrix_referencepoint
+            return
+            ;;
+
+    esac
+
+    local word_list=" scale-regions reference-point -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_computeMatrix_scaleregions()
+{
+    local word_list="  -h --help --regionsFileName -R --scoreFileName -S --outFileName -out -o --outFileNameMatrix --outFileSortedRegions --version --regionBodyLength -m --startLabel --endLabel --beforeRegionStartLength -b --upstream --afterRegionStartLength -a --downstream --unscaled5prime --unscaled3prime --binSize -bs --sortRegions --sortUsing --sortUsingSamples --averageTypeBins --missingDataAsZero --skipZeros --minThreshold --maxThreshold --blackListFileName -bl --samplesLabel --smartLabels --quiet -q --verbose --scale --numberOfProcessors -p --metagene --transcriptID --exonID --transcript_id_designator --deepBlueURL --userKey --deepBlueTempDir --deepBlueKeepTemp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_computeMatrix_referencepoint()
+{
+    local word_list="  -h --help --regionsFileName -R --scoreFileName -S --outFileName -out -o --outFileNameMatrix --outFileSortedRegions --version --referencePoint --beforeRegionStartLength -b --upstream --afterRegionStartLength -a --downstream --nanAfterEnd --binSize -bs --sortRegions --sortUsing --sortUsingSamples --averageTypeBins --missingDataAsZero --skipZeros --minThreshold --maxThreshold --blackListFileName -bl --samplesLabel --smartLabels --quiet -q --verbose --scale --numberOfProcessors -p --metagene --transcriptID --exonID --transcript_id_designator --deepBlueURL --userKey --deepBlueTempDir --deepBlueKeepTemp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _computeMatrix computeMatrix

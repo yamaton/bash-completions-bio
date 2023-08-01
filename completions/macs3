@@ -1,0 +1,156 @@
+# Auto-generated with h2o
+
+_macs3()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" callpeak bdgpeakcall bdgbroadcall bdgcmp bdgopt cmbreps bdgdiff filterdup predictd pileup randsample refinepeak callvar"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        callpeak) _macs3_callpeak
+            return
+            ;;
+
+        bdgpeakcall) _macs3_bdgpeakcall
+            return
+            ;;
+
+        bdgbroadcall) _macs3_bdgbroadcall
+            return
+            ;;
+
+        bdgcmp) _macs3_bdgcmp
+            return
+            ;;
+
+        bdgopt) _macs3_bdgopt
+            return
+            ;;
+
+        cmbreps) _macs3_cmbreps
+            return
+            ;;
+
+        bdgdiff) _macs3_bdgdiff
+            return
+            ;;
+
+        filterdup) _macs3_filterdup
+            return
+            ;;
+
+        predictd) _macs3_predictd
+            return
+            ;;
+
+        pileup) _macs3_pileup
+            return
+            ;;
+
+        randsample) _macs3_randsample
+            return
+            ;;
+
+        refinepeak) _macs3_refinepeak
+            return
+            ;;
+
+        callvar) _macs3_callvar
+            return
+            ;;
+
+    esac
+
+    local word_list=" callpeak bdgpeakcall bdgbroadcall bdgcmp bdgopt cmbreps bdgdiff filterdup predictd pileup randsample refinepeak callvar -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_callpeak()
+{
+    local word_list="  -h --help -t --treatment -c --control -f --format -g --gsize -s --tsize --keep-dup --outdir -n --name -B --bdg --verbose --trackline --SPMR --nomodel --shift --extsize --bw --d-min -m --mfold --fix-bimodal -q --qvalue -p --pvalue --scale-to --down-sample --seed --tempdir --nolambda --slocal --llocal --max-gap --min-length --broad --broad-cutoff --cutoff-analysis --call-summits --fe-cutoff --buffer-size --to-large --ratio"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_bdgpeakcall()
+{
+    local word_list="  -h --help -i --ifile -c --cutoff -l --min-length -g --max-gap --cutoff-analysis --no-trackline --outdir -o --ofile --o-prefix"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_bdgbroadcall()
+{
+    local word_list="  -h --help -i --ifile -c --cutoff-peak -C --cutoff-link -l --min-length -g --lvl1-max-gap -G --lvl2-max-gap --no-trackline --outdir -o --ofile --o-prefix"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_bdgcmp()
+{
+    local word_list="  -h --help -t --tfile -c --cfile -S --scaling-factor -p --pseudocount -m --method --outdir --o-prefix -o --ofile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_bdgopt()
+{
+    local word_list="  -h --help -i --ifile -m --method -p --extra-param --outdir -o --ofile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_cmbreps()
+{
+    local word_list="  -h --help -i -m --method --outdir -o --ofile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_bdgdiff()
+{
+    local word_list="  -h --help --t1 --t2 --c1 --c2 -C --cutoff -l --min-len -g --max-gap --d1 --depth1 --d2 --depth2 --outdir --o-prefix -o --ofile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_filterdup()
+{
+    local word_list="  -h --help -i --ifile -f --format -g --gsize -s --tsize -p --pvalue --keep-dup --buffer-size --verbose --outdir -o --ofile -d --dry-run"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_predictd()
+{
+    local word_list="  -h --help -i --ifile -f --format -g --gsize -s --tsize --bw --d-min -m --mfold --outdir --rfile --buffer-size --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_pileup()
+{
+    local word_list="  -h --help -i --ifile -o --ofile --outdir -f --format -B --both-direction --extsize --buffer-size --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_randsample()
+{
+    local word_list="  -h --help -i --ifile -p --percentage -n --number --seed -o --ofile --outdir -s --tsize -f --format --buffer-size --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_refinepeak()
+{
+    local word_list="  -h --help -b -i --ifile -f --format -c --cutoff -w --window-size --buffer-size --verbose --outdir -o --ofile --o-prefix"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_macs3_callvar()
+{
+    local word_list="  -h --help -b --peak -t --treatment -c --control --outdir -o --ofile --verbose -g --gq-hetero -G --gq-homo -Q -D -F --fermi --fermi-overlap --top2alleles-mratio --altallele-count --max-ar -m --multiple-processing"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _macs3 macs3

@@ -1,0 +1,506 @@
+# Auto-generated with h2o
+
+_vg()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" autoindex construct rna index giraffe mpmap augment pack call help deconstruct gbwt ids minimizer mod prune sim snarls stats view align annotate chunk circularize clip combine convert depth dotplot gamcompare gampcompare gamsort genotype inject paths simplify surject trace vectorize viz benchmark chain cluster find mcmc test validate version"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        autoindex) _vg_autoindex
+            return
+            ;;
+
+        construct) _vg_construct
+            return
+            ;;
+
+        rna) _vg_rna
+            return
+            ;;
+
+        index) _vg_index
+            return
+            ;;
+
+        giraffe) _vg_giraffe
+            return
+            ;;
+
+        mpmap) _vg_mpmap
+            return
+            ;;
+
+        augment) _vg_augment
+            return
+            ;;
+
+        pack) _vg_pack
+            return
+            ;;
+
+        call) _vg_call
+            return
+            ;;
+
+        help) _vg_help
+            return
+            ;;
+
+        deconstruct) _vg_deconstruct
+            return
+            ;;
+
+        gbwt) _vg_gbwt
+            return
+            ;;
+
+        ids) _vg_ids
+            return
+            ;;
+
+        minimizer) _vg_minimizer
+            return
+            ;;
+
+        mod) _vg_mod
+            return
+            ;;
+
+        prune) _vg_prune
+            return
+            ;;
+
+        sim) _vg_sim
+            return
+            ;;
+
+        snarls) _vg_snarls
+            return
+            ;;
+
+        stats) _vg_stats
+            return
+            ;;
+
+        view) _vg_view
+            return
+            ;;
+
+        align) _vg_align
+            return
+            ;;
+
+        annotate) _vg_annotate
+            return
+            ;;
+
+        chunk) _vg_chunk
+            return
+            ;;
+
+        circularize) _vg_circularize
+            return
+            ;;
+
+        clip) _vg_clip
+            return
+            ;;
+
+        combine) _vg_combine
+            return
+            ;;
+
+        convert) _vg_convert
+            return
+            ;;
+
+        depth) _vg_depth
+            return
+            ;;
+
+        dotplot) _vg_dotplot
+            return
+            ;;
+
+        gamcompare) _vg_gamcompare
+            return
+            ;;
+
+        gampcompare) _vg_gampcompare
+            return
+            ;;
+
+        gamsort) _vg_gamsort
+            return
+            ;;
+
+        genotype) _vg_genotype
+            return
+            ;;
+
+        inject) _vg_inject
+            return
+            ;;
+
+        paths) _vg_paths
+            return
+            ;;
+
+        simplify) _vg_simplify
+            return
+            ;;
+
+        surject) _vg_surject
+            return
+            ;;
+
+        trace) _vg_trace
+            return
+            ;;
+
+        vectorize) _vg_vectorize
+            return
+            ;;
+
+        viz) _vg_viz
+            return
+            ;;
+
+        benchmark) _vg_benchmark
+            return
+            ;;
+
+        chain) _vg_chain
+            return
+            ;;
+
+        cluster) _vg_cluster
+            return
+            ;;
+
+        find) _vg_find
+            return
+            ;;
+
+        mcmc) _vg_mcmc
+            return
+            ;;
+
+        test) _vg_test
+            return
+            ;;
+
+        validate) _vg_validate
+            return
+            ;;
+
+        version) _vg_version
+            return
+            ;;
+
+    esac
+
+    local word_list=" autoindex construct rna index giraffe mpmap augment pack call help deconstruct gbwt ids minimizer mod prune sim snarls stats view align annotate chunk circularize clip combine convert depth dotplot gamcompare gampcompare gamsort genotype inject paths simplify surject trace vectorize viz benchmark chain cluster find mcmc test validate version "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_autoindex()
+{
+    local word_list="  -p --prefix -w --workflow -r --ref-fasta -v --vcf -i --ins-fasta -g --gfa -x --tx-gff -f --gff-feature -a --gff-tx-tag -T --tmp-dir -M --target-mem -t --threads -V --verbosity -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_construct()
+{
+    local word_list="  -r --reference -v --vcf -n --rename -a --alt-paths -R --region -C --region-is-chrom -z --region-size -t --threads -S --handle-sv -I --insertions -f --flat-alts -l --parse-max -i --no-trim-indels -M --msa -F --msa-format -d --drop-msa-paths -m --node-max -p --progress"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_rna()
+{
+    local word_list="  -t --threads -p --progress -h --help -n --transcripts -m --introns -y --feature-type -s --transcript-tag -l --haplotypes -j --use-hap-ref -e --proj-embed-paths -c --path-collapse -k --max-node-length -d --remove-non-gene -o --do-not-sort -r --add-ref-paths -a --add-hap-paths -b --write-gbwt -f --write-fasta -i --write-info -q --out-exclude-ref -g --gbwt-bidirectional"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_index()
+{
+    local word_list="  -b --temp-dir -t --threads -p --progress -x --xg-name -L --xg-alts -v --vcf-phasing -W --ignore-missing -T --store-threads -M --store-gam -F --store-gaf -G --gbwt-name -z --actual-phasing -P --force-phasing -o --discard-overlaps -B --batch-size -u --buffer-size -n --id-interval -R --range -r --rename --rename-variants -I --region -E --exclude -g --gcsa-out -f --mapping -k --kmer-size -X --doubling-steps -Z --size-limit -V --verify-index --index-sorted-vg -j --snarl-limit -w"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_giraffe()
+{
+    local word_list="  -Z --gbz-name -m --minimizer-name -d --dist-name -p --progress -G --gam-in -f --fastq-in -i --interleaved -x --xg-name -g --graph-name -H --gbwt-name -N --sample -R --read-group -o --output-format --ref-paths --named-coordinates -P --prune-low-cplx -n --discard --output-basename --report-name --show-work -b --parameter-preset -M --max-multimaps -c --hit-cap -C --hard-hit-cap -F --score-fraction -U --max-min --num-bp-per-min -D --distance-limit -e --max-extensions -a --max-alignments -s --cluster-score -S --pad-cluster-score -u --cluster-coverage -v --extension-score -w --extension-set -O --no-dp -r --rescue-attempts -L --max-fragment-length --exclude-overlapping-min --paired-distance-limit --rescue-subgraph-size --rescue-seed-limit --align-from-chains --chaining-cluster-distance --max-lookback-bases --min-lookback-items --max-chain-connection --max-tail-length -A --rescue-algorithm --fragment-mean --fragment-stdev --track-provenance --track-correctness -B --batch-size -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_mpmap()
+{
+    local word_list="  -x --graph-name -g --gcsa-name -d --dist-name -s --snarls -f --fastq -i --interleaved -n --nt-type -l --read-length -e --error-rate -F --output-fmt -S --ref-paths -N --sample -R --read-group -p --suppress-progress -t --threads -X --not-spliced -M --max-multimaps -a --agglomerate-alns -r --intron-distr -Q --mq-max -b --frag-sample -I --frag-mean -D --frag-stddev -G --gam-input -u --map-attempts -c --hit-max -A --no-qual-adjust -q --match -z --mismatch -o --gap-open -y --gap-extend -L --full-l-bonus -w --score-matrix -m --remove-bonuses"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_augment()
+{
+    local word_list="  -i --include-paths -S --keep-softclips -B --label-paths -Z --translation -A --alignment-out -F --gaf -s --subgraph -m --min-coverage -c --expected-cov -q --min-baseq -Q --min-mapq -N --max-n -E --edges-only -h --help -p --progress -v --verbose -t --threads -l --include-loci -L --include-gt"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_pack()
+{
+    local word_list="  -x --xg -o --packs-out -i --packs-in -g --gam -a --gaf -d --as-table -D --as-edge-table -u --as-qual-table -e --with-edits -b --bin-size -n --node -N --node-list -Q --min-mapq -c --expected-cov -s --trim-ends -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_call()
+{
+    local word_list="  -k --pack -m --min-support -e --baseline-error -B --bias-mode -b --het-bias -G --gaf -T --traversals -M --trav-padding -v --vcf -a --genotype-snarls -A --all-snarls -c --min-length -C --max-length -f --ref-fasta -i --ins-fasta -s --sample -r --snarls -g --gbwt -z --gbz -N --translation -p --ref-path -o --ref-offset -l --ref-length -d --ploidy -n --nested -I --chains -t --threads -R --ploidy-regex"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_help()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_deconstruct()
+{
+    local word_list="  -p --path -P --path-prefix -H --path-sep -r --snarls -g --gbwt -T --translation -e --path-traversals -a --all-snarls -d --ploidy -c --context-jaccard -u --untangle-travs -K --keep-conflicted -S --strict-conflicts -t --threads -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_gbwt()
+{
+    local word_list="  -x --xg-name -o --output -d --temp-dir -p --progress --buffer-size --id-interval --num-jobs --num-threads -v --vcf-input --preset --inputs-as-jobs --parse-only --ignore-missing --actual-phasing --force-phasing --discard-overlaps --batch-size --sample-range --rename --vcf-variants --vcf-region --exclude-sample -G --gfa-input --max-node --path-regex --path-fields --translation -Z --gbz-input -E --index-paths -A --alignment-input --gam-format -m --merge -f --fast -b --parallel --chunk-size --pos-buffer --thread-buffer --merge-buffers --merge-jobs -R --remove-sample --set-tag -a --augment-gbwt -l --local-haplotypes -P --path-cover -n --num-paths -k --context-length --pass-paths -g --graph-name --gbz-format -r --r-index -M --metadata -C --contigs -H --haplotypes -S --samples -L --list-names -T --thread-names --tags -c --count-threads -e --extract"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_ids()
+{
+    local word_list="  -c --compact -i --increment -d --decrement -j --join -m --mapping -s --sort"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_minimizer()
+{
+    local word_list="  -o --output-name -k --kmer-length -w --window-length -c --closed-syncmers -s --smer-length -d --distance-index -l --load-index -g --gbwt-name -p --progress -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_mod()
+{
+    local word_list="  -P --label-paths -c --compact-ids -b --break-cycles -n --normalize -U --until-normal -z --nomerge-pre -E --unreverse-edges -s --simplify -d --dagify-step -w --dagify-to -L --dagify-len-max -f --unfold -O --orient-forward -N --remove-non-path -A --remove-path -k --keep-path -R --remove-null -g --subgraph -x --context -p --prune-complex -S --prune-subgraphs -l --length -X --chop -u --unchop -e --edge-max -M --max-degree -m --markers -y --destroy-node -a --cactus -v --sample-vcf -G --sample-graph -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_prune()
+{
+    local word_list="  -k --kmer-length -e --edge-max -s --subgraph-min -M --max-degree -P --prune -r --restore-paths -u --unfold-paths -v --verify-paths -g --gbwt-name -m --mapping -a --append-mapping -p --progress -t --threads -d --dry-run"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_sim()
+{
+    local word_list="  -x --xg-name -n --num-reads -l --read-length -r --progress -a --align-out -J --json-out --multi-position -F --fastq -I --interleaved -s --random-seed -e --sub-rate -i --indel-rate -d --indel-err-prop -S --scale-err -f --forward-only -p --frag-len -v --frag-std-dev -N --allow-Ns --max-tries -t --threads -P --path -A --any-path -m --sample-name -R --ploidy-regex -g --gbwt-name -T --tx-expr-file -H --haplo-tx-file -u --unsheared -E --path-pos-file"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_snarls()
+{
+    local word_list="  -A --algorithm -p --pathnames -r --traversals -e --path-traversals -l --leaf-only -o --top-level -a --any-snarl-type -m --max-nodes -n --named-coordinates -T --include-trivial -s --sort-snarls -v --vcf -f --fasta -i --ins-fasta -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_stats()
+{
+    local word_list="  -z --size -N --node-count -E --edge-count -l --length -L --self-loops -s --subgraphs -H --heads -T --tails -e --nondeterm -c --components -A --is-acyclic -n --node -d --to-head -t --to-tail -a --alignments -r --node-id-range -o --overlap -O --overlap-all -R --snarls -F --format -D --degree-dist -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_view()
+{
+    local word_list="  -g --gfa -F --gfa-in -v --vg -V --vg-in -j --json -J --json-in -c --json-stream -G --gam -Z --translation-in -t --turtle -T --turtle-in -r --rdf_base_uri -a --align-in -A --aln-graph -q --locus-in -z --locus-out -Q --loci -d --dot -S --simple-dot -u --noseq-dot -e --ascii-labels -Y --ultra-label -m --skip-missing -C --color -p --show-paths -w --walk-paths -n --annotate-paths -M --show-mappings -I --invert-ports -s --random-seed -b --bam -f --fastq-in -X --fastq-out -i --interleaved -L --pileup -l --pileup-in -B --distance-in -R --snarl-in -E --snarl-traversal-in -K --multipath-in -k --multipath -D --expect-duplicates -x --extract-tag --verbose --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_align()
+{
+    local word_list="  -s --sequence -Q --seq-name -j --json -m --match -M --mismatch --score-matrix -g --gap-open -e --gap-extend -T --full-l-bonus -b --banded-global -p --pinned -L --pin-left -r --reference -D --debug"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_annotate()
+{
+    local word_list="  -x --xg-name -b --bed-name -f --gff-name -g --ggff -s --snarls -a --gam -x --xg-name -p --positions -m --multi-position -l --search-limit -b --bed-name -n --novelty -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_chunk()
+{
+    local word_list="  -x --xg-name -G --gbwt-name -a --gam-name -g --gam-and-graph -p --path -P --path-list -e --input-bed -S --snarls -r --node-range -R --node-ranges -n --n-chunks -m --gam-split-size -C --components -M --path-components -s --chunk-size -o --overlap -E --output-bed -b --prefix -c --context-steps -l --context-length -T --trace --no-embedded-haplotypes -f --fully-contained -O --output-fmt -t --threads -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_circularize()
+{
+    local word_list="  -p -P --pathfile -P --pathfile -a --head -z --tail -d"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_clip()
+{
+    local word_list="  -b --bed -r --snarls -d --depth -n --max-nodes -e --max-edges -N -E -a --max-avg-degree -l --max-reflen-prop -L --max-reflen -c --context -P --path-prefix -m --min-fragment-len -B --output-bed -t --threads -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_combine()
+{
+    local word_list="  -c --cat-proto -p --connect-paths"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_convert()
+{
+    local word_list="  -g --gfa-in -r --in-rgfa-rank -b --gbwt-in --ref-sample -T --gfa-trans -v --vg-out -a --hash-out -p --packed-out -x --xg-out -f --gfa-out -H --drop-haplotypes -P --rgfa-path -Q --rgfa-prefix -B --rgfa-pline -W --no-wline --gbwtgraph-algorithm --vg-algorithm -G --gam-to-gaf -F --gaf-to-gam -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_depth()
+{
+    local word_list="  -k --pack -d --count-dels -g --gam -a --gaf -n --max-nodes -s --random-seed -Q --min-mapq -c --count-cycles -p --ref-path -P --paths-by -b --bin-size -m --min-coverage -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_dotplot()
+{
+    local word_list="  -x --xg"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_gamcompare()
+{
+    local word_list="  -d --distance-index -r --range -T --tsv -a --aligner -s --score-alignment -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_gampcompare()
+{
+    local word_list="  -G --gam -r --range -a --aligner -d --distance -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_gamsort()
+{
+    local word_list="  -i --index -d --dumb-sort -p --progress -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_genotype()
+{
+    local word_list="  -j --json -v --vcf -V --recall-vcf -F --fasta -I --insertions -r --ref -c --contig -s --sample -o --offset -l --length -a --augmented -Q --ignore_mapq -A --no_indel_realign -d --het_prior_denom -P --min_per_strand -E --no_embed -T --traversal -p --progress -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_inject()
+{
+    local word_list="  -x --xg-name -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_paths()
+{
+    local word_list="  -x --xg -g --gbwt -V --extract-vg -d --drop-paths -r --retain-paths -X --extract-gam -A --extract-gaf -L --list -E --lengths -M --metadata -C --cyclicity -F --extract-fasta -c --coverage -p --paths-file -Q --paths-by -S --sample -a --variant-paths -G --generic-paths"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_simplify()
+{
+    local word_list="  -a --algorithm -t --threads -p --progress -b --bed-in -B --bed-out -m --min-size -v --vcf -f --min-freq -c --min-count"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_surject()
+{
+    local word_list="  -x --xg-name -t --threads -p --into-path -F --into-paths -i --interleaved -M --multimap -G --gaf-input -m --gamp-input -c --cram-output -b --bam-output -s --sam-output -l --subpath-local -P --prune-low-cplx -S --spliced -A --qual-adj -N --sample -R --read-group -f --max-frag-len -L --list-all-paths -C --compression"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_trace()
+{
+    local word_list="  -x --index -G --gbwt-name -n --start-node -d --extend-distance"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_vectorize()
+{
+    local word_list="  -x --xg -g --gcsa -l --aln-label -f --format -A --annotate -a --a-hot -w --wabbit -M --wabbit-mapping -M --wabbit-mapping -m --mem-sketch -i --identity-hot"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_viz()
+{
+    local word_list="  -x --xg -i --pack-in -n --name -o --out -X --width -Y --height -C --show-cnv -P --hide-paths -D --hide-dna"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_benchmark()
+{
+    local word_list="  -p --progress"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_chain()
+{
+    local word_list="  -p --progress"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_cluster()
+{
+    local word_list="  -x --xg-name -g --gcsa-name -m --minimizer-name -d --dist-name -c --hit-cap -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_find()
+{
+    local word_list="  -x --xg-name -n --node -N --node-list -e --edges-end -s --edges-start -c --context -L --use-length -P --position-in -I --list-paths -r --node-range -G --gam --connecting-start --connecting-end --connecting-range -p --path -R --path-bed -E --path-dag -W --save-to -K --subgraph-k -H --gbwt -l --sorted-gam -o --alns-on -A --to-graph -g --gcsa -S --sequence -M --mems -B --reseed-length -f --fast-reseed -Y --max-mem -Z --min-mem -D --distance -Q --paths-named"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_mcmc()
+{
+    local word_list="  -i --iteration-number -r --seed -s --sample -p --ref-path -o --ref-offset -l --ref-length -v --vcf-out -b --burn-in -g --gamma-freq"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_test()
+{
+    local word_list="  -? -h --help -l --list-tests -t --list-tags -s --success -b --break -e --nothrow -i --invisibles -o --out -r --reporter -n --name -a --abort -x --abortx -w --warn -d --durations -D --min-duration -f --input-file -# --filenames-as-tags -c --section -v --verbosity --list-test-names-only --list-reporters --order --rng-seed --use-colour --libidentify --wait-for-keypress --benchmark-samples --benchmark-resamples --benchmark-confidence-interval --benchmark-no-analysis --benchmark-warmup-time"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_validate()
+{
+    local word_list="  -o --orphans -a --gam"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_vg_version()
+{
+    local word_list="  -s --slug -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _vg vg

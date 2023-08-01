@@ -1,0 +1,89 @@
+# Auto-generated with h2o
+
+_gdcclient()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" download upload settings"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        download) _gdcclient_download
+            return
+            ;;
+
+        upload) _gdcclient_upload
+            return
+            ;;
+
+        settings) _gdcclient_settings
+            return
+            ;;
+
+    esac
+
+    local word_list=" download upload settings -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gdcclient_download()
+{
+    local word_list="  -h --help --debug --log-file --color_off -t --token-file -d --dir -s --server --no-segment-md5sums --no-file-md5sum -n --n-processes --http-chunk-size -c --save-interval -k --no-verify --no-related-files --no-annotations --no-auto-retry --retry-amount --wait-time --latest --config -m --manifest"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gdcclient_upload()
+{
+    local word_list="  -h --help --debug --log-file --color_off -t --token-file --project-id -p --path -f --upload-id -u --insecure -k --server -s --part-size --upload-part-size -c -n --n-processes --disable-multipart --abort --resume -r --delete --manifest -m --config"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gdcclient_settings()
+{
+    local cmd i subcommands
+    local subcommands=" download upload"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        download) _gdcclient_settings_download
+            return
+            ;;
+
+        upload) _gdcclient_settings_upload
+            return
+            ;;
+
+    esac
+
+    local word_list=" download upload -h --help --config"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gdcclient_settings_download()
+{
+    local word_list="  -h --help --config"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gdcclient_settings_upload()
+{
+    local word_list="  -h --help --config"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _gdcclient gdc-client

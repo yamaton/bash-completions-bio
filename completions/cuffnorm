@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_cuffnorm()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -o --output-dir -L --labels --norm-standards-file -p --num-threads --library-type --library-norm-method --output-format --compatible-hits-norm --total-hits-norm -v --verbose -q --quiet --seed --no-update-check"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _cuffnorm cuffnorm

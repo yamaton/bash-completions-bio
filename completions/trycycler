@@ -1,0 +1,96 @@
+# Auto-generated with h2o
+
+_trycycler()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" subsample cluster dotplot reconcile msa partition consensus"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        subsample) _trycycler_subsample
+            return
+            ;;
+
+        cluster) _trycycler_cluster
+            return
+            ;;
+
+        dotplot) _trycycler_dotplot
+            return
+            ;;
+
+        reconcile) _trycycler_reconcile
+            return
+            ;;
+
+        msa) _trycycler_msa
+            return
+            ;;
+
+        partition) _trycycler_partition
+            return
+            ;;
+
+        consensus) _trycycler_consensus
+            return
+            ;;
+
+    esac
+
+    local word_list=" subsample cluster dotplot reconcile msa partition consensus -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_trycycler_subsample()
+{
+    local word_list="  -r --reads -o --out_dir --count --genome_size --min_read_depth -t --threads -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_trycycler_cluster()
+{
+    local word_list="  -a --assemblies -r --reads -o --out_dir --min_contig_len --min_contig_depth --distance -t --threads -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_trycycler_dotplot()
+{
+    local word_list="  -c --cluster_dir --kmer --res -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_trycycler_reconcile()
+{
+    local word_list="  -c --cluster_dir -r --reads --linear -t --threads --verbose --max_mash_dist --max_length_diff --max_add_seq --max_add_seq_percent --max_trim_seq --max_trim_seq_percent --min_identity --max_indel_size -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_trycycler_msa()
+{
+    local word_list="  -c --cluster_dir -k --kmer -s --step -l --lookahead -t --threads -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_trycycler_partition()
+{
+    local word_list="  -c --cluster_dirs -r --reads --min_aligned_len --min_read_cov -t --threads -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_trycycler_consensus()
+{
+    local word_list="  -c --cluster_dir --linear --min_aligned_len --min_read_cov -t --threads --verbose -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _trycycler trycycler

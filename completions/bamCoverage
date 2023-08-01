@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_bamCoverage()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --bam -b --outFileName -o --outFileFormat -of --help -h --scaleFactor --MNase --Offset --filterRNAstrand --version --binSize -bs --region -r --blackListFileName -bl --numberOfProcessors -p --verbose -v --effectiveGenomeSize --normalizeUsing --exactScaling --ignoreForNormalization -ignore --skipNonCoveredRegions --skipNAs --smoothLength --extendReads -e --ignoreDuplicates --minMappingQuality --centerReads --samFlagInclude --samFlagExclude --minFragmentLength --maxFragmentLength"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bamCoverage bamCoverage

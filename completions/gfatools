@@ -1,0 +1,126 @@
+# Auto-generated with h2o
+
+_gfatools()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" view stat gfa2fa gfa2bed blacklist bubble asm sql ed version"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        view) _gfatools_view
+            return
+            ;;
+
+        stat) _gfatools_stat
+            return
+            ;;
+
+        gfa2fa) _gfatools_gfa2fa
+            return
+            ;;
+
+        gfa2bed) _gfatools_gfa2bed
+            return
+            ;;
+
+        blacklist) _gfatools_blacklist
+            return
+            ;;
+
+        bubble) _gfatools_bubble
+            return
+            ;;
+
+        asm) _gfatools_asm
+            return
+            ;;
+
+        sql) _gfatools_sql
+            return
+            ;;
+
+        ed) _gfatools_ed
+            return
+            ;;
+
+        version) _gfatools_version
+            return
+            ;;
+
+    esac
+
+    local word_list=" view stat gfa2fa gfa2bed blacklist bubble asm sql ed version "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gfatools_view()
+{
+    local word_list="  -v -l -R -r -d -M -S"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gfatools_stat()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gfatools_gfa2fa()
+{
+    local word_list="  -l -s -P -0"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gfatools_gfa2bed()
+{
+    local word_list="  -s"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gfatools_blacklist()
+{
+    local word_list="  -l -b"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gfatools_bubble()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gfatools_asm()
+{
+    local word_list="  -r -t -b -B -o -c -u -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gfatools_sql()
+{
+    local word_list="  -s"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gfatools_ed()
+{
+    local word_list="  -l -n -w -m -s -c"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_gfatools_version()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _gfatools gfatools

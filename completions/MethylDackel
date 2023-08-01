@@ -1,0 +1,66 @@
+# Auto-generated with h2o
+
+_MethylDackel()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" mbias extract mergeContext perRead"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        mbias) _MethylDackel_mbias
+            return
+            ;;
+
+        extract) _MethylDackel_extract
+            return
+            ;;
+
+        mergeContext) _MethylDackel_mergeContext
+            return
+            ;;
+
+        perRead) _MethylDackel_perRead
+            return
+            ;;
+
+    esac
+
+    local word_list=" mbias extract mergeContext perRead "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_MethylDackel_mbias()
+{
+    local word_list="  -q -p -D -r -l --keepStrand -@ --chunkSize --keepDupes --keepSingleton --keepDiscordant -F --ignoreFlags -R --requireFlags --ignoreNH --minConversionEfficiency --txt --noSVG --noCpG --CHG --CHH --nOT --nOB --nCTOT --nCTOT --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_MethylDackel_extract()
+{
+    local word_list="  -q -p -D -d -r -l --keepStrand -M --mappability -t --mappabilityThreshold -b --minMappableBases -O --outputBBMFile -N --outputBBMFileName -B --mappabilityBB -@ --chunkSize --mergeContext -o --opref --keepDupes --keepSingleton --keepDiscordant -F --ignoreFlags -R --requireFlags --noCpG --CHG --CHH --fraction --counts --logit --ignoreNH --minOppositeDepth --minConversionEfficiency --maxVariantFrac --methylKit --cytosine_report --OT --OB --CTOT --CTOB --nOT --nOB --nCTOT --nCTOB --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_MethylDackel_mergeContext()
+{
+    local word_list="  -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_MethylDackel_perRead()
+{
+    local word_list="  -q -p -r -l --keepStrand -o -F --ignoreFlags -R --requireFlags --ignoreNH -@ --chunkSize --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _MethylDackel MethylDackel

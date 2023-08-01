@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_findindels()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -m --min_indel_length -a --all_alignments -o --output -b --bed -t --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _findindels find_indels

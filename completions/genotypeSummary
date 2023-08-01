@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_genotypeSummary()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -t --target -f --file -y --type -r --region -s --snp -a --ancestral"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _genotypeSummary genotypeSummary

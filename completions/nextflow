@@ -1,0 +1,176 @@
+# Auto-generated with h2o
+
+_nextflow()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" clean clone config console drop help info kuberun list log pull run secrets self-update view"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        clean) _nextflow_clean
+            return
+            ;;
+
+        clone) _nextflow_clone
+            return
+            ;;
+
+        config) _nextflow_config
+            return
+            ;;
+
+        console) _nextflow_console
+            return
+            ;;
+
+        drop) _nextflow_drop
+            return
+            ;;
+
+        help) _nextflow_help
+            return
+            ;;
+
+        info) _nextflow_info
+            return
+            ;;
+
+        kuberun) _nextflow_kuberun
+            return
+            ;;
+
+        list) _nextflow_list
+            return
+            ;;
+
+        log) _nextflow_log
+            return
+            ;;
+
+        pull) _nextflow_pull
+            return
+            ;;
+
+        run) _nextflow_run
+            return
+            ;;
+
+        secrets) _nextflow_secrets
+            return
+            ;;
+
+        self-update) _nextflow_selfupdate
+            return
+            ;;
+
+        view) _nextflow_view
+            return
+            ;;
+
+    esac
+
+    local word_list=" clean clone config console drop help info kuberun list log pull run secrets self-update view -C -D -bg -c -config -config-ignore-includes -d -dockerize -h -log -q -quiet -syslog -v -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_clean()
+{
+    local word_list="  -after -before -but -n -dry-run -f -force -h -help -k -keep-logs -q -quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_clone()
+{
+    local word_list="  -h -help -hub -r -user"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_config()
+{
+    local word_list="  -flat -h -help -profile -properties -a -show-profiles -sort"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_console()
+{
+    local word_list="  -h -help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_drop()
+{
+    local word_list="  -f -h -help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_help()
+{
+    local word_list="  -h -help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_info()
+{
+    local word_list="  -u -check-updates -d -h -help -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_kuberun()
+{
+    local word_list="  -E -ansi-log -bucket-dir -cache -disable-jobs-cancellation -dsl1 -dsl2 -dump-channels -dump-hashes -e. -entry -head-cpus -head-image -head-memory -head-prescript -h -help -hub -latest -lib -main-script -name -n -namespace -offline -params-file -plugins -pod-image -preview -process. -profile -qs -queue-size -remoteProfile -resume -r -revision -stub-run -stub -test -user -v -volume-mount -with-charliecloud -with-conda -with-dag -with-docker -N -with-notification -with-podman -with-report -with-singularity -with-timeline -with-tower -with-trace -with-weblog -without-conda -without-docker -without-podman -w -work-dir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_list()
+{
+    local word_list="  -h -help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_log()
+{
+    local word_list="  -after -before -but -f -fields -F -filter -h -help -l -list-fields -q -quiet -s -t -template"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_pull()
+{
+    local word_list="  -all -h -help -hub -r -revision -user"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_run()
+{
+    local word_list="  -E -ansi-log -bucket-dir -cache -disable-jobs-cancellation -dsl1 -dsl2 -dump-channels -dump-hashes -e. -entry -h -help -hub -latest -lib -main-script -name -offline -params-file -plugins -preview -process. -profile -qs -queue-size -resume -r -revision -stub-run -stub -test -user -with-charliecloud -with-conda -with-dag -with-docker -N -with-notification -with-podman -with-report -with-singularity -with-timeline -with-tower -with-trace -with-weblog -without-conda -without-docker -without-podman -w -work-dir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_secrets()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_selfupdate()
+{
+    local word_list="  -h -help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_nextflow_view()
+{
+    local word_list="  -h -help -l -q"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _nextflow nextflow

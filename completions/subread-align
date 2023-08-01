@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_subreadalign()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -i -r -t -o -R --SAMinput --BAMinput --SAMoutput -P -n -m -p -M --multiMapping -B -I --complexIndels --trim5 --trim3 -d -D -S -T --rg-id --rg --keepReadOrder -b --DPGapOpen --DPGapExt --DPMismatch --DPMatch --sv -a -F -A --gtfFeature --gtfAttr -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _subreadalign subread-align

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_estimateReadFiltering()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --bamfiles --outFile -o --sampleLabels --smartLabels --binSize -bs --distanceBetweenBins -n --numberOfProcessors -p --verbose -v --version --filterRNAstrand --ignoreDuplicates --minMappingQuality --samFlagInclude --samFlagExclude --blackListFileName -bl"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _estimateReadFiltering estimateReadFiltering

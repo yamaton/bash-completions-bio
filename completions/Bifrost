@@ -1,0 +1,56 @@
+# Auto-generated with h2o
+
+_Bifrost()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" build update query"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        build) _Bifrost_build
+            return
+            ;;
+
+        update) _Bifrost_update
+            return
+            ;;
+
+        query) _Bifrost_query
+            return
+            ;;
+
+    esac
+
+    local word_list=" build update query "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_Bifrost_build()
+{
+    local word_list="  -s --input-seq-file -r --input-ref-file -o --output-file -t --threads -k --kmer-length -m --min-length -B --bloom-bits -l --load-mbbf -w --write-mbbf -c --colors -i --clip-tips -d --del-isolated -f --fasta-out -b --bfg-out -n --no-compress-out -N --no-index-out -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_Bifrost_update()
+{
+    local word_list="  -g --input-graph-file -s --input-seq-file -r --input-ref-file -o --output-file -I --input-index-file -C --input-color-file -t --threads -k --kmer-length -m --min-length -i --clip-tips -d --del-isolated -f --fasta-out -b --bfg-out -n --no-compress-out -N --no-index-out -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_Bifrost_query()
+{
+    local word_list="  -g --input-graph-file -q --input-query-file -o --output-file -e --ratio-kmers -I --input-index-file -C --input-color-file -t --threads -k --kmer-length -m --min-length -a --approximate -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _Bifrost Bifrost

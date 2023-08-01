@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_strainphlan()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -d --database -m --clade_markers -s --samples -r --references -c --clade -o --output_dir -n --nprocs --secondary_samples --secondary_references --trim_sequences --marker_in_n_samples --sample_with_n_markers --secondary_sample_with_n_markers --sample_with_n_markers_after_filt --abs_n_markers_thres --abs_n_samples_thres --breadth_thres --phylophlan_mode --phylophlan_configuration --tmp --mutation_rates --print_clades_only --non_interactive --treeshrink --debug -v --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _strainphlan strainphlan

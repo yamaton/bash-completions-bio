@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_krakenuniqdownload()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -o --db --threads --rsync -R --overwrite --verbose --dust -D --min-seq-len --search --ac --mapping-file --retmode --rettype --taxa --exclude-environmental-taxa --fna -u"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _krakenuniqdownload krakenuniq-download

@@ -1,0 +1,66 @@
+# Auto-generated with h2o
+
+_somalier()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" extract relate ancestry find-sites"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        extract) _somalier_extract
+            return
+            ;;
+
+        relate) _somalier_relate
+            return
+            ;;
+
+        ancestry) _somalier_ancestry
+            return
+            ;;
+
+        find-sites) _somalier_findsites
+            return
+            ;;
+
+    esac
+
+    local word_list=" extract relate ancestry find-sites "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_somalier_extract()
+{
+    local word_list="  -s --sites -f --fasta -d --out-dir --sample-prefix -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_somalier_relate()
+{
+    local word_list="  -g --groups --sample-prefix -p --ped -d --min-depth --min-ab -u --unknown -i --infer -o --output-prefix -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_somalier_ancestry()
+{
+    local word_list="  --labels -o --output-prefix --n-pcs --nn-hidden-size --nn-batch-size --nn-test-samples -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_somalier_findsites()
+{
+    local word_list="  -x --exclude -i --include --gnotate-exclude --snp-dist --min-AN --min-AF -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _somalier somalier

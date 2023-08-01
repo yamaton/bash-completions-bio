@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_hifiasm()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -o -t -h --version -k -w -f -D -N -r -z --max-kocc --hg-size --min-hist-cnt -a -m -p -n -x -y -i -u --hom-cov --pri-range --lowQ --b-cov --h-cov --m-rate --primary -1 -2 -3 -4 -c -d --t-occ -l -s -O --purge-max --n-hap --h1 --h2 --n-weight --n-perturb --f-perturb --l-msjoin --seed"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _hifiasm hifiasm

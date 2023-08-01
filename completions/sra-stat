@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_srastat()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -x --xml -b --start -e --stop -m --meta -q --quick --member-stats --archive-info -s --statistics -a --alignment -p --show_progress --ngc -z --xml-log -h --help -V --version -L --log-level -v --verbose -q --quiet --option-file"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _srastat sra-stat

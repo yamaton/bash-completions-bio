@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_vcfentropy()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -f --fasta-reference -w --window-size"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _vcfentropy vcfentropy

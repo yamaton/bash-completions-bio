@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_abyssfac()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -G -e --genome-size -s -t --min-length -d --delimiter -j --jira -m --mmd --chastity --no-chastity --trim-masked --no-trim-masked --count-ambig --no-count-ambig -v --verbose --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _abyssfac abyss-fac

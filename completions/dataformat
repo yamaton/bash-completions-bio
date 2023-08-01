@@ -1,0 +1,345 @@
+# Auto-generated with h2o
+
+_dataformat()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" tsv excel catalog completion version help"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        tsv) _dataformat_tsv
+            return
+            ;;
+
+        excel) _dataformat_excel
+            return
+            ;;
+
+        catalog) _dataformat_catalog
+            return
+            ;;
+
+        completion) _dataformat_completion
+            return
+            ;;
+
+        version) _dataformat_version
+            return
+            ;;
+
+        help) _dataformat_help
+            return
+            ;;
+
+    esac
+
+    local word_list=" tsv excel catalog completion version help --force -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_tsv()
+{
+    local cmd i subcommands
+    local subcommands=" genome genome-seq gene gene-product virus-genome virus-annotation microbigge prok-gene prok-gene-location"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        genome) _dataformat_tsv_genome
+            return
+            ;;
+
+        genome-seq) _dataformat_tsv_genomeseq
+            return
+            ;;
+
+        gene) _dataformat_tsv_gene
+            return
+            ;;
+
+        gene-product) _dataformat_tsv_geneproduct
+            return
+            ;;
+
+        virus-genome) _dataformat_tsv_virusgenome
+            return
+            ;;
+
+        virus-annotation) _dataformat_tsv_virusannotation
+            return
+            ;;
+
+        microbigge) _dataformat_tsv_microbigge
+            return
+            ;;
+
+        prok-gene) _dataformat_tsv_prokgene
+            return
+            ;;
+
+        prok-gene-location) _dataformat_tsv_prokgenelocation
+            return
+            ;;
+
+    esac
+
+    local word_list=" genome genome-seq gene gene-product virus-genome virus-annotation microbigge prok-gene prok-gene-location --elide-header -h --help --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_tsv_genome()
+{
+    local word_list="  --fields -h --help --inputfile --package --elide-header --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_tsv_genomeseq()
+{
+    local word_list="  --fields -h --help --inputfile --package --elide-header --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_tsv_gene()
+{
+    local word_list="  --fields -h --help --inputfile --package --elide-header --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_tsv_geneproduct()
+{
+    local word_list="  --fields -h --help --inputfile --package --elide-header --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_tsv_virusgenome()
+{
+    local word_list="  --fields -h --help --inputfile --package --elide-header --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_tsv_virusannotation()
+{
+    local word_list="  --fields -h --help --inputfile --package --elide-header --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_tsv_microbigge()
+{
+    local word_list="  --fields -h --help --inputfile --package --elide-header --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_tsv_prokgene()
+{
+    local word_list="  --fields -h --help --inputfile --package --elide-header --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_tsv_prokgenelocation()
+{
+    local word_list="  --fields -h --help --inputfile --package --elide-header --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_excel()
+{
+    local cmd i subcommands
+    local subcommands=" genome genome-seq gene gene-product virus-genome virus-annotation microbigge prok-gene prok-gene-location"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        genome) _dataformat_excel_genome
+            return
+            ;;
+
+        genome-seq) _dataformat_excel_genomeseq
+            return
+            ;;
+
+        gene) _dataformat_excel_gene
+            return
+            ;;
+
+        gene-product) _dataformat_excel_geneproduct
+            return
+            ;;
+
+        virus-genome) _dataformat_excel_virusgenome
+            return
+            ;;
+
+        virus-annotation) _dataformat_excel_virusannotation
+            return
+            ;;
+
+        microbigge) _dataformat_excel_microbigge
+            return
+            ;;
+
+        prok-gene) _dataformat_excel_prokgene
+            return
+            ;;
+
+        prok-gene-location) _dataformat_excel_prokgenelocation
+            return
+            ;;
+
+    esac
+
+    local word_list=" genome genome-seq gene gene-product virus-genome virus-annotation microbigge prok-gene prok-gene-location -h --help --outputfile --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_excel_genome()
+{
+    local word_list="  --fields -h --help --inputfile --package --force --outputfile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_excel_genomeseq()
+{
+    local word_list="  --fields -h --help --inputfile --package --force --outputfile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_excel_gene()
+{
+    local word_list="  --fields -h --help --inputfile --package --force --outputfile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_excel_geneproduct()
+{
+    local word_list="  --fields -h --help --inputfile --package --force --outputfile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_excel_virusgenome()
+{
+    local word_list="  --fields -h --help --inputfile --package --force --outputfile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_excel_virusannotation()
+{
+    local word_list="  --fields -h --help --inputfile --package --force --outputfile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_excel_microbigge()
+{
+    local word_list="  --fields -h --help --inputfile --package --force --outputfile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_excel_prokgene()
+{
+    local word_list="  --fields -h --help --inputfile --package --force --outputfile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_excel_prokgenelocation()
+{
+    local word_list="  --fields -h --help --inputfile --package --force --outputfile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_catalog()
+{
+    local word_list="  -h --help --inputfile --package --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_completion()
+{
+    local cmd i subcommands
+    local subcommands=" bash zsh fish powershell"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        bash) _dataformat_completion_bash
+            return
+            ;;
+
+        zsh) _dataformat_completion_zsh
+            return
+            ;;
+
+        fish) _dataformat_completion_fish
+            return
+            ;;
+
+        powershell) _dataformat_completion_powershell
+            return
+            ;;
+
+    esac
+
+    local word_list=" bash zsh fish powershell -h --help --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_completion_bash()
+{
+    local word_list="  -h --help --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_completion_zsh()
+{
+    local word_list="  -h --help --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_completion_fish()
+{
+    local word_list="  -h --help --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_completion_powershell()
+{
+    local word_list="  -h --help --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_version()
+{
+    local word_list="  -h --help --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_help()
+{
+    local word_list="  -h --help --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _dataformat dataformat

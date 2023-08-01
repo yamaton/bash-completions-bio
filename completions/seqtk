@@ -1,0 +1,246 @@
+# Auto-generated with h2o
+
+_seqtk()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" seq size comp sample subseq fqchk mergepe split trimfq hety gc mutfa mergefa famask dropse rename randbase cutN gap listhet hpc telo"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        seq) _seqtk_seq
+            return
+            ;;
+
+        size) _seqtk_size
+            return
+            ;;
+
+        comp) _seqtk_comp
+            return
+            ;;
+
+        sample) _seqtk_sample
+            return
+            ;;
+
+        subseq) _seqtk_subseq
+            return
+            ;;
+
+        fqchk) _seqtk_fqchk
+            return
+            ;;
+
+        mergepe) _seqtk_mergepe
+            return
+            ;;
+
+        split) _seqtk_split
+            return
+            ;;
+
+        trimfq) _seqtk_trimfq
+            return
+            ;;
+
+        hety) _seqtk_hety
+            return
+            ;;
+
+        gc) _seqtk_gc
+            return
+            ;;
+
+        mutfa) _seqtk_mutfa
+            return
+            ;;
+
+        mergefa) _seqtk_mergefa
+            return
+            ;;
+
+        famask) _seqtk_famask
+            return
+            ;;
+
+        dropse) _seqtk_dropse
+            return
+            ;;
+
+        rename) _seqtk_rename
+            return
+            ;;
+
+        randbase) _seqtk_randbase
+            return
+            ;;
+
+        cutN) _seqtk_cutN
+            return
+            ;;
+
+        gap) _seqtk_gap
+            return
+            ;;
+
+        listhet) _seqtk_listhet
+            return
+            ;;
+
+        hpc) _seqtk_hpc
+            return
+            ;;
+
+        telo) _seqtk_telo
+            return
+            ;;
+
+    esac
+
+    local word_list=" seq size comp sample subseq fqchk mergepe split trimfq hety gc mutfa mergefa famask dropse rename randbase cutN gap listhet hpc telo "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_seq()
+{
+    local word_list="  -X -n -l -Q -s -f -M -L -F -c -r -A -C -N -1 -2 -V -U -x -S"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_size()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_comp()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_sample()
+{
+    local word_list="  -2"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_subseq()
+{
+    local word_list="  -t -s -l"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_fqchk()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_mergepe()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_split()
+{
+    local word_list="  -n -l"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_trimfq()
+{
+    local word_list="  -l -b -e -L -Q"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_hety()
+{
+    local word_list="  -t -m"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_gc()
+{
+    local word_list="  -w -f -l -x"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_mutfa()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_mergefa()
+{
+    local word_list="  -i -m -r -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_famask()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_dropse()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_rename()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_randbase()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_cutN()
+{
+    local word_list="  -p -g"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_gap()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_listhet()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_hpc()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqtk_telo()
+{
+    local word_list="  -m -p -d -s"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _seqtk seqtk

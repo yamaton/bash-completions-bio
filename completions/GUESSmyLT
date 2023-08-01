@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_GUESSmyLT()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --organism --reads --subsample --reference --mode --annotation --mapped --threads --memory --output -n"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _GUESSmyLT GUESSmyLT

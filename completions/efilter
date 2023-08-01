@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_efilter()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -q -query -sort -days -datetype -mindate -maxdate -field -pairs -spell -pub -journal -released -country -feature -location -molecule -organism -source -status -type -class -kind -pathway -help -label"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _efilter efilter

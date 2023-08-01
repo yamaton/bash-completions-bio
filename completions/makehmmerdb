@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_makehmmerdb()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --informat --bin_length --sa_freq --block_size"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _makehmmerdb makehmmerdb

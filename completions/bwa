@@ -1,0 +1,166 @@
+# Auto-generated with h2o
+
+_bwa()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" index mem fastmap pemerge aln samse sampe bwasw shm fa2pac pac2bwt pac2bwtgen bwtupdate bwt2sa"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        index) _bwa_index
+            return
+            ;;
+
+        mem) _bwa_mem
+            return
+            ;;
+
+        fastmap) _bwa_fastmap
+            return
+            ;;
+
+        pemerge) _bwa_pemerge
+            return
+            ;;
+
+        aln) _bwa_aln
+            return
+            ;;
+
+        samse) _bwa_samse
+            return
+            ;;
+
+        sampe) _bwa_sampe
+            return
+            ;;
+
+        bwasw) _bwa_bwasw
+            return
+            ;;
+
+        shm) _bwa_shm
+            return
+            ;;
+
+        fa2pac) _bwa_fa2pac
+            return
+            ;;
+
+        pac2bwt) _bwa_pac2bwt
+            return
+            ;;
+
+        pac2bwtgen) _bwa_pac2bwtgen
+            return
+            ;;
+
+        bwtupdate) _bwa_bwtupdate
+            return
+            ;;
+
+        bwt2sa) _bwa_bwt2sa
+            return
+            ;;
+
+    esac
+
+    local word_list=" index mem fastmap pemerge aln samse sampe bwasw shm fa2pac pac2bwt pac2bwtgen bwtupdate bwt2sa "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_index()
+{
+    local word_list="  -p -b -6"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_mem()
+{
+    local word_list="  -t -k -w -d -r -y -c -D -W -m -S -P -A -B -O -E -L -U -x -p -R -H -o -j -5 -q -K -v -T -h -a -C -V -Y -M -I"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_fastmap()
+{
+    local word_list="  -w -i -L -I"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_pemerge()
+{
+    local word_list="  -u -t -T -Q"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_aln()
+{
+    local word_list="  -o -e -i -d -l -k -m -t -M -O -E -R -q -f -B -L -N -I -b -0 -1 -2 -Y"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_samse()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_sampe()
+{
+    local word_list="  -o -n -N -c -f -r -P -s -A"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_bwasw()
+{
+    local word_list="  -b -q -r -w -m -t -f -H -C -M -S -I -T -c -z -s -N -G"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_shm()
+{
+    local word_list="  -l -f"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_fa2pac()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_pac2bwt()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_pac2bwtgen()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_bwtupdate()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwa_bwt2sa()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bwa bwa

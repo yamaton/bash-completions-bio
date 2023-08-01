@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_vcfstats()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -r --region -a --add-info -t --add-type -l --no-length-frequency -m --match-score -x --mismatch-score -o --gap-open-penalty -e --gap-extend-penalty"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _vcfstats vcfstats

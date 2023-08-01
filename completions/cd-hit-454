@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_cdhit454()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -i -o -c -b -M -T -n -aL -AL -aS -AS -B -g -D -match -mismatch -gap -gap-ext -bak -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _cdhit454 cd-hit-454

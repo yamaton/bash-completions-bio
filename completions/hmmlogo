@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_hmmlogo()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --height_relent_all --height_relent_abovebg --height_score --no_indel"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _hmmlogo hmmlogo

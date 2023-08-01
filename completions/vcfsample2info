@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_vcfsample2info()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -f --field -i --info -a --average -m --median -n --min -x --max"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _vcfsample2info vcfsample2info

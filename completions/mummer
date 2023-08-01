@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_mummer()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -mum -mumreference -mumcand -maxmatch -l -b -F -n -L -r -s -c -k -threads -qthreads -suflink -child -skip -kmer -save -load"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _mummer mummer

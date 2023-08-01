@@ -1,0 +1,216 @@
+# Auto-generated with h2o
+
+_seqfu()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" bases check count deinterleave derep interleave lanes list metadata rotate sort stats cat grep head rc tab tail view"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        bases) _seqfu_bases
+            return
+            ;;
+
+        check) _seqfu_check
+            return
+            ;;
+
+        count) _seqfu_count
+            return
+            ;;
+
+        deinterleave) _seqfu_deinterleave
+            return
+            ;;
+
+        derep) _seqfu_derep
+            return
+            ;;
+
+        interleave) _seqfu_interleave
+            return
+            ;;
+
+        lanes) _seqfu_lanes
+            return
+            ;;
+
+        list) _seqfu_list
+            return
+            ;;
+
+        metadata) _seqfu_metadata
+            return
+            ;;
+
+        rotate) _seqfu_rotate
+            return
+            ;;
+
+        sort) _seqfu_sort
+            return
+            ;;
+
+        stats) _seqfu_stats
+            return
+            ;;
+
+        cat) _seqfu_cat
+            return
+            ;;
+
+        grep) _seqfu_grep
+            return
+            ;;
+
+        head) _seqfu_head
+            return
+            ;;
+
+        rc) _seqfu_rc
+            return
+            ;;
+
+        tab) _seqfu_tab
+            return
+            ;;
+
+        tail) _seqfu_tail
+            return
+            ;;
+
+        view) _seqfu_view
+            return
+            ;;
+
+    esac
+
+    local word_list=" bases check count deinterleave derep interleave lanes list metadata rotate sort stats cat grep head rc tab tail view "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_bases()
+{
+    local word_list="  -c --raw-counts -t --thousands -a --abspath -b --basename -n --nice -d --digits -H --header -v --verbose --debug --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_check()
+{
+    local word_list="  -n --no-paired -s --safe-exit -q --quiet -v --verbose -t --thousands --debug -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_count()
+{
+    local word_list="  -a --abs-path -b --basename -u --unpair -f --for-tag -r --rev-tag -t --threads -v --verbose -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_deinterleave()
+{
+    local word_list="  -o --output-basename -f --for-ext -r --rev-ext -c --check -v --verbose -s --strip-comments -p --prefix"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_derep()
+{
+    local word_list="  -k --keep-name -i --ignore-size -m --min-size -p --prefix -5 --md5 -j --json -s --separator -w --line-width -l --min-length -x --max-length -c --size-as-comment --add-len -v --verbose -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_interleave()
+{
+    local word_list="  -f --for-tag -r --rev-tag -o --output -c --check -v --verbose -s --strip-comments -p --prefix"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_lanes()
+{
+    local word_list="  -o --outdir -e --extension -s --file-separator --comment-separator -v --verbose -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_list()
+{
+    local word_list="  -c --with-comments -p --partial-match -m --min-len -v --verbose -r --report --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_metadata()
+{
+    local word_list="  -1 --for-tag -2 --rev-tag -s --split --pos -f --format --pe -p --add-path -c --counts -t --threads -P --project --meta-split --meta-part --meta-default -v --verbose -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_rotate()
+{
+    local word_list="  -i --start-pos -m --motif -s --skip-unmached -r --revcomp -v --verbose -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_sort()
+{
+    local word_list="  -p --prefix -s --strip-comments --asc -v --verbose -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_stats()
+{
+    local word_list="  -a --abs-path -b --basename -n --nice -j --json -s --sort-by -r --reverse -t --thousands --csv --gc --multiqc --precision -v --verbose -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_cat()
+{
+    local word_list="  -k --skip --skip-first --jump-to --print-last -p --prefix -z --strip-name -a --append --sep -b --basename --split --part --basename-sep -s --strip-comments --comment-sep --add-len --add-initial-len --add-gc --add-initial-gc --add-name --add-ee --add-initial-ee -n --max-ns -m --min-len -x --max-len --max-ee --trim-front --trim-tail --truncate --max-bp --fasta --fastq --list -q --fastq-qual -v --verbose --debug -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_grep()
+{
+    local word_list="  -n --name -r --regex -c --comment -f --full -w --word -i --ignore-case -o --oligo -A --append-pos --max-mismatches --min-matches -v --invert-match --verbose --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_head()
+{
+    local word_list="  -n --num -k --skip -p --prefix -s --strip-comments -b --basename -v --verbose --print-last --fatal --quiet --help --fasta --fastq --sep -q --fastq-qual"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_rc()
+{
+    local word_list="  -s --seq-name -r --only-rev --strip-comments -v --verbose --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_tab()
+{
+    local word_list="  -i --interleaved -d --detabulate -c --comment-sep -s --field-sep -v --verbose -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_tail()
+{
+    local word_list="  -n --num -k --skip -p --prefix -s --strip-comments -b --basename --fasta --fastq --sep -q --fastq-qual -v --verbose -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_seqfu_view()
+{
+    local word_list="  -o --oligo1 -r --oligo2 -q --qual-scale --match-ths --min-matches --max-mismatches --ascii -Q --qual-chars -n --nocolor --verbose -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _seqfu seqfu

@@ -1,0 +1,116 @@
+# Auto-generated with h2o
+
+_computeMatrixOperations()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" info relabel subset filterStrand filterValues rbind cbind sort dataRange"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        info) _computeMatrixOperations_info
+            return
+            ;;
+
+        relabel) _computeMatrixOperations_relabel
+            return
+            ;;
+
+        subset) _computeMatrixOperations_subset
+            return
+            ;;
+
+        filterStrand) _computeMatrixOperations_filterStrand
+            return
+            ;;
+
+        filterValues) _computeMatrixOperations_filterValues
+            return
+            ;;
+
+        rbind) _computeMatrixOperations_rbind
+            return
+            ;;
+
+        cbind) _computeMatrixOperations_cbind
+            return
+            ;;
+
+        sort) _computeMatrixOperations_sort
+            return
+            ;;
+
+        dataRange) _computeMatrixOperations_dataRange
+            return
+            ;;
+
+    esac
+
+    local word_list=" info relabel subset filterStrand filterValues rbind cbind sort dataRange -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_computeMatrixOperations_info()
+{
+    local word_list="  -h --help --matrixFile -m"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_computeMatrixOperations_relabel()
+{
+    local word_list="  -h --help --matrixFile -m --outFileName -o --groupLabels --sampleLabels"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_computeMatrixOperations_subset()
+{
+    local word_list="  -h --help --matrixFile -m --outFileName -o --groups --samples"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_computeMatrixOperations_filterStrand()
+{
+    local word_list="  -h --help --matrixFile -m --outFileName -o --strand -s"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_computeMatrixOperations_filterValues()
+{
+    local word_list="  -h --help --matrixFile -m --outFileName -o --min --max"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_computeMatrixOperations_rbind()
+{
+    local word_list="  -h --help --matrixFile --outFileName -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_computeMatrixOperations_cbind()
+{
+    local word_list="  -h --help --matrixFile --outFileName -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_computeMatrixOperations_sort()
+{
+    local word_list="  -h --help --matrixFile -m --outFileName -o --regionsFileName -R --transcriptID --transcript_id_designator"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_computeMatrixOperations_dataRange()
+{
+    local word_list="  -h --help --matrixFile -m"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _computeMatrixOperations computeMatrixOperations

@@ -1,0 +1,46 @@
+# Auto-generated with h2o
+
+_cuttlefish()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" build version"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        build) _cuttlefish_build
+            return
+            ;;
+
+        version) _cuttlefish_version
+            return
+            ;;
+
+    esac
+
+    local word_list=" build version "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cuttlefish_build()
+{
+    local word_list="  -s --seq -l --list -d --dir -k --kmer-len -t --threads -o --output -w --work-dir -m --max-memory --unrestrict-memory -h --help -f --format --track-short-seqs --poly-N-stretch --read --ref -c --cutoff --path-cover --vertex-set --edge-set --save-mph --save-buckets --save-vertices"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cuttlefish_version()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _cuttlefish cuttlefish

@@ -1,0 +1,136 @@
+# Auto-generated with h2o
+
+_jellyfish()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" count bc info stats histo dump merge query cite mem jf"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        count) _jellyfish_count
+            return
+            ;;
+
+        bc) _jellyfish_bc
+            return
+            ;;
+
+        info) _jellyfish_info
+            return
+            ;;
+
+        stats) _jellyfish_stats
+            return
+            ;;
+
+        histo) _jellyfish_histo
+            return
+            ;;
+
+        dump) _jellyfish_dump
+            return
+            ;;
+
+        merge) _jellyfish_merge
+            return
+            ;;
+
+        query) _jellyfish_query
+            return
+            ;;
+
+        cite) _jellyfish_cite
+            return
+            ;;
+
+        mem) _jellyfish_mem
+            return
+            ;;
+
+        jf) _jellyfish_jf
+            return
+            ;;
+
+    esac
+
+    local word_list=" count bc info stats histo dump merge query cite mem jf --version --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_jellyfish_count()
+{
+    local word_list="  -m --mer-len -s --size -t --threads --sam -F --Files -g --generator -G --Generators -S --shell -o --output -c --counter-len --out-counter-len -C --canonical --bc --bf-size --bf-fp --if -Q --min-qual-char --quality-start --min-quality -p --reprobes --text --disk -L --lower-count -U --upper-count --timing --usage -h --help --full-help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_jellyfish_bc()
+{
+    local word_list="  -s --size -m --mer-len -f --fpr -C --canonical -t --threads -o --output -F --Files -g --generator -G --Generators -S --shell --timing -U --usage -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_jellyfish_info()
+{
+    local word_list="  -s --skip -j --json -c --cmd -U --usage -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_jellyfish_stats()
+{
+    local word_list="  -L --lower-count -U --upper-count -v --verbose -o --output --usage -h --help --full-help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_jellyfish_histo()
+{
+    local word_list="  -l --low -h --high -i --increment -t --threads -f --full -o --output -v --verbose -U --usage --help --full-help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_jellyfish_dump()
+{
+    local word_list="  -c --column -t --tab -L --lower-count -U --upper-count -o --output --usage -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_jellyfish_merge()
+{
+    local word_list="  -o --output -m --min -M --max -j --jaccard -L --lower-count -U --upper-count --usage -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_jellyfish_query()
+{
+    local word_list="  -s --sequence -o --output -i --interactive -l --load -L --no-load -U --usage -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_jellyfish_cite()
+{
+    local word_list="  -b --bibtex -o --output -U --usage -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_jellyfish_mem()
+{
+    local word_list="  -m --mer-len -s --size -c --counter-len -p --reprobes --mem --bc --usage -h --help --full-help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_jellyfish_jf()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _jellyfish jellyfish

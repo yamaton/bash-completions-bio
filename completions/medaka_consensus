@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_medakaconsensus()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h -i -d -o -g -r -m -f -x -t -b"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _medakaconsensus medaka_consensus

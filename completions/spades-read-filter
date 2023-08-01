@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_spadesreadfilter()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -k --kmer -c --cov -d --dataset -t --threads -o --outdir --drop-names --drop-quality -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _spadesreadfilter spades-read-filter

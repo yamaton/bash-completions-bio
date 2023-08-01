@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_metaplatanus()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -IP -OP -binning_IP -p -ont -x -X -t -m -o -tmp -sub_bin -min_cov_contig -min_map_idt_binning -no_megahit -no_binning -no_re_scaffold -no_tgsgapcloser -no_nextpolish -overwrite -h -help -v -version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _metaplatanus metaplatanus

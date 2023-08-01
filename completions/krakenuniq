@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_krakenuniq()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --report-file --db --threads --hll-precision --exact --quick --min-hits --unclassified-out --classified-out --output --only-classified-output --preload --preload-size --paired --check-names --help --version --uid-mapping"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _krakenuniq krakenuniq

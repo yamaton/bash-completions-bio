@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_coveragefrombam()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -r --regions -p --prefix -o --one_file -s --stride --summary_only"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _coveragefrombam coverage_from_bam

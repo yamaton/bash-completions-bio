@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_plotHeatmap()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --matrixFile -m --outFileName -out -o --outFileSortedRegions --outFileNameMatrix --interpolationMethod --dpi --kmeans --hclust --silhouette --help -h --version --plotType --sortRegions --sortUsing --sortUsingSamples --linesAtTickMarks --clusterUsingSamples --averageTypeSummaryPlot --missingDataColor --colorMap --alpha --colorList --colorNumber --zMin -min --zMax -max --heatmapHeight --heatmapWidth --whatToShow --boxAroundHeatmaps --xAxisLabel -x --startLabel --endLabel --refPointLabel --labelRotation --regionsLabel -z --samplesLabel --plotTitle -T --yAxisLabel -y --yMin --yMax --legendLocation --perGroup --plotFileFormat --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _plotHeatmap plotHeatmap

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_metaphlan()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --input_type --force --bowtie2db -x --index --bt2_ps --bowtie2_exe --bowtie2_build --bowtie2out --min_mapq_val --no_map --tmp_dir --tax_lev --min_cu_len --min_alignment_len --add_viruses --ignore_eukaryotes --ignore_bacteria --ignore_archaea --ignore_ksgbs --ignore_usgbs --stat_q --perc_nonzero --ignore_markers --avoid_disqm --stat -t --clade --nreads --pres_th --min_ab -o --output_file --sample_id_key --use_group_representative --sample_id -s --samout --legacy-output --CAMI_format_output --unclassified_estimation --mpa3 --biom --biom_output_file --mdelim --metadata_delimiter_char --nproc --subsampling --subsampling_seed --install --offline --force_download --read_min_len -v --version -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _metaphlan metaphlan

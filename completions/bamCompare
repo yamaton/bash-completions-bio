@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_bamCompare()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --bamfile1 -b1 --bamfile2 -b2 --outFileName -o --outFileFormat -of --help -h --scaleFactorsMethod --sampleLength -l --numberOfSamples -n --scaleFactors --operation --pseudocount --skipZeroOverZero --version --binSize -bs --region -r --blackListFileName -bl --numberOfProcessors -p --verbose -v --effectiveGenomeSize --normalizeUsing --exactScaling --ignoreForNormalization -ignore --skipNonCoveredRegions --skipNAs --smoothLength --extendReads -e --ignoreDuplicates --minMappingQuality --centerReads --samFlagInclude --samFlagExclude --minFragmentLength --maxFragmentLength"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bamCompare bamCompare

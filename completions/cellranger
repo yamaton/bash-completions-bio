@@ -1,0 +1,176 @@
+# Auto-generated with h2o
+
+_cellranger()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" count multi vdj aggr reanalyze targeted-compare targeted-depth mkvdjref mkfastq testrun mat2csv mkref mkgtf upload sitecheck"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        count) _cellranger_count
+            return
+            ;;
+
+        multi) _cellranger_multi
+            return
+            ;;
+
+        vdj) _cellranger_vdj
+            return
+            ;;
+
+        aggr) _cellranger_aggr
+            return
+            ;;
+
+        reanalyze) _cellranger_reanalyze
+            return
+            ;;
+
+        targeted-compare) _cellranger_targetedcompare
+            return
+            ;;
+
+        targeted-depth) _cellranger_targeteddepth
+            return
+            ;;
+
+        mkvdjref) _cellranger_mkvdjref
+            return
+            ;;
+
+        mkfastq) _cellranger_mkfastq
+            return
+            ;;
+
+        testrun) _cellranger_testrun
+            return
+            ;;
+
+        mat2csv) _cellranger_mat2csv
+            return
+            ;;
+
+        mkref) _cellranger_mkref
+            return
+            ;;
+
+        mkgtf) _cellranger_mkgtf
+            return
+            ;;
+
+        upload) _cellranger_upload
+            return
+            ;;
+
+        sitecheck) _cellranger_sitecheck
+            return
+            ;;
+
+    esac
+
+    local word_list=" count multi vdj aggr reanalyze targeted-compare targeted-depth mkvdjref mkfastq testrun mat2csv mkref mkgtf upload sitecheck -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_count()
+{
+    local word_list="  --id --description --transcriptome --fastqs --project --sample --lanes --libraries --feature-ref --target-panel --expect-cells --force-cells --no-bam --nosecondary --r1-length --r2-length --include-introns --chemistry --no-libraries --check-library-compatibility --no-target-umi-filter --dry --jobmode --localcores --localmem --localvmem --mempercore --maxjobs --jobinterval --overrides --uiport --disable-ui --noexit --nopreflight -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_multi()
+{
+    local word_list="  --id --description --csv --dry --jobmode --localcores --localmem --localvmem --mempercore --maxjobs --jobinterval --overrides --uiport --disable-ui --noexit --nopreflight -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_vdj()
+{
+    local word_list="  --id --description --reference --fastqs --project --sample --lanes --denovo --chain --inner-enrichment-primers --dry --jobmode --localcores --localmem --localvmem --mempercore --maxjobs --jobinterval --overrides --uiport --disable-ui --noexit --nopreflight -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_aggr()
+{
+    local word_list="  --id --description --csv --normalize --nosecondary --dry --jobmode --localcores --localmem --localvmem --mempercore --maxjobs --jobinterval --overrides --uiport --disable-ui --noexit --nopreflight -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_reanalyze()
+{
+    local word_list="  --id --description --matrix --params --barcodes --genes --exclude-genes --agg --force-cells --dry --jobmode --localcores --localmem --localvmem --mempercore --maxjobs --jobinterval --overrides --uiport --disable-ui --noexit --nopreflight -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_targetedcompare()
+{
+    local word_list="  --id --description --targeted --parent --target-panel --dry --jobmode --localcores --localmem --localvmem --mempercore --maxjobs --jobinterval --overrides --uiport --disable-ui --noexit --nopreflight -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_targeteddepth()
+{
+    local word_list="  -h --help --molecule-h5 --target-panel"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkvdjref()
+{
+    local word_list="  --ref-version --rm-transcripts -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkfastq()
+{
+    local word_list="  --fastq-cluster-count --run --id --csv --samplesheet --sample-sheet --simple-csv --force-single-index --filter-single-index --filter-dual-index --rc-i2-override --lanes --use-bases-mask --delete-undetermined --output-dir --project --jobmode --localcores --localmem --localvmem --mempercore --maxjobs --jobinterval --overrides --uiport --disable-ui --noexit --nopreflight -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_testrun()
+{
+    local word_list="  --id --description --dry --jobmode --localcores --localmem --localvmem --mempercore --maxjobs --jobinterval --overrides --uiport --disable-ui --noexit --nopreflight -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mat2csv()
+{
+    local word_list="  --genome -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref()
+{
+    local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkgtf()
+{
+    local word_list="  --attribute -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_upload()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_sitecheck()
+{
+    local word_list="  -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _cellranger cellranger

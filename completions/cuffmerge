@@ -1,0 +1,36 @@
+# Auto-generated with h2o
+
+_cuffmerge()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" cuffmerge"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        cuffmerge) _cuffmerge_cuffmerge
+            return
+            ;;
+
+    esac
+
+    local word_list=" cuffmerge -h --help -o -g --ref-gtf -s --ref-sequence --min-isoform-fraction -p --num-threads --keep-tmp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cuffmerge_cuffmerge()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _cuffmerge cuffmerge

@@ -1,0 +1,116 @@
+# Auto-generated with h2o
+
+_blobtools()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" create view plot covplot map2cov taxify bamfilter seqfilter nodesdb"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        create) _blobtools_create
+            return
+            ;;
+
+        view) _blobtools_view
+            return
+            ;;
+
+        plot) _blobtools_plot
+            return
+            ;;
+
+        covplot) _blobtools_covplot
+            return
+            ;;
+
+        map2cov) _blobtools_map2cov
+            return
+            ;;
+
+        taxify) _blobtools_taxify
+            return
+            ;;
+
+        bamfilter) _blobtools_bamfilter
+            return
+            ;;
+
+        seqfilter) _blobtools_seqfilter
+            return
+            ;;
+
+        nodesdb) _blobtools_nodesdb
+            return
+            ;;
+
+    esac
+
+    local word_list=" create view plot covplot map2cov taxify bamfilter seqfilter nodesdb -h --help -v --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_blobtools_create()
+{
+    local word_list="  -h --help -i --infile -y --type -t --hitsfile -x --taxrule -m --min_score -d --min_diff --tax_collision_random --nodes --names --db -b --bam -a --cas -c --cov -C --calculate_cov -o --out --title"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_blobtools_view()
+{
+    local word_list="  --h --help -i --input -o --out -l --list -x --taxrule -r --rank -b --hits --concoct --cov --experimental -n --notable"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_blobtools_plot()
+{
+    local word_list="  -h --help -i --infile --lib --notitle --filelabel -p --plotgroups -l --length --cindex -n --nohit -s --noscale --legend -m --multiplot --cumulative --sort --sort_first --hist -r --rank -x --taxrule --format --noblobs --noreads -o --out --label --colours --exclude --refcov --catcolour"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_blobtools_covplot()
+{
+    local word_list="  -h --help -i --infile -c --cov --xlabel --ylabel --max --lib --notitle -p --plotgroups -l --length --cindex -n --nohit -s --noscale --legend -m --multiplot --cumulative --sort --sort_first --hist -r --rank -x --taxrule --format --noblobs --noreads -o --out --label --colours --exclude --refcov --catcolour"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_blobtools_map2cov()
+{
+    local word_list="  -h --help -i --infile -b --bam -a --cas -o --output -c --calculate_cov"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_blobtools_taxify()
+{
+    local word_list="  -h --help -f --hit_file -a --hit_column_qseqid -b --hit_column_sseqid -c --hit_column_score -m --taxid_mapping_file -s --map_col_sseqid -t --map_col_taxid -i --custom -x --custom_taxid -v --custom_score -o --out"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_blobtools_bamfilter()
+{
+    local word_list="  -h --help -b --bam -i --include -e --exclude -U --exclude_unmapped -n --noninterleaved -f --read_format -o --out"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_blobtools_seqfilter()
+{
+    local word_list="  -h --help -i --infile -l --list -o --out -v --invert"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_blobtools_nodesdb()
+{
+    local word_list="  -h --help --nodes --names"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _blobtools blobtools

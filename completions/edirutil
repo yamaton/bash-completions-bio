@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_edirutil()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -db -web -key -count -step -silent -verbose -debug"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _edirutil edirutil

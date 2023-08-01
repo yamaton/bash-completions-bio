@@ -1,0 +1,146 @@
+# Auto-generated with h2o
+
+_taxonkit()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" cami-filter create-taxdump filter genautocomplete lca lineage list name2taxid profile2cami reformat taxid-changelog version"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        cami-filter) _taxonkit_camifilter
+            return
+            ;;
+
+        create-taxdump) _taxonkit_createtaxdump
+            return
+            ;;
+
+        filter) _taxonkit_filter
+            return
+            ;;
+
+        genautocomplete) _taxonkit_genautocomplete
+            return
+            ;;
+
+        lca) _taxonkit_lca
+            return
+            ;;
+
+        lineage) _taxonkit_lineage
+            return
+            ;;
+
+        list) _taxonkit_list
+            return
+            ;;
+
+        name2taxid) _taxonkit_name2taxid
+            return
+            ;;
+
+        profile2cami) _taxonkit_profile2cami
+            return
+            ;;
+
+        reformat) _taxonkit_reformat
+            return
+            ;;
+
+        taxid-changelog) _taxonkit_taxidchangelog
+            return
+            ;;
+
+        version) _taxonkit_version
+            return
+            ;;
+
+    esac
+
+    local word_list=" cami-filter create-taxdump filter genautocomplete lca lineage list name2taxid profile2cami reformat taxid-changelog version --data-dir -h --help --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_taxonkit_camifilter()
+{
+    local word_list="  - - - - --field-percentage --field-rank --field-taxid --field-taxpath --field-taxpathsn -h --help --leaf-ranks --show-rank --taxid-sep -t --taxids -f --taxids-file --data-dir --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_taxonkit_createtaxdump()
+{
+    local word_list="  -A --field-accession -S --field-accession-as-subspecies --field-accession-re --force --gtdb --gtdb-re-subs -h --help --line-chunk-size --null -x --old-taxdump-dir -O --out-dir -R --rank-names --data-dir --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_taxonkit_filter()
+{
+    local word_list="  -B --black-list -N --discard-noranks -R --discard-root -E --equal-to -h --help -H --higher-than --list-order --list-ranks -L --lower-than -r --rank-file --root-taxid -n --save-predictable-norank -i --taxid-field --data-dir --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_taxonkit_genautocomplete()
+{
+    local word_list="  --file -h --help --shell --data-dir --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_taxonkit_lca()
+{
+    local word_list="  -h --help -s --separater -D --skip-deleted -U --skip-unfound -i --taxids-field --data-dir --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_taxonkit_lineage()
+{
+    local word_list="  - - -d --delimiter -h --help -L --no-lineage -R --show-lineage-ranks -t --show-lineage-taxids -n --show-name -r --show-rank -c --show-status-code -i --taxid-field --data-dir --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_taxonkit_list()
+{
+    local word_list="  -h --help -i --ids -I --indent -J --json -n --show-name -r --show-rank --data-dir --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_taxonkit_name2taxid()
+{
+    local word_list="  -h --help -i --name-field -s --sci-name -r --show-rank --data-dir --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_taxonkit_profile2cami()
+{
+    local word_list="  -a --abundance-field -h --help -0 --keep-zero -p --percentage -R --recompute-abd -s --sample-id -r --show-rank -i --taxid-field -t --taxonomy-id --data-dir --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_taxonkit_reformat()
+{
+    local word_list="  - -P --add-prefix -d --delimiter -F --fill-miss-rank -f --format -h --help -i --lineage-field -r --miss-rank-repl -p --miss-rank-repl-prefix -R --miss-taxid-repl -a --output-ambiguous-result --prefix-K --prefix-S --prefix-T --prefix-c --prefix-f --prefix-g --prefix-k --prefix-o --prefix-p --prefix-s --prefix-t -S --pseudo-strain -t --show-lineage-taxids -I --taxid-field -T --trim --data-dir --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_taxonkit_taxidchangelog()
+{
+    local word_list="  --immediate-output -i --archive -h --help --data-dir --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_taxonkit_version()
+{
+    local word_list="  -u --check-update -h --help --data-dir --line-buffered -o --out-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _taxonkit taxonkit

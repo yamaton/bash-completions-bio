@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_hisat2build()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -c --large-index -a --noauto -p --bmax --bmaxdivn --dcv --nodc -r --noref -3 --justref -o --offrate -t --ftabchars --localoffrate --localftabchars --snp --haplotype --ss --exon --repeat-ref --repeat-info --repeat-snp --repeat-haplotype --seed -q --quiet -h --help --usage --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _hisat2build hisat2-build

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_vcfannotate()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -b --bed -k --key -d --default"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _vcfannotate vcfannotate

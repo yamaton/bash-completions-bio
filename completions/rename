@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_rename()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --man -0 --null -f --force -g --glob -i --interactive -k --backwards --reverse-order -l --symlink -L --hardlink -M --use -n --dry-run --just-print -N --counter-format -p --mkpath --make-dirs --stdin --no-stdin -T --transcode -v --verbose -a --append -A --prepend -c --lower-case -C --upper-case -e --expr -P --pipe -s --subst -S --subst-all -x --remove-extension -X --keep-extension -z --sanitize --camelcase --urlesc --nows --rews --noctrl --nometa --trim"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _rename rename

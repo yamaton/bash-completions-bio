@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_TransDecoderPredict()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -t --retain_long_orfs_mode --retain_long_orfs_length --retain_pfam_hits --retain_blastp_hits --single_best_only --output_dir -O -G --no_refine_starts -T --genetic_code --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _TransDecoderPredict TransDecoder.Predict

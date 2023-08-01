@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_vcfevenregions()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -f --fasta-reference -n --number-of-regions -p --number-of-positions -o --offset -l --overlap -s --separator"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _vcfevenregions vcfevenregions

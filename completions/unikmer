@@ -1,0 +1,276 @@
+# Auto-generated with h2o
+
+_unikmer()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" autocompletion common concat count decode diff dump encode filter grep head info inter locate merge num rfilter sample sort split tsplit union uniqs version view"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        autocompletion) _unikmer_autocompletion
+            return
+            ;;
+
+        common) _unikmer_common
+            return
+            ;;
+
+        concat) _unikmer_concat
+            return
+            ;;
+
+        count) _unikmer_count
+            return
+            ;;
+
+        decode) _unikmer_decode
+            return
+            ;;
+
+        diff) _unikmer_diff
+            return
+            ;;
+
+        dump) _unikmer_dump
+            return
+            ;;
+
+        encode) _unikmer_encode
+            return
+            ;;
+
+        filter) _unikmer_filter
+            return
+            ;;
+
+        grep) _unikmer_grep
+            return
+            ;;
+
+        head) _unikmer_head
+            return
+            ;;
+
+        info) _unikmer_info
+            return
+            ;;
+
+        inter) _unikmer_inter
+            return
+            ;;
+
+        locate) _unikmer_locate
+            return
+            ;;
+
+        merge) _unikmer_merge
+            return
+            ;;
+
+        num) _unikmer_num
+            return
+            ;;
+
+        rfilter) _unikmer_rfilter
+            return
+            ;;
+
+        sample) _unikmer_sample
+            return
+            ;;
+
+        sort) _unikmer_sort
+            return
+            ;;
+
+        split) _unikmer_split
+            return
+            ;;
+
+        tsplit) _unikmer_tsplit
+            return
+            ;;
+
+        union) _unikmer_union
+            return
+            ;;
+
+        uniqs) _unikmer_uniqs
+            return
+            ;;
+
+        version) _unikmer_version
+            return
+            ;;
+
+        view) _unikmer_view
+            return
+            ;;
+
+    esac
+
+    local word_list=" autocompletion common concat count decode diff dump encode filter grep head info inter locate merge num rfilter sample sort split tsplit union uniqs version view -c --compact --compression-level --data-dir -h --help -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_autocompletion()
+{
+    local word_list="  --file -h --help --shell -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_common()
+{
+    local word_list="  -h --help -m --mix-taxid -n --number -o --out-prefix -p --proportion -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_concat()
+{
+    local word_list="  -h --help -n --number -o --out-prefix -s --sorted -t --taxid -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_count()
+{
+    local word_list="  -K --canonical --circular -H --hash -h --help -k --kmer-len -l --linear -W --minimizer-w -V --more-verbose -o --out-prefix -T --parse-taxid -r --parse-taxid-regexp -d --repeated -D --scale -B --seq-name-filter -s --sort -S --syncmer-s -t --taxid -u --unique -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_decode()
+{
+    local word_list="  -a --all -h --help -k --kmer-len -o --out-file -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_diff()
+{
+    local word_list="  -t --compare-taxid -h --help -o --out-prefix -s --sort -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_dump()
+{
+    local word_list="  -K --canonical -O --canonical-only -H --hash --hashed -h --help -k --kmer-len -o --out-prefix -s --sorted -t --taxid -u --unique -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_encode()
+{
+    local word_list="  -a --all -K --canonical -H --hash -h --help -o --out-file -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_filter()
+{
+    local word_list="  -h --help -v --invert -o --out-prefix -d --penalty-d -s --penalty-s -t --threshold -w --window -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_grep()
+{
+    local word_list="  -D --degenerate --force -h --help -v --invert-match -m --multiple-outfiles -O --out-dir -o --out-prefix -S --out-suffix -q --query -f --query-file -t --query-is-taxid -F --query-unik-file -d --repeated -s --sort -u --unique -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_head()
+{
+    local word_list="  -h --help -n --number -o --out-prefix -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_info()
+{
+    local word_list="  -a --all -b --basename -h --help -o --out-file -e --skip-err --symbol-false --symbol-true -T --tabular -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_inter()
+{
+    local word_list="  -h --help -m --mix-taxid -o --out-prefix -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_locate()
+{
+    local word_list="  --circular -g --genome -h --help -o --out-prefix -B --seq-name-filter -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_merge()
+{
+    local word_list="  --force -h --help -D --is-dir -k --keep-tmp-dir -M --max-open-files -o --out-prefix -p --pattern -d --repeated -t --tmp-dir -u --unique -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_num()
+{
+    local word_list="  -b --basename -n --file-name -f --force -h --help -o --out-file -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_rfilter()
+{
+    local word_list="  -B --black-list -N --discard-noranks -R --discard-root -E --equal-to -h --help -H --higher-than --list-order --list-ranks -L --lower-than -o --out-prefix -r --rank-file --root-taxid -n --save-predictable-norank -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_sample()
+{
+    local word_list="  -h --help -o --out-prefix -s --start -w --window -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_sort()
+{
+    local word_list="  -m --chunk-size --force -h --help -k --keep-tmp-dir -M --max-open-files -o --out-prefix -d --repeated -t --tmp-dir -u --unique -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_split()
+{
+    local word_list="  -m --chunk-size --force -h --help -O --out-dir -d --repeated -u --unique -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_tsplit()
+{
+    local word_list="  --force -h --help -O --out-dir -o --out-prefix -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_union()
+{
+    local word_list="  -h --help -o --out-prefix -s --sort -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_uniqs()
+{
+    local word_list="  -M --allow-multiple-mapped-kmer --circular -g --genome -h --help -x --max-cont-non-uniq-kmers -X --max-num-cont-non-uniq-kmers -m --min-len -o --out-prefix -a --output-fasta -B --seq-name-filter -W --seqs-in-a-file-as-one-genome -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_version()
+{
+    local word_list="  -u --check-update -h --help -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_unikmer_view()
+{
+    local word_list="  -a --fasta -q --fastq -g --genome -h --help -o --out-file -n --show-code -N --show-code-only -t --show-taxid -T --show-taxid-only -c --compact --compression-level --data-dir -I --ignore-taxid -i --infile-list --max-taxid -C --no-compress --nocheck-file -j --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _unikmer unikmer

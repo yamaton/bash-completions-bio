@@ -1,0 +1,66 @@
+# Auto-generated with h2o
+
+_kmctools()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" transform simple complex filter"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        transform) _kmctools_transform
+            return
+            ;;
+
+        simple) _kmctools_simple
+            return
+            ;;
+
+        complex) _kmctools_complex
+            return
+            ;;
+
+        filter) _kmctools_filter
+            return
+            ;;
+
+    esac
+
+    local word_list=" transform simple complex filter -t -v -hp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmctools_transform()
+{
+    local word_list="  -t -v -hp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmctools_simple()
+{
+    local word_list="  -t -v -hp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmctools_complex()
+{
+    local word_list="  -t -v -hp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kmctools_filter()
+{
+    local word_list="  -t -v -hp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _kmctools kmc_tools

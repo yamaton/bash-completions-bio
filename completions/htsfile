@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_htsfile()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -c --view -C --copy -h --header-only -H --no-header -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _htsfile htsfile

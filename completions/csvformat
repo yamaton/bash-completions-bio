@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_csvformat()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -d --delimiter -t --tabs -q --quotechar -u --quoting -b --no-doublequote -p --escapechar -z --maxfieldsize -e --encoding -S --skipinitialspace -H --no-header-row -K --skip-lines -v --verbose -l --linenumbers --zero -V --version -D --out-delimiter -T --out-tabs -Q --out-quotechar -U --out-quoting -B --out-no-doublequote -P --out-escapechar -M --out-lineterminator"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _csvformat csvformat

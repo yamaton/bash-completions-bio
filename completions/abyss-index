@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_abyssindex()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --both --fai --fm --fa2bwt --bwt2fm -a --alphabet --alpha --dna --protein -s --sample -d --decompress -c --stdout -v --verbose --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _abyssindex abyss-index

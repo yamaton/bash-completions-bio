@@ -1,0 +1,86 @@
+# Auto-generated with h2o
+
+_yak()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" count qv triobin trioeval inspect version"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        count) _yak_count
+            return
+            ;;
+
+        qv) _yak_qv
+            return
+            ;;
+
+        triobin) _yak_triobin
+            return
+            ;;
+
+        trioeval) _yak_trioeval
+            return
+            ;;
+
+        inspect) _yak_inspect
+            return
+            ;;
+
+        version) _yak_version
+            return
+            ;;
+
+    esac
+
+    local word_list=" count qv triobin trioeval inspect version "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_yak_count()
+{
+    local word_list="  -k -p -b -H -t -o -K"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_yak_qv()
+{
+    local word_list="  -l -f -e -p -t -K"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_yak_triobin()
+{
+    local word_list="  -c -d -t"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_yak_trioeval()
+{
+    local word_list="  -c -d -n -t"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_yak_inspect()
+{
+    local word_list="  -m"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_yak_version()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _yak yak

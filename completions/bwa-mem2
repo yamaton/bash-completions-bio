@@ -1,0 +1,56 @@
+# Auto-generated with h2o
+
+_bwamem2()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" index mem version"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        index) _bwamem2_index
+            return
+            ;;
+
+        mem) _bwamem2_mem
+            return
+            ;;
+
+        version) _bwamem2_version
+            return
+            ;;
+
+    esac
+
+    local word_list=" index mem version "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwamem2_index()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwamem2_mem()
+{
+    local word_list="  -o -t -k -w -d -r -y -c -D -W -m -S -P -A -B -O -O -E -E -L -L -U -p -R -H -j -5 -q -K -v -T -h -a -C -V -Y -M -I"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bwamem2_version()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bwamem2 bwa-mem2

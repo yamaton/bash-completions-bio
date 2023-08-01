@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_velveth()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -fasta -fastq -raw -fasta.gz -fastq.gz -raw.gz -sam -bam -fmtAuto -interleaved -separate -short -shortPaired -short2 -shortPaired2 -short3 -shortPaired3 -short4 -shortPaired4 -long -longPaired -reference -strand_specific -reuse_Sequences -reuse_binary -noHash -create_binary"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _velveth velveth

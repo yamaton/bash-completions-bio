@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_cuteSV()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --version -v -t --threads -b --batches -S --sample --retain_work_dir --report_readid -p --max_split_parts -q --min_mapq -r --min_read_len -md --merge_del_threshold -mi --merge_ins_threshold -s --min_support -l --min_size -L --max_size -sl --min_siglength --genotype --gt_round -Ivcf --max_cluster_bias_INS --diff_ratio_merging_INS --max_cluster_bias_DEL --diff_ratio_merging_DEL --max_cluster_bias_INV --max_cluster_bias_DUP --max_cluster_bias_TRA --diff_ratio_filtering_TRA --remain_reads_ratio"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _cuteSV cuteSV

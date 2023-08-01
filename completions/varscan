@@ -1,0 +1,199 @@
+# Auto-generated with h2o
+
+_varscan()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" pileup2snp pileup2indel pileup2cns mpileup2snp mpileup2indel mpileup2cns somatic readcounts filter somaticFilter fpfilter processSomatic copyCaller compare limit"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        pileup2snp) _varscan_pileup2snp
+            return
+            ;;
+
+        pileup2indel) _varscan_pileup2indel
+            return
+            ;;
+
+        pileup2cns) _varscan_pileup2cns
+            return
+            ;;
+
+        mpileup2snp) _varscan_mpileup2snp
+            return
+            ;;
+
+        mpileup2indel) _varscan_mpileup2indel
+            return
+            ;;
+
+        mpileup2cns) _varscan_mpileup2cns
+            return
+            ;;
+
+        somatic) _varscan_somatic
+            return
+            ;;
+
+        readcounts) _varscan_readcounts
+            return
+            ;;
+
+        filter) _varscan_filter
+            return
+            ;;
+
+        somaticFilter) _varscan_somaticFilter
+            return
+            ;;
+
+        fpfilter) _varscan_fpfilter
+            return
+            ;;
+
+        processSomatic) _varscan_processSomatic
+            return
+            ;;
+
+        copyCaller) _varscan_copyCaller
+            return
+            ;;
+
+        compare) _varscan_compare
+            return
+            ;;
+
+        limit) _varscan_limit
+            return
+            ;;
+
+    esac
+
+    local word_list=" pileup2snp pileup2indel pileup2cns mpileup2snp mpileup2indel mpileup2cns somatic readcounts filter somaticFilter fpfilter processSomatic copyCaller compare limit "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_pileup2snp()
+{
+    local word_list="  --min-coverage --min-reads2 --min-avg-qual --min-var-freq --min-freq-for-hom --p-value --variants"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_pileup2indel()
+{
+    local word_list="  --min-coverage --min-reads2 --min-avg-qual --min-var-freq --min-freq-for-hom --p-value --variants"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_pileup2cns()
+{
+    local word_list="  --min-coverage --min-reads2 --min-avg-qual --min-var-freq --min-freq-for-hom --p-value --variants"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_mpileup2snp()
+{
+    local word_list="  --min-coverage --min-reads2 --min-avg-qual --min-var-freq --min-freq-for-hom --p-value --vcf-sample-list --variants"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_mpileup2indel()
+{
+    local word_list="  --min-coverage --min-reads2 --min-avg-qual --min-var-freq --min-freq-for-hom --p-value --vcf-sample-list --variants"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_mpileup2cns()
+{
+    local word_list="  --min-coverage --min-reads2 --min-avg-qual --min-var-freq --min-freq-for-hom --p-value --vcf-sample-list --variants"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_somatic()
+{
+    local cmd i subcommands
+    local subcommands=" normal_pileup"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        normal_pileup) _varscan_somatic_normalpileup
+            return
+            ;;
+
+    esac
+
+    local word_list=" normal_pileup --min-freq-for-hom --normal-purity - --normal-purity - --normal-purity - --tumor-purity - --tumor-purity - --tumor-purity -"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_somatic_normalpileup()
+{
+    local word_list="  --min-freq-for-hom --normal-purity - --normal-purity - --normal-purity - --tumor-purity - --tumor-purity - --tumor-purity -"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_readcounts()
+{
+    local word_list="  --variants-file --output-file --min-coverage --min-base-qual"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_filter()
+{
+    local word_list="  --min-coverage --min-reads2 --min-strands2 --min-avg-qual --min-var-freq --p-value --indel-file --output-file"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_somaticFilter()
+{
+    local word_list="  --min-coverage --min-reads2 --min-strands2 --min-var-freq --p-value --indel-file --output-file"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_fpfilter()
+{
+    local word_list="  --output-file --filtered-file --dream3-settings --keep-failures --min-var-count --min-var-count-lc --min-var-freq --max-somatic-p --max-somatic-p-depth --min-ref-readpos --min-var-readpos --min-ref-dist3 --min-var-dist3 --min-strandedness --min-strand-reads --min-ref-basequal --min-var-basequal --max-basequal-diff --min-ref-avgrl --min-var-avgrl --max-rl-diff --max-ref-mmqs --max-var-mmqs --min-mmqs-diff --max-mmqs-diff --min-ref-mapqual --min-var-mapqual --max-mapqual-diff"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_processSomatic()
+{
+    local word_list="  --min-tumor-freq --max-normal-freq --p-value"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_copyCaller()
+{
+    local word_list="  --output-file --output-homdel-file --min-coverage --min-tumor-coverage --max-homdel-coverage --min-region-size --recenter-up --recenter-down"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_compare()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_varscan_limit()
+{
+    local word_list="  --positions-file --regions-file --margin-size --output-file --not-file"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _varscan varscan

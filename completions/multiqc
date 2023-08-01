@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_multiqc()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --force -f --config -c --cl-config --filename -n --outdir -o --ignore -x --ignore-samples --ignore-symlinks --file-list -l --module -m --exclude -e --tag --view-tags --dirs -d --dirs-depth -dd --fullnames -s --fn_as_s_name --replace-names --title -i --comment -b --template -t --sample-names --sample-filters --custom-css-file --flat -fp --interactive -ip --export -p --data-dir --no-data-dir --data-format -k --zip-data-dir -z --no-report --pdf --verbose -v --quiet -q --lint --profile-runtime --no-megaqc-upload --no-ansi --version --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _multiqc multiqc

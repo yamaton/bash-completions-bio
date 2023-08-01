@@ -1,0 +1,126 @@
+# Auto-generated with h2o
+
+_sambamba()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" view index merge sort slice markdup subsample flagstat depth validate"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        view) _sambamba_view
+            return
+            ;;
+
+        index) _sambamba_index
+            return
+            ;;
+
+        merge) _sambamba_merge
+            return
+            ;;
+
+        sort) _sambamba_sort
+            return
+            ;;
+
+        slice) _sambamba_slice
+            return
+            ;;
+
+        markdup) _sambamba_markdup
+            return
+            ;;
+
+        subsample) _sambamba_subsample
+            return
+            ;;
+
+        flagstat) _sambamba_flagstat
+            return
+            ;;
+
+        depth) _sambamba_depth
+            return
+            ;;
+
+        validate) _sambamba_validate
+            return
+            ;;
+
+    esac
+
+    local word_list=" view index merge sort slice markdup subsample flagstat depth validate "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sambamba_view()
+{
+    local word_list="  --num-filter -f --format -h --with-header -H --header -I --reference-info -L --regions -c --count -v --valid -S --sam-input -T --ref-filename -p --show-progress -l --compression-level -o --output-filename -t --nthreads -s --subsample --subsampling-seed"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sambamba_index()
+{
+    local word_list="  -p --show-progress -c --check-bins -F --fasta-input"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sambamba_merge()
+{
+    local word_list="  -l --compression-level -H --header -p --show-progress -F --filter"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sambamba_sort()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sambamba_slice()
+{
+    local word_list="  -F --fasta-input -L --regions"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sambamba_markdup()
+{
+    local word_list="  -t --nthreads -l --compression-level -p --show-progress --tmpdir --hash-table-size --overflow-list-size --sort-buffer-size --io-buffer-size"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sambamba_subsample()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sambamba_flagstat()
+{
+    local word_list="  -p --show-progress -b --tabular"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sambamba_depth()
+{
+    local word_list="  -F --filter -o --output-file -t --nthreads -c --min-coverage -C --max-coverage -q --min-base-quality --combined -a --annotate -m --fix-mate-overlaps -L --regions -z --report-zero-coverage -L --regions -T --cov-threshold -w --window-size --overlap -T --cov-threshold"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sambamba_validate()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _sambamba sambamba

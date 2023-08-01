@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_spliceai()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -I -O -R -A -D -M"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _spliceai spliceai

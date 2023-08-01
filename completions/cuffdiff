@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_cuffdiff()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -o --output-dir -L --labels --FDR -M --mask-file -C --contrast-file -b --frag-bias-correct -u --multi-read-correct -p --num-threads --no-diff --no-js-tests -T --time-series --library-type --dispersion-method --library-norm-method -m --frag-len-mean -s --frag-len-std-dev -c --min-alignment-count --max-mle-iterations --compatible-hits-norm --total-hits-norm -v --verbose -q --quiet --seed --no-update-check --emit-count-tables --max-bundle-frags --num-frag-count-draws --num-frag-assign-draws --max-frag-multihits --min-outlier-p --min-reps-for-js-test --no-effective-length-correction --no-length-correction -N --upper-quartile-norm --geometric-norm --raw-mapped-norm --poisson-dispersion --read-skip-fraction --no-read-pairs --trim-read-length --no-scv-correction"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _cuffdiff cuffdiff

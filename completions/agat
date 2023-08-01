@@ -1,0 +1,66 @@
+# Auto-generated with h2o
+
+_agat()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" levels config help commands"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        levels) _agat_levels
+            return
+            ;;
+
+        config) _agat_config
+            return
+            ;;
+
+        help) _agat_help
+            return
+            ;;
+
+        commands) _agat_commands
+            return
+            ;;
+
+    esac
+
+    local word_list=" levels config help commands --help -h --version -v --tools -t --info -i"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_agat_levels()
+{
+    local word_list="  --help --expose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_agat_config()
+{
+    local word_list="  --help --expose --verbose --progress_bar --no-progress_bar --log --no-log --debug --no-debug --tabix --no-tabix --merge_loci --no-merge_loci --force_gff_input_version --create_l3_for_l2_orphan --no-create_l3_for_l2_orphan --locus_tag --check_all_level3_locations --no-check_all_level3_locations --check_cds --no-check_cds --check_exons --no-check_exons"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_agat_help()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_agat_commands()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _agat agat

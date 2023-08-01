@@ -1,0 +1,666 @@
+# Auto-generated with h2o
+
+_planemo()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" autoupdate ci_find_repos ci_find_tools ci_setup clone conda_build conda_env conda_init conda_install conda_search config_init container_register create_alias create_gist database_create database_delete database_list delete_alias docker_build docker_shell dockstore_init docs lint list_alias list_invocations list_repos merge_test_reports mull mulled_init normalize open profile_create profile_delete profile_list project_init pull_request rerun run serve share_test shed_build shed_create shed_diff shed_download shed_init shed_lint shed_serve shed_test shed_update shed_upload syntax test test_reports tool_init training_fill_data_library training_generate_from_wf training_init upload_data workflow_convert workflow_edit workflow_job_init workflow_lint workflow_test_init workflow_upload"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        autoupdate) _planemo_autoupdate
+            return
+            ;;
+
+        ci_find_repos) _planemo_cifindrepos
+            return
+            ;;
+
+        ci_find_tools) _planemo_cifindtools
+            return
+            ;;
+
+        ci_setup) _planemo_cisetup
+            return
+            ;;
+
+        clone) _planemo_clone
+            return
+            ;;
+
+        conda_build) _planemo_condabuild
+            return
+            ;;
+
+        conda_env) _planemo_condaenv
+            return
+            ;;
+
+        conda_init) _planemo_condainit
+            return
+            ;;
+
+        conda_install) _planemo_condainstall
+            return
+            ;;
+
+        conda_search) _planemo_condasearch
+            return
+            ;;
+
+        config_init) _planemo_configinit
+            return
+            ;;
+
+        container_register) _planemo_containerregister
+            return
+            ;;
+
+        create_alias) _planemo_createalias
+            return
+            ;;
+
+        create_gist) _planemo_creategist
+            return
+            ;;
+
+        database_create) _planemo_databasecreate
+            return
+            ;;
+
+        database_delete) _planemo_databasedelete
+            return
+            ;;
+
+        database_list) _planemo_databaselist
+            return
+            ;;
+
+        delete_alias) _planemo_deletealias
+            return
+            ;;
+
+        docker_build) _planemo_dockerbuild
+            return
+            ;;
+
+        docker_shell) _planemo_dockershell
+            return
+            ;;
+
+        dockstore_init) _planemo_dockstoreinit
+            return
+            ;;
+
+        docs) _planemo_docs
+            return
+            ;;
+
+        lint) _planemo_lint
+            return
+            ;;
+
+        list_alias) _planemo_listalias
+            return
+            ;;
+
+        list_invocations) _planemo_listinvocations
+            return
+            ;;
+
+        list_repos) _planemo_listrepos
+            return
+            ;;
+
+        merge_test_reports) _planemo_mergetestreports
+            return
+            ;;
+
+        mull) _planemo_mull
+            return
+            ;;
+
+        mulled_init) _planemo_mulledinit
+            return
+            ;;
+
+        normalize) _planemo_normalize
+            return
+            ;;
+
+        open) _planemo_open
+            return
+            ;;
+
+        profile_create) _planemo_profilecreate
+            return
+            ;;
+
+        profile_delete) _planemo_profiledelete
+            return
+            ;;
+
+        profile_list) _planemo_profilelist
+            return
+            ;;
+
+        project_init) _planemo_projectinit
+            return
+            ;;
+
+        pull_request) _planemo_pullrequest
+            return
+            ;;
+
+        rerun) _planemo_rerun
+            return
+            ;;
+
+        run) _planemo_run
+            return
+            ;;
+
+        serve) _planemo_serve
+            return
+            ;;
+
+        share_test) _planemo_sharetest
+            return
+            ;;
+
+        shed_build) _planemo_shedbuild
+            return
+            ;;
+
+        shed_create) _planemo_shedcreate
+            return
+            ;;
+
+        shed_diff) _planemo_sheddiff
+            return
+            ;;
+
+        shed_download) _planemo_sheddownload
+            return
+            ;;
+
+        shed_init) _planemo_shedinit
+            return
+            ;;
+
+        shed_lint) _planemo_shedlint
+            return
+            ;;
+
+        shed_serve) _planemo_shedserve
+            return
+            ;;
+
+        shed_test) _planemo_shedtest
+            return
+            ;;
+
+        shed_update) _planemo_shedupdate
+            return
+            ;;
+
+        shed_upload) _planemo_shedupload
+            return
+            ;;
+
+        syntax) _planemo_syntax
+            return
+            ;;
+
+        test) _planemo_test
+            return
+            ;;
+
+        test_reports) _planemo_testreports
+            return
+            ;;
+
+        tool_init) _planemo_toolinit
+            return
+            ;;
+
+        training_fill_data_library) _planemo_trainingfilldatalibrary
+            return
+            ;;
+
+        training_generate_from_wf) _planemo_traininggeneratefromwf
+            return
+            ;;
+
+        training_init) _planemo_traininginit
+            return
+            ;;
+
+        upload_data) _planemo_uploaddata
+            return
+            ;;
+
+        workflow_convert) _planemo_workflowconvert
+            return
+            ;;
+
+        workflow_edit) _planemo_workflowedit
+            return
+            ;;
+
+        workflow_job_init) _planemo_workflowjobinit
+            return
+            ;;
+
+        workflow_lint) _planemo_workflowlint
+            return
+            ;;
+
+        workflow_test_init) _planemo_workflowtestinit
+            return
+            ;;
+
+        workflow_upload) _planemo_workflowupload
+            return
+            ;;
+
+    esac
+
+    local word_list=" autoupdate ci_find_repos ci_find_tools ci_setup clone conda_build conda_env conda_init conda_install conda_search config_init container_register create_alias create_gist database_create database_delete database_list delete_alias docker_build docker_shell dockstore_init docs lint list_alias list_invocations list_repos merge_test_reports mull mulled_init normalize open profile_create profile_delete profile_list project_init pull_request rerun run serve share_test shed_build shed_create shed_diff shed_download shed_init shed_lint shed_serve shed_test shed_update shed_upload syntax test test_reports tool_init training_fill_data_library training_generate_from_wf training_init upload_data workflow_convert workflow_edit workflow_job_init workflow_lint workflow_test_init workflow_upload --version -v --verbose --config --directory --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_autoupdate()
+{
+    local word_list="  --dry-run -r --recursive --test --skiplist --skip_requirements --update_test_data --paste_test_data_paths --no_paste_test_data_paths --test_output --test_output_text --test_output_markdown --test_output_xunit --test_output_junit --test_output_allure --test_output_json --job_output_files --summary --test_timeout --galaxy_root --galaxy_python_version --extra_tools --install_galaxy --galaxy_branch --galaxy_source --skip_venv --no_cache_galaxy --no_cleanup --galaxy_email --docker --no_docker --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --mulled_containers --biocontainers --galaxy_startup_timeout --job_config_file --tool_dependency_dir --tool_data_path --test_data --tool_data_table --dependency_resolvers_config_file --brew_dependency_resolution --shed_dependency_resolution --no_dependency_resolution --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --conda_dependency_resolution --conda_auto_install --no_conda_auto_install --conda_auto_init --no_conda_auto_init --simultaneous_uploads --no_simultaneous_uploads --check_uploads_ok --no_check_uploads_ok --profile --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --file_path --database_connection --shed_tool_conf --shed_tool_path --galaxy_single_user --no_galaxy_single_user --report_level --report_xunit --fail_level --galaxy_url --galaxy_user_key --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_cifindrepos()
+{
+    local word_list="  --exclude --exclude_from --changed_in_commit_range --chunk_count --chunk --output --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_cifindtools()
+{
+    local word_list="  --exclude --exclude_from --changed_in_commit_range --chunk_count --chunk --output --group_tools --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_cisetup()
+{
+    local word_list="  --galaxy_root --galaxy_python_version --extra_tools --install_galaxy --galaxy_branch --galaxy_source --skip_venv --no_cache_galaxy --no_cleanup --galaxy_email --docker --no_docker --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --mulled_containers --biocontainers --galaxy_startup_timeout --job_config_file --tool_dependency_dir --tool_data_path --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_clone()
+{
+    local word_list="  --fork --skip_fork --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_condabuild()
+{
+    local word_list="  --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_condaenv()
+{
+    local word_list="  --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_condainit()
+{
+    local word_list="  --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_condainstall()
+{
+    local word_list="  -r --recursive --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --global --conda_auto_init --no_conda_auto_init --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_condasearch()
+{
+    local word_list="  --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_configinit()
+{
+    local word_list="  --template"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_containerregister()
+{
+    local word_list="  -r --recursive --mulled_namespace --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --output_directory -m --message --pull_request --no_pull_request --force_push --no_force_push --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_createalias()
+{
+    local word_list="  --alias --profile --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_creategist()
+{
+    local word_list="  --link_type --link_type --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_databasecreate()
+{
+    local word_list="  --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_databasedelete()
+{
+    local word_list="  --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_databaselist()
+{
+    local word_list="  --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_deletealias()
+{
+    local word_list="  --alias --profile --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_dockerbuild()
+{
+    local word_list="  --dockerfile --docker_image_cache --docker_cmd --docker_sudo --no_docker_sudo --docker_sudo_cmd --docker_host --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_dockershell()
+{
+    local word_list="  --from_tag --shell --docker_cmd --docker_sudo --no_docker_sudo --docker_sudo_cmd --docker_host --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_dockstoreinit()
+{
+    local word_list="  --publish --no_publish --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_docs()
+{
+    local word_list="  --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_lint()
+{
+    local word_list="  --report_level --report_xunit --fail_level -s --skip --xsd --no_xsd -r --recursive --urls --doi --conda_requirements --biocontainer --biocontainers --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_listalias()
+{
+    local word_list="  --profile --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_listinvocations()
+{
+    local word_list="  --profile --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_listrepos()
+{
+    local word_list="  --exclude --exclude_from --changed_in_commit_range --chunk_count --chunk --output --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_mergetestreports()
+{
+    local word_list="  --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_mull()
+{
+    local word_list="  -r --recursive --mulled_conda_version --mulled_namespace --mulled_command --conda_channels --conda_ensure_channels --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_mulledinit()
+{
+    local word_list="  --mulled_conda_version --mulled_namespace --mulled_command --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_normalize()
+{
+    local word_list="  --expand_macros --skip_reorder --skip_reindent --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_open()
+{
+    local word_list="  --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_profilecreate()
+{
+    local word_list="  --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --engine --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --galaxy_url --galaxy_user_key --galaxy_admin_key --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_profiledelete()
+{
+    local word_list="  --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_profilelist()
+{
+    local word_list="  --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_projectinit()
+{
+    local word_list="  --template"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_pullrequest()
+{
+    local word_list="  -m --message --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_rerun()
+{
+    local word_list="  --profile --galaxy_url --galaxy_user_key --invocation --history --job --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_run()
+{
+    local word_list="  --galaxy_root --galaxy_python_version --extra_tools --install_galaxy --galaxy_branch --galaxy_source --skip_venv --no_cache_galaxy --no_cleanup --galaxy_email --docker --no_docker --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --mulled_containers --biocontainers --galaxy_startup_timeout --job_config_file --tool_dependency_dir --tool_data_path --port --host --test_data --tool_data_table --dependency_resolvers_config_file --brew_dependency_resolution --shed_dependency_resolution --no_dependency_resolution --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --conda_dependency_resolution --conda_auto_install --no_conda_auto_install --conda_auto_init --no_conda_auto_init --simultaneous_uploads --no_simultaneous_uploads --check_uploads_ok --no_check_uploads_ok --profile --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --file_path --database_connection --shed_tool_conf --shed_tool_path --galaxy_single_user --no_galaxy_single_user --cwl --cwl_galaxy_root --tags --output_directory --outdir --output_json --download_outputs --no_download_outputs --engine --non_strict_cwl --no-container --no_container --docker_galaxy_image --docker_extra_volume --ignore_dependency_problems --shed_install --no_shed_install --install_tool_dependencies --no_install_tool_dependencies --install_resolver_dependencies --no_install_resolver_dependencies --install_repository_dependencie --galaxy_url --galaxy_admin_key --galaxy_user_key --history_name --no_wait --update_test_data --paste_test_data_paths --no_paste_test_data_paths --test_output --test_output_text --test_output_markdown --test_output_xunit --test_output_junit --test_output_allure --test_output_json --job_output_files --summary --test_timeout --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_serve()
+{
+    local word_list="  --galaxy_root --galaxy_python_version --extra_tools --install_galaxy --galaxy_branch --galaxy_source --skip_venv --no_cache_galaxy --no_cleanup --galaxy_email --docker --no_docker --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --mulled_containers --biocontainers --galaxy_startup_timeout --job_config_file --tool_dependency_dir --tool_data_path --port --host --engine --non_strict_cwl --docker_galaxy_image --docker_extra_volume --test_data --tool_data_table --dependency_resolvers_config_file --brew_dependency_resolution --shed_dependency_resolution --no_dependency_resolution --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --conda_dependency_resolution --conda_auto_install --no_conda_auto_install --conda_auto_init --no_conda_auto_init --simultaneous_uploads --no_simultaneous_uploads --check_uploads_ok --no_check_uploads_ok --profile --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --file_path --database_connection --shed_tool_conf --shed_tool_path --galaxy_single_user --no_galaxy_single_user --daemon --pid_file --ignore_dependency_problems --skip_client_build --shed_install --no_shed_install --cwl --cwl_galaxy_root --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_sharetest()
+{
+    local word_list="  --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_shedbuild()
+{
+    local word_list="  --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_shedcreate()
+{
+    local word_list="  -r --recursive --fail_fast --owner --name --shed_email --shed_key --shed_key_from_env --shed_password -t --shed_target -m --message --skip_upload --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_sheddiff()
+{
+    local word_list="  --shed_target_source -r --recursive --fail_fast --owner --name --shed_email --shed_key --shed_key_from_env --shed_password -t --shed_target -o --output --shed_target_source --raw --report_xunit --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_sheddownload()
+{
+    local word_list="  -r --recursive --fail_fast --owner --name --shed_email --shed_key --shed_key_from_env --shed_password -t --shed_target --destination --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_shedinit()
+{
+    local word_list="  --from_workflow --description --long_description --remote_repository_url --homepage_url --category --owner --name -f --force --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_shedlint()
+{
+    local word_list="  -r --recursive --fail_fast --report_level --fail_level --tools --xsd --no_xsd --ensure_metadata --urls --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_shedserve()
+{
+    local word_list="  -r --recursive --fail_fast --owner --name --shed_email --shed_key --shed_key_from_env --shed_password -t --shed_target --galaxy_root --galaxy_python_version --extra_tools --install_galaxy --galaxy_branch --galaxy_source --skip_venv --no_cache_galaxy --no_cleanup --galaxy_email --docker --no_docker --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --mulled_containers --biocontainers --galaxy_startup_timeout --job_config_file --tool_dependency_dir --tool_data_path --port --host --engine --non_strict_cwl --docker_galaxy_image --docker_extra_volume --test_data --tool_data_table --dependency_resolvers_config_file --brew_dependency_resolution --shed_dependency_resolution --no_dependency_resolution --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --conda_dependency_resolution --conda_auto_install --no_conda_auto_install --conda_auto_init --no_conda_auto_init --simultaneous_uploads --no_simultaneous_uploads --check_uploads_ok --no_check_uploads_ok --profile --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --file_path --database_connection --shed_tool_conf --shed_tool_path --galaxy_single_user --no_galaxy_single_user --daemon --pid_file --ignore_dependency_problems --skip_client_build --shed_install --no_shed_install --skip_dependencies --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_shedtest()
+{
+    local word_list="  -r --recursive --fail_fast --owner --name --shed_email --shed_key --shed_key_from_env --shed_password -t --shed_target --galaxy_root --galaxy_python_version --extra_tools --install_galaxy --galaxy_branch --galaxy_source --skip_venv --no_cache_galaxy --no_cleanup --galaxy_email --docker --no_docker --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --mulled_containers --biocontainers --galaxy_startup_timeout --job_config_file --tool_dependency_dir --tool_data_path --update_test_data --paste_test_data_paths --no_paste_test_data_paths --test_output --test_output_text --test_output_markdown --test_output_xunit --test_output_junit --test_output_allure --test_output_json --job_output_files --summary --test_timeout --skip_dependencies --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_shedupdate()
+{
+    local word_list="  --report_xunit -r --recursive --fail_fast --owner --name --shed_email --shed_key --shed_key_from_env --shed_password -t --shed_target -m --message --force_repository_creation --check_diff --skip_upload --skip_metadata --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_shedupload()
+{
+    local word_list="  -r --recursive --fail_fast --owner --name --shed_email --shed_key --shed_key_from_env --shed_password -t --shed_target -m --message --force_repository_creation --check_diff --tar_only --tar --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_syntax()
+{
+    local word_list="  --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_test()
+{
+    local word_list="  --failed --polling_backoff --galaxy_root --galaxy_python_version --extra_tools --install_galaxy --galaxy_branch --galaxy_source --skip_venv --no_cache_galaxy --no_cleanup --galaxy_email --docker --no_docker --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --mulled_containers --biocontainers --galaxy_startup_timeout --job_config_file --tool_dependency_dir --tool_data_path --test_data --tool_data_table --dependency_resolvers_config_file --brew_dependency_resolution --shed_dependency_resolution --no_dependency_resolution --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --conda_dependency_resolution --conda_auto_install --no_conda_auto_install --conda_auto_init --no_conda_auto_init --simultaneous_uploads --no_simultaneous_uploads --check_uploads_ok --no_check_uploads_ok --profile --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --file_path --database_connection --shed_tool_conf --shed_tool_path --galaxy_single_user --no_galaxy_single_user --update_test_data --paste_test_data_paths --no_paste_test_data_paths --test_output --test_output_text --test_output_markdown --test_output_xunit --test_output_junit --test_output_allure --test_output_json --job_output_files --summary --test_timeout --engine --non_strict_cwl --no-container --no_container --docker_galaxy_image --docker_extra_volume --ignore_dependency_problems --shed_install --no_shed_install --install_tool_dependencies --no_install_tool_dependencies --install_resolver_dependencies --no_install_resolver_dependencies --install_repository_dependencie --galaxy_url --galaxy_admin_key --galaxy_user_key --history_name --no_wait --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_testreports()
+{
+    local word_list="  --test_output --test_output_text --test_output_markdown --test_output_xunit --test_output_junit --test_output_allure --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_toolinit()
+{
+    local word_list="  -i --id -f --force -t --tool -n --name --version -d --description -c --command --example_command --example_input --example_output --named_output --input --output --help_text --help_from_command --doi --cite_url --test_case --macros --version_command --requirement --container --cwl --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_trainingfilldatalibrary()
+{
+    local word_list="  --topic_name --tutorial_name --zenodo_link --datatypes --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_traininggeneratefromwf()
+{
+    local word_list="  --topic_name --tutorial_name --workflow --galaxy_url --galaxy_api_key --workflow_id --galaxy_root --galaxy_python_version --extra_tools --install_galaxy --galaxy_branch --galaxy_source --skip_venv --no_cache_galaxy --no_cleanup --galaxy_email --docker --no_docker --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --mulled_containers --biocontainers --galaxy_startup_timeout --job_config_file --tool_dependency_dir --tool_data_path --port --host --engine --non_strict_cwl --docker_galaxy_image --docker_extra_volume --test_data --tool_data_table --dependency_resolvers_config_file --brew_dependency_resolution --shed_dependency_resolution --no_dependency_resolution --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --conda_dependency_resolution --conda_auto_install --no_conda_auto_install --conda_auto_init --no_conda_auto_init --simultaneous_uploads --no_simultaneous_uploads --check_uploads_ok --no_check_uploads_ok --profile --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --file_path --database_connection --shed_tool_conf --shed_tool_path --galaxy_single_user --no_galaxy_single_user --daemon --pid_file --ignore_dependency_problems --skip_client_build --shed_install --no_shed_install --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_traininginit()
+{
+    local word_list="  --topic_name --topic_title --topic_summary --topic_target --tutorial_name --tutorial_title --hands_on --slides --workflow --galaxy_url --galaxy_api_key --workflow_id --zenodo_link --datatypes --galaxy_root --galaxy_python_version --extra_tools --install_galaxy --galaxy_branch --galaxy_source --skip_venv --no_cache_galaxy --no_cleanup --galaxy_email --docker --no_docker --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --mulled_containers --biocontainers --galaxy_startup_timeout --job_config_file --tool_dependency_dir --tool_data_path --port --host --engine --non_strict_cwl --docker_galaxy_image --docker_extra_volume --test_data --tool_data_table --dependency_resolvers_config_file --brew_dependency_resolution --shed_dependency_resolution --no_dependency_resolution --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --conda_dependency_resolution --conda_auto_install --no_conda_auto_install --conda_auto_init --no_conda_auto_init --simultaneous_uploads --no_simultaneous_uploads --check_uploads_ok --no_check_uploads_ok --profile --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --file_path --database_connection --shed_tool_conf --shed_tool_path --galaxy_single_user --no_galaxy_single_user --daemon --pid_file --ignore_dependency_problems --skip_client_build --shed_install --no_shed_install --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_uploaddata()
+{
+    local word_list="  --galaxy_root --galaxy_python_version --extra_tools --install_galaxy --galaxy_branch --galaxy_source --skip_venv --no_cache_galaxy --no_cleanup --galaxy_email --docker --no_docker --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --mulled_containers --biocontainers --galaxy_startup_timeout --job_config_file --tool_dependency_dir --tool_data_path --port --host --test_data --tool_data_table --dependency_resolvers_config_file --brew_dependency_resolution --shed_dependency_resolution --no_dependency_resolution --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --conda_dependency_resolution --conda_auto_install --no_conda_auto_install --conda_auto_init --no_conda_auto_init --simultaneous_uploads --no_simultaneous_uploads --check_uploads_ok --no_check_uploads_ok --profile --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --file_path --database_connection --shed_tool_conf --shed_tool_path --galaxy_single_user --no_galaxy_single_user --tags --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_workflowconvert()
+{
+    local word_list="  -f --force -o --output --galaxy_root --galaxy_python_version --extra_tools --install_galaxy --galaxy_branch --galaxy_source --skip_venv --no_cache_galaxy --no_cleanup --galaxy_email --docker --no_docker --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --mulled_containers --biocontainers --galaxy_startup_timeout --job_config_file --tool_dependency_dir --tool_data_path --port --host --engine --non_strict_cwl --docker_galaxy_image --docker_extra_volume --test_data --tool_data_table --dependency_resolvers_config_file --brew_dependency_resolution --shed_dependency_resolution --no_dependency_resolution --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --conda_dependency_resolution --conda_auto_install --no_conda_auto_install --conda_auto_init --no_conda_auto_init --simultaneous_uploads --no_simultaneous_uploads --check_uploads_ok --no_check_uploads_ok --profile --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --file_path --database_connection --shed_tool_conf --shed_tool_path --galaxy_single_user --no_galaxy_single_user --daemon --pid_file --ignore_dependency_problems --skip_client_build --shed_install --no_shed_install --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_workflowedit()
+{
+    local word_list="  --galaxy_root --galaxy_python_version --extra_tools --install_galaxy --galaxy_branch --galaxy_source --skip_venv --no_cache_galaxy --no_cleanup --galaxy_email --docker --no_docker --docker_cmd --docker_sudo --no_docker_sudo --docker_host --docker_sudo_cmd --mulled_containers --biocontainers --galaxy_startup_timeout --job_config_file --tool_dependency_dir --tool_data_path --port --host --engine --non_strict_cwl --docker_galaxy_image --docker_extra_volume --test_data --tool_data_table --dependency_resolvers_config_file --brew_dependency_resolution --shed_dependency_resolution --no_dependency_resolution --conda_prefix --conda_exec --conda_channels --conda_ensure_channels --conda_use_local --conda_dependency_resolution --conda_auto_install --no_conda_auto_install --conda_auto_init --no_conda_auto_init --simultaneous_uploads --no_simultaneous_uploads --check_uploads_ok --no_check_uploads_ok --profile --postgres --database_type --postgres_psql_path --postgres_database_user --postgres_database_host --postgres_database_port --file_path --database_connection --shed_tool_conf --shed_tool_path --galaxy_single_user --no_galaxy_single_user --daemon --pid_file --ignore_dependency_problems --skip_client_build --shed_install --no_shed_install --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_workflowjobinit()
+{
+    local word_list="  -f --force -o --output --galaxy_url --galaxy_user_key --from_invocation --from_uri --profile --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_workflowlint()
+{
+    local word_list="  --report_level --report_xunit --fail_level -s --skip --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_workflowtestinit()
+{
+    local word_list="  -f --force -o --output --split_test --no_split_test --galaxy_url --galaxy_user_key --from_invocation --from_uri --profile --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_planemo_workflowupload()
+{
+    local word_list="  --namespace --github_branch --dry_run --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _planemo planemo

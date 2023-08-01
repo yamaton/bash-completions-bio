@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_phylophlan()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -i --input -c --clean -o --output -d --database -t --db_type -f --config_file --diversity --accurate --fast --clean_all --database_list -s --submat --submat_list --submod_list --nproc --min_num_proteins --min_len_protein --min_num_markers --trim --gap_perc_threshold --not_variant_threshold --subsample --unknown_fraction --scoring_function --sort --remove_fragmentary_entries --fragmentary_threshold --min_num_entries --maas --remove_only_gaps_entries --mutation_rates --force_nucleotides --convert_N2gap --update --citation --verbose -v --version --input_folder --data_folder --databases_folder --submat_folder --submod_folder --configs_folder --output_folder --genome_extension --proteome_extension"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _phylophlan phylophlan

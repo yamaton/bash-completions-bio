@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_svtypersso()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -i --input_vcf -o --output_vcf -B --bam -T --ref_fasta -l --lib_info -m --min_aligned -n -q --sum_quals --max_reads --max_ci_dist --split_weight --disc_weight --cores --batch_size"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _svtypersso svtyper-sso

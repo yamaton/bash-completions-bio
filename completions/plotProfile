@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_plotProfile()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --matrixFile -m --outFileName -out -o --outFileSortedRegions --outFileNameData --dpi --kmeans --hclust --silhouette --help -h --version --averageType --plotHeight --plotWidth --plotType --colors --numPlotsPerRow --clusterUsingSamples --startLabel --endLabel --refPointLabel --labelRotation --regionsLabel -z --samplesLabel --plotTitle -T --yAxisLabel -y --yMin --yMax --legendLocation --perGroup --plotFileFormat --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _plotProfile plotProfile

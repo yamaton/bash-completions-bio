@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_fasterqdump()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -o --outfile -O --outdir -b --bufsize -c --curcache -m --mem -t --temp -e --threads -p --progress -x --details -s --split-spot -S --split-files -3 --split-3 --concatenate-reads -Z --stdout -f --force -N --rowid-as-name --skip-technical --include-technical -P --print-read-nr -M --min-read-len --table --strict -B --bases -A --append --fasta --fasta-unsorted --seq-defline --qual-defline -U --only-unaligned -a --only-aligned --size-check --disk-limit --disk-limit-tmp --ngc --perm --location --cart -V --version -v --verbose -L --log-level --option-file -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _fasterqdump fasterq-dump

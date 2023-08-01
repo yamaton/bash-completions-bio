@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_stringtie()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --version --conservative --mix --rf --fr -G --ptf -o -l -f -L -R -m -a -j -t -c -s -v -g -M -p -A -E -B -b -e --viral -x -u -h --ref --cram-ref --merge -G -o -m -c -F -T -g -i -l"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _stringtie stringtie

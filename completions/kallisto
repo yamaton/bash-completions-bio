@@ -1,0 +1,116 @@
+# Auto-generated with h2o
+
+_kallisto()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" index quant quant-tcc bus merge h5dump inspect version cite"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        index) _kallisto_index
+            return
+            ;;
+
+        quant) _kallisto_quant
+            return
+            ;;
+
+        quant-tcc) _kallisto_quanttcc
+            return
+            ;;
+
+        bus) _kallisto_bus
+            return
+            ;;
+
+        merge) _kallisto_merge
+            return
+            ;;
+
+        h5dump) _kallisto_h5dump
+            return
+            ;;
+
+        inspect) _kallisto_inspect
+            return
+            ;;
+
+        version) _kallisto_version
+            return
+            ;;
+
+        cite) _kallisto_cite
+            return
+            ;;
+
+    esac
+
+    local word_list=" index quant quant-tcc bus merge h5dump inspect version cite "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kallisto_index()
+{
+    local word_list="  -i --index -k --kmer-size --make-unique"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kallisto_quant()
+{
+    local word_list="  -i --index -o --output-dir --bias -b --bootstrap-samples --seed --plaintext --fusion --single --single-overhang --fr-stranded --rf-stranded -l --fragment-length -s --sd -t --threads --pseudobam --genomebam -g --gtf -c --chromosomes --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kallisto_quanttcc()
+{
+    local word_list="  -o --output-dir -i --index -T --txnames -e --ec-file -f --fragment-file -l --fragment-length -s --sd -t --threads -g --genemap -G --gtf -b --bootstrap-samples --seed"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kallisto_bus()
+{
+    local word_list="  -i --index -o --output-dir -x --technology -l --list -B --batch -t --threads -b --bam -n --num -T --tag --fr-stranded --rf-stranded --unstranded --paired --genomebam -g --gtf -c --chromosomes --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kallisto_merge()
+{
+    local word_list="  -i --index -o --output-dir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kallisto_h5dump()
+{
+    local word_list="  -o --output-dir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kallisto_inspect()
+{
+    local word_list="  -G --gfa -g --gtf -b --bed"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kallisto_version()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_kallisto_cite()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _kallisto kallisto

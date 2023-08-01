@@ -1,0 +1,96 @@
+# Auto-generated with h2o
+
+_ivar()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" trim variants filtervariants consensus getmasked removereads version"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        trim) _ivar_trim
+            return
+            ;;
+
+        variants) _ivar_variants
+            return
+            ;;
+
+        filtervariants) _ivar_filtervariants
+            return
+            ;;
+
+        consensus) _ivar_consensus
+            return
+            ;;
+
+        getmasked) _ivar_getmasked
+            return
+            ;;
+
+        removereads) _ivar_removereads
+            return
+            ;;
+
+        version) _ivar_version
+            return
+            ;;
+
+    esac
+
+    local word_list=" trim variants filtervariants consensus getmasked removereads version "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ivar_trim()
+{
+    local word_list="  -i -b -f -x -m -q -s -e -k -p"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ivar_variants()
+{
+    local word_list="  -q -t -m -r -g -p"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ivar_filtervariants()
+{
+    local word_list="  -t -f -p"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ivar_consensus()
+{
+    local word_list="  -q -t -m -k -n -p -i"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ivar_getmasked()
+{
+    local word_list="  -i -b -f -p"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ivar_removereads()
+{
+    local word_list="  -i -t -b -p"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ivar_version()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _ivar ivar

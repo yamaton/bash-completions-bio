@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_unicyclercheck()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help --sam --ref --reads --min_len --error_window_size --depth_window_size --error_rate_threshold --depth_p_val --window_tables --base_tables --html --threads --verbosity"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _unicyclercheck unicycler_check

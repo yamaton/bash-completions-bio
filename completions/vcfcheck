@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_vcfcheck()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -f --fasta-reference -x --exclude-failures -k --keep-failures -h --help -v --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _vcfcheck vcfcheck

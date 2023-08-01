@@ -1,0 +1,126 @@
+# Auto-generated with h2o
+
+_toil()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" clean debug-file debug-job destroy-cluster kill launch-cluster rsync-cluster ssh-cluster stats status"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        clean) _toil_clean
+            return
+            ;;
+
+        debug-file) _toil_debugfile
+            return
+            ;;
+
+        debug-job) _toil_debugjob
+            return
+            ;;
+
+        destroy-cluster) _toil_destroycluster
+            return
+            ;;
+
+        kill) _toil_kill
+            return
+            ;;
+
+        launch-cluster) _toil_launchcluster
+            return
+            ;;
+
+        rsync-cluster) _toil_rsynccluster
+            return
+            ;;
+
+        ssh-cluster) _toil_sshcluster
+            return
+            ;;
+
+        stats) _toil_stats
+            return
+            ;;
+
+        status) _toil_status
+            return
+            ;;
+
+    esac
+
+    local word_list=" clean debug-file debug-job destroy-cluster kill launch-cluster rsync-cluster ssh-cluster stats status "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_toil_clean()
+{
+    local word_list="  -h --help --version --tempDirRoot --logCritical --logError --logWarning --logDebug --logInfo --logOff --logLevel --logFile --rotatingLogging"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_toil_debugfile()
+{
+    local word_list="  -h --help --version --tempDirRoot --localFilePath --fetch --listFilesInJobStore --fetchEntireJobStore --useSymlinks --logCritical --logError --logWarning --logDebug --logInfo --logOff --logLevel --logFile --rotatingLogging"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_toil_debugjob()
+{
+    local word_list="  -h --help --version --tempDirRoot --printJobInfo --logCritical --logError --logWarning --logDebug --logInfo --logOff --logLevel --logFile --rotatingLogging"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_toil_destroycluster()
+{
+    local word_list="  -h --help --version --tempDirRoot --provisioner -p -z --zone --logCritical --logError --logWarning --logDebug --logInfo --logOff --logLevel --logFile --rotatingLogging"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_toil_kill()
+{
+    local word_list="  -h --help --version --tempDirRoot --force --logCritical --logError --logWarning --logDebug --logInfo --logOff --logLevel --logFile --rotatingLogging"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_toil_launchcluster()
+{
+    local word_list="  -h --help --version --tempDirRoot -T --clusterType --leaderNodeType --keyPairName --owner --boto -t --tag --vpcSubnet --nodeTypes -w --workers --leaderStorage --nodeStorage --forceDockerAppliance --awsEc2ProfileArn --awsEc2ExtraSecurityGroupId --provisioner -p -z --zone --logCritical --logError --logWarning --logDebug --logInfo --logOff --logLevel --logFile --rotatingLogging"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_toil_rsynccluster()
+{
+    local word_list="  -h --help --version --tempDirRoot --insecure --provisioner -p -z --zone --logCritical --logError --logWarning --logDebug --logInfo --logOff --logLevel --logFile --rotatingLogging"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_toil_sshcluster()
+{
+    local word_list="  -h --help --version --tempDirRoot --insecure --sshOption --grafana_port --provisioner -p -z --zone --logCritical --logError --logWarning --logDebug --logInfo --logOff --logLevel --logFile --rotatingLogging"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_toil_stats()
+{
+    local word_list="  -h --help --version --tempDirRoot --outputFile --raw --pretty --human --sortReverse --reverseSort --categories --sortCategory --sortField --logCritical --logError --logWarning --logDebug --logInfo --logOff --logLevel --logFile --rotatingLogging"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_toil_status()
+{
+    local word_list="  -h --help --version --tempDirRoot --failIfNotComplete --noAggStats --printDot --jobs --printPerJobStats --printLogs --printChildren --logCritical --logError --logWarning --logDebug --logInfo --logOff --logLevel --logFile --rotatingLogging"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _toil toil

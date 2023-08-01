@@ -1,0 +1,105 @@
+# Auto-generated with h2o
+
+_barrnap()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" barrnap"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        barrnap) _barrnap_barrnap
+            return
+            ;;
+
+    esac
+
+    local word_list=" barrnap --help --version --citation --kingdom --quiet --threads --lencutoff --reject --evalue --incseq --outseq"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_barrnap_barrnap()
+{
+    local cmd i subcommands
+    local subcommands=" barrnap"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        barrnap) _barrnap_barrnap_barrnap
+            return
+            ;;
+
+    esac
+
+    local word_list=" barrnap --help --version --citation --kingdom --quiet --threads --lencutoff --reject --evalue --incseq --outseq"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_barrnap_barrnap_barrnap()
+{
+    local cmd i subcommands
+    local subcommands=" barrnap"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        barrnap) _barrnap_barrnap_barrnap_barrnap
+            return
+            ;;
+
+    esac
+
+    local word_list=" barrnap --help --version --citation --kingdom --quiet --threads --lencutoff --reject --evalue --incseq --outseq"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_barrnap_barrnap_barrnap_barrnap()
+{
+    local cmd i subcommands
+    local subcommands=" barrnap"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        barrnap) _barrnap_barrnap_barrnap_barrnap_barrnap
+            return
+            ;;
+
+    esac
+
+    local word_list=" barrnap --help --version --citation --kingdom --quiet --threads --lencutoff --reject --evalue --incseq --outseq"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_barrnap_barrnap_barrnap_barrnap_barrnap()
+{
+    local word_list="  --help --version --citation --kingdom --quiet --threads --lencutoff --reject --evalue --incseq --outseq"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _barrnap barrnap

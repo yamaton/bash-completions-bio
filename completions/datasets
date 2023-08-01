@@ -1,0 +1,466 @@
+# Auto-generated with h2o
+
+_datasets()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" summary download rehydrate completion"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        summary) _datasets_summary
+            return
+            ;;
+
+        download) _datasets_download
+            return
+            ;;
+
+        rehydrate) _datasets_rehydrate
+            return
+            ;;
+
+        completion) _datasets_completion
+            return
+            ;;
+
+    esac
+
+    local word_list=" summary download rehydrate completion --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary()
+{
+    local cmd i subcommands
+    local subcommands=" gene genome virus"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        gene) _datasets_summary_gene
+            return
+            ;;
+
+        genome) _datasets_summary_genome
+            return
+            ;;
+
+        virus) _datasets_summary_virus
+            return
+            ;;
+
+    esac
+
+    local word_list=" gene genome virus --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary_gene()
+{
+    local cmd i subcommands
+    local subcommands=" gene-id symbol accession taxon"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        gene-id) _datasets_summary_gene_geneid
+            return
+            ;;
+
+        symbol) _datasets_summary_gene_symbol
+            return
+            ;;
+
+        accession) _datasets_summary_gene_accession
+            return
+            ;;
+
+        taxon) _datasets_summary_gene_taxon
+            return
+            ;;
+
+    esac
+
+    local word_list=" gene-id symbol accession taxon --as-json-lines --report --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary_gene_geneid()
+{
+    local word_list="  --inputfile --ortholog --api-key --as-json-lines --debug --help --limit --report --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary_gene_symbol()
+{
+    local word_list="  --inputfile --ortholog --taxon --api-key --as-json-lines --debug --help --limit --report --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary_gene_accession()
+{
+    local word_list="  --inputfile --ortholog --api-key --as-json-lines --debug --help --limit --report --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary_gene_taxon()
+{
+    local word_list="  --api-key --as-json-lines --debug --help --limit --report --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary_genome()
+{
+    local cmd i subcommands
+    local subcommands=" accession taxon"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        accession) _datasets_summary_genome_accession
+            return
+            ;;
+
+        taxon) _datasets_summary_genome_taxon
+            return
+            ;;
+
+    esac
+
+    local word_list=" accession taxon --annotated --as-json-lines --assembly-level --assembly-source --exclude-atypical --limit --reference --released-after --released-before --report --search --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary_genome_accession()
+{
+    local word_list="  --assembly-version --inputfile --annotated --api-key --as-json-lines --assembly-level --assembly-source --debug --exclude-atypical --help --limit --reference --released-after --released-before --report --search --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary_genome_taxon()
+{
+    local word_list="  --assembly-version --annotated --api-key --as-json-lines --assembly-level --assembly-source --debug --exclude-atypical --help --limit --reference --released-after --released-before --report --search --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary_virus()
+{
+    local cmd i subcommands
+    local subcommands=" genome"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        genome) _datasets_summary_virus_genome
+            return
+            ;;
+
+    esac
+
+    local word_list=" genome --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary_virus_genome()
+{
+    local cmd i subcommands
+    local subcommands=" taxon accession"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        taxon) _datasets_summary_virus_genome_taxon
+            return
+            ;;
+
+        accession) _datasets_summary_virus_genome_accession
+            return
+            ;;
+
+    esac
+
+    local word_list=" taxon accession --annotated --as-json-lines --complete-only --geo-location --host --limit --lineage --refseq --released-after --report --updated-after --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary_virus_genome_taxon()
+{
+    local word_list="  --annotated --api-key --as-json-lines --complete-only --debug --geo-location --help --host --limit --lineage --refseq --released-after --report --updated-after --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_summary_virus_genome_accession()
+{
+    local word_list="  --inputfile --annotated --api-key --as-json-lines --complete-only --debug --geo-location --help --host --limit --lineage --refseq --released-after --report --updated-after --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download()
+{
+    local cmd i subcommands
+    local subcommands=" gene genome virus"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        gene) _datasets_download_gene
+            return
+            ;;
+
+        genome) _datasets_download_genome
+            return
+            ;;
+
+        virus) _datasets_download_virus
+            return
+            ;;
+
+    esac
+
+    local word_list=" gene genome virus --filename --no-progressbar --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_gene()
+{
+    local cmd i subcommands
+    local subcommands=" gene-id symbol accession taxon"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        gene-id) _datasets_download_gene_geneid
+            return
+            ;;
+
+        symbol) _datasets_download_gene_symbol
+            return
+            ;;
+
+        accession) _datasets_download_gene_accession
+            return
+            ;;
+
+        taxon) _datasets_download_gene_taxon
+            return
+            ;;
+
+    esac
+
+    local word_list=" gene-id symbol accession taxon --fasta-filter --fasta-filter-file --preview --api-key --debug --filename --help --no-progressbar --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_gene_geneid()
+{
+    local word_list="  --include --inputfile --ortholog --api-key --debug --fasta-filter --fasta-filter-file --filename --help --no-progressbar --preview --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_gene_symbol()
+{
+    local word_list="  --include --inputfile --ortholog --taxon --api-key --debug --fasta-filter --fasta-filter-file --filename --help --no-progressbar --preview --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_gene_accession()
+{
+    local word_list="  --include --include-flanks-bp --inputfile --ortholog --taxon-filter --api-key --debug --fasta-filter --fasta-filter-file --filename --help --no-progressbar --preview --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_gene_taxon()
+{
+    local word_list="  --include --api-key --debug --fasta-filter --fasta-filter-file --filename --help --no-progressbar --preview --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_genome()
+{
+    local cmd i subcommands
+    local subcommands=" taxon accession"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        taxon) _datasets_download_genome_taxon
+            return
+            ;;
+
+        accession) _datasets_download_genome_accession
+            return
+            ;;
+
+    esac
+
+    local word_list=" taxon accession --annotated --assembly-level --assembly-source --chromosomes --dehydrated --exclude-atypical --preview --reference --released-after --released-before --search --api-key --debug --filename --help --no-progressbar --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_genome_taxon()
+{
+    local word_list="  --annotated --api-key --as-json-lines --complete-only --debug --geo-location --help --host --limit --lineage --refseq --released-after --report --updated-after --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_genome_accession()
+{
+    local word_list="  --inputfile --annotated --api-key --as-json-lines --complete-only --debug --geo-location --help --host --limit --lineage --refseq --released-after --report --updated-after --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus()
+{
+    local cmd i subcommands
+    local subcommands=" genome protein"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        genome) _datasets_download_virus_genome
+            return
+            ;;
+
+        protein) _datasets_download_virus_protein
+            return
+            ;;
+
+    esac
+
+    local word_list=" genome protein --api-key --debug --filename --help --no-progressbar --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_genome()
+{
+    local word_list="  --annotated --complete-only --geo-location --host --include --lineage --released-after --updated-after --api-key --debug --filename --help --no-progressbar --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein()
+{
+    local word_list="  --annotated --complete-only --geo-location --host --include --refseq --released-after --updated-after --api-key --debug --filename --help --no-progressbar --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_rehydrate()
+{
+    local word_list="  --directory --gzip --list --match --max-workers --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_completion()
+{
+    local cmd i subcommands
+    local subcommands=" bash zsh fish powershell"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        bash) _datasets_completion_bash
+            return
+            ;;
+
+        zsh) _datasets_completion_zsh
+            return
+            ;;
+
+        fish) _datasets_completion_fish
+            return
+            ;;
+
+        powershell) _datasets_completion_powershell
+            return
+            ;;
+
+    esac
+
+    local word_list=" bash zsh fish powershell --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_completion_bash()
+{
+    local word_list="  --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_completion_zsh()
+{
+    local word_list="  --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_completion_fish()
+{
+    local word_list="  --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_completion_powershell()
+{
+    local word_list="  --api-key --debug --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _datasets datasets

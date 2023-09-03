@@ -5,7 +5,7 @@ _fasterqdump()
     local cur prev words cword
     _init_completion -s || return
 
-    local word_list="  -o --outfile -O --outdir -b --bufsize -c --curcache -m --mem -t --temp -e --threads -p --progress -x --details -s --split-spot -S --split-files -3 --split-3 --concatenate-reads -Z --stdout -f --force -N --rowid-as-name --skip-technical --include-technical -P --print-read-nr -M --min-read-len --table --strict -B --bases -A --append --fasta --fasta-unsorted --seq-defline --qual-defline -U --only-unaligned -a --only-aligned --size-check --disk-limit --disk-limit-tmp --ngc --perm --location --cart -V --version -v --verbose -L --log-level --option-file -h --help"
+    local word_list="  -F --format -o --outfile -O --outdir -b --bufsize -c --curcache -m --mem -t --temp -e --threads -p --progress -x --details -s --split-spot -S --split-files -3 --split-3 --concatenate-reads -Z --stdout -f --force --skip-technical --include-technical -M --min-read-len --table -B --bases -A --append --fasta --fasta-unsorted --fasta-ref-tbl --fasta-concat-all --internal-ref --external-ref --ref-name --ref-report --use-name --seq-defline --qual-defline -U --only-unaligned -a --only-aligned --disk-limit --disk-limit-tmp --size-check --ngc -h --help -V --version -L --log-level -v --verbose -q --quiet --option-file"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

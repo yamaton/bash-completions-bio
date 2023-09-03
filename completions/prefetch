@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_prefetch()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -T --type -t --transport --location -N --min-size -X --max-size -f --force -r --resume -C --verify -p --progress -H --heartbeat --eliminate-quals -c --check-all -S --check-rs -o --order -R --rows --perm --ngc --cart -a --ascp-path --ascp-options -o --output-file -O --output-directory -h --help -V --version -L --log-level -v --verbose -q --quiet --option-file"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _prefetch prefetch

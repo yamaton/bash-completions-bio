@@ -5,7 +5,7 @@ _fastqdump()
     local cur prev words cword
     _init_completion -s || return
 
-    local word_list="  -A --accession --table --split-spot -N --minSpotId -X --maxSpotId --spot-groups -W --clip -M --minReadLen -R --read-filter -E --qual-filter --qual-filter-1 --aligned --unaligned --aligned-region --matepair_distance --skip-technical -O --outdir -Z --stdout --gzip --bzip2 --split-files --split-3 -G --spot-group -T --group-in-dirs -K --keep-empty-files -C --dumpcs -B --dumpbase --fasta --suppress-qual-for-cskey -F --origfmt -I --readids --helicos --defline-seq --defline-qual --ngc --perm --location --cart --disable-multithreading -V --version -v --verbose -L --log-level --option-file -h --help"
+    local word_list="  -A --accession --table --split-spot -N --minSpotId -X --maxSpotId --spot-groups -W --clip -M --minReadLen -R --read-filter -E --qual-filter --qual-filter-1 --aligned --unaligned --aligned-region --matepair-distance --skip-technical -O --outdir -Z --stdout --gzip --bzip2 --split-files --split-3 -G --spot-group -T --group-in-dirs -K --keep-empty-files -C --dumpcs -B --dumpbase -Q --offset --fasta --suppress-qual-for-cskey -F --origfmt -I --readids --helicos --defline-seq --defline-qual --ngc --disable-multithreading -h --help -V --version -L --log-level -v --verbose --ncbi_error_report --legacy-report"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

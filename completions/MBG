@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_MBG()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -v --version -i --in -o --out -t -k -w -a --kmer-abundance -u --unitig-abundance --error-masking --blunt --include-end-kmers --output-sequence-paths -r --resolve-maxk -R --resolve-maxk-allowgaps --node-name-prefix --sequence-cache-file --keep-gaps --hpc-variant-onecopy-coverage --do-unsafe-guesswork-resolutions --copycount-filter-heuristic --only-local-resolve --output-homology-map --no-kmer-filter-inside-unitig --no-multiplex-cleaning"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _MBG MBG

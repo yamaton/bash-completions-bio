@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_verkko()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -d --hifi --nano --no-correction --no-nano --hap-kmers --hic1 --hic2 --no-rdna-tangle --uneven-depth --haplo-divergence --screen --paths --assembly --python --perl --mbg --graphaligner --mashmap --winnowmap --bwa --samtools --cleanup --no-cleanup --local --local-memory --local-cpus --sge --slurm --lsf --snakeopts --sto-run --mer-run --ovb-run --ovs-run --red-run --mbg-run --utg-run --spl-run --ali-run --pop-run --utp-run --lay-run --sub-run --par-run --cns-run --correct-k-mer-size --correct-mer-threshold --correct-mer-filter --correct-min-read-length --correct-min-overlap-length --correct-hash-bits --base-k --max-k --window --threads --unitig-abundance --hifi-coverage --split-bases --split-reads --min-ont-length --seed-min-length --seed-max-length --align-bandwidth --score-fraction --min-identity --min-score --end-clipping --incompatible-cutoff --max-trace"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _verkko verkko

@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_GraphAligner()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -g --graph -f --reads -a --alignments-out --corrected-out --corrected-clipped-out -h --help --version -t --threads --verbose --E-cutoff --min-alignment-score --multimap-score-fraction --max-cluster-extend --seeds-clustersize --seeds-minimizer-length --seeds-minimizer-windowsize --seeds-minimizer-density --seeds-minimizer-ignore-frequent --seeds-mum-count --seeds-mem-count --seeds-mxm-length --seeds-mxm-cache-prefix --seeds-mxm-windowsize -b --bandwidth -C --tangle-effort --X-drop --precise-clipping --max-trace-count -x --preset"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _GraphAligner GraphAligner

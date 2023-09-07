@@ -5,7 +5,7 @@ _datatool()
     local cur prev words cword
     _init_completion -s || return
 
-    local word_list="  "
+    local word_list="  -m -h -help -xmlhelp -M -i -f -fx -fxs -fjs -fd -ms -v -vx -vj -d -tvs -t -dn -F -p -px -pj -xmlns -e -sxo -sxi -oex -od -odi -odw -ods -of -oc -oA -ot -ox -oX -on -opm -oph -opc -or -orq -ors -orm -orA -ocvs -oR -oDc -odx -lax_syntax -pch -logfile -conffile -version -version-full -version-full-xml -version-full-json -dryrun"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

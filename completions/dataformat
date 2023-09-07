@@ -49,7 +49,7 @@ _dataformat()
 _dataformat_tsv()
 {
     local cmd i subcommands
-    local subcommands=" genome genome-seq gene gene-product virus-genome virus-annotation microbigge prok-gene prok-gene-location"
+    local subcommands=" genome genome-seq gene gene-product virus-genome virus-annotation microbigge prok-gene prok-gene-location genome-annotations"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -95,9 +95,13 @@ _dataformat_tsv()
             return
             ;;
 
+        genome-annotations) _dataformat_tsv_genomeannotations
+            return
+            ;;
+
     esac
 
-    local word_list=" genome genome-seq gene gene-product virus-genome virus-annotation microbigge prok-gene prok-gene-location --elide-header -h --help --force"
+    local word_list=" genome genome-seq gene gene-product virus-genome virus-annotation microbigge prok-gene prok-gene-location genome-annotations --elide-header -h --help --force"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -155,10 +159,16 @@ _dataformat_tsv_prokgenelocation()
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
+_dataformat_tsv_genomeannotations()
+{
+    local word_list="  --fields -h --help --inputfile --package --elide-header --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
 _dataformat_excel()
 {
     local cmd i subcommands
-    local subcommands=" genome genome-seq gene gene-product virus-genome virus-annotation microbigge prok-gene prok-gene-location"
+    local subcommands=" genome genome-seq gene gene-product virus-genome virus-annotation microbigge prok-gene prok-gene-location genome-annotations"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -204,9 +214,13 @@ _dataformat_excel()
             return
             ;;
 
+        genome-annotations) _dataformat_excel_genomeannotations
+            return
+            ;;
+
     esac
 
-    local word_list=" genome genome-seq gene gene-product virus-genome virus-annotation microbigge prok-gene prok-gene-location -h --help --outputfile --force"
+    local word_list=" genome genome-seq gene gene-product virus-genome virus-annotation microbigge prok-gene prok-gene-location genome-annotations -h --help --outputfile --force"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -259,6 +273,12 @@ _dataformat_excel_prokgene()
 }
 
 _dataformat_excel_prokgenelocation()
+{
+    local word_list="  --fields -h --help --inputfile --package --force --outputfile"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dataformat_excel_genomeannotations()
 {
     local word_list="  --fields -h --help --inputfile --package --force --outputfile"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )

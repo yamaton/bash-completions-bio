@@ -100,7 +100,7 @@ _datasets_summary_gene()
 
     esac
 
-    local word_list=" gene-id symbol accession taxon --as-json-lines --report --api-key --debug --help --version"
+    local word_list=" gene-id symbol accession taxon --as-json-lines --limit --report --api-key --debug --help --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -151,19 +151,19 @@ _datasets_summary_genome()
 
     esac
 
-    local word_list=" accession taxon --annotated --as-json-lines --assembly-level --assembly-source --exclude-atypical --limit --reference --released-after --released-before --report --search --api-key --debug --help --version"
+    local word_list=" accession taxon --annotated --as-json-lines --assembly-level --assembly-source --exclude-atypical --limit --mag --reference --released-after --released-before --report --search --api-key --debug --help --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _datasets_summary_genome_accession()
 {
-    local word_list="  --assembly-version --inputfile --annotated --api-key --as-json-lines --assembly-level --assembly-source --debug --exclude-atypical --help --limit --reference --released-after --released-before --report --search --version"
+    local word_list="  --assembly-version --inputfile --annotated --api-key --as-json-lines --assembly-level --assembly-source --debug --exclude-atypical --help --limit --mag --reference --released-after --released-before --report --search --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _datasets_summary_genome_taxon()
 {
-    local word_list="  --assembly-version --annotated --api-key --as-json-lines --assembly-level --assembly-source --debug --exclude-atypical --help --limit --reference --released-after --released-before --report --search --version"
+    local word_list="  --assembly-version --annotated --api-key --as-json-lines --assembly-level --assembly-source --debug --exclude-atypical --help --limit --mag --reference --released-after --released-before --report --search --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -322,7 +322,7 @@ _datasets_download_gene_taxon()
 _datasets_download_genome()
 {
     local cmd i subcommands
-    local subcommands=" taxon accession"
+    local subcommands=" accession taxon"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -332,29 +332,29 @@ _datasets_download_genome()
     done
 
     case "$cmd" in
-        taxon) _datasets_download_genome_taxon
+        accession) _datasets_download_genome_accession
             return
             ;;
 
-        accession) _datasets_download_genome_accession
+        taxon) _datasets_download_genome_taxon
             return
             ;;
 
     esac
 
-    local word_list=" taxon accession --annotated --assembly-level --assembly-source --chromosomes --dehydrated --exclude-atypical --preview --reference --released-after --released-before --search --api-key --debug --filename --help --no-progressbar --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_genome_taxon()
-{
-    local word_list="  --annotated --api-key --as-json-lines --complete-only --debug --geo-location --help --host --limit --lineage --refseq --released-after --report --updated-after --version"
+    local word_list=" accession taxon --annotated --assembly-level --assembly-source --chromosomes --dehydrated --exclude-atypical --mag --preview --reference --released-after --released-before --search --api-key --debug --filename --help --no-progressbar --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _datasets_download_genome_accession()
 {
-    local word_list="  --inputfile --annotated --api-key --as-json-lines --complete-only --debug --geo-location --help --host --limit --lineage --refseq --released-after --report --updated-after --version"
+    local word_list="  --assembly-version --include --inputfile --annotated --api-key --assembly-level --assembly-source --chromosomes --debug --dehydrated --exclude-atypical --filename --help --mag --no-progressbar --preview --reference --released-after --released-before --search --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_genome_taxon()
+{
+    local word_list="  --assembly-version --include --reference --tax-exact-match --annotated --api-key --assembly-level --assembly-source --chromosomes --debug --dehydrated --exclude-atypical --filename --help --mag --no-progressbar --preview --released-after --released-before --search --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -387,19 +387,345 @@ _datasets_download_virus()
 
 _datasets_download_virus_genome()
 {
-    local word_list="  --annotated --complete-only --geo-location --host --include --lineage --released-after --updated-after --api-key --debug --filename --help --no-progressbar --version"
+    local cmd i subcommands
+    local subcommands=" accession taxon"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        accession) _datasets_download_virus_genome_accession
+            return
+            ;;
+
+        taxon) _datasets_download_virus_genome_taxon
+            return
+            ;;
+
+    esac
+
+    local word_list=" accession taxon --annotated --complete-only --geo-location --host --include --lineage --released-after --updated-after --api-key --debug --filename --help --no-progressbar --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_genome_accession()
+{
+    local word_list="  --inputfile --annotated --api-key --complete-only --debug --filename --geo-location --help --host --include --lineage --no-progressbar --released-after --updated-after --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_genome_taxon()
+{
+    local word_list="  --refseq --annotated --api-key --complete-only --debug --filename --geo-location --help --host --include --lineage --no-progressbar --released-after --updated-after --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _datasets_download_virus_protein()
 {
-    local word_list="  --annotated --complete-only --geo-location --host --include --refseq --released-after --updated-after --api-key --debug --filename --help --no-progressbar --version"
+    local cmd i subcommands
+    local subcommands=" ORF1ab ORF1a nsp1 nsp2 nsp3 nsp4 nsp5 nsp6 nsp7 nsp8 nsp9 nsp10 rdrp nsp11 nsp13 nsp14 nsp15 nsp16 S ORF3a E M ORF6 ORF7a ORF7b ORF8 N ORF10"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        ORF1ab) _datasets_download_virus_protein_ORF1ab
+            return
+            ;;
+
+        ORF1a) _datasets_download_virus_protein_ORF1a
+            return
+            ;;
+
+        nsp1) _datasets_download_virus_protein_nsp1
+            return
+            ;;
+
+        nsp2) _datasets_download_virus_protein_nsp2
+            return
+            ;;
+
+        nsp3) _datasets_download_virus_protein_nsp3
+            return
+            ;;
+
+        nsp4) _datasets_download_virus_protein_nsp4
+            return
+            ;;
+
+        nsp5) _datasets_download_virus_protein_nsp5
+            return
+            ;;
+
+        nsp6) _datasets_download_virus_protein_nsp6
+            return
+            ;;
+
+        nsp7) _datasets_download_virus_protein_nsp7
+            return
+            ;;
+
+        nsp8) _datasets_download_virus_protein_nsp8
+            return
+            ;;
+
+        nsp9) _datasets_download_virus_protein_nsp9
+            return
+            ;;
+
+        nsp10) _datasets_download_virus_protein_nsp10
+            return
+            ;;
+
+        rdrp) _datasets_download_virus_protein_rdrp
+            return
+            ;;
+
+        nsp11) _datasets_download_virus_protein_nsp11
+            return
+            ;;
+
+        nsp13) _datasets_download_virus_protein_nsp13
+            return
+            ;;
+
+        nsp14) _datasets_download_virus_protein_nsp14
+            return
+            ;;
+
+        nsp15) _datasets_download_virus_protein_nsp15
+            return
+            ;;
+
+        nsp16) _datasets_download_virus_protein_nsp16
+            return
+            ;;
+
+        S) _datasets_download_virus_protein_S
+            return
+            ;;
+
+        ORF3a) _datasets_download_virus_protein_ORF3a
+            return
+            ;;
+
+        E) _datasets_download_virus_protein_E
+            return
+            ;;
+
+        M) _datasets_download_virus_protein_M
+            return
+            ;;
+
+        ORF6) _datasets_download_virus_protein_ORF6
+            return
+            ;;
+
+        ORF7a) _datasets_download_virus_protein_ORF7a
+            return
+            ;;
+
+        ORF7b) _datasets_download_virus_protein_ORF7b
+            return
+            ;;
+
+        ORF8) _datasets_download_virus_protein_ORF8
+            return
+            ;;
+
+        N) _datasets_download_virus_protein_N
+            return
+            ;;
+
+        ORF10) _datasets_download_virus_protein_ORF10
+            return
+            ;;
+
+    esac
+
+    local word_list=" ORF1ab ORF1a nsp1 nsp2 nsp3 nsp4 nsp5 nsp6 nsp7 nsp8 nsp9 nsp10 rdrp nsp11 nsp13 nsp14 nsp15 nsp16 S ORF3a E M ORF6 ORF7a ORF7b ORF8 N ORF10 "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_ORF1ab()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_ORF1a()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp1()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp2()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp3()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp4()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp5()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp6()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp7()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp8()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp9()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp10()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_rdrp()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp11()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp13()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp14()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp15()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_nsp16()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_S()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_ORF3a()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_E()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_M()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_ORF6()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_ORF7a()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_ORF7b()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_ORF8()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_N()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_datasets_download_virus_protein_ORF10()
+{
+    local word_list="  "
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _datasets_rehydrate()
 {
-    local word_list="  --directory --gzip --list --match --max-workers --api-key --debug --help --version"
+    local word_list="  --directory --gzip --list --match --max-workers --no-progressbar --api-key --debug --help --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

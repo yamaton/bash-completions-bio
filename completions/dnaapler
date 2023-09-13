@@ -1,0 +1,116 @@
+# Auto-generated with h2o
+
+_dnaapler()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" all bulk chromosome citation custom mystery nearest phage plasmid"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        all) _dnaapler_all
+            return
+            ;;
+
+        bulk) _dnaapler_bulk
+            return
+            ;;
+
+        chromosome) _dnaapler_chromosome
+            return
+            ;;
+
+        citation) _dnaapler_citation
+            return
+            ;;
+
+        custom) _dnaapler_custom
+            return
+            ;;
+
+        mystery) _dnaapler_mystery
+            return
+            ;;
+
+        nearest) _dnaapler_nearest
+            return
+            ;;
+
+        phage) _dnaapler_phage
+            return
+            ;;
+
+        plasmid) _dnaapler_plasmid
+            return
+            ;;
+
+    esac
+
+    local word_list=" all bulk chromosome citation custom mystery nearest phage plasmid -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dnaapler_all()
+{
+    local word_list="  -h --help -V --version -i --input -o --output -t --threads -p --prefix -f --force -e --evalue --ignore"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dnaapler_bulk()
+{
+    local word_list="  -h --help -V --version -i --input -o --output -t --threads -p --prefix -f --force -e --evalue -m --mode -c --custom_db"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dnaapler_chromosome()
+{
+    local word_list="  -h --help -V --version -i --input -o --output -t --threads -p --prefix -f --force -e --evalue -a --autocomplete --seed_value"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dnaapler_citation()
+{
+    local word_list="  --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dnaapler_custom()
+{
+    local word_list="  -h --help -V --version -i --input -o --output -t --threads -p --prefix -f --force -e --evalue -c --custom_db -a --autocomplete --seed_value"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dnaapler_mystery()
+{
+    local word_list="  -h --help -V --version -i --input -o --output -t --threads -p --prefix -f --force --seed_value"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dnaapler_nearest()
+{
+    local word_list="  -h --help -V --version -i --input -o --output -t --threads -p --prefix -f --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dnaapler_phage()
+{
+    local word_list="  -h --help -V --version -i --input -o --output -t --threads -p --prefix -f --force -e --evalue -a --autocomplete --seed_value"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dnaapler_plasmid()
+{
+    local word_list="  -h --help -V --version -i --input -o --output -t --threads -p --prefix -f --force -e --evalue -a --autocomplete --seed_value"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _dnaapler dnaapler

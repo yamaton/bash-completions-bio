@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_abricate()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --help --debug --quiet --version --check --threads --fofn --setupdb --list --datadir --db --noheader --csv --nopath --minid --mincov --summary"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _abricate abricate

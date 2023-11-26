@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_mlst()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --help --version --check --quiet --threads --debug --scheme --list --longlist --exclude --csv --json --label --nopath --novel --legacy --minid --mincov --minscore --blastdb --datadir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _mlst mlst

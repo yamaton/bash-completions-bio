@@ -6,7 +6,7 @@ _cellranger()
     _init_completion -s || return
 
     local cmd i subcommands
-    local subcommands=" count multi vdj aggr reanalyze targeted-compare targeted-depth mkvdjref mkfastq testrun mat2csv mkref mkgtf upload sitecheck"
+    local subcommands=" count multi vdj aggr reanalyze targeted-compare targeted-depth mkvdjref mkfastq testrun mat2csv mkref mkgtf upload sitecheck help"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -76,9 +76,13 @@ _cellranger()
             return
             ;;
 
+        help) _cellranger_help
+            return
+            ;;
+
     esac
 
-    local word_list=" count multi vdj aggr reanalyze targeted-compare targeted-depth mkvdjref mkfastq testrun mat2csv mkref mkgtf upload sitecheck -h --help -V --version"
+    local word_list=" count multi vdj aggr reanalyze targeted-compare targeted-depth mkvdjref mkfastq testrun mat2csv mkref mkgtf upload sitecheck help -h --help -V --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -150,6 +154,346 @@ _cellranger_mat2csv()
 
 _cellranger_mkref()
 {
+    local cmd i subcommands
+    local subcommands=" genome fasta genes"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        genome) _cellranger_mkref_genome
+            return
+            ;;
+
+        fasta) _cellranger_mkref_fasta
+            return
+            ;;
+
+        genes) _cellranger_mkref_genes
+            return
+            ;;
+
+    esac
+
+    local word_list=" genome fasta genes --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genome()
+{
+    local cmd i subcommands
+    local subcommands=" fasta genes"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        fasta) _cellranger_mkref_genome_fasta
+            return
+            ;;
+
+        genes) _cellranger_mkref_genome_genes
+            return
+            ;;
+
+    esac
+
+    local word_list=" fasta genes --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genome_fasta()
+{
+    local cmd i subcommands
+    local subcommands=" genome genes"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        genome) _cellranger_mkref_genome_fasta_genome
+            return
+            ;;
+
+        genes) _cellranger_mkref_genome_fasta_genes
+            return
+            ;;
+
+    esac
+
+    local word_list=" genome genes --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genome_fasta_genome()
+{
+    local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genome_fasta_genes()
+{
+    local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genome_genes()
+{
+    local cmd i subcommands
+    local subcommands=" genome fasta"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        genome) _cellranger_mkref_genome_genes_genome
+            return
+            ;;
+
+        fasta) _cellranger_mkref_genome_genes_fasta
+            return
+            ;;
+
+    esac
+
+    local word_list=" genome fasta --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genome_genes_genome()
+{
+    local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genome_genes_fasta()
+{
+    local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_fasta()
+{
+    local cmd i subcommands
+    local subcommands=" genome genes"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        genome) _cellranger_mkref_fasta_genome
+            return
+            ;;
+
+        genes) _cellranger_mkref_fasta_genes
+            return
+            ;;
+
+    esac
+
+    local word_list=" genome genes --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_fasta_genome()
+{
+    local cmd i subcommands
+    local subcommands=" fasta genes"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        fasta) _cellranger_mkref_fasta_genome_fasta
+            return
+            ;;
+
+        genes) _cellranger_mkref_fasta_genome_genes
+            return
+            ;;
+
+    esac
+
+    local word_list=" fasta genes --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_fasta_genome_fasta()
+{
+    local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_fasta_genome_genes()
+{
+    local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_fasta_genes()
+{
+    local cmd i subcommands
+    local subcommands=" genome fasta"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        genome) _cellranger_mkref_fasta_genes_genome
+            return
+            ;;
+
+        fasta) _cellranger_mkref_fasta_genes_fasta
+            return
+            ;;
+
+    esac
+
+    local word_list=" genome fasta --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_fasta_genes_genome()
+{
+    local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_fasta_genes_fasta()
+{
+    local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genes()
+{
+    local cmd i subcommands
+    local subcommands=" genome fasta"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        genome) _cellranger_mkref_genes_genome
+            return
+            ;;
+
+        fasta) _cellranger_mkref_genes_fasta
+            return
+            ;;
+
+    esac
+
+    local word_list=" genome fasta --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genes_genome()
+{
+    local cmd i subcommands
+    local subcommands=" fasta genes"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        fasta) _cellranger_mkref_genes_genome_fasta
+            return
+            ;;
+
+        genes) _cellranger_mkref_genes_genome_genes
+            return
+            ;;
+
+    esac
+
+    local word_list=" fasta genes --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genes_genome_fasta()
+{
+    local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genes_genome_genes()
+{
+    local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genes_fasta()
+{
+    local cmd i subcommands
+    local subcommands=" genome genes"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        genome) _cellranger_mkref_genes_fasta_genome
+            return
+            ;;
+
+        genes) _cellranger_mkref_genes_fasta_genes
+            return
+            ;;
+
+    esac
+
+    local word_list=" genome genes --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genes_fasta_genome()
+{
+    local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_mkref_genes_fasta_genes()
+{
     local word_list="  --genome --fasta --genes --nthreads --memgb --ref-version -h --help --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
@@ -169,6 +513,12 @@ _cellranger_upload()
 _cellranger_sitecheck()
 {
     local word_list="  -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_cellranger_help()
+{
+    local word_list="  "
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

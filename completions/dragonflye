@@ -1,0 +1,36 @@
+# Auto-generated with h2o
+
+_dragonflye()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" https"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        https) _dragonflye_https
+            return
+            ;;
+
+    esac
+
+    local word_list=" https --help --version --check --seed --reads --depth --minreadlen --minquality --gsize --outdir --prefix --force --minlen --mincov --namefmt --keepfiles --tmpdir --cpus --ram --assembler --opts --nanohq --racon --medaka --model --list_models --polypolish --pilon --R1 --R2 --trim --trimopts --nofilter --nopolish"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dragonflye_https()
+{
+    local word_list="  --help --version --check --seed --reads --depth --minreadlen --minquality --gsize --outdir --prefix --force --minlen --mincov --namefmt --keepfiles --tmpdir --cpus --ram --assembler --opts --nanohq --racon --medaka --model --list_models --polypolish --pilon --R1 --R2 --trim --trimopts --nofilter --nopolish"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _dragonflye dragonflye

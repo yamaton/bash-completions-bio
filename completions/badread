@@ -1,0 +1,66 @@
+# Auto-generated with h2o
+
+_badread()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" simulate error_model qscore_model plot"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        simulate) _badread_simulate
+            return
+            ;;
+
+        error_model) _badread_errormodel
+            return
+            ;;
+
+        qscore_model) _badread_qscoremodel
+            return
+            ;;
+
+        plot) _badread_plot
+            return
+            ;;
+
+    esac
+
+    local word_list=" simulate error_model qscore_model plot -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_badread_simulate()
+{
+    local word_list="  --reference --quantity --length --identity --error_model --qscore_model --seed --start_adapter --end_adapter --start_adapter_seq --end_adapter_seq --junk_reads --random_reads --chimeras --glitches --small_plasmid_bias -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_badread_errormodel()
+{
+    local word_list="  --reference --reads --alignment --k_size --max_alignments --max_alt -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_badread_qscoremodel()
+{
+    local word_list="  --reference --reads --alignment --k_size --max_alignments --max_del --min_occur --max_output -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_badread_plot()
+{
+    local word_list="  --reference --reads --alignment --window --qual --no_plot -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _badread badread

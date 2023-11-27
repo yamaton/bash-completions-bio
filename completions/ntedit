@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_ntedit()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -t -f -r -e -b -z -i -d -x -y -X -Y -c -j -m -s -l -a -v --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _ntedit ntedit

@@ -94,7 +94,7 @@ _bio_search()
 
 _bio_fetch()
 {
-    local word_list="  -h --help -d --db -t --type -f --format -l --limit"
+    local word_list="  -h --help -d --db -t --type -f --format -l --limit -o --out"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

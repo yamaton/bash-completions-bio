@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_glnexuscli()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  --dir -d --config -c --bed -b --list -l --more-PL -P --squeeze -S --trim-uncalled-alleles -a --mem-gbytes -m --threads -t --help -h"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _glnexuscli glnexus_cli

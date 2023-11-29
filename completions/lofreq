@@ -1,0 +1,166 @@
+# Auto-generated with h2o
+
+_lofreq()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" call call-parallel somatic viterbi indelqual alnqual checkref filter uniq plpsummary vcfset version idxstats vcfplot"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        call) _lofreq_call
+            return
+            ;;
+
+        call-parallel) _lofreq_callparallel
+            return
+            ;;
+
+        somatic) _lofreq_somatic
+            return
+            ;;
+
+        viterbi) _lofreq_viterbi
+            return
+            ;;
+
+        indelqual) _lofreq_indelqual
+            return
+            ;;
+
+        alnqual) _lofreq_alnqual
+            return
+            ;;
+
+        checkref) _lofreq_checkref
+            return
+            ;;
+
+        filter) _lofreq_filter
+            return
+            ;;
+
+        uniq) _lofreq_uniq
+            return
+            ;;
+
+        plpsummary) _lofreq_plpsummary
+            return
+            ;;
+
+        vcfset) _lofreq_vcfset
+            return
+            ;;
+
+        version) _lofreq_version
+            return
+            ;;
+
+        idxstats) _lofreq_idxstats
+            return
+            ;;
+
+        vcfplot) _lofreq_vcfplot
+            return
+            ;;
+
+    esac
+
+    local word_list=" call call-parallel somatic viterbi indelqual alnqual checkref filter uniq plpsummary vcfset version idxstats vcfplot "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_call()
+{
+    local word_list="  -f --ref -o --out -r --region -l --bed -q --min-bq -Q --min-alt-bq -R --def-alt-bq -j --min-jq -J --min-alt-jq -K --def-alt-jq -B --no-baq -A --no-idaq -D --del-baq -e --no-ext-baq -m --min-mq -M --max-mq -N --no-mq --call-indels --only-indels -s --src-qual -S --ign-vcf -T --def-nm-q -a --sig -b --bonf -C --min-cov -d --max-depth --illumina-1.3 --use-orphan --plp-summary-only --no-default-filter --force-overwrite --verbose --debug"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_callparallel()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_somatic()
+{
+    local word_list="  -h --help -v --verbose -n --normal -t --tumor -o --outprefix -f --ref -l --bed -d --dbsnp --threads --tumor-mtc --tumor-mtc-alpha --indel-tumor-mtc --indel-tumor-mtc-alpha --call-indels --min-cov --germline -S --ign-vcf --use-orphan --baq-off --call-rlx-extra-args --no-src-qual --debug --continue"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_viterbi()
+{
+    local word_list="  -f --ref -k --keepflags -q --defqual -o --out --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_indelqual()
+{
+    local word_list="  -u --uniform --dindel -f --ref -o --out --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_alnqual()
+{
+    local word_list="  -b -u -S -e -B -A -r"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_checkref()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_filter()
+{
+    local word_list="  -i --in -o --out -v --cov-min -V --cov-max -a --af-min -A --af-max -B --sb-thresh -b --sb-mtc -c --sb-alpha --sb-no-compound --sb-incl-indels -Q --snvqual-thresh -q --snvqual-mtc -r --snvqual-alpha -s --snvqual-ntests -K --indelqual-thresh -k --indelqual-mtc -l --indelqual-alpha -m --indelqual-ntests --only-indels --only-snvs --print-all --no-defaults --verbose --debug"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_uniq()
+{
+    local word_list="  -v --vcf-in -o --vcf-out -f --uni-freq -t --uniq-thresh -m --uniq-mtc -a --uniq-alpha -n --uniq-ntests --output-all --use-det-lim --use-orphan --verbose --debug"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_plpsummary()
+{
+    local word_list="  -f --ref -o --out -r --region -l --bed -q --min-bq -Q --min-alt-bq -R --def-alt-bq -j --min-jq -J --min-alt-jq -K --def-alt-jq -B --no-baq -A --no-idaq -D --del-baq -e --no-ext-baq -m --min-mq -M --max-mq -N --no-mq --call-indels --only-indels -s --src-qual -S --ign-vcf -T --def-nm-q -a --sig -b --bonf -C --min-cov -d --max-depth --illumina-1.3 --use-orphan --plp-summary-only --no-default-filter --force-overwrite --verbose --debug"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_vcfset()
+{
+    local word_list="  -1 --vcf1 -2 --vcf2 -o --vcfout -a --action -I --add-info --count-only --only-pos --only-passed --only-snvs --only-indels --verbose --debug"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_version()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_idxstats()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_lofreq_vcfplot()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _lofreq lofreq

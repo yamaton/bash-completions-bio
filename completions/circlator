@@ -1,0 +1,146 @@
+# Auto-generated with h2o
+
+_circlator()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" all mapreads bam2reads assemble merge clean fixstart minimus2 get_dnaa progcheck test version"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        all) _circlator_all
+            return
+            ;;
+
+        mapreads) _circlator_mapreads
+            return
+            ;;
+
+        bam2reads) _circlator_bam2reads
+            return
+            ;;
+
+        assemble) _circlator_assemble
+            return
+            ;;
+
+        merge) _circlator_merge
+            return
+            ;;
+
+        clean) _circlator_clean
+            return
+            ;;
+
+        fixstart) _circlator_fixstart
+            return
+            ;;
+
+        minimus2) _circlator_minimus2
+            return
+            ;;
+
+        get_dnaa) _circlator_getdnaa
+            return
+            ;;
+
+        progcheck) _circlator_progcheck
+            return
+            ;;
+
+        test) _circlator_test
+            return
+            ;;
+
+        version) _circlator_version
+            return
+            ;;
+
+    esac
+
+    local word_list=" all mapreads bam2reads assemble merge clean fixstart minimus2 get_dnaa progcheck test version "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_circlator_all()
+{
+    local word_list="  -h --help --threads --verbose --unchanged_code --assembler --split_all_reads --data_type --assemble_spades_k --assemble_spades_use_first --assemble_not_careful --assemble_not_only_assembler --bwa_opts --b2r_discard_unmapped --b2r_only_contigs --b2r_length_cutoff --b2r_min_read_length --merge_diagdiff --merge_min_id --merge_min_length --merge_min_length_merge --merge_min_spades_circ_pc --merge_breaklen --merge_ref_end --merge_reassemble_end --no_pair_merge --clean_min_contig_length --clean_min_contig_percent --clean_diagdiff --clean_min_nucmer_id --clean_min_nucmer_length --clean_breaklen --genes_fa --fixstart_mincluster --fixstart_min_id"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_circlator_mapreads()
+{
+    local word_list="  -h --help --bwa_opts --threads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_circlator_bam2reads()
+{
+    local word_list="  -h --help --discard_unmapped --fastq --only_contigs --length_cutoff --min_read_length --split_all_reads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_circlator_assemble()
+{
+    local word_list="  -h --help --not_careful --not_only_assembler --threads --verbose --spades_k --spades_use_first --assembler --data_type"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_circlator_merge()
+{
+    local word_list="  -h --help --diagdiff --min_id --min_length --min_length_merge --breaklen --min_spades_circ_pc --assemble_not_careful --assemble_not_only_assembler --spades_k --spades_use_first --assembler --data_type --b2r_length_cutoff --b2r_split_all_reads --ref_end --reassemble_end --threads --reads --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_circlator_clean()
+{
+    local word_list="  -h --help --min_contig_length --min_contig_percent --diagdiff --min_nucmer_id --min_nucmer_length --breaklen --keep --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_circlator_fixstart()
+{
+    local word_list="  -h --help --genes_fa --ignore --mincluster --min_id --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_circlator_minimus2()
+{
+    local word_list="  -h --help --no_pre_merge"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_circlator_getdnaa()
+{
+    local word_list="  -h --help --min_length --max_length --uniprot_search --name_re --name_re_case_sensitive"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_circlator_progcheck()
+{
+    local word_list="  -h --help --debug"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_circlator_test()
+{
+    local word_list="  -h --help --threads"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_circlator_version()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _circlator circlator

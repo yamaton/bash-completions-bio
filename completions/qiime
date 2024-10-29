@@ -6,7 +6,7 @@ _qiime()
     _init_completion -s || return
 
     local cmd i subcommands
-    local subcommands=" info tools dev alignment composition cutadapt dada2 deblur demux diversity diversity-lib emperor feature-classifier feature-table fragment-insertion gneiss longitudinal metadata phylogeny quality-control quality-filter sample-classifier taxa vsearch"
+    local subcommands=" info tools dev alignment composition cutadapt dada2 deblur demux diversity diversity-lib emperor feature-classifier feature-table fragment-insertion longitudinal metadata phylogeny quality-control quality-filter rescript sample-classifier taxa vsearch"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -76,10 +76,6 @@ _qiime()
             return
             ;;
 
-        gneiss) _qiime_gneiss
-            return
-            ;;
-
         longitudinal) _qiime_longitudinal
             return
             ;;
@@ -100,6 +96,10 @@ _qiime()
             return
             ;;
 
+        rescript) _qiime_rescript
+            return
+            ;;
+
         sample-classifier) _qiime_sampleclassifier
             return
             ;;
@@ -114,7 +114,7 @@ _qiime()
 
     esac
 
-    local word_list=" info tools dev alignment composition cutadapt dada2 deblur demux diversity diversity-lib emperor feature-classifier feature-table fragment-insertion gneiss longitudinal metadata phylogeny quality-control quality-filter sample-classifier taxa vsearch --version --help"
+    local word_list=" info tools dev alignment composition cutadapt dada2 deblur demux diversity diversity-lib emperor feature-classifier feature-table fragment-insertion longitudinal metadata phylogeny quality-control quality-filter rescript sample-classifier taxa vsearch --version --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -127,7 +127,7 @@ _qiime_info()
 _qiime_tools()
 {
     local cmd i subcommands
-    local subcommands=" cache-create cache-fetch cache-garbage-collection cache-remove cache-status cache-store cast-metadata citations export extract import inspect-metadata list-formats list-types peek validate view"
+    local subcommands=" cache-create cache-fetch cache-garbage-collection cache-import cache-remove cache-status cache-store cast-metadata citations export extract import inspect-metadata list-formats list-types peek replay-citations replay-provenance replay-supplement validate view"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -146,6 +146,10 @@ _qiime_tools()
             ;;
 
         cache-garbage-collection) _qiime_tools_cachegarbagecollection
+            return
+            ;;
+
+        cache-import) _qiime_tools_cacheimport
             return
             ;;
 
@@ -197,6 +201,18 @@ _qiime_tools()
             return
             ;;
 
+        replay-citations) _qiime_tools_replaycitations
+            return
+            ;;
+
+        replay-provenance) _qiime_tools_replayprovenance
+            return
+            ;;
+
+        replay-supplement) _qiime_tools_replaysupplement
+            return
+            ;;
+
         validate) _qiime_tools_validate
             return
             ;;
@@ -207,7 +223,7 @@ _qiime_tools()
 
     esac
 
-    local word_list=" cache-create cache-fetch cache-garbage-collection cache-remove cache-status cache-store cast-metadata citations export extract import inspect-metadata list-formats list-types peek validate view --help"
+    local word_list=" cache-create cache-fetch cache-garbage-collection cache-import cache-remove cache-status cache-store cast-metadata citations export extract import inspect-metadata list-formats list-types peek replay-citations replay-provenance replay-supplement validate view --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -226,6 +242,12 @@ _qiime_tools_cachefetch()
 _qiime_tools_cachegarbagecollection()
 {
     local word_list="  --cache --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_tools_cacheimport()
+{
+    local word_list="  --type --input-path --cache --key --input-format --validate-level --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -273,7 +295,7 @@ _qiime_tools_extract()
 
 _qiime_tools_import()
 {
-    local word_list="  --type --input-path --output-path --input-format --show-importable-types --show-importable-formats --help"
+    local word_list="  --type --input-path --output-path --input-format --validate-level --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -298,6 +320,24 @@ _qiime_tools_listtypes()
 _qiime_tools_peek()
 {
     local word_list="  --tsv --no-tsv --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_tools_replaycitations()
+{
+    local word_list="  --in-fp --recurse --no-recurse --deduplicate --no-deduplicate --suppress-header --no-suppress-header --verbose --no-verbose --out-fp --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_tools_replayprovenance()
+{
+    local word_list="  --in-fp --recurse --no-recurse --usage-driver --validate-checksums --no-validate-checksums --parse-metadata --no-parse-metadata --use-recorded-metadata --no-use-recorded-metadata --suppress-header --no-suppress-header --verbose --no-verbose --dump-recorded-metadata --no-dump-recorded-metadata --metadata-out-dir --out-fp --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_tools_replaysupplement()
+{
+    local word_list="  --in-fp --recurse --no-recurse --deduplicate --no-deduplicate --validate-checksums --no-validate-checksums --parse-metadata --no-parse-metadata --use-recorded-metadata --no-use-recorded-metadata --suppress-header --no-suppress-header --verbose --no-verbose --dump-recorded-metadata --no-dump-recorded-metadata --out-fp --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -425,13 +465,13 @@ _qiime_alignment()
 
 _qiime_alignment_mafft()
 {
-    local word_list="  --i-sequences --p-parttree --p-no-parttree --o-alignment --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-sequences --p-n-threads --p-parttree --p-no-parttree --o-alignment --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_alignment_mafftadd()
 {
-    local word_list="  --i-alignment --i-sequences --p-parttree --p-no-parttree --p-addfragments --p-no-addfragments --o-expanded-alignment --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-alignment --i-sequences --p-n-threads --p-parttree --p-no-parttree --p-addfragments --p-no-addfragments --o-expanded-alignment --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -494,13 +534,13 @@ _qiime_composition_ancom()
 
 _qiime_composition_ancombc()
 {
-    local word_list="  --i-table --p-formula --p-prv-cut --p-lib-cut --p-neg-lb --p-no-neg-lb --p-tol --p-max-iter --p-conserve --p-no-conserve --p-alpha --m-metadata-file --p-reference-levels --o-differentials --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --p-formula --p-p-adj-method --p-prv-cut --p-lib-cut --p-reference-levels --p-tol --p-max-iter --p-conserve --p-no-conserve --p-alpha --o-differentials --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_composition_dabarplot()
 {
-    local word_list="  --i-data --p-effect-size-label --p-feature-id-label --p-error-label --p-significance-label --p-significance-threshold --p-level-delimiter --p-effect-size-threshold --m-feature-ids-file --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-data --p-effect-size-label --p-feature-id-label --p-error-label --p-significance-label --p-significance-threshold --p-level-delimiter --p-label-limit --p-effect-size-threshold --m-feature-ids-file --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -547,13 +587,13 @@ _qiime_cutadapt()
 
 _qiime_cutadapt_demuxpaired()
 {
-    local word_list="  --i-seqs --m-forward-barcodes-file --m-forward-barcodes-column --m-reverse-barcodes-file --m-reverse-barcodes-column --p-error-rate --p-batch-size --p-mixed-orientation --p-no-mixed-orientation --p-cores --p-minimum-length --o-per-sample-sequences --o-untrimmed-sequences --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-seqs --m-forward-barcodes-file --m-forward-barcodes-column --m-reverse-barcodes-file --m-reverse-barcodes-column --p-forward-cut --p-reverse-cut --p-anchor-forward-barcode --p-no-anchor-forward-barcode --p-anchor-reverse-barcode --p-no-anchor-reverse-barcode --p-error-rate --p-batch-size --p-mixed-orientation --p-no-mixed-orientation --p-cores --p-minimum-length --o-per-sample-sequences --o-untrimmed-sequences --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_cutadapt_demuxsingle()
 {
-    local word_list="  --i-seqs --m-barcodes-file --m-barcodes-column --p-error-rate --p-batch-size --p-cores --p-minimum-length --o-per-sample-sequences --o-untrimmed-sequences --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-seqs --m-barcodes-file --m-barcodes-column --p-cut --p-anchor-barcode --p-no-anchor-barcode --p-error-rate --p-batch-size --p-cores --p-minimum-length --o-per-sample-sequences --o-untrimmed-sequences --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -606,25 +646,25 @@ _qiime_dada2()
 
 _qiime_dada2_denoiseccs()
 {
-    local word_list="  --i-demultiplexed-seqs --p-front --p-adapter --p-max-mismatch --p-indels --p-no-indels --p-trunc-len --p-trim-left --p-max-ee --p-trunc-q --p-min-len --p-max-len --p-pooling-method --p-chimera-method --p-min-fold-parent-over-abundance --p-allow-one-off --p-no-allow-one-off --p-n-threads --p-n-reads-learn --p-hashed-feature-ids --p-no-hashed-feature-ids --o-table --o-representative-sequences --o-denoising-stats --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-demultiplexed-seqs --p-front --p-adapter --p-max-mismatch --p-indels --p-no-indels --p-trunc-len --p-trim-left --p-max-ee --p-trunc-q --p-min-len --p-max-len --p-pooling-method --p-chimera-method --p-min-fold-parent-over-abundance --p-allow-one-off --p-no-allow-one-off --p-n-threads --p-n-reads-learn --p-hashed-feature-ids --p-no-hashed-feature-ids --p-retain-all-samples --p-no-retain-all-samples --o-table --o-representative-sequences --o-denoising-stats --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_dada2_denoisepaired()
 {
-    local word_list="  --i-demultiplexed-seqs --p-trunc-len-f --p-trunc-len-r --p-trim-left-f --p-trim-left-r --p-max-ee-f --p-max-ee-r --p-trunc-q --p-pooling-method --p-chimera-method --p-min-fold-parent-over-abundance --p-allow-one-off --p-no-allow-one-off --p-n-threads --p-n-reads-learn --p-hashed-feature-ids --p-no-hashed-feature-ids --p-min-overlap --o-table --o-representative-sequences --o-denoising-stats --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-demultiplexed-seqs --p-trunc-len-f --p-trunc-len-r --p-trim-left-f --p-trim-left-r --p-max-ee-f --p-max-ee-r --p-trunc-q --p-min-overlap --p-pooling-method --p-chimera-method --p-min-fold-parent-over-abundance --p-allow-one-off --p-no-allow-one-off --p-n-threads --p-n-reads-learn --p-hashed-feature-ids --p-no-hashed-feature-ids --p-retain-all-samples --p-no-retain-all-samples --o-table --o-representative-sequences --o-denoising-stats --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_dada2_denoisepyro()
 {
-    local word_list="  --i-demultiplexed-seqs --p-trunc-len --p-trim-left --p-max-ee --p-trunc-q --p-max-len --p-pooling-method --p-chimera-method --p-min-fold-parent-over-abundance --p-allow-one-off --p-no-allow-one-off --p-n-threads --p-n-reads-learn --p-hashed-feature-ids --p-no-hashed-feature-ids --o-table --o-representative-sequences --o-denoising-stats --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-demultiplexed-seqs --p-trunc-len --p-trim-left --p-max-ee --p-trunc-q --p-max-len --p-pooling-method --p-chimera-method --p-min-fold-parent-over-abundance --p-allow-one-off --p-no-allow-one-off --p-n-threads --p-n-reads-learn --p-hashed-feature-ids --p-no-hashed-feature-ids --p-retain-all-samples --p-no-retain-all-samples --o-table --o-representative-sequences --o-denoising-stats --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_dada2_denoisesingle()
 {
-    local word_list="  --p-trunc-len --p-trim-left --p-max-ee --p-trunc-q --p-pooling-method --p-chimera-method --p-min-fold-parent-over-abundance --p-allow-one-off --p-no-allow-one-off --p-n-threads --p-n-reads-learn --p-hashed-feature-ids --p-no-hashed-feature-ids --o-table --o-representative-sequences --o-denoising-stats --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --p-trunc-len --p-trim-left --p-max-ee --p-trunc-q --p-pooling-method --p-chimera-method --p-min-fold-parent-over-abundance --p-allow-one-off --p-no-allow-one-off --p-n-threads --p-n-reads-learn --p-hashed-feature-ids --p-no-hashed-feature-ids --p-retain-all-samples --p-no-retain-all-samples --o-table --o-representative-sequences --o-denoising-stats --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -680,7 +720,7 @@ _qiime_deblur_visualizestats()
 _qiime_demux()
 {
     local cmd i subcommands
-    local subcommands=" emp-paired emp-single filter-samples subsample-paired subsample-single summarize"
+    local subcommands=" emp-paired emp-single filter-samples partition-samples-paired partition-samples-single subsample-paired subsample-single summarize tabulate-read-counts"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -702,6 +742,14 @@ _qiime_demux()
             return
             ;;
 
+        partition-samples-paired) _qiime_demux_partitionsamplespaired
+            return
+            ;;
+
+        partition-samples-single) _qiime_demux_partitionsamplessingle
+            return
+            ;;
+
         subsample-paired) _qiime_demux_subsamplepaired
             return
             ;;
@@ -714,9 +762,13 @@ _qiime_demux()
             return
             ;;
 
+        tabulate-read-counts) _qiime_demux_tabulatereadcounts
+            return
+            ;;
+
     esac
 
-    local word_list=" emp-paired emp-single filter-samples subsample-paired subsample-single summarize --version --example-data --citations --help"
+    local word_list=" emp-paired emp-single filter-samples partition-samples-paired partition-samples-single subsample-paired subsample-single summarize tabulate-read-counts --version --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -734,7 +786,19 @@ _qiime_demux_empsingle()
 
 _qiime_demux_filtersamples()
 {
-    local word_list="  --p-where --p-exclude-ids --p-no-exclude-ids --m-metadata-file --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-demux --m-metadata-file --p-where --p-exclude-ids --p-no-exclude-ids --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_demux_partitionsamplespaired()
+{
+    local word_list="  --i-demux --p-num-partitions --o-partitioned-demux --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_demux_partitionsamplessingle()
+{
+    local word_list="  --i-demux --p-num-partitions --o-partitioned-demux --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -756,10 +820,16 @@ _qiime_demux_summarize()
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
+_qiime_demux_tabulatereadcounts()
+{
+    local word_list="  --o-counts --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
 _qiime_diversity()
 {
     local cmd i subcommands
-    local subcommands=" adonis alpha alpha-correlation alpha-group-significance alpha-phylogenetic alpha-rarefaction beta beta-correlation beta-group-significance beta-phylogenetic beta-rarefaction bioenv core-metrics core-metrics-phylogenetic filter-distance-matrix mantel pcoa pcoa-biplot procrustes-analysis tsne umap"
+    local subcommands=" adonis alpha alpha-correlation alpha-group-significance alpha-phylogenetic alpha-rarefaction beta beta-correlation beta-group-significance beta-phylogenetic beta-rarefaction bioenv core-metrics core-metrics-phylogenetic filter-alpha-diversity filter-distance-matrix mantel partial-procrustes pcoa pcoa-biplot procrustes-analysis tsne umap"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -825,11 +895,19 @@ _qiime_diversity()
             return
             ;;
 
+        filter-alpha-diversity) _qiime_diversity_filteralphadiversity
+            return
+            ;;
+
         filter-distance-matrix) _qiime_diversity_filterdistancematrix
             return
             ;;
 
         mantel) _qiime_diversity_mantel
+            return
+            ;;
+
+        partial-procrustes) _qiime_diversity_partialprocrustes
             return
             ;;
 
@@ -855,13 +933,13 @@ _qiime_diversity()
 
     esac
 
-    local word_list=" adonis alpha alpha-correlation alpha-group-significance alpha-phylogenetic alpha-rarefaction beta beta-correlation beta-group-significance beta-phylogenetic beta-rarefaction bioenv core-metrics core-metrics-phylogenetic filter-distance-matrix mantel pcoa pcoa-biplot procrustes-analysis tsne umap --version --example-data --citations --help"
+    local word_list=" adonis alpha alpha-correlation alpha-group-significance alpha-phylogenetic alpha-rarefaction beta beta-correlation beta-group-significance beta-phylogenetic beta-rarefaction bioenv core-metrics core-metrics-phylogenetic filter-alpha-diversity filter-distance-matrix mantel partial-procrustes pcoa pcoa-biplot procrustes-analysis tsne umap --version --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_diversity_adonis()
 {
-    local word_list="  --i-distance-matrix --p-formula --p-n-jobs --m-metadata-file --p-permutations --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-distance-matrix --m-metadata-file --p-formula --p-n-jobs --p-permutations --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -885,7 +963,7 @@ _qiime_diversity_alphagroupsignificance()
 
 _qiime_diversity_alphaphylogenetic()
 {
-    local word_list="  --i-table --i-table --i-phylogeny --p-metric --o-alpha-diversity --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-table --i-phylogeny --p-metric --o-alpha-diversity --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -897,13 +975,13 @@ _qiime_diversity_alphararefaction()
 
 _qiime_diversity_beta()
 {
-    local word_list="  --i-table --p-metric --p-pseudocount --o-distance-matrix --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-table --p-metric --p-pseudocount --p-n-jobs --o-distance-matrix --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_diversity_betacorrelation()
 {
-    local word_list="  --i-distance-matrix --m-metadata-file --m-metadata-column --p-method --p-permutations --p-intersect-ids --p-no-intersect-ids --p-label1 --p-label2 --o-metadata-distance-matrix --o-mantel-scatter-visualization --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-distance-matrix --m-metadata-file --m-metadata-column --p-method --p-permutations --p-intersect-ids --p-no-intersect-ids --p-label1 --p-label2 --p-permutations --o-metadata-distance-matrix --o-mantel-scatter-visualization --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -933,7 +1011,7 @@ _qiime_diversity_bioenv()
 
 _qiime_diversity_coremetrics()
 {
-    local word_list="  --i-table --p-sampling-depth --m-metadata-file --p-with-replacement --p-no-with-replacement --p-n-jobs --o-rarefied-table --o-observed-features-vector --o-shannon-vector --o-evenness-vector --o-jaccard-distance-matrix --o-bray-curtis-distance-matrix --o-jaccard-pcoa-results --o-jaccard-emperor --o-bray-curtis-emperor --o-bray-curtis-pcoa-results --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-table --p-sampling-depth --m-metadata-file --p-with-replacement --p-no-with-replacement --p-n-jobs --p-ignore-missing-samples --p-no-ignore-missing-samples --o-rarefied-table --o-observed-features-vector --o-shannon-vector --o-evenness-vector --o-jaccard-distance-matrix --o-bray-curtis-distance-matrix --o-jaccard-pcoa-results --o-bray-curtis-pcoa-results --o-jaccard-emperor --o-bray-curtis-emperor --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -943,15 +1021,27 @@ _qiime_diversity_coremetricsphylogenetic()
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
+_qiime_diversity_filteralphadiversity()
+{
+    local word_list="  --i-alpha-diversity --m-metadata-file --p-where --p-exclude-ids --p-no-exclude-ids --o-filtered-alpha-diversity --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
 _qiime_diversity_filterdistancematrix()
 {
-    local word_list="  --i-distance-matrix --p-where --p-exclude-ids --p-no-exclude-ids --m-metadata-file --o-filtered-distance-matrix --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-distance-matrix --m-metadata-file --p-where --p-exclude-ids --p-no-exclude-ids --o-filtered-distance-matrix --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_diversity_mantel()
 {
-    local word_list="  --i-dm1 --i-dm2 --p-method --p-intersect-ids --p-no-intersect-ids --p-label1 --p-label2 --p-permutations --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-dm1 --i-dm2 --p-method --p-permutations --p-intersect-ids --p-no-intersect-ids --p-label1 --p-label2 --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_diversity_partialprocrustes()
+{
+    local word_list="  --i-reference --i-other --m-pairing-file --m-pairing-column --p-dimensions --o-transformed --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1056,13 +1146,13 @@ _qiime_diversitylib_alphapassthrough()
 
 _qiime_diversitylib_betapassthrough()
 {
-    local word_list="  --i-table --p-metric --p-pseudocount --o-distance-matrix --output-dir --verbose --quiet --example-data --citations --help --o-distance-matrix"
+    local word_list="  --i-table --p-metric --p-pseudocount --p-n-jobs --o-distance-matrix --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_diversitylib_betaphylogeneticpassthrough()
 {
-    local word_list="  --i-table --i-phylogeny --p-metric --p-threads --p-variance-adjusted --p-no-variance-adjusted --p-alpha --p-bypass-tips --p-no-bypass-tips --o-distance-matrix --output-dir --verbose --quiet --example-data --citations --help --o-distance-matrix --o-distance-matrix"
+    local word_list="  --i-table --i-phylogeny --p-metric --p-threads --p-variance-adjusted --p-no-variance-adjusted --p-alpha --p-bypass-tips --p-no-bypass-tips --o-distance-matrix --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1074,19 +1164,19 @@ _qiime_diversitylib_braycurtis()
 
 _qiime_diversitylib_faithpd()
 {
-    local word_list="  --i-table --i-phylogeny --p-threads --o-vector --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --i-table --i-phylogeny --p-threads --o-vector --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_diversitylib_jaccard()
 {
-    local word_list="  --i-table --p-n-jobs --o-distance-matrix --output-dir --verbose --quiet --example-data --citations --help --o-distance-matrix"
+    local word_list="  --i-table --i-table --p-n-jobs --o-distance-matrix --output-dir --verbose --quiet --example-data --citations --help --o-distance-matrix"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_diversitylib_observedfeatures()
 {
-    local word_list="  --i-table --o-vector --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --i-table --o-vector --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1104,7 +1194,7 @@ _qiime_diversitylib_shannonentropy()
 
 _qiime_diversitylib_unweightedunifrac()
 {
-    local word_list="  --i-table --i-phylogeny --p-threads --p-bypass-tips --p-no-bypass-tips --o-distance-matrix --output-dir --verbose --quiet --example-data --citations --help --o-distance-matrix"
+    local word_list="  --i-table --i-table --i-phylogeny --p-threads --p-bypass-tips --p-no-bypass-tips --o-distance-matrix --output-dir --verbose --quiet --example-data --citations --help --o-distance-matrix"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1153,20 +1243,20 @@ _qiime_emperor_biplot()
 
 _qiime_emperor_plot()
 {
-    local word_list="  --i-pcoa --m-metadata-file --p-custom-axes --p-ignore-missing-samples --p-no-ignore-missing-samples --p-ignore-pcoa-features --p-no-ignore-pcoa-features --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-pcoa --m-metadata-file --p-ignore-missing-samples --p-no-ignore-missing-samples --p-ignore-pcoa-features --p-no-ignore-pcoa-features --p-custom-axes --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_emperor_procrustesplot()
 {
-    local word_list="  --i-reference-pcoa --i-other-pcoa --i-m2-stats --p-ignore-missing-samples --p-no-ignore-missing-samples --m-metadata-file --p-custom-axes --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-reference-pcoa --i-other-pcoa --i-m2-stats --m-metadata-file --p-custom-axes --p-ignore-missing-samples --p-no-ignore-missing-samples --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_featureclassifier()
 {
     local cmd i subcommands
-    local subcommands=" blast classify-consensus-blast classify-consensus-vsearch classify-hybrid-vsearch-sklearn classify-sklearn extract-reads find-consensus-annotation fit-classifier-naive-bayes fit-classifier-sklearn vsearch-global"
+    local subcommands=" blast classify-consensus-blast classify-consensus-vsearch classify-hybrid-vsearch-sklearn classify-sklearn extract-reads find-consensus-annotation fit-classifier-naive-bayes fit-classifier-sklearn makeblastdb vsearch-global"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -1212,31 +1302,35 @@ _qiime_featureclassifier()
             return
             ;;
 
+        makeblastdb) _qiime_featureclassifier_makeblastdb
+            return
+            ;;
+
         vsearch-global) _qiime_featureclassifier_vsearchglobal
             return
             ;;
 
     esac
 
-    local word_list=" blast classify-consensus-blast classify-consensus-vsearch classify-hybrid-vsearch-sklearn classify-sklearn extract-reads find-consensus-annotation fit-classifier-naive-bayes fit-classifier-sklearn vsearch-global --version --example-data --citations --help"
+    local word_list=" blast classify-consensus-blast classify-consensus-vsearch classify-hybrid-vsearch-sklearn classify-sklearn extract-reads find-consensus-annotation fit-classifier-naive-bayes fit-classifier-sklearn makeblastdb vsearch-global --version --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_featureclassifier_blast()
 {
-    local word_list="  --i-query --i-reference-reads --p-maxaccepts --p-perc-identity --p-query-cov --p-strand --p-evalue --p-output-no-hits --p-no-output-no-hits --o-search-results --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-query --i-reference-reads --i-blastdb --p-maxaccepts --p-perc-identity --p-query-cov --p-strand --p-evalue --p-output-no-hits --p-no-output-no-hits --p-num-threads --o-search-results --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_featureclassifier_classifyconsensusblast()
 {
-    local word_list="  --i-query --i-reference-reads --i-reference-taxonomy --p-maxaccepts --p-perc-identity --p-query-cov --p-strand --p-evalue --p-output-no-hits --p-no-output-no-hits --p-min-consensus --p-unassignable-label --o-classification --o-search-results --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-query --i-reference-taxonomy --i-blastdb --i-reference-reads --p-maxaccepts --p-perc-identity --p-query-cov --p-strand --p-evalue --p-output-no-hits --p-no-output-no-hits --p-min-consensus --p-unassignable-label --p-num-threads --o-classification --o-search-results --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_featureclassifier_classifyconsensusvsearch()
 {
-    local word_list="  --i-query --i-reference-reads --i-reference-taxonomy --p-perc-identity --p-query-cov --p-strand --p-search-exact --p-no-search-exact --p-top-hits-only --p-no-top-hits-only --p-output-no-hits --p-no-output-no-hits --p-weak-id --p-threads --p-min-consensus --p-unassignable-label --o-classification --o-search-results --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-query --i-reference-reads --i-reference-taxonomy --p-maxaccepts --p-perc-identity --p-query-cov --p-strand --p-search-exact --p-no-search-exact --p-top-hits-only --p-no-top-hits-only --p-maxhits --p-maxrejects --p-output-no-hits --p-no-output-no-hits --p-weak-id --p-threads --p-min-consensus --p-unassignable-label --o-classification --o-search-results --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1276,6 +1370,12 @@ _qiime_featureclassifier_fitclassifiersklearn()
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
+_qiime_featureclassifier_makeblastdb()
+{
+    local word_list="  --i-sequences --o-database --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
 _qiime_featureclassifier_vsearchglobal()
 {
     local word_list="  --i-query --i-reference-reads --p-perc-identity --p-query-cov --p-strand --p-search-exact --p-no-search-exact --p-top-hits-only --p-no-top-hits-only --p-output-no-hits --p-no-output-no-hits --p-weak-id --p-threads --o-search-results --output-dir --verbose --quiet --example-data --citations --help"
@@ -1285,7 +1385,7 @@ _qiime_featureclassifier_vsearchglobal()
 _qiime_featuretable()
 {
     local cmd i subcommands
-    local subcommands=" core-features filter-features filter-features-conditionally filter-samples filter-seqs group heatmap merge merge-seqs merge-taxa presence-absence rarefy relative-frequency rename-ids subsample summarize tabulate-seqs transpose"
+    local subcommands=" core-features filter-features filter-features-conditionally filter-samples filter-seqs group heatmap merge merge-seqs merge-taxa presence-absence rarefy relative-frequency rename-ids split subsample-ids summarize summarize-plus tabulate-feature-frequencies tabulate-sample-frequencies tabulate-seqs transpose"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -1351,11 +1451,27 @@ _qiime_featuretable()
             return
             ;;
 
-        subsample) _qiime_featuretable_subsample
+        split) _qiime_featuretable_split
+            return
+            ;;
+
+        subsample-ids) _qiime_featuretable_subsampleids
             return
             ;;
 
         summarize) _qiime_featuretable_summarize
+            return
+            ;;
+
+        summarize-plus) _qiime_featuretable_summarizeplus
+            return
+            ;;
+
+        tabulate-feature-frequencies) _qiime_featuretable_tabulatefeaturefrequencies
+            return
+            ;;
+
+        tabulate-sample-frequencies) _qiime_featuretable_tabulatesamplefrequencies
             return
             ;;
 
@@ -1369,7 +1485,7 @@ _qiime_featuretable()
 
     esac
 
-    local word_list=" core-features filter-features filter-features-conditionally filter-samples filter-seqs group heatmap merge merge-seqs merge-taxa presence-absence rarefy relative-frequency rename-ids subsample summarize tabulate-seqs transpose --version --example-data --citations --help"
+    local word_list=" core-features filter-features filter-features-conditionally filter-samples filter-seqs group heatmap merge merge-seqs merge-taxa presence-absence rarefy relative-frequency rename-ids split subsample-ids summarize summarize-plus tabulate-feature-frequencies tabulate-sample-frequencies tabulate-seqs transpose --version --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1381,25 +1497,25 @@ _qiime_featuretable_corefeatures()
 
 _qiime_featuretable_filterfeatures()
 {
-    local word_list="  --i-table --p-min-frequency --p-max-frequency --p-min-samples --p-max-samples --p-where --p-exclude-ids --p-no-exclude-ids --p-filter-empty-samples --p-no-filter-empty-samples --m-metadata-file --o-filtered-table --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --p-min-frequency --p-max-frequency --p-min-samples --p-max-samples --m-metadata-file --p-where --p-exclude-ids --p-no-exclude-ids --p-filter-empty-samples --p-no-filter-empty-samples --p-allow-empty-table --p-no-allow-empty-table --o-filtered-table --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_featuretable_filterfeaturesconditionally()
 {
-    local word_list="  --p-abundance --p-prevalence --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --p-abundance --p-prevalence --p-allow-empty-table --p-no-allow-empty-table --o-filtered-table --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_featuretable_filtersamples()
 {
-    local word_list="  --p-min-frequency --p-max-frequency --p-min-features --p-max-features --p-where --p-exclude-ids --p-no-exclude-ids --p-filter-empty-features --p-no-filter-empty-features --m-metadata-file --output-dir --verbose --quiet --example-data --citations --help --p-where --p-where --o-filtered-table --o-filtered-table --o-filtered-table --o-filtered-table --o-filtered-table"
+    local word_list="  --i-table --p-min-frequency --p-max-frequency --p-min-features --p-max-features --m-metadata-file --p-where --p-exclude-ids --p-no-exclude-ids --p-filter-empty-features --p-no-filter-empty-features --p-allow-empty-table --p-no-allow-empty-table --o-filtered-table --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_featuretable_filterseqs()
 {
-    local word_list="  --i-data --i-table --p-where --p-exclude-ids --p-no-exclude-ids --m-metadata-file --o-filtered-data --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-data --i-table --m-metadata-file --p-where --p-exclude-ids --p-no-exclude-ids --o-filtered-data --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1441,7 +1557,7 @@ _qiime_featuretable_presenceabsence()
 
 _qiime_featuretable_rarefy()
 {
-    local word_list="  --i-table --p-with-replacement --p-no-with-replacement --p-sampling-depth --o-rarefied-table --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --p-sampling-depth --p-with-replacement --p-no-with-replacement --o-rarefied-table --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1457,7 +1573,13 @@ _qiime_featuretable_renameids()
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
-_qiime_featuretable_subsample()
+_qiime_featuretable_split()
+{
+    local word_list="  --m-metadata-file --m-metadata-column --p-filter-empty-features --p-no-filter-empty-features --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_featuretable_subsampleids()
 {
     local word_list="  --i-table --p-subsampling-depth --p-axis --o-sampled-table --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
@@ -1465,19 +1587,37 @@ _qiime_featuretable_subsample()
 
 _qiime_featuretable_summarize()
 {
-    local word_list="  --i-table --i-table --m-sample-metadata-file --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-sample-metadata-file --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_featuretable_summarizeplus()
+{
+    local word_list="  --i-table --m-metadata-file --o-feature-frequencies --o-sample-frequencies --o-summary --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_featuretable_tabulatefeaturefrequencies()
+{
+    local word_list="  --i-table --i-table --o-feature-frequencies --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_featuretable_tabulatesamplefrequencies()
+{
+    local word_list="  --i-table --i-table --o-sample-frequencies --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_featuretable_tabulateseqs()
 {
-    local word_list="  --i-data --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-data --i-taxonomy --p-merge-method --o-visualization --m-metadata-file --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_featuretable_transpose()
 {
-    local word_list="  --i-table --o-transposed-feature-table --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1527,105 +1667,6 @@ _qiime_fragmentinsertion_filterfeatures()
 _qiime_fragmentinsertion_sepp()
 {
     local word_list="  --i-representative-sequences --i-reference-database --p-alignment-subset-size --p-placement-subset-size --p-threads --p-debug --p-no-debug --o-tree --o-placements --output-dir --verbose --quiet --example-data --citations --help"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_qiime_gneiss()
-{
-    local cmd i subcommands
-    local subcommands=" assign-ids correlation-clustering dendrogram-heatmap gradient-clustering ilr-hierarchical ilr-phylogenetic ilr-phylogenetic-differential ilr-phylogenetic-ordination"
-
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
-
-    case "$cmd" in
-        assign-ids) _qiime_gneiss_assignids
-            return
-            ;;
-
-        correlation-clustering) _qiime_gneiss_correlationclustering
-            return
-            ;;
-
-        dendrogram-heatmap) _qiime_gneiss_dendrogramheatmap
-            return
-            ;;
-
-        gradient-clustering) _qiime_gneiss_gradientclustering
-            return
-            ;;
-
-        ilr-hierarchical) _qiime_gneiss_ilrhierarchical
-            return
-            ;;
-
-        ilr-phylogenetic) _qiime_gneiss_ilrphylogenetic
-            return
-            ;;
-
-        ilr-phylogenetic-differential) _qiime_gneiss_ilrphylogeneticdifferential
-            return
-            ;;
-
-        ilr-phylogenetic-ordination) _qiime_gneiss_ilrphylogeneticordination
-            return
-            ;;
-
-    esac
-
-    local word_list=" assign-ids correlation-clustering dendrogram-heatmap gradient-clustering ilr-hierarchical ilr-phylogenetic ilr-phylogenetic-differential ilr-phylogenetic-ordination --version --example-data --citations --help"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_qiime_gneiss_assignids()
-{
-    local word_list="  --i-input-table --i-input-tree --o-output-table --o-output-tree --output-dir --verbose --quiet --example-data --citations --help"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_qiime_gneiss_correlationclustering()
-{
-    local word_list="  --i-table --p-pseudocount --output-dir --verbose --quiet --example-data --citations --help"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_qiime_gneiss_dendrogramheatmap()
-{
-    local word_list="  --i-table --i-tree --m-metadata-file --m-metadata-column --p-pseudocount --p-ndim --p-method --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_qiime_gneiss_gradientclustering()
-{
-    local word_list="  --i-table --i-table --m-gradient-file --m-gradient-column --p-weighted --p-no-weighted --p-ignore-missing-samples --p-no-ignore-missing-samples --o-clustering --output-dir --verbose --quiet --example-data --citations --help"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_qiime_gneiss_ilrhierarchical()
-{
-    local word_list="  --i-table --i-tree --p-pseudocount --o-balances --output-dir --verbose --quiet --example-data --citations --help"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_qiime_gneiss_ilrphylogenetic()
-{
-    local word_list="  --i-table --i-tree --p-pseudocount --o-balances --o-hierarchy --output-dir --verbose --quiet --example-data --citations --help"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_qiime_gneiss_ilrphylogeneticdifferential()
-{
-    local word_list="  --i-differential --i-tree --o-ilr-differential --o-bifurcated-tree --output-dir --verbose --quiet --example-data --citations --help"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_qiime_gneiss_ilrphylogeneticordination()
-{
-    local word_list="  --i-table --i-tree --p-pseudocount --p-top-k-var --p-clades --o-bifurcated-tree --o-clade-metadata --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1694,74 +1735,74 @@ _qiime_longitudinal()
 
 _qiime_longitudinal_anova()
 {
-    local word_list="  --p-formula --p-sstype --m-metadata-file --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --m-metadata-file --p-formula --p-sstype --p-repeated-measures --p-no-repeated-measures --p-individual-id-column --p-rm-aggregate --p-no-rm-aggregate --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_longitudinal_featurevolatility()
 {
-    local word_list="  --i-table --p-state-column --p-individual-id-column --p-cv --p-random-state --p-n-jobs --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --p-importance-threshold --m-metadata-file --p-n-estimators --o-filtered-table --o-feature-importance --o-volatility-plot --o-accuracy-results --o-sample-estimator --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --p-state-column --p-individual-id-column --p-cv --p-random-state --p-n-jobs --p-n-estimators --p-estimator --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --p-importance-threshold --p-feature-count --o-filtered-table --o-feature-importance --o-volatility-plot --o-accuracy-results --o-sample-estimator --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_longitudinal_firstdifferences()
 {
-    local word_list="  --i-table --p-state-column --p-individual-id-column --p-metric --p-replicate-handling --p-baseline --m-metadata-file --o-first-differences --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --p-state-column --p-individual-id-column --p-metric --p-replicate-handling --p-baseline --o-first-differences --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_longitudinal_firstdistances()
 {
-    local word_list="  --i-distance-matrix --p-state-column --p-individual-id-column --p-baseline --p-replicate-handling --m-metadata-file --o-first-distances --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-distance-matrix --m-metadata-file --p-state-column --p-individual-id-column --p-baseline --p-replicate-handling --o-first-distances --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_longitudinal_linearmixedeffects()
 {
-    local word_list="  --i-table --p-state-column --p-individual-id-column --p-metric --p-group-columns --p-random-effects --p-lowess --p-no-lowess --p-ci --p-formula --m-metadata-file --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --p-state-column --p-individual-id-column --p-metric --p-group-columns --p-random-effects --p-palette --p-lowess --p-no-lowess --p-ci --p-formula --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_longitudinal_maturityindex()
 {
-    local word_list="  --i-table --p-state-column --p-group-by --p-control --p-individual-id-column --p-step --p-cv --p-random-state --p-n-jobs --p-parameter-tuning --p-no-parameter-tuning --p-optimize-feature-selection --p-no-optimize-feature-selection --p-stratify --p-no-stratify --p-missing-samples --m-metadata-file --p-n-estimators --p-test-size --p-feature-count --o-sample-estimator --o-feature-importance --o-predictions --o-model-summary --o-accuracy-results --o-maz-scores --o-clustermap --o-volatility-plots --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --p-state-column --p-group-by --p-control --p-individual-id-column --p-estimator --p-n-estimators --p-test-size --p-step --p-cv --p-random-state --p-n-jobs --p-parameter-tuning --p-no-parameter-tuning --p-optimize-feature-selection --p-no-optimize-feature-selection --p-stratify --p-no-stratify --p-missing-samples --p-feature-count --o-sample-estimator --o-feature-importance --o-predictions --o-model-summary --o-accuracy-results --o-maz-scores --o-clustermap --o-volatility-plots --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_longitudinal_nmit()
 {
-    local word_list="  --i-table --p-individual-id-column --p-corr-method --p-dist-method --m-metadata-file --o-distance-matrix --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --p-individual-id-column --p-corr-method --p-dist-method --o-distance-matrix --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_longitudinal_pairwisedifferences()
 {
-    local word_list="  --i-table --p-metric --p-state-column --p-state-1 --p-state-2 --p-individual-id-column --p-group-column --p-parametric --p-no-parametric --p-replicate-handling --m-metadata-file --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --p-metric --p-state-column --p-state-1 --p-state-2 --p-individual-id-column --p-group-column --p-parametric --p-no-parametric --p-replicate-handling --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_longitudinal_pairwisedistances()
 {
-    local word_list="  --i-distance-matrix --p-group-column --p-state-column --p-state-1 --p-state-2 --p-individual-id-column --p-parametric --p-no-parametric --p-replicate-handling --m-metadata-file --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-distance-matrix --m-metadata-file --p-group-column --p-state-column --p-state-1 --p-state-2 --p-individual-id-column --p-parametric --p-no-parametric --p-replicate-handling --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_longitudinal_plotfeaturevolatility()
 {
-    local word_list="  --i-table --i-importances --p-state-column --p-individual-id-column --p-default-group-column --p-yscale --p-importance-threshold --p-missing-samples --m-metadata-file --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --i-importances --m-metadata-file --p-state-column --p-individual-id-column --p-default-group-column --p-yscale --p-importance-threshold --p-missing-samples --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_longitudinal_volatility()
 {
-    local word_list="  --i-table --p-state-column --p-individual-id-column --p-default-group-column --p-default-metric --p-yscale --m-metadata-file --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --p-state-column --p-individual-id-column --p-default-group-column --p-default-metric --p-yscale --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_metadata()
 {
     local cmd i subcommands
-    local subcommands=" distance-matrix shuffle-groups tabulate"
+    local subcommands=" distance-matrix merge shuffle-groups tabulate"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -1775,6 +1816,10 @@ _qiime_metadata()
             return
             ;;
 
+        merge) _qiime_metadata_merge
+            return
+            ;;
+
         shuffle-groups) _qiime_metadata_shufflegroups
             return
             ;;
@@ -1785,7 +1830,7 @@ _qiime_metadata()
 
     esac
 
-    local word_list=" distance-matrix shuffle-groups tabulate --version --example-data --citations --help"
+    local word_list=" distance-matrix merge shuffle-groups tabulate --version --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1795,15 +1840,21 @@ _qiime_metadata_distancematrix()
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
+_qiime_metadata_merge()
+{
+    local word_list="  --m-metadata1-file --m-metadata2-file --o-merged-metadata --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
 _qiime_metadata_shufflegroups()
 {
-    local word_list="  --m-metadata-file --m-metadata-column --p-n-columns --p-column-name-prefix --p-column-value-prefix --o-shuffled-groups --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --m-metadata-file --m-metadata-column --p-n-columns --p-md-column-name-prefix --p-md-column-values-prefix --p-encode-sample-size --p-no-encode-sample-size --o-shuffled-groups --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_metadata_tabulate()
 {
-    local word_list="  --p-page-size --m-input-file --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --m-input-file --p-page-size --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1876,25 +1927,25 @@ _qiime_phylogeny()
 
 _qiime_phylogeny_aligntotreemafftfasttree()
 {
-    local word_list="  --i-sequences --p-mask-max-gap-frequency --p-mask-min-conservation --p-parttree --p-no-parttree --o-alignment --o-masked-alignment --o-tree --o-rooted-tree --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-sequences --p-n-threads --p-mask-max-gap-frequency --p-mask-min-conservation --p-parttree --p-no-parttree --o-alignment --o-masked-alignment --o-tree --o-rooted-tree --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_phylogeny_aligntotreemafftiqtree()
 {
-    local word_list="  --i-sequences --p-fast --p-no-fast --p-alrt --p-stop-iter --p-perturb-nni-strength --p-mask-max-gap-frequency --p-mask-min-conservation --p-seed --o-alignment --o-masked-alignment --o-tree --o-rooted-tree --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-sequences --p-n-threads --p-mask-max-gap-frequency --p-mask-min-conservation --p-substitution-model --p-fast --p-no-fast --p-alrt --p-stop-iter --p-perturb-nni-strength --p-seed --o-alignment --o-masked-alignment --o-tree --o-rooted-tree --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_phylogeny_aligntotreemafftraxml()
 {
-    local word_list="  --i-sequences --p-mask-max-gap-frequency --p-mask-min-conservation --p-parttree --p-no-parttree --p-seed --p-raxml-version --o-alignment --o-masked-alignment --o-tree --o-rooted-tree --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-sequences --p-n-threads --p-mask-max-gap-frequency --p-mask-min-conservation --p-parttree --p-no-parttree --p-seed --p-raxml-version --o-alignment --o-masked-alignment --o-tree --o-rooted-tree --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_phylogeny_fasttree()
 {
-    local word_list="  --i-alignment --o-tree --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-alignment --p-n-threads --o-tree --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1906,19 +1957,19 @@ _qiime_phylogeny_filtertable()
 
 _qiime_phylogeny_filtertree()
 {
-    local word_list="  --i-tree --p-where --m-metadata-file --o-filtered-tree --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-tree --i-table --m-metadata-file --p-where --o-filtered-tree --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_phylogeny_iqtree()
 {
-    local word_list="  --i-alignment --p-seed --p-n-runs --p-n-init-pars-trees --p-n-top-init-trees --p-n-best-retain-trees --p-n-iter --p-stop-iter --p-perturb-nni-strength --p-spr-radius --p-allnni --p-no-allnni --p-fast --p-no-fast --p-alrt --p-abayes --p-no-abayes --p-lbp --p-safe --p-no-safe --o-tree --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-alignment --p-seed --p-n-cores --p-n-cores-max --p-n-runs --p-substitution-model --p-n-init-pars-trees --p-n-top-init-trees --p-n-best-retain-trees --p-n-iter --p-stop-iter --p-perturb-nni-strength --p-spr-radius --p-allnni --p-no-allnni --p-fast --p-no-fast --p-alrt --p-abayes --p-no-abayes --p-lbp --p-safe --p-no-safe --o-tree --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_phylogeny_iqtreeultrafastbootstrap()
 {
-    local word_list="  --i-alignment --p-seed --p-n-runs --p-bootstrap-replicates --p-n-init-pars-trees --p-n-top-init-trees --p-n-best-retain-trees --p-stop-iter --p-perturb-nni-strength --p-spr-radius --p-n-max-ufboot-iter --p-n-ufboot-steps --p-min-cor-ufboot --p-ep-break-ufboot --p-allnni --p-no-allnni --p-alrt --p-abayes --p-no-abayes --p-lbp --p-bnni --p-no-bnni --p-safe --p-no-safe --o-tree --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-alignment --p-seed --p-n-cores --p-n-cores-max --p-n-runs --p-substitution-model --p-bootstrap-replicates --p-n-init-pars-trees --p-n-top-init-trees --p-n-best-retain-trees --p-stop-iter --p-perturb-nni-strength --p-spr-radius --p-n-max-ufboot-iter --p-n-ufboot-steps --p-min-cor-ufboot --p-ep-break-ufboot --p-allnni --p-no-allnni --p-alrt --p-abayes --p-no-abayes --p-lbp --p-bnni --p-no-bnni --p-safe --p-no-safe --o-tree --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1949,7 +2000,7 @@ _qiime_phylogeny_robinsonfoulds()
 _qiime_qualitycontrol()
 {
     local cmd i subcommands
-    local subcommands=" bowtie2-build decontam-identify decontam-remove decontam-score-viz evaluate-composition evaluate-seqs evaluate-taxonomy exclude-seqs filter-reads"
+    local subcommands=" bowtie2-build decontam-identify decontam-identify-batches decontam-remove decontam-score-viz evaluate-composition evaluate-seqs evaluate-taxonomy exclude-seqs filter-reads"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -1964,6 +2015,10 @@ _qiime_qualitycontrol()
             ;;
 
         decontam-identify) _qiime_qualitycontrol_decontamidentify
+            return
+            ;;
+
+        decontam-identify-batches) _qiime_qualitycontrol_decontamidentifybatches
             return
             ;;
 
@@ -1997,7 +2052,7 @@ _qiime_qualitycontrol()
 
     esac
 
-    local word_list=" bowtie2-build decontam-identify decontam-remove decontam-score-viz evaluate-composition evaluate-seqs evaluate-taxonomy exclude-seqs filter-reads --version --example-data --citations --help"
+    local word_list=" bowtie2-build decontam-identify decontam-identify-batches decontam-remove decontam-score-viz evaluate-composition evaluate-seqs evaluate-taxonomy exclude-seqs filter-reads --version --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -2009,19 +2064,25 @@ _qiime_qualitycontrol_bowtie2build()
 
 _qiime_qualitycontrol_decontamidentify()
 {
-    local word_list="  --i-table --p-method --p-freq-concentration-column --p-prev-control-column --p-prev-control-indicator --m-metadata-file --o-decontam-scores --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --p-method --p-freq-concentration-column --p-prev-control-column --p-prev-control-indicator --o-decontam-scores --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_qualitycontrol_decontamidentifybatches()
+{
+    local word_list="  --i-table --i-rep-seqs --m-metadata-file --p-split-column --p-method --p-filter-empty-features --p-no-filter-empty-features --p-freq-concentration-column --p-prev-control-column --p-prev-control-indicator --p-threshold --p-weighted --p-no-weighted --p-bin-size --o-batch-subset-tables --o-decontam-scores --o-score-histograms --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_qualitycontrol_decontamremove()
 {
-    local word_list="  --i-decontam-scores --i-table --p-threshold --o-filtered-table --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-decontam-scores --i-table --i-rep-seqs --p-threshold --o-filtered-table --o-filtered-rep-seqs --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_qualitycontrol_decontamscoreviz()
 {
-    local word_list="  --i-decontam-scores --i-table --p-threshold --p-weighted --p-no-weighted --p-bin-size --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-decontam-scores --i-table --i-rep-seqs --p-threshold --p-weighted --p-no-weighted --p-bin-size --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -2057,8 +2118,14 @@ _qiime_qualitycontrol_filterreads()
 
 _qiime_qualityfilter()
 {
+    local word_list="  --version --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript()
+{
     local cmd i subcommands
-    local subcommands=" q-score"
+    local subcommands=" cull-seqs degap-seqs dereplicate edit-taxonomy evaluate-classifications evaluate-cross-validate evaluate-fit-classifier evaluate-seqs evaluate-taxonomy extract-seq-segments filter-seqs-length filter-seqs-length-by-taxon filter-taxa get-gtdb-data get-ncbi-data get-ncbi-data-protein get-ncbi-genomes get-silva-data get-unite-data merge-taxa orient-seqs parse-silva-taxonomy reverse-transcribe subsample-fasta trim-alignment"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -2068,19 +2135,259 @@ _qiime_qualityfilter()
     done
 
     case "$cmd" in
-        q-score) _qiime_qualityfilter_qscore
+        cull-seqs) _qiime_rescript_cullseqs
+            return
+            ;;
+
+        degap-seqs) _qiime_rescript_degapseqs
+            return
+            ;;
+
+        dereplicate) _qiime_rescript_dereplicate
+            return
+            ;;
+
+        edit-taxonomy) _qiime_rescript_edittaxonomy
+            return
+            ;;
+
+        evaluate-classifications) _qiime_rescript_evaluateclassifications
+            return
+            ;;
+
+        evaluate-cross-validate) _qiime_rescript_evaluatecrossvalidate
+            return
+            ;;
+
+        evaluate-fit-classifier) _qiime_rescript_evaluatefitclassifier
+            return
+            ;;
+
+        evaluate-seqs) _qiime_rescript_evaluateseqs
+            return
+            ;;
+
+        evaluate-taxonomy) _qiime_rescript_evaluatetaxonomy
+            return
+            ;;
+
+        extract-seq-segments) _qiime_rescript_extractseqsegments
+            return
+            ;;
+
+        filter-seqs-length) _qiime_rescript_filterseqslength
+            return
+            ;;
+
+        filter-seqs-length-by-taxon) _qiime_rescript_filterseqslengthbytaxon
+            return
+            ;;
+
+        filter-taxa) _qiime_rescript_filtertaxa
+            return
+            ;;
+
+        get-gtdb-data) _qiime_rescript_getgtdbdata
+            return
+            ;;
+
+        get-ncbi-data) _qiime_rescript_getncbidata
+            return
+            ;;
+
+        get-ncbi-data-protein) _qiime_rescript_getncbidataprotein
+            return
+            ;;
+
+        get-ncbi-genomes) _qiime_rescript_getncbigenomes
+            return
+            ;;
+
+        get-silva-data) _qiime_rescript_getsilvadata
+            return
+            ;;
+
+        get-unite-data) _qiime_rescript_getunitedata
+            return
+            ;;
+
+        merge-taxa) _qiime_rescript_mergetaxa
+            return
+            ;;
+
+        orient-seqs) _qiime_rescript_orientseqs
+            return
+            ;;
+
+        parse-silva-taxonomy) _qiime_rescript_parsesilvataxonomy
+            return
+            ;;
+
+        reverse-transcribe) _qiime_rescript_reversetranscribe
+            return
+            ;;
+
+        subsample-fasta) _qiime_rescript_subsamplefasta
+            return
+            ;;
+
+        trim-alignment) _qiime_rescript_trimalignment
             return
             ;;
 
     esac
 
-    local word_list=" q-score --version --example-data --citations --help"
+    local word_list=" cull-seqs degap-seqs dereplicate edit-taxonomy evaluate-classifications evaluate-cross-validate evaluate-fit-classifier evaluate-seqs evaluate-taxonomy extract-seq-segments filter-seqs-length filter-seqs-length-by-taxon filter-taxa get-gtdb-data get-ncbi-data get-ncbi-data-protein get-ncbi-genomes get-silva-data get-unite-data merge-taxa orient-seqs parse-silva-taxonomy reverse-transcribe subsample-fasta trim-alignment --version --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
-_qiime_qualityfilter_qscore()
+_qiime_rescript_cullseqs()
 {
-    local word_list="  --i-demux --p-min-quality --p-quality-window --p-min-length-fraction --p-max-ambiguous --o-filtered-sequences --o-filter-stats --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-sequences --p-num-degenerates --p-homopolymer-length --p-n-jobs --o-clean-sequences --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_degapseqs()
+{
+    local word_list="  --i-aligned-sequences --p-min-length --o-degapped-sequences --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_dereplicate()
+{
+    local word_list="  --i-sequences --i-taxa --p-mode --p-threads --p-rank-handles --p-derep-prefix --p-no-derep-prefix --o-dereplicated-sequences --o-dereplicated-taxa --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_edittaxonomy()
+{
+    local word_list="  --i-taxonomy --m-replacement-map-file --m-replacement-map-column --p-search-strings --p-replacement-strings --p-use-regex --p-no-use-regex --o-edited-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_evaluateclassifications()
+{
+    local word_list="  --i-expected-taxonomies --i-observed-taxonomies --p-labels --o-evaluation --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_evaluatecrossvalidate()
+{
+    local word_list="  --i-sequences --i-taxonomy --p-k --p-random-state --p-reads-per-batch --p-n-jobs --p-confidence --o-expected-taxonomy --o-observed-taxonomy --o-evaluation --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_evaluatefitclassifier()
+{
+    local word_list="  --i-sequences --i-taxonomy --p-reads-per-batch --p-n-jobs --p-confidence --o-classifier --o-evaluation --o-observed-taxonomy --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_evaluateseqs()
+{
+    local word_list="  --i-sequences --p-labels --p-kmer-lengths --p-subsample-kmers --p-palette --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_evaluatetaxonomy()
+{
+    local word_list="  --i-taxonomies --p-labels --p-rank-handle-regex --o-taxonomy-stats --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_extractseqsegments()
+{
+    local word_list="  --i-input-sequences --i-reference-segment-sequences --p-perc-identity --p-min-seq-len --p-threads --o-extracted-sequence-segments --o-unmatched-sequences --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_filterseqslength()
+{
+    local word_list="  --i-sequences --p-global-min --p-global-max --p-threads --o-filtered-seqs --o-discarded-seqs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_filterseqslengthbytaxon()
+{
+    local word_list="  --i-sequences --i-taxonomy --p-labels --p-min-lens --p-max-lens --p-global-min --p-global-max --o-filtered-seqs --o-discarded-seqs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_filtertaxa()
+{
+    local word_list="  --i-taxonomy --m-ids-to-keep-file --p-include --p-exclude --o-filtered-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_getgtdbdata()
+{
+    local word_list="  --p-version --p-domain --p-db-type --o-gtdb-taxonomy --o-gtdb-sequences --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_getncbidata()
+{
+    local word_list="  --p-query --m-accession-ids-file --p-ranks --p-rank-propagation --p-no-rank-propagation --p-logging-level --p-n-jobs --o-sequences --o-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_getncbidataprotein()
+{
+    local word_list="  --p-query --m-accession-ids-file --p-ranks --p-rank-propagation --p-no-rank-propagation --p-n-jobs --o-sequences --o-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_getncbigenomes()
+{
+    local word_list="  --p-taxon --p-assembly-source --p-assembly-levels --p-only-reference --p-no-only-reference --p-tax-exact-match --p-no-tax-exact-match --p-page-size --o-genome-assemblies --o-loci --o-proteins --o-taxonomies --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_getsilvadata()
+{
+    local word_list="  --p-include-species-labels --p-no-include-species-labels --p-rank-propagation --p-no-rank-propagation --p-download-sequences --p-no-download-sequences --o-silva-sequences --o-silva-taxonomy --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_getunitedata()
+{
+    local word_list="  --p-version --p-taxon-group --p-cluster-id --p-singletons --p-no-singletons --o-taxonomy --o-sequences --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_mergetaxa()
+{
+    local word_list="  --i-data --p-mode --p-rank-handle-regex --p-new-rank-handles --p-unclassified-label --o-merged-data --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_orientseqs()
+{
+    local word_list="  --i-sequences --i-reference-sequences --p-threads --p-dbmask --p-relabel --p-relabel-keep --p-no-relabel-keep --p-relabel-md5 --p-no-relabel-md5 --p-relabel-self --p-no-relabel-self --p-relabel-sha1 --p-no-relabel-sha1 --p-sizein --p-no-sizein --p-sizeout --p-no-sizeout --o-oriented-seqs --o-unmatched-seqs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_parsesilvataxonomy()
+{
+    local word_list="  --i-taxonomy-map --i-taxonomy-ranks --i-taxonomy-tree --p-rank-propagation --p-no-rank-propagation --p-include-species-labels --p-no-include-species-labels --o-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_reversetranscribe()
+{
+    local word_list="  --i-rna-sequences --o-dna-sequences --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_subsamplefasta()
+{
+    local word_list="  --i-sequences --o-sample-sequences --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_rescript_trimalignment()
+{
+    local word_list="  --i-aligned-sequences --p-primer-fwd --p-primer-rev --p-position-start --p-position-end --o-trimmed-sequences --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -2165,7 +2472,7 @@ _qiime_sampleclassifier()
 
 _qiime_sampleclassifier_classifysamples()
 {
-    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-step --p-cv --p-random-state --p-n-jobs --p-optimize-feature-selection --p-no-optimize-feature-selection --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --p-test-size --p-n-estimators --o-sample-estimator --o-feature-importance --o-predictions --o-model-summary --o-accuracy-results --o-probabilities --o-heatmap --o-training-targets --o-test-targets --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-test-size --p-step --p-cv --p-random-state --p-n-jobs --p-n-estimators --p-estimator --p-optimize-feature-selection --p-no-optimize-feature-selection --p-parameter-tuning --p-no-parameter-tuning --p-palette --p-missing-samples --o-sample-estimator --o-feature-importance --o-predictions --o-model-summary --o-accuracy-results --o-probabilities --o-heatmap --o-training-targets --o-test-targets --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -2177,7 +2484,7 @@ _qiime_sampleclassifier_classifysamplesfromdist()
 
 _qiime_sampleclassifier_classifysamplesncv()
 {
-    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-cv --p-random-state --p-n-jobs --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --p-n-estimators --o-predictions --o-feature-importance --o-probabilities --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-cv --p-random-state --p-n-jobs --p-n-estimators --p-estimator --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --o-predictions --o-feature-importance --o-probabilities --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -2189,49 +2496,49 @@ _qiime_sampleclassifier_confusionmatrix()
 
 _qiime_sampleclassifier_fitclassifier()
 {
-    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-step --p-cv --p-random-state --p-n-jobs --p-optimize-feature-selection --p-no-optimize-feature-selection --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --p-n-estimators --o-sample-estimator --o-feature-importance --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-step --p-cv --p-random-state --p-n-jobs --p-n-estimators --p-estimator --p-optimize-feature-selection --p-no-optimize-feature-selection --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --o-sample-estimator --o-feature-importance --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_sampleclassifier_fitregressor()
 {
-    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-step --p-cv --p-random-state --p-n-jobs --p-optimize-feature-selection --p-no-optimize-feature-selection --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --p-n-estimators --o-sample-estimator --o-feature-importance --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-step --p-cv --p-random-state --p-n-jobs --p-n-estimators --p-estimator --p-optimize-feature-selection --p-no-optimize-feature-selection --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --o-sample-estimator --o-feature-importance --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_sampleclassifier_heatmap()
 {
-    local word_list="  --i-table --i-importance --m-sample-metadata-file --m-sample-metadata-column --m-feature-metadata-file --m-feature-metadata-column --p-importance-threshold --p-group-samples --p-no-group-samples --p-normalize --p-no-normalize --p-missing-samples --p-cluster --p-feature-count --o-heatmap --o-filtered-table --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-table --i-importance --m-sample-metadata-file --m-sample-metadata-column --m-feature-metadata-file --m-feature-metadata-column --p-feature-count --p-importance-threshold --p-group-samples --p-no-group-samples --p-normalize --p-no-normalize --p-missing-samples --p-metric --p-method --p-cluster --p-color-scheme --o-heatmap --o-filtered-table --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_sampleclassifier_metatable()
 {
-    local word_list="  --i-table --p-missing-samples --p-missing-values --p-drop-all-unique --p-no-drop-all-unique --m-metadata-file --o-converted-table --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --p-missing-samples --p-missing-values --p-drop-all-unique --p-no-drop-all-unique --o-converted-table --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_sampleclassifier_predictclassification()
 {
-    local word_list="  --i-table --i-sample-estimator --p-n-jobs --o-predictions --o-probabilities --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-sample-estimator --p-n-jobs --o-predictions --o-probabilities --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_sampleclassifier_predictregression()
 {
-    local word_list="  --i-table --i-sample-estimator --p-n-jobs --o-predictions --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-sample-estimator --p-n-jobs --o-predictions --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_sampleclassifier_regresssamples()
 {
-    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-step --p-cv --p-random-state --p-n-jobs --p-optimize-feature-selection --p-no-optimize-feature-selection --p-stratify --p-no-stratify --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --p-test-size --p-n-estimators --o-sample-estimator --o-feature-importance --o-predictions --o-model-summary --o-accuracy-results --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-test-size --p-step --p-cv --p-random-state --p-n-jobs --p-n-estimators --p-estimator --p-optimize-feature-selection --p-no-optimize-feature-selection --p-stratify --p-no-stratify --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --o-sample-estimator --o-feature-importance --o-predictions --o-model-summary --o-accuracy-results --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_sampleclassifier_regresssamplesncv()
 {
-    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-cv --p-random-state --p-n-jobs --p-stratify --p-no-stratify --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --p-n-estimators --o-predictions --o-feature-importance --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-cv --p-random-state --p-n-jobs --p-n-estimators --p-estimator --p-stratify --p-no-stratify --p-parameter-tuning --p-no-parameter-tuning --p-missing-samples --o-predictions --o-feature-importance --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -2243,7 +2550,7 @@ _qiime_sampleclassifier_scatterplot()
 
 _qiime_sampleclassifier_splittable()
 {
-    local word_list="  --m-metadata-file --m-metadata-column --p-random-state --p-stratify --p-no-stratify --p-missing-samples --p-test-size --o-training-targets --o-test-targets --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --m-metadata-file --m-metadata-column --p-test-size --p-random-state --p-stratify --p-no-stratify --p-missing-samples --o-training-table --o-test-table --o-training-targets --o-test-targets --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -2290,7 +2597,7 @@ _qiime_taxa()
 
 _qiime_taxa_barplot()
 {
-    local word_list="  --i-table --i-taxonomy --p-level-delimiter --m-metadata-file --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-table --i-taxonomy --m-metadata-file --p-level-delimiter --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -2371,7 +2678,7 @@ _qiime_vsearch_clusterfeaturesclosedreference()
 
 _qiime_vsearch_clusterfeaturesdenovo()
 {
-    local word_list="  --i-sequences --i-table --p-threads --o-clustered-table --o-clustered-sequences --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-sequences --i-table --p-strand --p-threads --o-clustered-table --o-clustered-sequences --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -2383,19 +2690,19 @@ _qiime_vsearch_clusterfeaturesopenreference()
 
 _qiime_vsearch_dereplicatesequences()
 {
-    local word_list="  --i-sequences --p-derep-prefix --p-no-derep-prefix --p-min-seq-length --p-min-unique-size --o-dereplicated-table --o-dereplicated-sequences --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-sequences --i-sequences --p-derep-prefix --p-no-derep-prefix --p-min-seq-length --p-min-unique-size --o-dereplicated-table --o-dereplicated-sequences --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_vsearch_fastqstats()
 {
-    local word_list="  --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --p-threads --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _qiime_vsearch_mergepairs()
 {
-    local word_list="  --i-demultiplexed-seqs --p-truncqual --p-minlen --p-maxns --p-allowmergestagger --p-no-allowmergestagger --p-minovlen --p-maxdiffs --p-minmergelen --p-maxmergelen --p-maxee --p-threads --o-merged-sequences --output-dir --verbose --quiet --example-data --citations --help"
+    local word_list="  --i-demultiplexed-seqs --p-truncqual --p-minlen --p-maxns --p-allowmergestagger --p-no-allowmergestagger --p-minovlen --p-maxdiffs --p-minmergelen --p-maxmergelen --p-maxee --p-threads --o-merged-sequences --o-unmerged-sequences --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

@@ -186,7 +186,7 @@ _samtools_dict()
 
 _samtools_faidx()
 {
-    local word_list="  -o --output -n --length -c --continue -r --region-file -f --fastq -i --reverse-complement --mark-strand --fai-idx --gzi-idx -h --help"
+    local word_list="  -o --output -n --length -c --continue -r --region-file -f --fastq -i --reverse-complement --mark-strand --fai-idx --gzi-idx -h --help --output-fmt-option -@ --threads"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -198,7 +198,7 @@ _samtools_fqidx()
 
 _samtools_index()
 {
-    local word_list="  -b -c -m -M -o -@ --threads"
+    local word_list="  -b --bai -c --csi -m --min-shift -M -o --output -@ --threads"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -210,7 +210,7 @@ _samtools_calmd()
 
 _samtools_fixmate()
 {
-    local word_list="  -r -p -c -m -u -O --no-PG -@ --threads -z --sanitize"
+    local word_list="  -r -p -c -m -M -u -O --no-PG -@ --threads -z --sanitize"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -240,7 +240,7 @@ _samtools_markdup()
 
 _samtools_ampliconclip()
 {
-    local word_list="  -b -o -f -u --soft-clip --hard-clip --both-ends --strand --clipped --fail --filter-len --fail-len --no-excluded --rejects-file --original --keep-tag --tolerance --no-PG"
+    local word_list="  -b -o -f -u --soft-clip --hard-clip --both-ends --strand --clipped --fail --filter-len --fail-len --unmap-len --no-excluded --rejects-file --primer-counts --original --keep-tag --tolerance --no-PG"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -252,19 +252,19 @@ _samtools_collate()
 
 _samtools_cat()
 {
-    local word_list="  -b -h -o --no-PG -@ --threads"
+    local word_list="  -b -h -o -q -r -p -f --no-PG -@ --threads"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _samtools_consensus()
 {
-    local word_list="  -r --region -f --format -l --line-len -o --output -m --mode -a --rf --incl-flags --ff --excl-flags --min-MQ --min-BQ --show-del --show-ins --mark-ins -A --ambig -q --use-qual -d --min-depth -H --het-fract -c --call-fract -5 -C --cutoff --use-MQ --no-use-MQ --adj-MQ --no-adj-MQ --NM-halo --low-MQ --high-MQ --scale-MQ --P-het --P-indel --het-scale -p --homopoly-fix --homopoly-score -X --config -"
+    local word_list="  -r --region -f --format -l --line-len -o --output -m --mode -a --rf --incl-flags --ff --excl-flags --min-MQ --min-BQ --show-del --show-ins --mark-ins -A --ambig -d --min-depth -q --use-qual -H --het-fract -c --call-fract -C --cutoff --use-MQ --no-use-MQ --adj-MQ --no-adj-MQ --NM-halo --low-MQ --high-MQ --scale-MQ --P-het --P-indel --het-scale -p --homopoly-fix --homopoly-score -t --qual-calibration -X --config -"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _samtools_merge()
 {
-    local word_list="  -1 -b -f -h -n -o -t -R -r -u -c -p -X -L --no-PG -@ --threads"
+    local word_list="  -1 -b -f -h -n -N -o -t -R -r -u -c -p -X -L --no-PG -@ --threads"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -276,13 +276,13 @@ _samtools_mpileup()
 
 _samtools_sort()
 {
-    local word_list="  -l -u -m -n -t -M -R -K -I -w -H -o -O -T -@ --no-PG --template-coordinate"
+    local word_list="  -l -u -m -n -N -t -M -R -K -I -w -H -o -O -T -@ --no-PG --template-coordinate"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _samtools_split()
 {
-    local word_list="  -u -h -f -v --no-PG -@ --threads"
+    local word_list="  -u -h -f -d -p -M --max-split -v --no-PG -@ --threads"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -294,13 +294,13 @@ _samtools_quickcheck()
 
 _samtools_fastq()
 {
-    local word_list="  -n -N -O -s -t -T -1 -2 -o -0 -f --rf --incl-flags --include-flags -G -i -c --i1 --i2 --barcode-tag --quality-tag -@ --threads --index-format"
+    local word_list="  -n -N -O -s -t -T -1 -2 -o -0 -f --rf --incl-flags --include-flags -G -d -D -i -c --i1 --i2 --barcode-tag --quality-tag -@ --threads --index-format"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _samtools_fasta()
 {
-    local word_list="  -n -N -O -s -t -T -1 -2 -o -0 -f --rf --incl-flags --include-flags -G -i -c --i1 --i2 --barcode-tag --quality-tag -@ --threads --index-format"
+    local word_list="  -n -N -O -s -t -T -1 -2 -o -0 -f --rf --incl-flags --include-flags -G -d -D -i -c --i1 --i2 --barcode-tag --quality-tag -@ --threads --index-format"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -318,19 +318,19 @@ _samtools_reference()
 
 _samtools_reset()
 {
-    local word_list="  -o -x --remove-tag --keep-tag --reject-PG --no-RG --no-PG -@ --thread -O --output-fmt"
+    local word_list="  -o -x --remove-tag --keep-tag --reject-PG --no-RG --no-PG --dupflag -@ --thread -O --output-fmt"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _samtools_bedcov()
 {
-    local word_list="  -Q --min-MQ -g -G -j -d -c -X"
+    local word_list="  -Q --min-MQ -g -G -j -d --max-depth -c -X -H"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _samtools_coverage()
 {
-    local word_list="  -b --bam-list -l --min-read-len -q --min-MQ -Q --min-BQ --rf --incl-flags --ff --excl-flags -d --depth -m --histogram -A --ascii -o --output -H --no-header -w --n-bins -r --region -h --help"
+    local word_list="  -b --bam-list -l --min-read-len -q --min-MQ -Q --min-BQ --rf --incl-flags --ff --excl-flags -d --depth -m --histogram -D --plot-depth -A --ascii -o --output -H --no-header -w --n-bins -r --region -h --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -348,7 +348,7 @@ _samtools_flagstat()
 
 _samtools_idxstats()
 {
-    local word_list="  "
+    local word_list="  -X"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

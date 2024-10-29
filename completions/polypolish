@@ -5,7 +5,40 @@ _polypolish()
     local cur prev words cword
     _init_completion -s || return
 
-    local word_list="  -d --min_depth --debug -h --help -i --fraction_invalid -m --max_errors -v --fraction_valid -V --version"
+    local cmd i subcommands
+    local subcommands=" filter polish"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        filter) _polypolish_filter
+            return
+            ;;
+
+        polish) _polypolish_polish
+            return
+            ;;
+
+    esac
+
+    local word_list=" filter polish -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_polypolish_filter()
+{
+    local word_list="  --in1 --in2 --out1 --out2 --orientation --low --high -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_polypolish_polish()
+{
+    local word_list="  --debug -i --fraction_invalid -v --fraction_valid -m --max_errors -d --min_depth --careful -h --help -V --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

@@ -6,7 +6,7 @@ _bcftools()
     _init_completion -s || return
 
     local cmd i subcommands
-    local subcommands=" index annotate concat convert isec merge norm plugin query reheader sort view call consensus cnv csq filter gtcheck mpileup polysomy roh stats"
+    local subcommands=" index annotate concat convert head isec merge norm plugin query reheader sort view call consensus cnv csq filter gtcheck mpileup polysomy roh stats"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -29,6 +29,10 @@ _bcftools()
             ;;
 
         convert) _bcftools_convert
+            return
+            ;;
+
+        head) _bcftools_head
             return
             ;;
 
@@ -106,7 +110,7 @@ _bcftools()
 
     esac
 
-    local word_list=" index annotate concat convert isec merge norm plugin query reheader sort view call consensus cnv csq filter gtcheck mpileup polysomy roh stats "
+    local word_list=" index annotate concat convert head isec merge norm plugin query reheader sort view call consensus cnv csq filter gtcheck mpileup polysomy roh stats "
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -118,49 +122,101 @@ _bcftools_index()
 
 _bcftools_annotate()
 {
-    local word_list="  -a --annotations -c --columns -C --columns-file -e --exclude --force -H --header-line -h --header-lines -I --set-id -i --include -k --keep-sites -l --merge-logic -m --mark-sites --min-overlap --no-version -o --output -O --output-type --pair-logic -r --regions -R --regions-file --regions-overlap --rename-annots --rename-chrs -s --samples -S --samples-file --single-overlaps -x --remove --threads"
+    local word_list="  -a --annotations -c --columns -C --columns-file -e --exclude --force -H --header-line -h --header-lines -I --set-id -i --include -k --keep-sites -l --merge-logic -m --mark-sites --min-overlap --no-version -o --output -O --output-type --pair-logic -r --regions -R --regions-file --regions-overlap --rename-annots --rename-chrs -s --samples -S --samples-file --single-overlaps -x --remove --threads -W --write-index"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_concat()
 {
-    local word_list="  -a --allow-overlaps -c --compact-PS -d --rm-dups -D --remove-duplicates -f --file-list -l --ligate --ligate-force --ligate-warn --no-version -n --naive --naive-force -o --output -O --output-type -q --min-PQ -r --regions -R --regions-file --regions-overlap --threads -v --verbose"
+    local cmd i subcommands
+    local subcommands=" concatenate"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        concatenate) _bcftools_concat_concatenate
+            return
+            ;;
+
+    esac
+
+    local word_list=" concatenate -a --allow-overlaps -c --compact-PS -d --rm-dups -D --remove-duplicates -f --file-list -G --drop-genotypes -l --ligate --ligate-force --ligate-warn --no-version -n --naive --naive-force -o --output -O --output-type -q --min-PQ -r --regions -R --regions-file --regions-overlap --threads -v --verbose -W --write-index"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bcftools_concat_concatenate()
+{
+    local word_list="  "
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_convert()
 {
-    local word_list="  -e --exclude -i --include -r --regions -R --regions-file --regions-overlap -s --samples -S --samples-file -t --targets -T --targets-file --targets-overlap --no-version -o --output -O --output-type --threads -G --gensample2vcf -g --gensample --3N6 --tag --chrom --keep-duplicates --sex --vcf-ids --gvcf2vcf -f --fasta-ref --hapsample2vcf --hapsample --haploid2diploid --vcf-ids -H --haplegendsample2vcf -h --haplegendsample --tsv2vcf -c --columns -s --samples -S --samples-file"
+    local cmd i subcommands
+    local subcommands=" formats"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        formats) _bcftools_convert_formats
+            return
+            ;;
+
+    esac
+
+    local word_list=" formats -e --exclude -i --include -r --regions -R --regions-file --regions-overlap -s --samples -S --samples-file -t --targets -T --targets-file --targets-overlap --no-version -o --output -O --output-type --threads -W --write-index -G --gensample2vcf -g --gensample --3N6 --tag --chrom --keep-duplicates --sex --vcf-ids --gvcf2vcf -f --fasta-ref --hapsample2vcf --hapsample --haploid2diploid --vcf-ids -H --haplegendsample2vcf -h --haplegendsample --tsv2vcf -c --columns -s --samples -S --samples-file"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bcftools_convert_formats()
+{
+    local word_list="  -e --exclude -i --include -r --regions -R --regions-file --regions-overlap -s --samples -S --samples-file -t --targets -T --targets-file --targets-overlap --no-version -o --output -O --output-type --threads -W --write-index -G --gensample2vcf -g --gensample --3N6 --tag --chrom --keep-duplicates --sex --vcf-ids --gvcf2vcf -f --fasta-ref --hapsample2vcf --hapsample --haploid2diploid --vcf-ids -H --haplegendsample2vcf -h --haplegendsample --tsv2vcf -c --columns -s --samples -S --samples-file"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bcftools_head()
+{
+    local word_list="  -h --headers -n --records -s --samples"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_isec()
 {
-    local word_list="  -c --collapse -C --complement -e --exclude -f --apply-filters -i --include --no-version -n --nfiles -o --output -O --output-type -p --prefix -r --regions -R --regions-file --regions-overlap -t --targets -T --targets-file --targets-overlap --threads -w --write"
+    local word_list="  -c --collapse -C --complement -e --exclude -f --apply-filters -i --include -l --file-list --no-version -n --nfiles -o --output -O --output-type -p --prefix -r --regions -R --regions-file --regions-overlap -t --targets -T --targets-file --targets-overlap --threads -w --write -W --write-index"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_merge()
 {
-    local word_list="  --force-samples --print-header --use-header -0 --missing-to-ref -f --apply-filters -F --filter-logic -g --gvcf -i --info-rules -l --file-list -L --local-alleles -m --merge --no-index --no-version -o --output -O --output-type -r --regions -R --regions-file --regions-overlap --threads"
+    local word_list="  --force-no-index --force-samples --force-single --print-header --use-header -0 --missing-to-ref -f --apply-filters -F --filter-logic -i --info-rules -l --file-list -L --local-alleles -m --merge -M --missing-rules --no-index --no-version -o --output -O --output-type -r --regions -R --regions-file --regions-overlap --threads -W --write-index"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_norm()
 {
-    local word_list="  -a --atomize --atom-overlaps -c --check-ref -D --remove-duplicates -d --rm-dup -f --fasta-ref --force --keep-sum -m --multiallelics --multi-overlaps --no-version -N --do-not-normalize --old-rec-tag -o --output -O --output-type -r --regions -R --regions-file --regions-overlap -s --strict-filter -t --targets -T --targets-file --targets-overlap --threads -w --site-win"
+    local word_list="  -a --atomize --atom-overlaps -c --check-ref -D --remove-duplicates -d --rm-dup -e --exclude -f --fasta-ref --force -g --gff-annot -i --include --keep-sum --multi-overlaps --no-version -N --do-not-normalize --old-rec-tag -o --output -O --output-type -r --regions -R --regions-file --regions-overlap -s --strict-filter -S --sort -t --targets -T --targets-file --targets-overlap --threads -v --verbose -w --site-win -W --write-index"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_plugin()
 {
-    local word_list="  -e --exclude -i --include -r --regions -R --regions-file --regions-overlap -t --targets -T --targets-file --targets-overlap --no-version -o --output -O --output-type --threads -h --help -l --list-plugins -v --verbose -V --version"
+    local word_list="  -e --exclude -i --include -r --regions -R --regions-file --regions-overlap -t --targets -T --targets-file --targets-overlap --no-version -o --output -O --output-type --threads -h --help -l --list-plugins -v --verbose -V --version -W --write-index"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_query()
 {
-    local word_list="  -e --exclude --force-samples -f --format -H --print-header -i --include -l --list-samples -o --output -r --regions -R --regions-file --regions-overlap -s --samples -S --samples-file -t --targets -T --targets-file --targets-overlap -u --allow-undef-tags -v --vcf-list"
+    local word_list="  -e --exclude --force-samples -F --print-filtered -f --format -H --print-header -i --include -l --list-samples -N --disable-automatic-newline -o --output -r --regions -R --regions-file --regions-overlap -s --samples -S --samples-file -t --targets -T --targets-file --targets-overlap -u --allow-undef-tags -v --vcf-list"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -172,25 +228,25 @@ _bcftools_reheader()
 
 _bcftools_sort()
 {
-    local word_list="  -m --max-mem -o --output -O --output-type -O --output-type -T --temp-dir"
+    local word_list="  -m --max-mem -o --output -O --output-type -T --temp-dir -W --write-index"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_view()
 {
-    local word_list="  -G --drop-genotypes -h --header-only -H --no-header --with-header -l --compression-level --no-version -o --output -O --output-type -r --regions -R --regions-file --regions-overlap -t --targets -T --targets-file --targets-overlap --threads -a --trim-alt-alleles -I --no-update -s --samples -S --samples-file --force-samples -f --apply-filters -g --genotype"
+    local word_list="  -G --drop-genotypes -h --header-only -H --no-header --with-header -l --compression-level --no-version -o --output -O --output-type -r --regions -R --regions-file --regions-overlap -t --targets -T --targets-file --targets-overlap --threads -A --trim-unseen-allele -a --trim-alt-alleles -I --no-update -s --samples -S --samples-file --force-samples -f --apply-filters -g --genotype -W --write-index"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_call()
 {
-    local word_list="  --no-version -o --output -O --output-type -O --output-type --ploidy --ploidy-file -r --regions -R --regions-file --regions-overlap -s --samples -S --samples-file -t --targets -T --targets-file --threads -A --keep-alts -a --annotate -F --prior-freqs -G --group-samples --group-samples-tag -g --gvcf -i --insert-missed -M --keep-masked-ref -V --skip-variants -v --variants-only -c --consensus-caller -C --constrain -m --multiallelic-caller -n --novel-rate -p --pval-threshold -P --prior"
+    local word_list="  --no-version -o --output -O --output-type -O --output-type --ploidy --ploidy-file -r --regions -R --regions-file --regions-overlap -s --samples -S --samples-file -t --targets -T --targets-file --threads -A --keep-alts -a --annotate -F --prior-freqs -G --group-samples --group-samples-tag -g --gvcf -i --insert-missed -M --keep-masked-ref -V --skip-variants -v --variants-only -W --write-index -c --consensus-caller -C --constrain -m --multiallelic-caller -n --novel-rate -p --pval-threshold -P --prior"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_consensus()
 {
-    local word_list="  -c --chain -a --absent -e --exclude -f --fasta-ref -H --haplotype -i --include -I --iupac-codes --mark-del --mark-ins --mark-snv -m --mask --mask-with -M --missing -o --output -p --prefix -s --samples -S --samples-file"
+    local word_list="  --samples --samples -c --chain -a --absent -e --exclude -f --fasta-ref -H --haplotype -i --include -I --iupac-codes --mark-del --mark-ins --mark-snv -m --mask --mask-with -M --missing -o --output -p --prefix --regions-overlap -s --samples -S --samples-file"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -202,25 +258,25 @@ _bcftools_cnv()
 
 _bcftools_csq()
 {
-    local word_list="  -f --fasta-ref -g --gff-annot -B --trim-protein-seq -c --custom-tag -l --local-csq -n --ncsq -p --phase -e --exclude --force -i --include --no-version -o --output -O --output-type -O --output-type -r --regions -R --regions-file --regions-overlap -S --samples-file -t --targets -T --targets-file --targets-overlap --threads -v --verbose"
+    local word_list="  -f --fasta-ref -g --gff-annot -B --trim-protein-seq -c --custom-tag -l --local-csq -n --ncsq -p --phase --dump-gff --force --unify-chr-names -e --exclude -i --include --no-version -o --output -O --output-type -O --output-type -r --regions -R --regions-file --regions-overlap -S --samples-file -t --targets -T --targets-file --targets-overlap --threads -v --verbose -W --write-index"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_filter()
 {
-    local word_list="  -e --exclude -g --SnpGap -G --IndelGap -i --include --mask -M --mask-file --mask-overlap -m --mode --no-version -o --output -O --output-type -r --regions -R --regions-file --regions-overlap -s --soft-filter -S --set-GTs -t --targets -T --targets-file --targets-overlap --threads"
+    local word_list="  -e --exclude -g --SnpGap -G --IndelGap -i --include --mask -M --mask-file --mask-overlap -m --mode --no-version -o --output -O --output-type -r --regions -R --regions-file --regions-overlap -s --soft-filter -S --set-GTs -t --targets -T --targets-file --targets-overlap --threads -W --write-index"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_gtcheck()
 {
-    local word_list="  --distinctive-sites --dry-run -e --error-probability -g --genotypes -H --homs-only --n-matches --no-HWE-prob -p --pairs -P --pairs-file -r --regions -R --regions-file --regions-overlap -s --samples -S --samples-file -t --targets -T --targets-file --targets-overlap -u --use"
+    local word_list="  --distinctive-sites --dry-run -E --error-probability -e --exclude -g --genotypes -H --homs-only -i --include --n-matches --no-HWE-prob -o --output -O --output-type -p --pairs -P --pairs-file -r --regions -R --regions-file --regions-overlap -s --samples -S --samples-file -t --targets -T --targets-file --targets-overlap -u --use"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_mpileup()
 {
-    local word_list="  -6 --illumina1.3+ -A --count-orphans -b --bam-list -B --no-BAQ -C --adjust-MQ -D --full-BAQ -d --max-depth -E --redo-BAQ -f --fasta-ref --no-reference -G --read-groups -q --min-MQ -Q --min-BQ --max-BQ --delta-BQ -r --regions -R --regions-file --ignore-RG --ls --skip-all-set --ns --skip-any-set --lu --skip-all-unset --nu --skip-any-unset -s --samples -S --samples-file -t --targets -T --targets-file -x --ignore-overlaps --seed -a --annotate -g --gvcf --no-version -o --output -O --output-type --threads -X --config -e --ext-prob -F --gap-frac -h --tandem-qual -I --skip-indels -L --max-idepth -m --min-ireads -M --max-read-len -o --open-prob -p --per-sample-mF -P --platforms --ar --ambig-reads --indel-bias --indel-size --indels-2.0"
+    local word_list="  -6 --illumina1.3+ -A --count-orphans -b --bam-list -B --no-BAQ -C --adjust-MQ -D --full-BAQ -d --max-depth -E --redo-BAQ -f --fasta-ref --no-reference -G --read-groups -q --min-MQ -Q --min-BQ --max-BQ --delta-BQ -r --regions -r --regions --ls --skip-all-set --ns --skip-any-set --lu --skip-all-unset --nu --skip-any-unset -s --samples --seed -a --annotate -g --gvcf --no-version -o --output -O --output-type --threads -W --write-index -X --config -e --ext-prob -F --gap-frac -h --tandem-qual -I --skip-indels -L --max-idepth -m --min-ireads -M --max-read-len -o --open-prob -p --per-sample-mF -P --platforms --ar --ambig-reads --indel-bias --del-bias --score-vs-ref --indel-size --indels-2.0 --indels-cns --seqq-offset --no-indels-cns --poly-mqual"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

@@ -6,7 +6,7 @@ _qiime()
     _init_completion -s || return
 
     local cmd i subcommands
-    local subcommands=" info tools dev alignment composition cutadapt dada2 deblur demux diversity diversity-lib emperor feature-classifier feature-table fragment-insertion longitudinal metadata phylogeny quality-control quality-filter rescript sample-classifier taxa vsearch"
+    local subcommands=" info tools dev alignment assembly composition cutadapt dada2 deblur demux diversity diversity-lib emperor feature-classifier feature-table fondue fragment-insertion longitudinal metadata moshpit phylogeny quality-control quality-filter rescript sample-classifier moshpit taxa vsearch"
 
     for (( i=1; i < cword; i++ )); do
         if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
@@ -29,6 +29,10 @@ _qiime()
             ;;
 
         alignment) _qiime_alignment
+            return
+            ;;
+
+        assembly) _qiime_assembly
             return
             ;;
 
@@ -72,6 +76,10 @@ _qiime()
             return
             ;;
 
+        fondue) _qiime_fondue
+            return
+            ;;
+
         fragment-insertion) _qiime_fragmentinsertion
             return
             ;;
@@ -81,6 +89,10 @@ _qiime()
             ;;
 
         metadata) _qiime_metadata
+            return
+            ;;
+
+        moshpit) _qiime_moshpit
             return
             ;;
 
@@ -104,6 +116,10 @@ _qiime()
             return
             ;;
 
+        moshpit) _qiime_moshpit
+            return
+            ;;
+
         taxa) _qiime_taxa
             return
             ;;
@@ -114,7 +130,7 @@ _qiime()
 
     esac
 
-    local word_list=" info tools dev alignment composition cutadapt dada2 deblur demux diversity diversity-lib emperor feature-classifier feature-table fragment-insertion longitudinal metadata phylogeny quality-control quality-filter rescript sample-classifier taxa vsearch --version --help"
+    local word_list=" info tools dev alignment assembly composition cutadapt dada2 deblur demux diversity diversity-lib emperor feature-classifier feature-table fondue fragment-insertion longitudinal metadata moshpit phylogeny quality-control quality-filter rescript sample-classifier moshpit taxa vsearch --version --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -478,6 +494,135 @@ _qiime_alignment_mafftadd()
 _qiime_alignment_mask()
 {
     local word_list="  --i-alignment --p-max-gap-frequency --p-min-conservation --o-masked-alignment --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_assembly()
+{
+    local cmd i subcommands
+    local subcommands=" assemble-megahit assemble-spades collate-alignments collate-contigs collate-indices evaluate-contigs generate-reads index-contigs index-mags map-reads-to-contigs partition-contigs"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        assemble-megahit) _qiime_assembly_assemblemegahit
+            return
+            ;;
+
+        assemble-spades) _qiime_assembly_assemblespades
+            return
+            ;;
+
+        collate-alignments) _qiime_assembly_collatealignments
+            return
+            ;;
+
+        collate-contigs) _qiime_assembly_collatecontigs
+            return
+            ;;
+
+        collate-indices) _qiime_assembly_collateindices
+            return
+            ;;
+
+        evaluate-contigs) _qiime_assembly_evaluatecontigs
+            return
+            ;;
+
+        generate-reads) _qiime_assembly_generatereads
+            return
+            ;;
+
+        index-contigs) _qiime_assembly_indexcontigs
+            return
+            ;;
+
+        index-mags) _qiime_assembly_indexmags
+            return
+            ;;
+
+        map-reads-to-contigs) _qiime_assembly_mapreadstocontigs
+            return
+            ;;
+
+        partition-contigs) _qiime_assembly_partitioncontigs
+            return
+            ;;
+
+    esac
+
+    local word_list=" assemble-megahit assemble-spades collate-alignments collate-contigs collate-indices evaluate-contigs generate-reads index-contigs index-mags map-reads-to-contigs partition-contigs --version --example-data --citations --show-hidden-actions --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_assembly_assemblemegahit()
+{
+    local word_list="  --i-seqs --p-presets --p-min-count --p-k-list --p-k-min --p-k-max --p-k-step --p-no-mercy --p-no-no-mercy --p-bubble-level --p-prune-level --p-prune-depth --p-disconnect-ratio --p-low-local-ratio --p-max-tip-len --p-cleaning-rounds --p-no-local --p-no-no-local --p-kmin-1pass --p-no-kmin-1pass --p-memory --p-mem-flag --p-num-cpu-threads --p-no-hw-accel --p-no-no-hw-accel --p-min-contig-len --p-num-partitions --p-coassemble --o-contigs --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_assembly_assemblespades()
+{
+    local word_list="  --i-seqs --p-isolate --p-no-isolate --p-sc --p-no-sc --p-meta --p-no-meta --p-bio --p-no-bio --p-corona --p-no-corona --p-plasmid --p-no-plasmid --p-metaviral --p-no-metaviral --p-metaplasmid --p-no-metaplasmid --p-only-assembler --p-no-only-assembler --p-careful --p-no-careful --p-disable-rr --p-no-disable-rr --p-threads --p-memory --p-k --p-cov-cutoff --p-phred-offset --p-debug --p-no-debug --p-coassemble --o-contigs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_assembly_collatealignments()
+{
+    local word_list="  --i-alignments --o-collated-alignments --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_assembly_collatecontigs()
+{
+    local word_list="  --i-contigs --o-collated-contigs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_assembly_collateindices()
+{
+    local word_list="  --i-indices --o-collated-indices --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_assembly_evaluatecontigs()
+{
+    local word_list="  --i-contigs --i-reads --i-references --i-mapped-reads --p-min-contig --p-threads --p-k-mer-stats --p-no-k-mer-stats --p-k-mer-size --p-memory-efficient --p-no-memory-efficient --p-min-alignment --p-min-identity --p-ambiguity-usage --p-no-icarus --p-no-no-icarus --p-contig-thresholds --p-ambiguity-score --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_assembly_generatereads()
+{
+    local word_list="  --i-genomes --p-sample-names --p-n-genomes --p-ncbi --p-n-genomes-ncbi --p-abundance --p-coverage --p-n-reads --p-mode --p-model --p-gc-bias --p-no-gc-bias --p-cpus --p-debug --p-no-debug --p-seed --o-reads --o-template-genomes --o-abundances --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_assembly_indexcontigs()
+{
+    local word_list="  --i-contigs --p-large-index --p-no-large-index --p-debug --p-no-debug --p-sanitized --p-no-sanitized --p-verbose --p-no-verbose --p-noauto --p-no-noauto --p-packed --p-no-packed --p-bmax --p-bmaxdivn --p-dcv --p-nodc --p-no-nodc --p-offrate --p-ftabchars --p-threads --p-seed --p-num-partitions --o-index --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_assembly_indexmags()
+{
+    local word_list="  --i-mags --p-large-index --p-no-large-index --p-debug --p-no-debug --p-sanitized --p-no-sanitized --p-verbose --p-no-verbose --p-noauto --p-no-noauto --p-packed --p-no-packed --p-bmax --p-bmaxdivn --p-dcv --p-nodc --p-no-nodc --p-offrate --p-ftabchars --p-threads --p-seed --o-index --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_assembly_mapreadstocontigs()
+{
+    local word_list="  --i-indexed-contigs --i-reads --p-skip --p-qupto --p-trim5 --p-trim3 --p-trim-to --p-phred33 --p-no-phred33 --p-phred64 --p-no-phred64 --p-mode --p-sensitivity --p-n --p-len --p-i --p-n-ceil --p-dpad --p-gbar --p-ignore-quals --p-no-ignore-quals --p-nofw --p-no-nofw --p-norc --p-no-norc --p-no-1mm-upfront --p-no-no-1mm-upfront --p-end-to-end --p-no-end-to-end --p-local --p-no-local --p-ma --p-mp --p-np --p-rdg --p-rfg --p-k --p-a --p-no-a --p-d --p-r --p-minins --p-maxins --p-valid-mate-orientations --p-no-mixed --p-no-no-mixed --p-no-discordant --p-no-no-discordant --p-dovetail --p-no-dovetail --p-no-contain --p-no-no-contain --p-no-overlap --p-no-no-overlap --p-offrate --p-threads --p-reorder --p-no-reorder --p-mm --p-no-mm --p-seed --p-non-deterministic --p-no-non-deterministic --p-num-partitions --o-alignment-map --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_assembly_partitioncontigs()
+{
+    local word_list="  --i-contigs --p-num-partitions --o-partitioned-contigs --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -1621,6 +1766,95 @@ _qiime_featuretable_transpose()
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
+_qiime_fondue()
+{
+    local cmd i subcommands
+    local subcommands=" combine-seqs get-all get-ids-from-query get-metadata get-sequences merge-metadata scrape-collection"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        combine-seqs) _qiime_fondue_combineseqs
+            return
+            ;;
+
+        get-all) _qiime_fondue_getall
+            return
+            ;;
+
+        get-ids-from-query) _qiime_fondue_getidsfromquery
+            return
+            ;;
+
+        get-metadata) _qiime_fondue_getmetadata
+            return
+            ;;
+
+        get-sequences) _qiime_fondue_getsequences
+            return
+            ;;
+
+        merge-metadata) _qiime_fondue_mergemetadata
+            return
+            ;;
+
+        scrape-collection) _qiime_fondue_scrapecollection
+            return
+            ;;
+
+    esac
+
+    local word_list=" combine-seqs get-all get-ids-from-query get-metadata get-sequences merge-metadata scrape-collection --version --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_fondue_combineseqs()
+{
+    local word_list="  --i-seqs --p-on-duplicates --o-combined-seqs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_fondue_getall()
+{
+    local word_list="  --i-accession-ids --i-linked-doi --p-email --p-n-jobs --p-retries --p-log-level --o-metadata --o-single-reads --o-paired-reads --o-failed-runs --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_fondue_getidsfromquery()
+{
+    local word_list="  --p-query --p-email --p-n-jobs --p-log-level --o-ids --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_fondue_getmetadata()
+{
+    local word_list="  --i-accession-ids --i-linked-doi --p-email --p-n-jobs --p-log-level --o-metadata --o-failed-runs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_fondue_getsequences()
+{
+    local word_list="  --i-accession-ids --p-email --p-retries --p-n-jobs --p-log-level --p-restricted-access --p-no-restricted-access --o-single-reads --o-paired-reads --o-failed-runs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_fondue_mergemetadata()
+{
+    local word_list="  --i-metadata --o-merged-metadata --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_fondue_scrapecollection()
+{
+    local word_list="  --p-collection-name --p-on-no-dois --p-log-level --o-run-ids --o-study-ids --o-bioproject-ids --o-experiment-ids --o-sample-ids --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
 _qiime_fragmentinsertion()
 {
     local cmd i subcommands
@@ -1855,6 +2089,355 @@ _qiime_metadata_shufflegroups()
 _qiime_metadata_tabulate()
 {
     local word_list="  --m-input-file --p-page-size --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit()
+{
+    local cmd i subcommands
+    local subcommands=" bin-contigs-metabat build-custom-diamond-db build-eggnog-diamond-db build-kraken-db classify-kaiju classify-kraken2 collate-annotations collate-busco-results collate-feature-data-mags collate-kraken2-outputs collate-kraken2-reports collate-orthologs collate-sample-data-mags dereplicate-mags eggnog-annotate eggnog-diamond-search estimate-bracken evaluate-busco fetch-diamond-db fetch-eggnog-db fetch-eggnog-proteins fetch-kaiju-db fetch-ncbi-taxonomy filter-derep-mags filter-mags get-feature-lengths inspect-kraken2-db kraken2-to-features kraken2-to-mag-features partition-feature-data-mags partition-orthologs partition-sample-data-mags predict-genes-prodigal"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        bin-contigs-metabat) _qiime_moshpit_bincontigsmetabat
+            return
+            ;;
+
+        build-custom-diamond-db) _qiime_moshpit_buildcustomdiamonddb
+            return
+            ;;
+
+        build-eggnog-diamond-db) _qiime_moshpit_buildeggnogdiamonddb
+            return
+            ;;
+
+        build-kraken-db) _qiime_moshpit_buildkrakendb
+            return
+            ;;
+
+        classify-kaiju) _qiime_moshpit_classifykaiju
+            return
+            ;;
+
+        classify-kraken2) _qiime_moshpit_classifykraken2
+            return
+            ;;
+
+        collate-annotations) _qiime_moshpit_collateannotations
+            return
+            ;;
+
+        collate-busco-results) _qiime_moshpit_collatebuscoresults
+            return
+            ;;
+
+        collate-feature-data-mags) _qiime_moshpit_collatefeaturedatamags
+            return
+            ;;
+
+        collate-kraken2-outputs) _qiime_moshpit_collatekraken2outputs
+            return
+            ;;
+
+        collate-kraken2-reports) _qiime_moshpit_collatekraken2reports
+            return
+            ;;
+
+        collate-orthologs) _qiime_moshpit_collateorthologs
+            return
+            ;;
+
+        collate-sample-data-mags) _qiime_moshpit_collatesampledatamags
+            return
+            ;;
+
+        dereplicate-mags) _qiime_moshpit_dereplicatemags
+            return
+            ;;
+
+        eggnog-annotate) _qiime_moshpit_eggnogannotate
+            return
+            ;;
+
+        eggnog-diamond-search) _qiime_moshpit_eggnogdiamondsearch
+            return
+            ;;
+
+        estimate-bracken) _qiime_moshpit_estimatebracken
+            return
+            ;;
+
+        evaluate-busco) _qiime_moshpit_evaluatebusco
+            return
+            ;;
+
+        fetch-diamond-db) _qiime_moshpit_fetchdiamonddb
+            return
+            ;;
+
+        fetch-eggnog-db) _qiime_moshpit_fetcheggnogdb
+            return
+            ;;
+
+        fetch-eggnog-proteins) _qiime_moshpit_fetcheggnogproteins
+            return
+            ;;
+
+        fetch-kaiju-db) _qiime_moshpit_fetchkaijudb
+            return
+            ;;
+
+        fetch-ncbi-taxonomy) _qiime_moshpit_fetchncbitaxonomy
+            return
+            ;;
+
+        filter-derep-mags) _qiime_moshpit_filterderepmags
+            return
+            ;;
+
+        filter-mags) _qiime_moshpit_filtermags
+            return
+            ;;
+
+        get-feature-lengths) _qiime_moshpit_getfeaturelengths
+            return
+            ;;
+
+        inspect-kraken2-db) _qiime_moshpit_inspectkraken2db
+            return
+            ;;
+
+        kraken2-to-features) _qiime_moshpit_kraken2tofeatures
+            return
+            ;;
+
+        kraken2-to-mag-features) _qiime_moshpit_kraken2tomagfeatures
+            return
+            ;;
+
+        partition-feature-data-mags) _qiime_moshpit_partitionfeaturedatamags
+            return
+            ;;
+
+        partition-orthologs) _qiime_moshpit_partitionorthologs
+            return
+            ;;
+
+        partition-sample-data-mags) _qiime_moshpit_partitionsampledatamags
+            return
+            ;;
+
+        predict-genes-prodigal) _qiime_moshpit_predictgenesprodigal
+            return
+            ;;
+
+    esac
+
+    local word_list=" bin-contigs-metabat build-custom-diamond-db build-eggnog-diamond-db build-kraken-db classify-kaiju classify-kraken2 collate-annotations collate-busco-results collate-feature-data-mags collate-kraken2-outputs collate-kraken2-reports collate-orthologs collate-sample-data-mags dereplicate-mags eggnog-annotate eggnog-diamond-search estimate-bracken evaluate-busco fetch-diamond-db fetch-eggnog-db fetch-eggnog-proteins fetch-kaiju-db fetch-ncbi-taxonomy filter-derep-mags filter-mags get-feature-lengths inspect-kraken2-db kraken2-to-features kraken2-to-mag-features partition-feature-data-mags partition-orthologs partition-sample-data-mags predict-genes-prodigal --version --example-data --citations --show-hidden-actions --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_bincontigsmetabat()
+{
+    local word_list="  --i-contigs --i-alignment-maps --p-min-contig --p-max-p --p-min-s --p-max-edges --p-p-tnf --p-no-add --p-no-no-add --p-min-cv --p-min-cv-sum --p-min-cls-size --p-seed --p-debug --p-no-debug --p-verbose --p-no-verbose --o-mags --o-contig-map --o-unbinned-contigs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_buildcustomdiamonddb()
+{
+    local word_list="  --i-seqs --i-taxonomy --p-threads --p-ignore-warnings --p-no-ignore-warnings --p-no-parse-seqids --p-no-no-parse-seqids --p-file-buffer-size --o-diamond-db --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_buildeggnogdiamonddb()
+{
+    local word_list="  --i-eggnog-proteins --p-taxon --o-diamond-db --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_buildkrakendb()
+{
+    local word_list="  --i-seqs --p-collection --p-threads --p-kmer-len --p-minimizer-len --p-minimizer-spaces --p-max-db-size --p-load-factor --p-read-len --p-no-masking --p-no-no-masking --p-use-ftp --p-no-use-ftp --p-fast-build --p-no-fast-build --o-kraken2-database --o-bracken-database --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_classifykaiju()
+{
+    local word_list="  --i-seqs --i-db --p-z --p-a --p-e --p-m --p-s --p-evalue --p-x --p-no-x --p-r --p-c --p-exp --p-no-exp --p-u --p-no-u --o-abundances --o-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_classifykraken2()
+{
+    local word_list="  --i-seqs --i-kraken2-db --p-threads --p-confidence --p-minimum-base-quality --p-memory-mapping --p-no-memory-mapping --p-quick --p-no-quick --p-report-minimizer-data --p-no-report-minimizer-data --p-minimum-hit-groups --p-num-partitions --o-reports --o-hits --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collateannotations()
+{
+    local word_list="  --i-ortholog-annotations --o-collated-annotations --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collatebuscoresults()
+{
+    local word_list="  --i-busco-results --o-collated-busco-results --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collatefeaturedatamags()
+{
+    local word_list="  --i-mags --o-collated-mags --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collatekraken2outputs()
+{
+    local word_list="  --i-kraken2-outputs --o-collated-kraken2-outputs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collatekraken2reports()
+{
+    local word_list="  --i-kraken2-reports --o-collated-kraken2-reports --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collateorthologs()
+{
+    local word_list="  --i-orthologs --o-collated-orthologs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collatesampledatamags()
+{
+    local word_list="  --i-mags --o-collated-mags --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_dereplicatemags()
+{
+    local word_list="  --i-mags --i-distance-matrix --p-threshold --o-dereplicated-mags --o-feature-table --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_eggnogannotate()
+{
+    local word_list="  --i-eggnog-hits --i-eggnog-db --p-db-in-memory --p-no-db-in-memory --p-num-cpus --p-num-partitions --o-ortholog-annotations --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_eggnogdiamondsearch()
+{
+    local word_list="  --i-sequences --i-diamond-db --p-num-cpus --p-db-in-memory --p-no-db-in-memory --p-num-partitions --o-table --o-eggnog-hits --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_estimatebracken()
+{
+    local word_list="  --i-kraken-reports --i-bracken-db --p-threshold --p-read-len --p-level --o-taxonomy --o-table --o-reports --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_evaluatebusco()
+{
+    local word_list="  --i-bins --p-mode --p-lineage-dataset --p-augustus --p-no-augustus --p-augustus-parameters --p-augustus-species --p-auto-lineage --p-no-auto-lineage --p-auto-lineage-euk --p-no-auto-lineage-euk --p-auto-lineage-prok --p-no-auto-lineage-prok --p-cpu --p-config --p-contig-break --p-evalue --p-force --p-no-force --p-limit --p-long --p-no-long --p-metaeuk-parameters --p-metaeuk-rerun-parameters --p-miniprot --p-no-miniprot --p-scaffold-composition --p-no-scaffold-composition --p-num-partitions --o-results-table --o-visualization --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_fetchdiamonddb()
+{
+    local word_list="  --o-diamond-db --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_fetcheggnogdb()
+{
+    local word_list="  --o-eggnog-db --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_fetcheggnogproteins()
+{
+    local word_list="  --o-eggnog-proteins --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_fetchkaijudb()
+{
+    local word_list="  --p-database-type --o-database --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_fetchncbitaxonomy()
+{
+    local word_list="  --o-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_filterderepmags()
+{
+    local word_list="  --i-mags --m-metadata-file --p-where --p-exclude-ids --p-no-exclude-ids --o-filtered-mags --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_filtermags()
+{
+    local word_list="  --i-mags --m-metadata-file --p-where --p-exclude-ids --p-no-exclude-ids --p-on --m-metadata-file --o-filtered-mags --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_getfeaturelengths()
+{
+    local word_list="  --i-features --o-lengths --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_inspectkraken2db()
+{
+    local word_list="  --i-db --p-threads --o-report --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_kraken2tofeatures()
+{
+    local word_list="  --i-reports --p-coverage-threshold --o-table --o-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_kraken2tomagfeatures()
+{
+    local word_list="  --i-reports --i-hits --p-coverage-threshold --o-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_partitionfeaturedatamags()
+{
+    local word_list="  --i-mags --p-num-partitions --o-partitioned-mags --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_partitionorthologs()
+{
+    local word_list="  --i-orthologs --p-num-partitions --o-partitioned-orthologs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_partitionsampledatamags()
+{
+    local word_list="  --i-mags --p-num-partitions --o-partitioned-mags --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_predictgenesprodigal()
+{
+    local word_list="  --i-mags --p-translation-table-number --o-loci --o-genes --o-proteins --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -2557,6 +3140,355 @@ _qiime_sampleclassifier_splittable()
 _qiime_sampleclassifier_summarize()
 {
     local word_list="  --i-sample-estimator --o-visualization --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit()
+{
+    local cmd i subcommands
+    local subcommands=" bin-contigs-metabat build-custom-diamond-db build-eggnog-diamond-db build-kraken-db classify-kaiju classify-kraken2 collate-annotations collate-busco-results collate-feature-data-mags collate-kraken2-outputs collate-kraken2-reports collate-orthologs collate-sample-data-mags dereplicate-mags eggnog-annotate eggnog-diamond-search estimate-bracken evaluate-busco fetch-diamond-db fetch-eggnog-db fetch-eggnog-proteins fetch-kaiju-db fetch-ncbi-taxonomy filter-derep-mags filter-mags get-feature-lengths inspect-kraken2-db kraken2-to-features kraken2-to-mag-features partition-feature-data-mags partition-orthologs partition-sample-data-mags predict-genes-prodigal"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        bin-contigs-metabat) _qiime_moshpit_bincontigsmetabat
+            return
+            ;;
+
+        build-custom-diamond-db) _qiime_moshpit_buildcustomdiamonddb
+            return
+            ;;
+
+        build-eggnog-diamond-db) _qiime_moshpit_buildeggnogdiamonddb
+            return
+            ;;
+
+        build-kraken-db) _qiime_moshpit_buildkrakendb
+            return
+            ;;
+
+        classify-kaiju) _qiime_moshpit_classifykaiju
+            return
+            ;;
+
+        classify-kraken2) _qiime_moshpit_classifykraken2
+            return
+            ;;
+
+        collate-annotations) _qiime_moshpit_collateannotations
+            return
+            ;;
+
+        collate-busco-results) _qiime_moshpit_collatebuscoresults
+            return
+            ;;
+
+        collate-feature-data-mags) _qiime_moshpit_collatefeaturedatamags
+            return
+            ;;
+
+        collate-kraken2-outputs) _qiime_moshpit_collatekraken2outputs
+            return
+            ;;
+
+        collate-kraken2-reports) _qiime_moshpit_collatekraken2reports
+            return
+            ;;
+
+        collate-orthologs) _qiime_moshpit_collateorthologs
+            return
+            ;;
+
+        collate-sample-data-mags) _qiime_moshpit_collatesampledatamags
+            return
+            ;;
+
+        dereplicate-mags) _qiime_moshpit_dereplicatemags
+            return
+            ;;
+
+        eggnog-annotate) _qiime_moshpit_eggnogannotate
+            return
+            ;;
+
+        eggnog-diamond-search) _qiime_moshpit_eggnogdiamondsearch
+            return
+            ;;
+
+        estimate-bracken) _qiime_moshpit_estimatebracken
+            return
+            ;;
+
+        evaluate-busco) _qiime_moshpit_evaluatebusco
+            return
+            ;;
+
+        fetch-diamond-db) _qiime_moshpit_fetchdiamonddb
+            return
+            ;;
+
+        fetch-eggnog-db) _qiime_moshpit_fetcheggnogdb
+            return
+            ;;
+
+        fetch-eggnog-proteins) _qiime_moshpit_fetcheggnogproteins
+            return
+            ;;
+
+        fetch-kaiju-db) _qiime_moshpit_fetchkaijudb
+            return
+            ;;
+
+        fetch-ncbi-taxonomy) _qiime_moshpit_fetchncbitaxonomy
+            return
+            ;;
+
+        filter-derep-mags) _qiime_moshpit_filterderepmags
+            return
+            ;;
+
+        filter-mags) _qiime_moshpit_filtermags
+            return
+            ;;
+
+        get-feature-lengths) _qiime_moshpit_getfeaturelengths
+            return
+            ;;
+
+        inspect-kraken2-db) _qiime_moshpit_inspectkraken2db
+            return
+            ;;
+
+        kraken2-to-features) _qiime_moshpit_kraken2tofeatures
+            return
+            ;;
+
+        kraken2-to-mag-features) _qiime_moshpit_kraken2tomagfeatures
+            return
+            ;;
+
+        partition-feature-data-mags) _qiime_moshpit_partitionfeaturedatamags
+            return
+            ;;
+
+        partition-orthologs) _qiime_moshpit_partitionorthologs
+            return
+            ;;
+
+        partition-sample-data-mags) _qiime_moshpit_partitionsampledatamags
+            return
+            ;;
+
+        predict-genes-prodigal) _qiime_moshpit_predictgenesprodigal
+            return
+            ;;
+
+    esac
+
+    local word_list=" bin-contigs-metabat build-custom-diamond-db build-eggnog-diamond-db build-kraken-db classify-kaiju classify-kraken2 collate-annotations collate-busco-results collate-feature-data-mags collate-kraken2-outputs collate-kraken2-reports collate-orthologs collate-sample-data-mags dereplicate-mags eggnog-annotate eggnog-diamond-search estimate-bracken evaluate-busco fetch-diamond-db fetch-eggnog-db fetch-eggnog-proteins fetch-kaiju-db fetch-ncbi-taxonomy filter-derep-mags filter-mags get-feature-lengths inspect-kraken2-db kraken2-to-features kraken2-to-mag-features partition-feature-data-mags partition-orthologs partition-sample-data-mags predict-genes-prodigal --version --example-data --citations --show-hidden-actions --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_bincontigsmetabat()
+{
+    local word_list="  --i-contigs --i-alignment-maps --p-min-contig --p-max-p --p-min-s --p-max-edges --p-p-tnf --p-no-add --p-no-no-add --p-min-cv --p-min-cv-sum --p-min-cls-size --p-seed --p-debug --p-no-debug --p-verbose --p-no-verbose --o-mags --o-contig-map --o-unbinned-contigs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_buildcustomdiamonddb()
+{
+    local word_list="  --i-seqs --i-taxonomy --p-threads --p-ignore-warnings --p-no-ignore-warnings --p-no-parse-seqids --p-no-no-parse-seqids --p-file-buffer-size --o-diamond-db --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_buildeggnogdiamonddb()
+{
+    local word_list="  --i-eggnog-proteins --p-taxon --o-diamond-db --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_buildkrakendb()
+{
+    local word_list="  --i-seqs --p-collection --p-threads --p-kmer-len --p-minimizer-len --p-minimizer-spaces --p-max-db-size --p-load-factor --p-read-len --p-no-masking --p-no-no-masking --p-use-ftp --p-no-use-ftp --p-fast-build --p-no-fast-build --o-kraken2-database --o-bracken-database --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_classifykaiju()
+{
+    local word_list="  --i-seqs --i-db --p-z --p-a --p-e --p-m --p-s --p-evalue --p-x --p-no-x --p-r --p-c --p-exp --p-no-exp --p-u --p-no-u --o-abundances --o-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_classifykraken2()
+{
+    local word_list="  --i-seqs --i-kraken2-db --p-threads --p-confidence --p-minimum-base-quality --p-memory-mapping --p-no-memory-mapping --p-quick --p-no-quick --p-report-minimizer-data --p-no-report-minimizer-data --p-minimum-hit-groups --p-num-partitions --o-reports --o-hits --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collateannotations()
+{
+    local word_list="  --i-ortholog-annotations --o-collated-annotations --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collatebuscoresults()
+{
+    local word_list="  --i-busco-results --o-collated-busco-results --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collatefeaturedatamags()
+{
+    local word_list="  --i-mags --o-collated-mags --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collatekraken2outputs()
+{
+    local word_list="  --i-kraken2-outputs --o-collated-kraken2-outputs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collatekraken2reports()
+{
+    local word_list="  --i-kraken2-reports --o-collated-kraken2-reports --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collateorthologs()
+{
+    local word_list="  --i-orthologs --o-collated-orthologs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_collatesampledatamags()
+{
+    local word_list="  --i-mags --o-collated-mags --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_dereplicatemags()
+{
+    local word_list="  --i-mags --i-distance-matrix --p-threshold --o-dereplicated-mags --o-feature-table --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_eggnogannotate()
+{
+    local word_list="  --i-eggnog-hits --i-eggnog-db --p-db-in-memory --p-no-db-in-memory --p-num-cpus --p-num-partitions --o-ortholog-annotations --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_eggnogdiamondsearch()
+{
+    local word_list="  --i-sequences --i-diamond-db --p-num-cpus --p-db-in-memory --p-no-db-in-memory --p-num-partitions --o-table --o-eggnog-hits --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_estimatebracken()
+{
+    local word_list="  --i-kraken-reports --i-bracken-db --p-threshold --p-read-len --p-level --o-taxonomy --o-table --o-reports --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_evaluatebusco()
+{
+    local word_list="  --i-bins --p-mode --p-lineage-dataset --p-augustus --p-no-augustus --p-augustus-parameters --p-augustus-species --p-auto-lineage --p-no-auto-lineage --p-auto-lineage-euk --p-no-auto-lineage-euk --p-auto-lineage-prok --p-no-auto-lineage-prok --p-cpu --p-config --p-contig-break --p-evalue --p-force --p-no-force --p-limit --p-long --p-no-long --p-metaeuk-parameters --p-metaeuk-rerun-parameters --p-miniprot --p-no-miniprot --p-scaffold-composition --p-no-scaffold-composition --p-num-partitions --o-results-table --o-visualization --output-dir --verbose --quiet --recycle-pool --no-recycle --parallel --parallel-config --use-cache --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_fetchdiamonddb()
+{
+    local word_list="  --o-diamond-db --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_fetcheggnogdb()
+{
+    local word_list="  --o-eggnog-db --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_fetcheggnogproteins()
+{
+    local word_list="  --o-eggnog-proteins --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_fetchkaijudb()
+{
+    local word_list="  --p-database-type --o-database --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_fetchncbitaxonomy()
+{
+    local word_list="  --o-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_filterderepmags()
+{
+    local word_list="  --i-mags --m-metadata-file --p-where --p-exclude-ids --p-no-exclude-ids --o-filtered-mags --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_filtermags()
+{
+    local word_list="  --i-mags --m-metadata-file --p-where --p-exclude-ids --p-no-exclude-ids --p-on --m-metadata-file --o-filtered-mags --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_getfeaturelengths()
+{
+    local word_list="  --i-features --o-lengths --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_inspectkraken2db()
+{
+    local word_list="  --i-db --p-threads --o-report --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_kraken2tofeatures()
+{
+    local word_list="  --i-reports --p-coverage-threshold --o-table --o-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_kraken2tomagfeatures()
+{
+    local word_list="  --i-reports --i-hits --p-coverage-threshold --o-taxonomy --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_partitionfeaturedatamags()
+{
+    local word_list="  --i-mags --p-num-partitions --o-partitioned-mags --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_partitionorthologs()
+{
+    local word_list="  --i-orthologs --p-num-partitions --o-partitioned-orthologs --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_partitionsampledatamags()
+{
+    local word_list="  --i-mags --p-num-partitions --o-partitioned-mags --output-dir --verbose --quiet --example-data --citations --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_qiime_moshpit_predictgenesprodigal()
+{
+    local word_list="  --i-mags --p-translation-table-number --o-loci --o-genes --o-proteins --output-dir --verbose --quiet --example-data --citations --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

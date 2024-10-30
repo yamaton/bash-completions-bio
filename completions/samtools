@@ -408,7 +408,7 @@ _samtools_depad()
 
 _samtools_samples()
 {
-    local word_list="  -? -h -i -T -o -o"
+    local word_list="  -? -h -i -T -o -f -F -X"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

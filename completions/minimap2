@@ -5,7 +5,7 @@ _minimap2()
     local cur prev words cword
     _init_completion -s || return
 
-    local word_list="  -x -H -k -w -I -d -f -g -G -F -r -n -m -X -p -N -A -B -O -E -z -s -u -a -o -L -R -c --cs --MD --eqx -Y -t -K --version"
+    local word_list="  -x -H -k -w -I -d -f -g -G -F -r -n -m -X -p -N -A -B -O -E -z -s -u -J -a -o -L -R -c --cs --ds --MD --eqx -Y -t -K --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

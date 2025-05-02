@@ -1,0 +1,126 @@
+# Auto-generated with h2o
+
+_hybracter()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" install hybrid hybrid-single long long-single test-hybrid test-long config citation version"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        install) _hybracter_install
+            return
+            ;;
+
+        hybrid) _hybracter_hybrid
+            return
+            ;;
+
+        hybrid-single) _hybracter_hybridsingle
+            return
+            ;;
+
+        long) _hybracter_long
+            return
+            ;;
+
+        long-single) _hybracter_longsingle
+            return
+            ;;
+
+        test-hybrid) _hybracter_testhybrid
+            return
+            ;;
+
+        test-long) _hybracter_testlong
+            return
+            ;;
+
+        config) _hybracter_config
+            return
+            ;;
+
+        citation) _hybracter_citation
+            return
+            ;;
+
+        version) _hybracter_version
+            return
+            ;;
+
+    esac
+
+    local word_list=" install hybrid hybrid-single long long-single test-hybrid test-long config citation version -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hybracter_install()
+{
+    local word_list="  --use-conda --no-use-conda --snake-default -d --databases -m --medaka --mac -o --output --configfile -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hybracter_hybrid()
+{
+    local word_list="  -i --input --datadir --no_pypolca --logic -o --output --configfile -t --threads --min_length --min_quality --skip_qc -d --databases --subsample_depth --min_depth --medakaModel --flyeModel --contaminants --dnaapler_custom_db --no_medaka --auto --depth_filter --mac --medaka_override --extra_params_flye --use-conda --no-use-conda --conda-prefix --snake-default -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hybracter_hybridsingle()
+{
+    local word_list="  -l --longreads -1 --short_one -2 --short_two -s --sample -c --chromosome --no_pypolca --logic -o --output --configfile -t --threads --min_length --min_quality --skip_qc -d --databases --subsample_depth --min_depth --medakaModel --flyeModel --contaminants --dnaapler_custom_db --no_medaka --auto --depth_filter --mac --medaka_override --extra_params_flye --use-conda --no-use-conda --conda-prefix --snake-default -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hybracter_long()
+{
+    local word_list="  -i --input --datadir -o --output --configfile -t --threads --min_length --min_quality --skip_qc -d --databases --subsample_depth --min_depth --medakaModel --flyeModel --contaminants --dnaapler_custom_db --no_medaka --auto --depth_filter --mac --medaka_override --extra_params_flye --use-conda --no-use-conda --conda-prefix --snake-default --logic -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hybracter_longsingle()
+{
+    local word_list="  -l --longreads -s --sample -c --chromosome -o --output --configfile -t --threads --min_length --min_quality --skip_qc -d --databases --subsample_depth --min_depth --medakaModel --flyeModel --contaminants --dnaapler_custom_db --no_medaka --auto --depth_filter --mac --medaka_override --extra_params_flye --use-conda --no-use-conda --conda-prefix --snake-default --logic -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hybracter_testhybrid()
+{
+    local word_list="  -o --output --configfile -t --threads --min_length --min_quality --skip_qc -d --databases --subsample_depth --min_depth --medakaModel --flyeModel --contaminants --dnaapler_custom_db --no_medaka --auto --depth_filter --mac --medaka_override --extra_params_flye --use-conda --no-use-conda --conda-prefix --snake-default --no_pypolca --logic -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hybracter_testlong()
+{
+    local word_list="  --logic -o --output --configfile -t --threads --min_length --min_quality --skip_qc -d --databases --subsample_depth --min_depth --medakaModel --flyeModel --contaminants --dnaapler_custom_db --no_medaka --auto --depth_filter --mac --medaka_override --extra_params_flye --use-conda --no-use-conda --conda-prefix --snake-default -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hybracter_config()
+{
+    local word_list="  -o --output --configfile -t --threads --min_length --min_quality --skip_qc -d --databases --subsample_depth --min_depth --medakaModel --flyeModel --contaminants --dnaapler_custom_db --no_medaka --auto --depth_filter --mac --medaka_override --extra_params_flye --use-conda --no-use-conda --conda-prefix --snake-default -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hybracter_citation()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_hybracter_version()
+{
+    local word_list="  -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _hybracter hybracter

@@ -1,0 +1,116 @@
+# Auto-generated with h2o
+
+_dorado()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" aligner basecaller correct demux download duplex polish summary trim"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        aligner) _dorado_aligner
+            return
+            ;;
+
+        basecaller) _dorado_basecaller
+            return
+            ;;
+
+        correct) _dorado_correct
+            return
+            ;;
+
+        demux) _dorado_demux
+            return
+            ;;
+
+        download) _dorado_download
+            return
+            ;;
+
+        duplex) _dorado_duplex
+            return
+            ;;
+
+        polish) _dorado_polish
+            return
+            ;;
+
+        summary) _dorado_summary
+            return
+            ;;
+
+        trim) _dorado_trim
+            return
+            ;;
+
+    esac
+
+    local word_list=" aligner basecaller correct demux download duplex polish summary trim -h --help -v --version -vv"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dorado_aligner()
+{
+    local word_list="  -h --help -r --recursive -o --output-dir --emit-summary --bed-file -t --threads -n --max-reads -v --verbose --mm2-opts"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dorado_basecaller()
+{
+    local word_list="  -h --help -v --verbose -x --device --models-directory --bed-file -r --recursive -l --read-ids -n --max-reads --resume-from --min-qscore --emit-moves --emit-fastq --emit-sam -o --output-dir --reference --mm2-opts --modified-bases --modified-bases-models --modified-bases-threshold --modified-bases-batchsize --kit-name --sample-sheet --barcode-both-ends --barcode-arrangement --barcode-sequences --primer-sequences --no-trim --trim --estimate-poly-a --poly-a-config -b --batchsize -c --chunksize --overlap"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dorado_correct()
+{
+    local word_list="  -h --help -t --threads --infer-threads -x --device -v --verbose -m --model-path -p --from-paf --to-paf --resume-from -b --batch-size -i --index-size --compute-num-blocks --run-block-id"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dorado_demux()
+{
+    local word_list="  -h --help -r --recursive -o --output-dir --kit-name --sample-sheet --no-classify -t --threads -n --max-reads -l --read-ids -v --verbose --emit-fastq --emit-summary --barcode-both-ends --no-trim --sort-bam --barcode-arrangement --barcode-sequences"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dorado_download()
+{
+    local word_list="  -h --help --model --models-directory --list --list-yaml --list-structured --data -r --recursive --overwrite -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dorado_duplex()
+{
+    local word_list="  -h --help -v --verbose -x --device --models-directory -r --recursive -l --read-ids --pairs --min-qscore --emit-fastq --emit-sam -o --output-dir --reference --mm2-opts --bed-file --modified-bases --modified-bases-models --modified-bases-threshold --modified-bases-batchsize -t --threads -b --batchsize -c --chunksize --overlap"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dorado_polish()
+{
+    local word_list="  -h --help -t --threads --infer-threads -x --device -v --verbose -o --output-dir -m --model --bacteria -q --qualities --vcf --gvcf --ambig-ref -b --batchsize --draft-batchsize --window-len --window-overlap --bam-chunk --bam-subchunk --no-fill-gaps --fill-char --regions --RG --ignore-read-groups --tag-name --tag-value --tag-keep-missing --min-mapq --min-depth"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dorado_summary()
+{
+    local word_list="  -h --help -s --separator -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_dorado_trim()
+{
+    local word_list="  -h --help -t --threads -n --max-reads -k --sequencing-kit -l --read-ids -v --verbose --emit-fastq --no-trim-primers --primer-sequences"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _dorado dorado

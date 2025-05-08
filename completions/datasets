@@ -1,792 +1,2012 @@
-# Auto-generated with h2o
+# bash completion for datasets                             -*- shell-script -*-
 
-_datasets()
+__datasets_debug()
 {
-    local cur prev words cword
-    _init_completion -s || return
-
-    local cmd i subcommands
-    local subcommands=" summary download rehydrate completion"
-
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
-
-    case "$cmd" in
-        summary) _datasets_summary
-            return
-            ;;
-
-        download) _datasets_download
-            return
-            ;;
-
-        rehydrate) _datasets_rehydrate
-            return
-            ;;
-
-        completion) _datasets_completion
-            return
-            ;;
-
-    esac
-
-    local word_list=" summary download rehydrate completion --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    if [[ -n ${BASH_COMP_DEBUG_FILE:-} ]]; then
+        echo "$*" >> "${BASH_COMP_DEBUG_FILE}"
+    fi
 }
 
-_datasets_summary()
+# Homebrew on Macs have version 1.3 of bash-completion which doesn't include
+# _init_completion. This is a very minimal version of that function.
+__datasets_init_completion()
 {
-    local cmd i subcommands
-    local subcommands=" gene genome virus"
-
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
-
-    case "$cmd" in
-        gene) _datasets_summary_gene
-            return
-            ;;
-
-        genome) _datasets_summary_genome
-            return
-            ;;
-
-        virus) _datasets_summary_virus
-            return
-            ;;
-
-    esac
-
-    local word_list=" gene genome virus --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    COMPREPLY=()
+    _get_comp_words_by_ref "$@" cur prev words cword
 }
 
-_datasets_summary_gene()
+__datasets_index_of_word()
 {
-    local cmd i subcommands
-    local subcommands=" gene-id symbol accession taxon"
-
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
+    local w word=$1
+    shift
+    index=0
+    for w in "$@"; do
+        [[ $w = "$word" ]] && return
+        index=$((index+1))
     done
-
-    case "$cmd" in
-        gene-id) _datasets_summary_gene_geneid
-            return
-            ;;
-
-        symbol) _datasets_summary_gene_symbol
-            return
-            ;;
-
-        accession) _datasets_summary_gene_accession
-            return
-            ;;
-
-        taxon) _datasets_summary_gene_taxon
-            return
-            ;;
-
-    esac
-
-    local word_list=" gene-id symbol accession taxon --as-json-lines --limit --report --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    index=-1
 }
 
-_datasets_summary_gene_geneid()
+__datasets_contains_word()
 {
-    local word_list="  --inputfile --ortholog --api-key --as-json-lines --debug --help --limit --report --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    local w word=$1; shift
+    for w in "$@"; do
+        [[ $w = "$word" ]] && return
+    done
+    return 1
+}
+
+__datasets_handle_go_custom_completion()
+{
+    __datasets_debug "${FUNCNAME[0]}: cur is ${cur}, words[*] is ${words[*]}, #words[@] is ${#words[@]}"
+
+    local shellCompDirectiveError=1
+    local shellCompDirectiveNoSpace=2
+    local shellCompDirectiveNoFileComp=4
+    local shellCompDirectiveFilterFileExt=8
+    local shellCompDirectiveFilterDirs=16
+
+    local out requestComp lastParam lastChar comp directive args
+
+    # Prepare the command to request completions for the program.
+    # Calling ${words[0]} instead of directly datasets allows handling aliases
+    args=("${words[@]:1}")
+    # Disable ActiveHelp which is not supported for bash completion v1
+    requestComp="DATASETS_ACTIVE_HELP=0 ${words[0]} __completeNoDesc ${args[*]}"
+
+    lastParam=${words[$((${#words[@]}-1))]}
+    lastChar=${lastParam:$((${#lastParam}-1)):1}
+    __datasets_debug "${FUNCNAME[0]}: lastParam ${lastParam}, lastChar ${lastChar}"
+
+    if [ -z "${cur}" ] && [ "${lastChar}" != "=" ]; then
+        # If the last parameter is complete (there is a space following it)
+        # We add an extra empty parameter so we can indicate this to the go method.
+        __datasets_debug "${FUNCNAME[0]}: Adding extra empty parameter"
+        requestComp="${requestComp} \"\""
+    fi
+
+    __datasets_debug "${FUNCNAME[0]}: calling ${requestComp}"
+    # Use eval to handle any environment variables and such
+    out=$(eval "${requestComp}" 2>/dev/null)
+
+    # Extract the directive integer at the very end of the output following a colon (:)
+    directive=${out##*:}
+    # Remove the directive
+    out=${out%:*}
+    if [ "${directive}" = "${out}" ]; then
+        # There is not directive specified
+        directive=0
+    fi
+    __datasets_debug "${FUNCNAME[0]}: the completion directive is: ${directive}"
+    __datasets_debug "${FUNCNAME[0]}: the completions are: ${out}"
+
+    if [ $((directive & shellCompDirectiveError)) -ne 0 ]; then
+        # Error code.  No completion.
+        __datasets_debug "${FUNCNAME[0]}: received error from custom completion go code"
+        return
+    else
+        if [ $((directive & shellCompDirectiveNoSpace)) -ne 0 ]; then
+            if [[ $(type -t compopt) = "builtin" ]]; then
+                __datasets_debug "${FUNCNAME[0]}: activating no space"
+                compopt -o nospace
+            fi
+        fi
+        if [ $((directive & shellCompDirectiveNoFileComp)) -ne 0 ]; then
+            if [[ $(type -t compopt) = "builtin" ]]; then
+                __datasets_debug "${FUNCNAME[0]}: activating no file completion"
+                compopt +o default
+            fi
+        fi
+    fi
+
+    if [ $((directive & shellCompDirectiveFilterFileExt)) -ne 0 ]; then
+        # File extension filtering
+        local fullFilter filter filteringCmd
+        # Do not use quotes around the $out variable or else newline
+        # characters will be kept.
+        for filter in ${out}; do
+            fullFilter+="$filter|"
+        done
+
+        filteringCmd="_filedir $fullFilter"
+        __datasets_debug "File filtering command: $filteringCmd"
+        $filteringCmd
+    elif [ $((directive & shellCompDirectiveFilterDirs)) -ne 0 ]; then
+        # File completion for directories only
+        local subdir
+        # Use printf to strip any trailing newline
+        subdir=$(printf "%s" "${out}")
+        if [ -n "$subdir" ]; then
+            __datasets_debug "Listing directories in $subdir"
+            __datasets_handle_subdirs_in_dir_flag "$subdir"
+        else
+            __datasets_debug "Listing directories in ."
+            _filedir -d
+        fi
+    else
+        while IFS='' read -r comp; do
+            COMPREPLY+=("$comp")
+        done < <(compgen -W "${out}" -- "$cur")
+    fi
+}
+
+__datasets_handle_reply()
+{
+    __datasets_debug "${FUNCNAME[0]}"
+    local comp
+    case $cur in
+        -*)
+            if [[ $(type -t compopt) = "builtin" ]]; then
+                compopt -o nospace
+            fi
+            local allflags
+            if [ ${#must_have_one_flag[@]} -ne 0 ]; then
+                allflags=("${must_have_one_flag[@]}")
+            else
+                allflags=("${flags[*]} ${two_word_flags[*]}")
+            fi
+            while IFS='' read -r comp; do
+                COMPREPLY+=("$comp")
+            done < <(compgen -W "${allflags[*]}" -- "$cur")
+            if [[ $(type -t compopt) = "builtin" ]]; then
+                [[ "${COMPREPLY[0]}" == *= ]] || compopt +o nospace
+            fi
+
+            # complete after --flag=abc
+            if [[ $cur == *=* ]]; then
+                if [[ $(type -t compopt) = "builtin" ]]; then
+                    compopt +o nospace
+                fi
+
+                local index flag
+                flag="${cur%=*}"
+                __datasets_index_of_word "${flag}" "${flags_with_completion[@]}"
+                COMPREPLY=()
+                if [[ ${index} -ge 0 ]]; then
+                    PREFIX=""
+                    cur="${cur#*=}"
+                    ${flags_completion[${index}]}
+                    if [ -n "${ZSH_VERSION:-}" ]; then
+                        # zsh completion needs --flag= prefix
+                        eval "COMPREPLY=( \"\${COMPREPLY[@]/#/${flag}=}\" )"
+                    fi
+                fi
+            fi
+
+            if [[ -z "${flag_parsing_disabled}" ]]; then
+                # If flag parsing is enabled, we have completed the flags and can return.
+                # If flag parsing is disabled, we may not know all (or any) of the flags, so we fallthrough
+                # to possibly call handle_go_custom_completion.
+                return 0;
+            fi
+            ;;
+    esac
+
+    # check if we are handling a flag with special work handling
+    local index
+    __datasets_index_of_word "${prev}" "${flags_with_completion[@]}"
+    if [[ ${index} -ge 0 ]]; then
+        ${flags_completion[${index}]}
+        return
+    fi
+
+    # we are parsing a flag and don't have a special handler, no completion
+    if [[ ${cur} != "${words[cword]}" ]]; then
+        return
+    fi
+
+    local completions
+    completions=("${commands[@]}")
+    if [[ ${#must_have_one_noun[@]} -ne 0 ]]; then
+        completions+=("${must_have_one_noun[@]}")
+    elif [[ -n "${has_completion_function}" ]]; then
+        # if a go completion function is provided, defer to that function
+        __datasets_handle_go_custom_completion
+    fi
+    if [[ ${#must_have_one_flag[@]} -ne 0 ]]; then
+        completions+=("${must_have_one_flag[@]}")
+    fi
+    while IFS='' read -r comp; do
+        COMPREPLY+=("$comp")
+    done < <(compgen -W "${completions[*]}" -- "$cur")
+
+    if [[ ${#COMPREPLY[@]} -eq 0 && ${#noun_aliases[@]} -gt 0 && ${#must_have_one_noun[@]} -ne 0 ]]; then
+        while IFS='' read -r comp; do
+            COMPREPLY+=("$comp")
+        done < <(compgen -W "${noun_aliases[*]}" -- "$cur")
+    fi
+
+    if [[ ${#COMPREPLY[@]} -eq 0 ]]; then
+        if declare -F __datasets_custom_func >/dev/null; then
+            # try command name qualified custom func
+            __datasets_custom_func
+        else
+            # otherwise fall back to unqualified for compatibility
+            declare -F __custom_func >/dev/null && __custom_func
+        fi
+    fi
+
+    # available in bash-completion >= 2, not always present on macOS
+    if declare -F __ltrim_colon_completions >/dev/null; then
+        __ltrim_colon_completions "$cur"
+    fi
+
+    # If there is only 1 completion and it is a flag with an = it will be completed
+    # but we don't want a space after the =
+    if [[ "${#COMPREPLY[@]}" -eq "1" ]] && [[ $(type -t compopt) = "builtin" ]] && [[ "${COMPREPLY[0]}" == --*= ]]; then
+       compopt -o nospace
+    fi
+}
+
+# The arguments should be in the form "ext1|ext2|extn"
+__datasets_handle_filename_extension_flag()
+{
+    local ext="$1"
+    _filedir "@(${ext})"
+}
+
+__datasets_handle_subdirs_in_dir_flag()
+{
+    local dir="$1"
+    pushd "${dir}" >/dev/null 2>&1 && _filedir -d && popd >/dev/null 2>&1 || return
+}
+
+__datasets_handle_flag()
+{
+    __datasets_debug "${FUNCNAME[0]}: c is $c words[c] is ${words[c]}"
+
+    # if a command required a flag, and we found it, unset must_have_one_flag()
+    local flagname=${words[c]}
+    local flagvalue=""
+    # if the word contained an =
+    if [[ ${words[c]} == *"="* ]]; then
+        flagvalue=${flagname#*=} # take in as flagvalue after the =
+        flagname=${flagname%=*} # strip everything after the =
+        flagname="${flagname}=" # but put the = back
+    fi
+    __datasets_debug "${FUNCNAME[0]}: looking for ${flagname}"
+    if __datasets_contains_word "${flagname}" "${must_have_one_flag[@]}"; then
+        must_have_one_flag=()
+    fi
+
+    # if you set a flag which only applies to this command, don't show subcommands
+    if __datasets_contains_word "${flagname}" "${local_nonpersistent_flags[@]}"; then
+      commands=()
+    fi
+
+    # keep flag value with flagname as flaghash
+    # flaghash variable is an associative array which is only supported in bash > 3.
+    if [[ -z "${BASH_VERSION:-}" || "${BASH_VERSINFO[0]:-}" -gt 3 ]]; then
+        if [ -n "${flagvalue}" ] ; then
+            flaghash[${flagname}]=${flagvalue}
+        elif [ -n "${words[ $((c+1)) ]}" ] ; then
+            flaghash[${flagname}]=${words[ $((c+1)) ]}
+        else
+            flaghash[${flagname}]="true" # pad "true" for bool flag
+        fi
+    fi
+
+    # skip the argument to a two word flag
+    if [[ ${words[c]} != *"="* ]] && __datasets_contains_word "${words[c]}" "${two_word_flags[@]}"; then
+        __datasets_debug "${FUNCNAME[0]}: found a flag ${words[c]}, skip the next argument"
+        c=$((c+1))
+        # if we are looking for a flags value, don't show commands
+        if [[ $c -eq $cword ]]; then
+            commands=()
+        fi
+    fi
+
+    c=$((c+1))
+
+}
+
+__datasets_handle_noun()
+{
+    __datasets_debug "${FUNCNAME[0]}: c is $c words[c] is ${words[c]}"
+
+    if __datasets_contains_word "${words[c]}" "${must_have_one_noun[@]}"; then
+        must_have_one_noun=()
+    elif __datasets_contains_word "${words[c]}" "${noun_aliases[@]}"; then
+        must_have_one_noun=()
+    fi
+
+    nouns+=("${words[c]}")
+    c=$((c+1))
+}
+
+__datasets_handle_command()
+{
+    __datasets_debug "${FUNCNAME[0]}: c is $c words[c] is ${words[c]}"
+
+    local next_command
+    if [[ -n ${last_command} ]]; then
+        next_command="_${last_command}_${words[c]//:/__}"
+    else
+        if [[ $c -eq 0 ]]; then
+            next_command="_datasets_root_command"
+        else
+            next_command="_${words[c]//:/__}"
+        fi
+    fi
+    c=$((c+1))
+    __datasets_debug "${FUNCNAME[0]}: looking for ${next_command}"
+    declare -F "$next_command" >/dev/null && $next_command
+}
+
+__datasets_handle_word()
+{
+    if [[ $c -ge $cword ]]; then
+        __datasets_handle_reply
+        return
+    fi
+    __datasets_debug "${FUNCNAME[0]}: c is $c words[c] is ${words[c]}"
+    if [[ "${words[c]}" == -* ]]; then
+        __datasets_handle_flag
+    elif __datasets_contains_word "${words[c]}" "${commands[@]}"; then
+        __datasets_handle_command
+    elif [[ $c -eq 0 ]]; then
+        __datasets_handle_command
+    elif __datasets_contains_word "${words[c]}" "${command_aliases[@]}"; then
+        # aliashash variable is an associative array which is only supported in bash > 3.
+        if [[ -z "${BASH_VERSION:-}" || "${BASH_VERSINFO[0]:-}" -gt 3 ]]; then
+            words[c]=${aliashash[${words[c]}]}
+            __datasets_handle_command
+        else
+            __datasets_handle_noun
+        fi
+    else
+        __datasets_handle_noun
+    fi
+    __datasets_handle_word
+}
+
+_datasets_summary_gene_gene-id()
+{
+    last_command="datasets_summary_gene_gene-id"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    flags+=("--ortholog=")
+    two_word_flags+=("--ortholog")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--as-json-lines")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_summary_gene_symbol()
 {
-    local word_list="  --inputfile --ortholog --taxon --api-key --as-json-lines --debug --help --limit --report --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_summary_gene_symbol"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    flags+=("--ortholog=")
+    two_word_flags+=("--ortholog")
+    flags+=("--taxon=")
+    two_word_flags+=("--taxon")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--as-json-lines")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_summary_gene_accession()
 {
-    local word_list="  --inputfile --ortholog --api-key --as-json-lines --debug --help --limit --report --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_summary_gene_accession"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    flags+=("--ortholog=")
+    two_word_flags+=("--ortholog")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--as-json-lines")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_summary_gene_taxon()
 {
-    local word_list="  --api-key --as-json-lines --debug --help --limit --report --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_summary_gene_taxon"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--as-json-lines")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
-_datasets_summary_genome()
+_datasets_summary_gene_locus-tag()
 {
-    local cmd i subcommands
-    local subcommands=" accession taxon"
+    last_command="datasets_summary_gene_locus-tag"
 
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
+    command_aliases=()
 
-    case "$cmd" in
-        accession) _datasets_summary_genome_accession
-            return
-            ;;
+    commands=()
 
-        taxon) _datasets_summary_genome_taxon
-            return
-            ;;
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
 
-    esac
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    flags+=("--ortholog=")
+    two_word_flags+=("--ortholog")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--as-json-lines")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--version")
 
-    local word_list=" accession taxon --annotated --as-json-lines --assembly-level --assembly-source --exclude-atypical --limit --mag --reference --released-after --released-before --report --search --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
+}
+
+_datasets_summary_gene()
+{
+    last_command="datasets_summary_gene"
+
+    command_aliases=()
+
+    commands=()
+    commands+=("gene-id")
+    commands+=("symbol")
+    commands+=("accession")
+    commands+=("taxon")
+    commands+=("locus-tag")
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--as-json-lines")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_summary_genome_accession()
 {
-    local word_list="  --assembly-version --inputfile --annotated --api-key --as-json-lines --assembly-level --assembly-source --debug --exclude-atypical --help --limit --mag --reference --released-after --released-before --report --search --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_summary_genome_accession"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    flags+=("--annotated")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--as-json-lines")
+    flags+=("--assembly-level=")
+    two_word_flags+=("--assembly-level")
+    flags+=("--assembly-source=")
+    two_word_flags+=("--assembly-source")
+    flags+=("--assembly-version=")
+    two_word_flags+=("--assembly-version")
+    flags+=("--debug")
+    flags+=("--exclude-atypical")
+    flags+=("--exclude-multi-isolate")
+    flags+=("--from-type")
+    flags+=("--help")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--mag=")
+    two_word_flags+=("--mag")
+    flags+=("--reference")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--released-before=")
+    two_word_flags+=("--released-before")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--search=")
+    two_word_flags+=("--search")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_summary_genome_taxon()
 {
-    local word_list="  --assembly-version --annotated --api-key --as-json-lines --assembly-level --assembly-source --debug --exclude-atypical --help --limit --mag --reference --released-after --released-before --report --search --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_summary_genome_taxon"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    flags+=("--tax-exact-match")
+    flags+=("--annotated")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--as-json-lines")
+    flags+=("--assembly-level=")
+    two_word_flags+=("--assembly-level")
+    flags+=("--assembly-source=")
+    two_word_flags+=("--assembly-source")
+    flags+=("--assembly-version=")
+    two_word_flags+=("--assembly-version")
+    flags+=("--debug")
+    flags+=("--exclude-atypical")
+    flags+=("--exclude-multi-isolate")
+    flags+=("--from-type")
+    flags+=("--help")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--mag=")
+    two_word_flags+=("--mag")
+    flags+=("--reference")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--released-before=")
+    two_word_flags+=("--released-before")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--search=")
+    two_word_flags+=("--search")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
-_datasets_summary_virus()
+_datasets_summary_genome()
 {
-    local cmd i subcommands
-    local subcommands=" genome"
+    last_command="datasets_summary_genome"
 
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
+    command_aliases=()
 
-    case "$cmd" in
-        genome) _datasets_summary_virus_genome
-            return
-            ;;
+    commands=()
+    commands+=("accession")
+    commands+=("taxon")
 
-    esac
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
 
-    local word_list=" genome --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
+    flags+=("--annotated")
+    flags+=("--as-json-lines")
+    flags+=("--assembly-level=")
+    two_word_flags+=("--assembly-level")
+    flags+=("--assembly-source=")
+    two_word_flags+=("--assembly-source")
+    flags+=("--assembly-version=")
+    two_word_flags+=("--assembly-version")
+    flags+=("--exclude-atypical")
+    flags+=("--exclude-multi-isolate")
+    flags+=("--from-type")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--mag=")
+    two_word_flags+=("--mag")
+    flags+=("--reference")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--released-before=")
+    two_word_flags+=("--released-before")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--search=")
+    two_word_flags+=("--search")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
 
-_datasets_summary_virus_genome()
-{
-    local cmd i subcommands
-    local subcommands=" taxon accession"
-
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
-
-    case "$cmd" in
-        taxon) _datasets_summary_virus_genome_taxon
-            return
-            ;;
-
-        accession) _datasets_summary_virus_genome_accession
-            return
-            ;;
-
-    esac
-
-    local word_list=" taxon accession --annotated --as-json-lines --complete-only --geo-location --host --limit --lineage --refseq --released-after --report --updated-after --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_summary_virus_genome_taxon()
 {
-    local word_list="  --annotated --api-key --as-json-lines --complete-only --debug --geo-location --help --host --limit --lineage --refseq --released-after --report --updated-after --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_summary_virus_genome_taxon"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    flags+=("--annotated")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--as-json-lines")
+    flags+=("--complete-only")
+    flags+=("--debug")
+    flags+=("--geo-location=")
+    two_word_flags+=("--geo-location")
+    flags+=("--help")
+    flags+=("--host=")
+    two_word_flags+=("--host")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--lineage=")
+    two_word_flags+=("--lineage")
+    flags+=("--refseq")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--updated-after=")
+    two_word_flags+=("--updated-after")
+    flags+=("--usa-state=")
+    two_word_flags+=("--usa-state")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_summary_virus_genome_accession()
 {
-    local word_list="  --inputfile --annotated --api-key --as-json-lines --complete-only --debug --geo-location --help --host --limit --lineage --refseq --released-after --report --updated-after --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_summary_virus_genome_accession"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile=")
+    flags+=("--annotated")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--as-json-lines")
+    flags+=("--complete-only")
+    flags+=("--debug")
+    flags+=("--geo-location=")
+    two_word_flags+=("--geo-location")
+    flags+=("--help")
+    flags+=("--host=")
+    two_word_flags+=("--host")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--lineage=")
+    two_word_flags+=("--lineage")
+    flags+=("--refseq")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--updated-after=")
+    two_word_flags+=("--updated-after")
+    flags+=("--usa-state=")
+    two_word_flags+=("--usa-state")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
-_datasets_download()
+_datasets_summary_virus_genome()
 {
-    local cmd i subcommands
-    local subcommands=" gene genome virus"
+    last_command="datasets_summary_virus_genome"
 
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
+    command_aliases=()
 
-    case "$cmd" in
-        gene) _datasets_download_gene
-            return
-            ;;
+    commands=()
+    commands+=("taxon")
+    commands+=("accession")
 
-        genome) _datasets_download_genome
-            return
-            ;;
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
 
-        virus) _datasets_download_virus
-            return
-            ;;
+    flags+=("--annotated")
+    flags+=("--as-json-lines")
+    flags+=("--complete-only")
+    flags+=("--geo-location=")
+    two_word_flags+=("--geo-location")
+    flags+=("--host=")
+    two_word_flags+=("--host")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--lineage=")
+    two_word_flags+=("--lineage")
+    flags+=("--refseq")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--updated-after=")
+    two_word_flags+=("--updated-after")
+    flags+=("--usa-state=")
+    two_word_flags+=("--usa-state")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
 
-    esac
-
-    local word_list=" gene genome virus --filename --no-progressbar --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
-_datasets_download_gene()
+_datasets_summary_virus()
 {
-    local cmd i subcommands
-    local subcommands=" gene-id symbol accession taxon"
+    last_command="datasets_summary_virus"
 
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
+    command_aliases=()
 
-    case "$cmd" in
-        gene-id) _datasets_download_gene_geneid
-            return
-            ;;
+    commands=()
+    commands+=("genome")
 
-        symbol) _datasets_download_gene_symbol
-            return
-            ;;
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
 
-        accession) _datasets_download_gene_accession
-            return
-            ;;
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
 
-        taxon) _datasets_download_gene_taxon
-            return
-            ;;
-
-    esac
-
-    local word_list=" gene-id symbol accession taxon --fasta-filter --fasta-filter-file --preview --api-key --debug --filename --help --no-progressbar --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
-_datasets_download_gene_geneid()
+_datasets_summary_taxonomy_taxon()
 {
-    local word_list="  --include --inputfile --ortholog --api-key --debug --fasta-filter --fasta-filter-file --filename --help --no-progressbar --preview --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_summary_taxonomy_taxon"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--as-json-lines")
+    flags+=("--children")
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    flags+=("--limit=")
+    two_word_flags+=("--limit")
+    flags+=("--parents")
+    flags+=("--rank=")
+    two_word_flags+=("--rank")
+    flags+=("--report=")
+    two_word_flags+=("--report")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
+}
+
+_datasets_summary_taxonomy()
+{
+    last_command="datasets_summary_taxonomy"
+
+    command_aliases=()
+
+    commands=()
+    commands+=("taxon")
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
+}
+
+_datasets_summary()
+{
+    last_command="datasets_summary"
+
+    command_aliases=()
+
+    commands=()
+    commands+=("gene")
+    commands+=("genome")
+    commands+=("virus")
+    commands+=("taxonomy")
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
+}
+
+_datasets_download_gene_gene-id()
+{
+    last_command="datasets_download_gene_gene-id"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--fast-zip-validation")
+    local_nonpersistent_flags+=("--fast-zip-validation")
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile=")
+    flags+=("--ortholog=")
+    two_word_flags+=("--ortholog")
+    local_nonpersistent_flags+=("--ortholog")
+    local_nonpersistent_flags+=("--ortholog=")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--fasta-filter=")
+    two_word_flags+=("--fasta-filter")
+    flags+=("--fasta-filter-file=")
+    two_word_flags+=("--fasta-filter-file")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--help")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--no-progressbar")
+    flags+=("--preview")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_download_gene_symbol()
 {
-    local word_list="  --include --inputfile --ortholog --taxon --api-key --debug --fasta-filter --fasta-filter-file --filename --help --no-progressbar --preview --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_download_gene_symbol"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--fast-zip-validation")
+    local_nonpersistent_flags+=("--fast-zip-validation")
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile=")
+    flags+=("--ortholog=")
+    two_word_flags+=("--ortholog")
+    local_nonpersistent_flags+=("--ortholog")
+    local_nonpersistent_flags+=("--ortholog=")
+    flags+=("--taxon=")
+    two_word_flags+=("--taxon")
+    local_nonpersistent_flags+=("--taxon")
+    local_nonpersistent_flags+=("--taxon=")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--fasta-filter=")
+    two_word_flags+=("--fasta-filter")
+    flags+=("--fasta-filter-file=")
+    two_word_flags+=("--fasta-filter-file")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--help")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--no-progressbar")
+    flags+=("--preview")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_download_gene_accession()
 {
-    local word_list="  --include --include-flanks-bp --inputfile --ortholog --taxon-filter --api-key --debug --fasta-filter --fasta-filter-file --filename --help --no-progressbar --preview --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_download_gene_accession"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--fast-zip-validation")
+    local_nonpersistent_flags+=("--fast-zip-validation")
+    flags+=("--fasta-filter=")
+    two_word_flags+=("--fasta-filter")
+    local_nonpersistent_flags+=("--fasta-filter")
+    local_nonpersistent_flags+=("--fasta-filter=")
+    flags+=("--fasta-filter-file=")
+    two_word_flags+=("--fasta-filter-file")
+    local_nonpersistent_flags+=("--fasta-filter-file")
+    local_nonpersistent_flags+=("--fasta-filter-file=")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    local_nonpersistent_flags+=("--include")
+    local_nonpersistent_flags+=("--include=")
+    flags+=("--include-flanks-bp=")
+    two_word_flags+=("--include-flanks-bp")
+    local_nonpersistent_flags+=("--include-flanks-bp")
+    local_nonpersistent_flags+=("--include-flanks-bp=")
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile=")
+    flags+=("--ortholog=")
+    two_word_flags+=("--ortholog")
+    local_nonpersistent_flags+=("--ortholog")
+    local_nonpersistent_flags+=("--ortholog=")
+    flags+=("--preview")
+    local_nonpersistent_flags+=("--preview")
+    flags+=("--taxon-filter=")
+    two_word_flags+=("--taxon-filter")
+    local_nonpersistent_flags+=("--taxon-filter")
+    local_nonpersistent_flags+=("--taxon-filter=")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--help")
+    flags+=("--no-progressbar")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_download_gene_taxon()
 {
-    local word_list="  --include --api-key --debug --fasta-filter --fasta-filter-file --filename --help --no-progressbar --preview --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_download_gene_taxon"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--fast-zip-validation")
+    local_nonpersistent_flags+=("--fast-zip-validation")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--fasta-filter=")
+    two_word_flags+=("--fasta-filter")
+    flags+=("--fasta-filter-file=")
+    two_word_flags+=("--fasta-filter-file")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--help")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--no-progressbar")
+    flags+=("--preview")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
-_datasets_download_genome()
+_datasets_download_gene_locus-tag()
 {
-    local cmd i subcommands
-    local subcommands=" accession taxon"
+    last_command="datasets_download_gene_locus-tag"
 
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
+    command_aliases=()
 
-    case "$cmd" in
-        accession) _datasets_download_genome_accession
-            return
-            ;;
+    commands=()
 
-        taxon) _datasets_download_genome_taxon
-            return
-            ;;
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
 
-    esac
+    flags+=("--fast-zip-validation")
+    local_nonpersistent_flags+=("--fast-zip-validation")
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile=")
+    flags+=("--ortholog=")
+    two_word_flags+=("--ortholog")
+    local_nonpersistent_flags+=("--ortholog")
+    local_nonpersistent_flags+=("--ortholog=")
+    flags+=("--taxon=")
+    two_word_flags+=("--taxon")
+    local_nonpersistent_flags+=("--taxon")
+    local_nonpersistent_flags+=("--taxon=")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--fasta-filter=")
+    two_word_flags+=("--fasta-filter")
+    flags+=("--fasta-filter-file=")
+    two_word_flags+=("--fasta-filter-file")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--help")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--no-progressbar")
+    flags+=("--preview")
+    flags+=("--version")
 
-    local word_list=" accession taxon --annotated --assembly-level --assembly-source --chromosomes --dehydrated --exclude-atypical --mag --preview --reference --released-after --released-before --search --api-key --debug --filename --help --no-progressbar --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
+}
+
+_datasets_download_gene()
+{
+    last_command="datasets_download_gene"
+
+    command_aliases=()
+
+    commands=()
+    commands+=("gene-id")
+    commands+=("symbol")
+    commands+=("accession")
+    commands+=("taxon")
+    commands+=("locus-tag")
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--fasta-filter=")
+    two_word_flags+=("--fasta-filter")
+    flags+=("--fasta-filter-file=")
+    two_word_flags+=("--fasta-filter-file")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--preview")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--help")
+    flags+=("--no-progressbar")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_download_genome_accession()
 {
-    local word_list="  --assembly-version --include --inputfile --annotated --api-key --assembly-level --assembly-source --chromosomes --debug --dehydrated --exclude-atypical --filename --help --mag --no-progressbar --preview --reference --released-after --released-before --search --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_download_genome_accession"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile=")
+    flags+=("--annotated")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--assembly-level=")
+    two_word_flags+=("--assembly-level")
+    flags+=("--assembly-source=")
+    two_word_flags+=("--assembly-source")
+    flags+=("--assembly-version=")
+    two_word_flags+=("--assembly-version")
+    flags+=("--chromosomes=")
+    two_word_flags+=("--chromosomes")
+    flags+=("--debug")
+    flags+=("--dehydrated")
+    flags+=("--exclude-atypical")
+    flags+=("--exclude-multi-isolate")
+    flags+=("--fast-zip-validation")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--from-type")
+    flags+=("--help")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--mag=")
+    two_word_flags+=("--mag")
+    flags+=("--no-progressbar")
+    flags+=("--preview")
+    flags+=("--reference")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--released-before=")
+    two_word_flags+=("--released-before")
+    flags+=("--search=")
+    two_word_flags+=("--search")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_download_genome_taxon()
 {
-    local word_list="  --assembly-version --include --reference --tax-exact-match --annotated --api-key --assembly-level --assembly-source --chromosomes --debug --dehydrated --exclude-atypical --filename --help --mag --no-progressbar --preview --released-after --released-before --search --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_download_genome_taxon"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile=")
+    flags+=("--tax-exact-match")
+    local_nonpersistent_flags+=("--tax-exact-match")
+    flags+=("--annotated")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--assembly-level=")
+    two_word_flags+=("--assembly-level")
+    flags+=("--assembly-source=")
+    two_word_flags+=("--assembly-source")
+    flags+=("--assembly-version=")
+    two_word_flags+=("--assembly-version")
+    flags+=("--chromosomes=")
+    two_word_flags+=("--chromosomes")
+    flags+=("--debug")
+    flags+=("--dehydrated")
+    flags+=("--exclude-atypical")
+    flags+=("--exclude-multi-isolate")
+    flags+=("--fast-zip-validation")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--from-type")
+    flags+=("--help")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--mag=")
+    two_word_flags+=("--mag")
+    flags+=("--no-progressbar")
+    flags+=("--preview")
+    flags+=("--reference")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--released-before=")
+    two_word_flags+=("--released-before")
+    flags+=("--search=")
+    two_word_flags+=("--search")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
-_datasets_download_virus()
+_datasets_download_genome()
 {
-    local cmd i subcommands
-    local subcommands=" genome protein"
+    last_command="datasets_download_genome"
 
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
+    command_aliases=()
 
-    case "$cmd" in
-        genome) _datasets_download_virus_genome
-            return
-            ;;
+    commands=()
+    commands+=("accession")
+    commands+=("taxon")
 
-        protein) _datasets_download_virus_protein
-            return
-            ;;
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
 
-    esac
+    flags+=("--annotated")
+    flags+=("--assembly-level=")
+    two_word_flags+=("--assembly-level")
+    flags+=("--assembly-source=")
+    two_word_flags+=("--assembly-source")
+    flags+=("--assembly-version=")
+    two_word_flags+=("--assembly-version")
+    flags+=("--chromosomes=")
+    two_word_flags+=("--chromosomes")
+    flags+=("--dehydrated")
+    flags+=("--exclude-atypical")
+    flags+=("--exclude-multi-isolate")
+    flags+=("--fast-zip-validation")
+    flags+=("--from-type")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--mag=")
+    two_word_flags+=("--mag")
+    flags+=("--preview")
+    flags+=("--reference")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--released-before=")
+    two_word_flags+=("--released-before")
+    flags+=("--search=")
+    two_word_flags+=("--search")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--help")
+    flags+=("--no-progressbar")
+    flags+=("--version")
 
-    local word_list=" genome protein --api-key --debug --filename --help --no-progressbar --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
-_datasets_download_virus_genome()
+_datasets_download_taxonomy_taxon()
 {
-    local cmd i subcommands
-    local subcommands=" accession taxon"
+    last_command="datasets_download_taxonomy_taxon"
 
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
+    command_aliases=()
 
-    case "$cmd" in
-        accession) _datasets_download_virus_genome_accession
-            return
-            ;;
+    commands=()
 
-        taxon) _datasets_download_virus_genome_taxon
-            return
-            ;;
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
 
-    esac
+    flags+=("--children")
+    flags+=("--fast-zip-validation")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    flags+=("--parents")
+    flags+=("--rank=")
+    two_word_flags+=("--rank")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--help")
+    flags+=("--no-progressbar")
+    flags+=("--version")
 
-    local word_list=" accession taxon --annotated --complete-only --geo-location --host --include --lineage --released-after --updated-after --api-key --debug --filename --help --no-progressbar --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
+}
+
+_datasets_download_taxonomy()
+{
+    last_command="datasets_download_taxonomy"
+
+    command_aliases=()
+
+    commands=()
+    commands+=("taxon")
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--help")
+    flags+=("--no-progressbar")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_download_virus_genome_accession()
 {
-    local word_list="  --inputfile --annotated --api-key --complete-only --debug --filename --geo-location --help --host --include --lineage --no-progressbar --released-after --updated-after --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_download_virus_genome_accession"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--fast-zip-validation")
+    local_nonpersistent_flags+=("--fast-zip-validation")
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile=")
+    flags+=("--annotated")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--complete-only")
+    flags+=("--debug")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--geo-location=")
+    two_word_flags+=("--geo-location")
+    flags+=("--help")
+    flags+=("--host=")
+    two_word_flags+=("--host")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--lineage=")
+    two_word_flags+=("--lineage")
+    flags+=("--no-progressbar")
+    flags+=("--refseq")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--updated-after=")
+    two_word_flags+=("--updated-after")
+    flags+=("--usa-state=")
+    two_word_flags+=("--usa-state")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_download_virus_genome_taxon()
 {
-    local word_list="  --refseq --annotated --api-key --complete-only --debug --filename --geo-location --help --host --include --lineage --no-progressbar --released-after --updated-after --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_download_virus_genome_taxon"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--fast-zip-validation")
+    local_nonpersistent_flags+=("--fast-zip-validation")
+    flags+=("--inputfile=")
+    two_word_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile")
+    local_nonpersistent_flags+=("--inputfile=")
+    flags+=("--annotated")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--complete-only")
+    flags+=("--debug")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--geo-location=")
+    two_word_flags+=("--geo-location")
+    flags+=("--help")
+    flags+=("--host=")
+    two_word_flags+=("--host")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--lineage=")
+    two_word_flags+=("--lineage")
+    flags+=("--no-progressbar")
+    flags+=("--refseq")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--updated-after=")
+    two_word_flags+=("--updated-after")
+    flags+=("--usa-state=")
+    two_word_flags+=("--usa-state")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
+}
+
+_datasets_download_virus_genome()
+{
+    last_command="datasets_download_virus_genome"
+
+    command_aliases=()
+
+    commands=()
+    commands+=("accession")
+    commands+=("taxon")
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--annotated")
+    flags+=("--complete-only")
+    flags+=("--fast-zip-validation")
+    flags+=("--geo-location=")
+    two_word_flags+=("--geo-location")
+    flags+=("--host=")
+    two_word_flags+=("--host")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--lineage=")
+    two_word_flags+=("--lineage")
+    flags+=("--refseq")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--updated-after=")
+    two_word_flags+=("--updated-after")
+    flags+=("--usa-state=")
+    two_word_flags+=("--usa-state")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--help")
+    flags+=("--no-progressbar")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_download_virus_protein()
 {
-    local cmd i subcommands
-    local subcommands=" ORF1ab ORF1a nsp1 nsp2 nsp3 nsp4 nsp5 nsp6 nsp7 nsp8 nsp9 nsp10 rdrp nsp11 nsp13 nsp14 nsp15 nsp16 S ORF3a E M ORF6 ORF7a ORF7b ORF8 N ORF10"
+    last_command="datasets_download_virus_protein"
 
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
+    command_aliases=()
 
-    case "$cmd" in
-        ORF1ab) _datasets_download_virus_protein_ORF1ab
-            return
-            ;;
+    commands=()
 
-        ORF1a) _datasets_download_virus_protein_ORF1a
-            return
-            ;;
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
 
-        nsp1) _datasets_download_virus_protein_nsp1
-            return
-            ;;
+    flags+=("--annotated")
+    flags+=("--complete-only")
+    flags+=("--fast-zip-validation")
+    flags+=("--geo-location=")
+    two_word_flags+=("--geo-location")
+    flags+=("--host=")
+    two_word_flags+=("--host")
+    flags+=("--include=")
+    two_word_flags+=("--include")
+    flags+=("--lineage=")
+    two_word_flags+=("--lineage")
+    flags+=("--refseq")
+    flags+=("--released-after=")
+    two_word_flags+=("--released-after")
+    flags+=("--updated-after=")
+    two_word_flags+=("--updated-after")
+    flags+=("--usa-state=")
+    two_word_flags+=("--usa-state")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--help")
+    flags+=("--no-progressbar")
+    flags+=("--version")
 
-        nsp2) _datasets_download_virus_protein_nsp2
-            return
-            ;;
-
-        nsp3) _datasets_download_virus_protein_nsp3
-            return
-            ;;
-
-        nsp4) _datasets_download_virus_protein_nsp4
-            return
-            ;;
-
-        nsp5) _datasets_download_virus_protein_nsp5
-            return
-            ;;
-
-        nsp6) _datasets_download_virus_protein_nsp6
-            return
-            ;;
-
-        nsp7) _datasets_download_virus_protein_nsp7
-            return
-            ;;
-
-        nsp8) _datasets_download_virus_protein_nsp8
-            return
-            ;;
-
-        nsp9) _datasets_download_virus_protein_nsp9
-            return
-            ;;
-
-        nsp10) _datasets_download_virus_protein_nsp10
-            return
-            ;;
-
-        rdrp) _datasets_download_virus_protein_rdrp
-            return
-            ;;
-
-        nsp11) _datasets_download_virus_protein_nsp11
-            return
-            ;;
-
-        nsp13) _datasets_download_virus_protein_nsp13
-            return
-            ;;
-
-        nsp14) _datasets_download_virus_protein_nsp14
-            return
-            ;;
-
-        nsp15) _datasets_download_virus_protein_nsp15
-            return
-            ;;
-
-        nsp16) _datasets_download_virus_protein_nsp16
-            return
-            ;;
-
-        S) _datasets_download_virus_protein_S
-            return
-            ;;
-
-        ORF3a) _datasets_download_virus_protein_ORF3a
-            return
-            ;;
-
-        E) _datasets_download_virus_protein_E
-            return
-            ;;
-
-        M) _datasets_download_virus_protein_M
-            return
-            ;;
-
-        ORF6) _datasets_download_virus_protein_ORF6
-            return
-            ;;
-
-        ORF7a) _datasets_download_virus_protein_ORF7a
-            return
-            ;;
-
-        ORF7b) _datasets_download_virus_protein_ORF7b
-            return
-            ;;
-
-        ORF8) _datasets_download_virus_protein_ORF8
-            return
-            ;;
-
-        N) _datasets_download_virus_protein_N
-            return
-            ;;
-
-        ORF10) _datasets_download_virus_protein_ORF10
-            return
-            ;;
-
-    esac
-
-    local word_list=" ORF1ab ORF1a nsp1 nsp2 nsp3 nsp4 nsp5 nsp6 nsp7 nsp8 nsp9 nsp10 rdrp nsp11 nsp13 nsp14 nsp15 nsp16 S ORF3a E M ORF6 ORF7a ORF7b ORF8 N ORF10 "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
-_datasets_download_virus_protein_ORF1ab()
+_datasets_download_virus()
 {
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_download_virus"
+
+    command_aliases=()
+
+    commands=()
+    commands+=("genome")
+    commands+=("protein")
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--help")
+    flags+=("--no-progressbar")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
-_datasets_download_virus_protein_ORF1a()
+_datasets_download()
 {
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
+    last_command="datasets_download"
 
-_datasets_download_virus_protein_nsp1()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
+    command_aliases=()
 
-_datasets_download_virus_protein_nsp2()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
+    commands=()
+    commands+=("gene")
+    commands+=("genome")
+    commands+=("taxonomy")
+    commands+=("virus")
 
-_datasets_download_virus_protein_nsp3()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
 
-_datasets_download_virus_protein_nsp4()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
+    flags+=("--filename=")
+    two_word_flags+=("--filename")
+    flags+=("--no-progressbar")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
 
-_datasets_download_virus_protein_nsp5()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_nsp6()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_nsp7()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_nsp8()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_nsp9()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_nsp10()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_rdrp()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_nsp11()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_nsp13()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_nsp14()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_nsp15()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_nsp16()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_S()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_ORF3a()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_E()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_M()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_ORF6()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_ORF7a()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_ORF7b()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_ORF8()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_N()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_datasets_download_virus_protein_ORF10()
-{
-    local word_list="  "
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_rehydrate()
 {
-    local word_list="  --directory --gzip --list --match --max-workers --no-progressbar --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
+    last_command="datasets_rehydrate"
 
-_datasets_completion()
-{
-    local cmd i subcommands
-    local subcommands=" bash zsh fish powershell"
+    command_aliases=()
 
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
+    commands=()
 
-    case "$cmd" in
-        bash) _datasets_completion_bash
-            return
-            ;;
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
 
-        zsh) _datasets_completion_zsh
-            return
-            ;;
+    flags+=("--directory=")
+    two_word_flags+=("--directory")
+    flags+=("--gzip")
+    flags+=("--list")
+    flags+=("--match=")
+    two_word_flags+=("--match")
+    flags+=("--max-workers=")
+    two_word_flags+=("--max-workers")
+    flags+=("--no-progressbar")
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
 
-        fish) _datasets_completion_fish
-            return
-            ;;
-
-        powershell) _datasets_completion_powershell
-            return
-            ;;
-
-    esac
-
-    local word_list=" bash zsh fish powershell --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_completion_bash()
 {
-    local word_list="  --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_completion_bash"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_completion_zsh()
 {
-    local word_list="  --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_completion_zsh"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_completion_fish()
 {
-    local word_list="  --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_completion_fish"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
 _datasets_completion_powershell()
 {
-    local word_list="  --api-key --debug --help --version"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+    last_command="datasets_completion_powershell"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
 }
 
-## -o bashdefault and -o default are fallback
-complete -o bashdefault -o default -F _datasets datasets
+_datasets_completion()
+{
+    last_command="datasets_completion"
+
+    command_aliases=()
+
+    commands=()
+    commands+=("bash")
+    commands+=("zsh")
+    commands+=("fish")
+    commands+=("powershell")
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
+}
+
+_datasets_no-help()
+{
+    last_command="datasets_no-help"
+
+    command_aliases=()
+
+    commands=()
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
+}
+
+_datasets_root_command()
+{
+    last_command="datasets"
+
+    command_aliases=()
+
+    commands=()
+    commands+=("summary")
+    commands+=("download")
+    commands+=("rehydrate")
+    commands+=("completion")
+    commands+=("no-help")
+
+    flags=()
+    two_word_flags=()
+    local_nonpersistent_flags=()
+    flags_with_completion=()
+    flags_completion=()
+
+    flags+=("--api-key=")
+    two_word_flags+=("--api-key")
+    flags+=("--debug")
+    flags+=("--help")
+    flags+=("--version")
+
+    must_have_one_flag=()
+    must_have_one_noun=()
+    noun_aliases=()
+}
+
+__start_datasets()
+{
+    local cur prev words cword split
+    declare -A flaghash 2>/dev/null || :
+    declare -A aliashash 2>/dev/null || :
+    if declare -F _init_completion >/dev/null 2>&1; then
+        _init_completion -s || return
+    else
+        __datasets_init_completion -n "=" || return
+    fi
+
+    local c=0
+    local flag_parsing_disabled=
+    local flags=()
+    local two_word_flags=()
+    local local_nonpersistent_flags=()
+    local flags_with_completion=()
+    local flags_completion=()
+    local commands=("datasets")
+    local command_aliases=()
+    local must_have_one_flag=()
+    local must_have_one_noun=()
+    local has_completion_function=""
+    local last_command=""
+    local nouns=()
+    local noun_aliases=()
+
+    __datasets_handle_word
+}
+
+if [[ $(type -t compopt) = "builtin" ]]; then
+    complete -o default -F __start_datasets datasets
+else
+    complete -o default -o nospace -F __start_datasets datasets
+fi
+
+# ex: ts=4 sw=4 et filetype=sh

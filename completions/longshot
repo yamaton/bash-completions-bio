@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_longshot()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -A --auto_max_cov -S --stable_alignment -F --force_overwrite -x --max_alignment -n --no_haps --output-ref -h --help -V --version -b --bam -f --ref -o --out -r --region -v --potential_variants -O --out_bam -c --min_cov -C --max_cov -q --min_mapq -a --min_allele_qual -y --hap_assignment_qual -Q --potential_snv_cutoff -e --min_alt_count -E --min_alt_frac -L --hap_converge_delta -l --anchor_length -m --max_snvs -W --max_window -I --max_cigar_indel --max_reads_estimation -B --band_width -D --density_params -s --sample_id --hom_snv_rate --het_snv_rate --ts_tv_ratio -P --strand_bias_pvalue_cutoff -d --variant_debug_dir"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _longshot longshot

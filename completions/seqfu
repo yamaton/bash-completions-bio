@@ -106,7 +106,7 @@ _seqfu_bases()
 
 _seqfu_check()
 {
-    local word_list="  -n --no-paired -s --safe-exit -q --quiet -v --verbose -t --thousands --debug -h --help"
+    local word_list="  -d --deep -n --no-paired -s --safe-exit -q --quiet -v --verbose -t --thousands --debug -h --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -148,7 +148,7 @@ _seqfu_list()
 
 _seqfu_metadata()
 {
-    local word_list="  -1 --for-tag -2 --rev-tag -s --split --pos -f --format --pe -p --add-path -c --counts -t --threads -P --project --meta-split --meta-part --meta-default -v --verbose -h --help"
+    local word_list="  -1 --for-tag -2 --rev-tag -s --split --pos -f --format -p --add-path -c --counts -t --threads --pe --ont --abs --basename --force-tsv --force-csv -R --rand-meta -P --project --meta-split --meta-part --meta-default -v --verbose --debug -h --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -166,13 +166,13 @@ _seqfu_sort()
 
 _seqfu_stats()
 {
-    local word_list="  -a --abs-path -b --basename -n --nice -j --json -s --sort-by -r --reverse -t --thousands --csv --gc --multiqc --precision -v --verbose -h --help"
+    local word_list="  -a --abs-path -b --basename -n --nice -j --json -s --sort-by -r --reverse -t --thousands --csv --gc --index --multiqc --precision --noheader -v --verbose -h --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _seqfu_cat()
 {
-    local word_list="  -k --skip --skip-first --jump-to --print-last -p --prefix -z --strip-name -a --append --sep -b --basename --split --part --basename-sep -s --strip-comments --comment-sep --add-len --add-initial-len --add-gc --add-initial-gc --add-name --add-ee --add-initial-ee -n --max-ns -m --min-len -x --max-len --max-ee --trim-front --trim-tail --truncate --max-bp --fasta --fastq --list -q --fastq-qual -v --verbose --debug -h --help"
+    local word_list="  -k --skip --skip-first --jump-to --print-last -p --prefix -z --strip-name -a --append --sep -b --basename --split --part --basename-sep --zero-pad -s --strip-comments --comment-sep --add-len --add-initial-len --add-gc --add-initial-gc --add-name --add-ee --add-initial-ee -n --max-ns -m --min-len -x --max-len --max-ee --trim-front --trim-tail --truncate --max-bp --fasta --fastq --report --list --anvio -q --fastq-qual -v --verbose --debug -h --help"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

@@ -1,0 +1,66 @@
+# Auto-generated with h2o
+
+_rasusa()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" reads aln cite help"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        reads) _rasusa_reads
+            return
+            ;;
+
+        aln) _rasusa_aln
+            return
+            ;;
+
+        cite) _rasusa_cite
+            return
+            ;;
+
+        help) _rasusa_help
+            return
+            ;;
+
+    esac
+
+    local word_list=" reads aln cite help -v -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_rasusa_reads()
+{
+    local word_list="  -o --output -g --genome-size -c --coverage -b --bases -n --num -f --frac -s --seed -v -O --output-type -l --compress-level -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_rasusa_aln()
+{
+    local word_list="  -o --output -O --output-type -c --coverage -s --seed --step-size -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_rasusa_cite()
+{
+    local word_list="  -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_rasusa_help()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _rasusa rasusa

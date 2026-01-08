@@ -1,0 +1,591 @@
+# Auto-generated with h2o
+
+_sourmash()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" compare compute gather index info plot prefetch search lca signature sketch storage tax"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        compare) _sourmash_compare
+            return
+            ;;
+
+        compute) _sourmash_compute
+            return
+            ;;
+
+        gather) _sourmash_gather
+            return
+            ;;
+
+        index) _sourmash_index
+            return
+            ;;
+
+        info) _sourmash_info
+            return
+            ;;
+
+        plot) _sourmash_plot
+            return
+            ;;
+
+        prefetch) _sourmash_prefetch
+            return
+            ;;
+
+        search) _sourmash_search
+            return
+            ;;
+
+        lca) _sourmash_lca
+            return
+            ;;
+
+        signature) _sourmash_signature
+            return
+            ;;
+
+        sketch) _sourmash_sketch
+            return
+            ;;
+
+        storage) _sourmash_storage
+            return
+            ;;
+
+        tax) _sourmash_tax
+            return
+            ;;
+
+    esac
+
+    local word_list=" compare compute gather index info plot prefetch search lca signature sketch storage tax -h --help -v --version -q --quiet"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_compare()
+{
+    local word_list="  -h --help -q --quiet -o --output --ignore-abundance --containment --max-containment --avg-containment --average-containment --estimate-ani --ANI --ani --from-file -f --force --csv --labels-to --labels-save -p --processes --distance-matrix --similarity-matrix -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all --include-db-pattern --exclude-db-pattern --scaled"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_compute()
+{
+    local word_list="  -h --help -q --quiet --check-sequence --license -k --ksizes --track-abundance --scaled --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --input-is-protein --seed -n --num-hashes --num -f --force -o --output --output-dir --outdir --singleton --merge --name --name-from-first --randomize"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_gather()
+{
+    local word_list="  -h --help -q --quiet -d --debug -n --num-results -o --output --save-matches --save-prefetch --save-prefetch-csv --threshold-bp --output-unassigned --ignore-abundance --md5 --cache-size --linear --no-linear --no-prefetch --prefetch --estimate-ani-ci --fail-on-empty-database --no-fail-on-empty-database --create-empty-results -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all --include-db-pattern --exclude-db-pattern --scaled"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_index()
+{
+    local word_list="  -h --help -F --index-type --from-file -q --quiet -d --n_children --append -x --bf-size -f --force -s --sparseness -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all --scaled"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_info()
+{
+    local word_list="  -h --help -v --verbose"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_plot()
+{
+    local word_list="  -h --help --pdf --labels --no-labels --labeltext --indices --no-indices --vmin --vmax --subsample --subsample-seed -f --force --output-dir --csv --labels-from --labels-load"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_prefetch()
+{
+    local word_list="  -h --help --db-from-file --linear --no-linear -q --quiet -d --debug -o --output --save-matches --threshold-bp --save-unmatched-hashes --save-matching-hashes --md5 --estimate-ani-ci -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all --include-db-pattern --exclude-db-pattern --scaled"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_search()
+{
+    local word_list="  -h --help -q --quiet -d --debug -t --threshold --save-matches --best-only -n --num-results --containment --max-containment --estimate-ani-ci --ignore-abundance -o --output --md5 --fail-on-empty-database --no-fail-on-empty-database -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all --include-db-pattern --exclude-db-pattern --scaled"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_lca()
+{
+    local cmd i subcommands
+    local subcommands=" classify compare_csv index rankinfo summarize"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        classify) _sourmash_lca_classify
+            return
+            ;;
+
+        compare_csv) _sourmash_lca_comparecsv
+            return
+            ;;
+
+        index) _sourmash_lca_index
+            return
+            ;;
+
+        rankinfo) _sourmash_lca_rankinfo
+            return
+            ;;
+
+        summarize) _sourmash_lca_summarize
+            return
+            ;;
+
+    esac
+
+    local word_list=" classify compare_csv index rankinfo summarize -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_lca_classify()
+{
+    local word_list="  -h --help --db --query --query-from-file --threshold --majority -q --quiet -d --debug -o --output --scaled"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_lca_comparecsv()
+{
+    local word_list="  -h --help -q --quiet -d --debug -C --start-column --tabs --no-headers"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_lca_index()
+{
+    local word_list="  -h --help --from-file --scaled -q --quiet -d --debug -C --start-column --tabs --no-headers --split-identifiers --keep-identifier-versions -f --force --report --require-taxonomy --fail-on-missing-taxonomy -F --database-format -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_lca_rankinfo()
+{
+    local word_list="  -h --help -q --quiet -d --debug --scaled --minimum-num"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_lca_summarize()
+{
+    local word_list="  -h --help --db --query --query-from-file --threshold -o --output --scaled --ignore-abundance -q --quiet -d --debug"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature()
+{
+    local cmd i subcommands
+    local subcommands=" cat check collect describe downsample export extract fileinfo filter flatten grep inflate ingest intersect kmers manifest merge overlap rename split subtract"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        cat) _sourmash_signature_cat
+            return
+            ;;
+
+        check) _sourmash_signature_check
+            return
+            ;;
+
+        collect) _sourmash_signature_collect
+            return
+            ;;
+
+        describe) _sourmash_signature_describe
+            return
+            ;;
+
+        downsample) _sourmash_signature_downsample
+            return
+            ;;
+
+        export) _sourmash_signature_export
+            return
+            ;;
+
+        extract) _sourmash_signature_extract
+            return
+            ;;
+
+        fileinfo) _sourmash_signature_fileinfo
+            return
+            ;;
+
+        filter) _sourmash_signature_filter
+            return
+            ;;
+
+        flatten) _sourmash_signature_flatten
+            return
+            ;;
+
+        grep) _sourmash_signature_grep
+            return
+            ;;
+
+        inflate) _sourmash_signature_inflate
+            return
+            ;;
+
+        ingest) _sourmash_signature_ingest
+            return
+            ;;
+
+        intersect) _sourmash_signature_intersect
+            return
+            ;;
+
+        kmers) _sourmash_signature_kmers
+            return
+            ;;
+
+        manifest) _sourmash_signature_manifest
+            return
+            ;;
+
+        merge) _sourmash_signature_merge
+            return
+            ;;
+
+        overlap) _sourmash_signature_overlap
+            return
+            ;;
+
+        rename) _sourmash_signature_rename
+            return
+            ;;
+
+        split) _sourmash_signature_split
+            return
+            ;;
+
+        subtract) _sourmash_signature_subtract
+            return
+            ;;
+
+    esac
+
+    local word_list=" cat check collect describe downsample export extract fileinfo filter flatten grep inflate ingest intersect kmers manifest merge overlap rename split subtract -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_cat()
+{
+    local word_list="  -h --help --from-file -q --quiet -d --debug -o --output -u --unique -f --force -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --include-db-pattern --exclude-db-pattern --picklist --picklist-require-all"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_check()
+{
+    local word_list="  -h --help -q --quiet -d --debug -o --output-missing -f --force --from-file -m --save-manifest-matching --fail-if-missing --no-require-manifest -F --manifest-format --abspath --use-absolute-paths --no-abspath --relpath --use-relative-paths --no-relpath -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --include-db-pattern --exclude-db-pattern --picklist --picklist-require-all --v4 --v5"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_collect()
+{
+    local word_list="  -h --help -o --output -q --quiet -d --debug --from-file --no-require-manifest -F --manifest-format --merge-previous --abspath --use-absolute-paths --no-abspath --relpath --use-relative-paths --no-relpath -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --v4 --v5"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_describe()
+{
+    local word_list="  -h --help -q --quiet -d --debug --csv -f --force --from-file -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all --include-db-pattern --exclude-db-pattern"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_downsample()
+{
+    local word_list="  -h --help --scaled --from-file -q --quiet -o --output -f --force -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all -n --num-hashes --num"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_export()
+{
+    local word_list="  -h --help -q --quiet -o --output --md5 -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_extract()
+{
+    local word_list="  -h --help -q --quiet -o --output --md5 --name -f --force --from-file -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --include-db-pattern --exclude-db-pattern --picklist --picklist-require-all"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_fileinfo()
+{
+    local word_list="  -h --help -q --quiet -d --debug -f --force --rebuild-manifest --json-out"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_filter()
+{
+    local word_list="  -h --help -q --quiet -o --output --md5 --name -m --min-abundance -M --max-abundance -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_flatten()
+{
+    local word_list="  -h --help -q --quiet -o --output --md5 --name -f --force --from-file -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_grep()
+{
+    local word_list="  -h --help -q --quiet -d --debug -o --output -f --force --from-file -v --invert-match -i --ignore-case --no-require-manifest --csv --silent --no-signatures-output -c --count -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_inflate()
+{
+    local word_list="  -h --help -q --quiet -o --output -f --force -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_ingest()
+{
+    local word_list="  -h --help --csv -q --quiet -o --output"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_intersect()
+{
+    local word_list="  -h --help -q --quiet -o --output -A --abundances-from --set-name -f --force --from-file -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_kmers()
+{
+    local word_list="  -h --help -q --quiet -f --force --from-file -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all --sequences --save-kmers --save-sequences --translate --check-sequence"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_manifest()
+{
+    local word_list="  -h --help -q --quiet -d --debug -o --output --csv -f --force --rebuild-manifest --no-rebuild-manifest -F --manifest-format --v4 --v5"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_merge()
+{
+    local word_list="  -h --help -q --quiet -o --output --flatten --set-name --name -f --force --from-file -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_overlap()
+{
+    local word_list="  -h --help -q --quiet -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_rename()
+{
+    local word_list="  -h --help -q --quiet -d --debug -o --output -f --force --from-file -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --include-db-pattern --exclude-db-pattern --picklist --picklist-require-all"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_split()
+{
+    local word_list="  -h --help -q --quiet --output-dir --outdir -f --force --from-file -E --extension -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide --picklist --picklist-require-all"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_signature_subtract()
+{
+    local word_list="  -h --help -q --quiet -o --output --flatten -A --abundances-from --set-name -k --ksize --protein --no-protein --dayhoff --no-dayhoff --hp --hydrophobic-polar --no-hp --no-hydrophobic-polar --skipm1n3 --skipmer-m1n3 --no-skipm1n3 --no-skipmer-m1n3 --skipm2n3 --skipmer-m2n3 --no-skipm2n3 --no-skipmer-m2n3 --dna --rna --nucleotide --no-dna --no-rna --no-nucleotide"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_sketch()
+{
+    local cmd i subcommands
+    local subcommands=" dna fromfile protein translate"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        dna) _sourmash_sketch_dna
+            return
+            ;;
+
+        fromfile) _sourmash_sketch_fromfile
+            return
+            ;;
+
+        protein) _sourmash_sketch_protein
+            return
+            ;;
+
+        translate) _sourmash_sketch_translate
+            return
+            ;;
+
+    esac
+
+    local word_list=" dna fromfile protein translate -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_sketch_dna()
+{
+    local word_list="  -h --help --license --check-sequence -p --param-string --from-file -f --force -o --output --set-name --name --merge --output-dir --outdir --singleton --name-from-first --randomize"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_sketch_fromfile()
+{
+    local word_list="  -h --help -p --param-string --already-done --license --check-sequence -o --output-signatures --force-output-already-exists --ignore-missing --output-csv-info --output-manifest-matching --report-duplicated"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_sketch_protein()
+{
+    local word_list="  -h --help --license -p --param-string --from-file -f --force -o --output --set-name --name --merge --output-dir --outdir --singleton --name-from-first --randomize --dayhoff --hp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_sketch_translate()
+{
+    local word_list="  -h --help --license --check-sequence -p --param-string --from-file -f --force -o --output --set-name --name --merge --output-dir --outdir --singleton --name-from-first --randomize --dayhoff --hp"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_storage()
+{
+    local cmd i subcommands
+    local subcommands=" convert"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        convert) _sourmash_storage_convert
+            return
+            ;;
+
+    esac
+
+    local word_list=" convert -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_storage_convert()
+{
+    local word_list="  -h --help -b --backend"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_tax()
+{
+    local cmd i subcommands
+    local subcommands=" annotate genome grep metagenome prepare summarize"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        annotate) _sourmash_tax_annotate
+            return
+            ;;
+
+        genome) _sourmash_tax_genome
+            return
+            ;;
+
+        grep) _sourmash_tax_grep
+            return
+            ;;
+
+        metagenome) _sourmash_tax_metagenome
+            return
+            ;;
+
+        prepare) _sourmash_tax_prepare
+            return
+            ;;
+
+        summarize) _sourmash_tax_summarize
+            return
+            ;;
+
+    esac
+
+    local word_list=" annotate genome grep metagenome prepare summarize -h --help"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_tax_annotate()
+{
+    local word_list="  -h --help -g --gather-csv --from-file -q --quiet -t --taxonomy-csv --taxonomy -o --output-dir --keep-full-identifiers --keep-identifier-versions --fail-on-missing-taxonomy -f --force --lins --lin-taxonomy --ictv --ictv-taxonomy"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_tax_genome()
+{
+    local word_list="  - -h --help -g --gather-csv --from-file -q --quiet -t --taxonomy-csv --taxonomy -o --output-base --output-dir --keep-full-identifiers --keep-identifier-versions --fail-on-missing-taxonomy -F --output-format -f --force --lins --lin-taxonomy --lingroup --lingroups --ictv --ictv-taxonomy --containment-threshold --ani-threshold --aai-threshold -r --rank --position --lin-position --v4 --v5"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_tax_grep()
+{
+    local word_list="  -h --help -r --rank -v --invert-match -i --ignore-case --silent --no-picklist-output -c --count -q --quiet -t --taxonomy-csv --taxonomy -o --output -f --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_tax_metagenome()
+{
+    local word_list="  -h --help -g --gather-csv --from-file -q --quiet -o --output-base --output-dir -t --taxonomy-csv --taxonomy --keep-full-identifiers --keep-identifier-versions --fail-on-missing-taxonomy -F --output-format -f --force --lins --lin-taxonomy --lingroup --lingroups --ictv --ictv-taxonomy -r --rank --position --lin-position --use-abundances --ignore-abundances --no-abundances --v4 --v5"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_tax_prepare()
+{
+    local word_list="  -h --help -q --quiet -t --taxonomy-csv --taxonomy -o --output -F --database-format --keep-full-identifiers --keep-identifier-versions --fail-on-missing-taxonomy -f --force"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_sourmash_tax_summarize()
+{
+    local word_list="  -h --help -q --quiet -o --output-lineage-information --keep-full-identifiers --keep-identifier-versions -f --force --lins --lin-taxonomy --ictv --ictv-taxonomy"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _sourmash sourmash

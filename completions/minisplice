@@ -1,0 +1,66 @@
+# Auto-generated with h2o
+
+_minisplice()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" gentrain train inspect predict"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        gentrain) _minisplice_gentrain
+            return
+            ;;
+
+        train) _minisplice_train
+            return
+            ;;
+
+        inspect) _minisplice_inspect
+            return
+            ;;
+
+        predict) _minisplice_predict
+            return
+            ;;
+
+    esac
+
+    local word_list=" gentrain train inspect predict "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_minisplice_gentrain()
+{
+    local word_list="  -l -p"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_minisplice_train()
+{
+    local word_list="  -k -f -F -d -r -e -E -m -s -t -i -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_minisplice_inspect()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_minisplice_predict()
+{
+    local word_list="  -t -m -d -a -E -c -l -h -p -b -s -r"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _minisplice minisplice

@@ -1,0 +1,96 @@
+# Auto-generated with h2o
+
+_bedtk()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" isec flt cov sub merge sort sum"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        isec) _bedtk_isec
+            return
+            ;;
+
+        flt) _bedtk_flt
+            return
+            ;;
+
+        cov) _bedtk_cov
+            return
+            ;;
+
+        sub) _bedtk_sub
+            return
+            ;;
+
+        merge) _bedtk_merge
+            return
+            ;;
+
+        sort) _bedtk_sort
+            return
+            ;;
+
+        sum) _bedtk_sum
+            return
+            ;;
+
+    esac
+
+    local word_list=" isec flt cov sub merge sort sum "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtk_isec()
+{
+    local word_list="  -s"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtk_flt()
+{
+    local word_list="  -c -p -C -v -w -f"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtk_cov()
+{
+    local word_list="  -c -C"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtk_sub()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtk_merge()
+{
+    local word_list="  -s"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtk_sort()
+{
+    local word_list="  -s"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_bedtk_sum()
+{
+    local word_list="  -m"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _bedtk bedtk

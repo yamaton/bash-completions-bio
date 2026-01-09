@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_longdust()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -k -w -t -g -e -s -f -a -v"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _longdust longdust

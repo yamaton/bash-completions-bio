@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_gffcompare()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -v -i -r -R -Q -M -N -D -S --no-exon-merge --no-merge -s -o -e --strict-match --cds-match -d -V -T --chr-stats -j --debug -p -C -A -X --cset -K"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _gffcompare gffcompare

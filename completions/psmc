@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_psmc()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -t -N -r -c -o -i -T -b -S -d -D"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _psmc psmc

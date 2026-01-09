@@ -5,7 +5,7 @@ _miniprot()
     local cur prev words cword
     _init_completion -s || return
 
-    local word_list="  -k -s -b -d -S -c -G -w -n -m -l -e -p -N -O -E -J -F -C -B -t --gff -P -u --outn -K"
+    local word_list="  -k -M -L -T -b -d -S -c -G -I -w -n -m -l -e -p -N -O -E -J -F -C -B -j --spsc --spsc0 -t --gff --gtf --aln --trans -P -u --outn --outs --outc -K"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

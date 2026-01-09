@@ -1,0 +1,146 @@
+# Auto-generated with h2o
+
+_autocycler()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" clean cluster combine compress decompress dotplot gfa2fasta helper resolve subsample table trim"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        clean) _autocycler_clean
+            return
+            ;;
+
+        cluster) _autocycler_cluster
+            return
+            ;;
+
+        combine) _autocycler_combine
+            return
+            ;;
+
+        compress) _autocycler_compress
+            return
+            ;;
+
+        decompress) _autocycler_decompress
+            return
+            ;;
+
+        dotplot) _autocycler_dotplot
+            return
+            ;;
+
+        gfa2fasta) _autocycler_gfa2fasta
+            return
+            ;;
+
+        helper) _autocycler_helper
+            return
+            ;;
+
+        resolve) _autocycler_resolve
+            return
+            ;;
+
+        subsample) _autocycler_subsample
+            return
+            ;;
+
+        table) _autocycler_table
+            return
+            ;;
+
+        trim) _autocycler_trim
+            return
+            ;;
+
+    esac
+
+    local word_list=" clean cluster combine compress decompress dotplot gfa2fasta helper resolve subsample table trim -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_autocycler_clean()
+{
+    local word_list="  -i --in_gfa -o --out_gfa -r --remove -d --duplicate -m --min_depth -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_autocycler_cluster()
+{
+    local word_list="  -a --autocycler_dir --cutoff --min_assemblies --max_contigs --manual -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_autocycler_combine()
+{
+    local word_list="  -a --autocycler_dir -i --in_gfas -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_autocycler_compress()
+{
+    local word_list="  -i --assemblies_dir -a --autocycler_dir --kmer --max_contigs -t --threads -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_autocycler_decompress()
+{
+    local word_list="  -i --in_gfa -o --out_dir -f --out_file -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_autocycler_dotplot()
+{
+    local word_list="  -i --input -o --out_png --res --kmer -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_autocycler_gfa2fasta()
+{
+    local word_list="  -i --in_gfa -o --out_fasta -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_autocycler_helper()
+{
+    local word_list="  -r --reads -o --out_prefix -g --genome_size -t --threads -d --dir --read_type --min_depth_abs --min_depth_rel --args -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_autocycler_resolve()
+{
+    local word_list="  -c --cluster_dir --verbose -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_autocycler_subsample()
+{
+    local word_list="  -r --reads -o --out_dir -g --genome_size -c --count -d --min_read_depth -s --seed -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_autocycler_table()
+{
+    local word_list="  -a --autocycler_dir -n --name -f --fields -s --sigfigs -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_autocycler_trim()
+{
+    local word_list="  -c --cluster_dir --min_identity --max_unitigs --mad -t --threads -h --help -V --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _autocycler autocycler

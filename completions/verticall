@@ -1,0 +1,86 @@
+# Auto-generated with h2o
+
+_verticall()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" pairwise view matrix mask summary repair"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        pairwise) _verticall_pairwise
+            return
+            ;;
+
+        view) _verticall_view
+            return
+            ;;
+
+        matrix) _verticall_matrix
+            return
+            ;;
+
+        mask) _verticall_mask
+            return
+            ;;
+
+        summary) _verticall_summary
+            return
+            ;;
+
+        repair) _verticall_repair
+            return
+            ;;
+
+    esac
+
+    local word_list=" pairwise view matrix mask summary repair -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_verticall_pairwise()
+{
+    local word_list="  -i --in_dir -o --out_file -r --reference --window_count --window_size --ignore_indels --smoothing_factor --secondary --verbose --index_options --align_options --allowed_overlap -t --threads --part --index_only --skip_check --existing_tsv -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_verticall_view()
+{
+    local word_list="  -i --in_dir -n --names --window_count --window_size --ignore_indels --smoothing_factor --secondary --verbose --index_options --align_options --allowed_overlap --sqrt_distance --sqrt_mass --result --vertical_colour --horizontal_colour --ambiguous_colour -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_verticall_matrix()
+{
+    local word_list="  -i --in_file -o --out_file --distance_type --asymmetrical --no_jukes_cantor --multi --include_names --exclude_names -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_verticall_mask()
+{
+    local word_list="  -i --in_tsv -a --in_alignment -o --out_alignment --image --vertical_colour --horizontal_colour --unaligned_colour --reference --multi --h_char --u_char --exclude_invariant --exclude_reference -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_verticall_summary()
+{
+    local word_list="  -i --in_file -a --assembly --all --plot --vertical_colour --horizontal_colour --unaligned_colour -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_verticall_repair()
+{
+    local word_list="  -i --in_file -o --out_file -h --help --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _verticall verticall

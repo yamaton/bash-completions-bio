@@ -5,7 +5,7 @@ _minipolish()
     local cur prev words cword
     _init_completion -s || return
 
-    local word_list="  -t --threads --rounds --pacbio --skip_initial -h --help --version"
+    local word_list="  -t --threads --rounds --minimap2-preset --pacbio --skip_initial -h --help --version"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

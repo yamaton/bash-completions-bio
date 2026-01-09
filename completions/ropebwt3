@@ -1,0 +1,156 @@
+# Auto-generated with h2o
+
+_ropebwt3()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local cmd i subcommands
+    local subcommands=" sw mem hapdiv suffix build merge plain2fmd ssa get stat kount fa2line fa2kmer"
+
+    for (( i=1; i < cword; i++ )); do
+        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
+            cmd=${words[i]}
+            break
+        fi
+    done
+
+    case "$cmd" in
+        sw) _ropebwt3_sw
+            return
+            ;;
+
+        mem) _ropebwt3_mem
+            return
+            ;;
+
+        hapdiv) _ropebwt3_hapdiv
+            return
+            ;;
+
+        suffix) _ropebwt3_suffix
+            return
+            ;;
+
+        build) _ropebwt3_build
+            return
+            ;;
+
+        merge) _ropebwt3_merge
+            return
+            ;;
+
+        plain2fmd) _ropebwt3_plain2fmd
+            return
+            ;;
+
+        ssa) _ropebwt3_ssa
+            return
+            ;;
+
+        get) _ropebwt3_get
+            return
+            ;;
+
+        stat) _ropebwt3_stat
+            return
+            ;;
+
+        kount) _ropebwt3_kount
+            return
+            ;;
+
+        fa2line) _ropebwt3_fa2line
+            return
+            ;;
+
+        fa2kmer) _ropebwt3_fa2kmer
+            return
+            ;;
+
+    esac
+
+    local word_list=" sw mem hapdiv suffix build merge plain2fmd ssa get stat kount fa2line fa2kmer "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_sw()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_mem()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_hapdiv()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_suffix()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_build()
+{
+    local word_list="  -m -t -p -l -n -2 -s -r -i -L -F -R -o -d -b -e -T -S"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_merge()
+{
+    local word_list="  -t -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_plain2fmd()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_ssa()
+{
+    local word_list="  -t -s -o"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_get()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_stat()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_kount()
+{
+    local word_list="  -k -m"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_fa2line()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+_ropebwt3_fa2kmer()
+{
+    local word_list="  "
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _ropebwt3 ropebwt3

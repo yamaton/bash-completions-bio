@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_rnabloom()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -l --left -r --right -pool -long -sef -ser -ref -rcl --revcomp-left -rcr --revcomp-right -rc --revcomp-long -ss --stranded -n --name -prefix -u --uracil -t --threads -o --outdir -f --force -k --kmer -stage -q --qual -Q --qual-avg -c --mincov -hash -sh --sbf-hash -dh --dbgbf-hash -ch --cbf-hash -ph --pkbf-hash -nk --num-kmers -ntcard -mem --memory -sm --sbf-mem -dm --dbgbf-mem -cm --cbf-mem -pm --pkbf-mem -fpr --fpr -savebf -tiplength -lookahead -sample -e --errcorritr -grad --maxcovgrad -indel -p --percent -length -norr -mergepool -overlap -bound -extend -nofc -sensitive -artifact -chimera -stratum -pair -a --polya -mmopt -lrop -lrrd -lrpb -lrsub -debug -h --help -v --version"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _rnabloom rnabloom

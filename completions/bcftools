@@ -128,57 +128,11 @@ _bcftools_annotate()
 
 _bcftools_concat()
 {
-    local cmd i subcommands
-    local subcommands=" concatenate"
-
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
-
-    case "$cmd" in
-        concatenate) _bcftools_concat_concatenate
-            return
-            ;;
-
-    esac
-
-    local word_list=" concatenate -a --allow-overlaps -c --compact-PS -d --rm-dups -D --remove-duplicates -f --file-list -G --drop-genotypes -l --ligate --ligate-force --ligate-warn --no-version -n --naive --naive-force -o --output -O --output-type -q --min-PQ -r --regions -R --regions-file --regions-overlap --threads -v --verbose -W --write-index"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_bcftools_concat_concatenate()
-{
-    local word_list="  "
+    local word_list="  -a --allow-overlaps -c --compact-PS -d --rm-dups -D --remove-duplicates -f --file-list -G --drop-genotypes -l --ligate --ligate-force --ligate-warn --no-version -n --naive --naive-force -o --output -O --output-type -q --min-PQ -r --regions -R --regions-file --regions-overlap --threads -v --verbose -W --write-index"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _bcftools_convert()
-{
-    local cmd i subcommands
-    local subcommands=" formats"
-
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
-
-    case "$cmd" in
-        formats) _bcftools_convert_formats
-            return
-            ;;
-
-    esac
-
-    local word_list=" formats -e --exclude -i --include -r --regions -R --regions-file --regions-overlap -s --samples -S --samples-file -t --targets -T --targets-file --targets-overlap --no-version -o --output -O --output-type --threads -W --write-index -G --gensample2vcf -g --gensample --3N6 --tag --chrom --keep-duplicates --sex --vcf-ids --gvcf2vcf -f --fasta-ref --hapsample2vcf --hapsample --haploid2diploid --vcf-ids -H --haplegendsample2vcf -h --haplegendsample --tsv2vcf -c --columns -s --samples -S --samples-file"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_bcftools_convert_formats()
 {
     local word_list="  -e --exclude -i --include -r --regions -R --regions-file --regions-overlap -s --samples -S --samples-file -t --targets -T --targets-file --targets-overlap --no-version -o --output -O --output-type --threads -W --write-index -G --gensample2vcf -g --gensample --3N6 --tag --chrom --keep-duplicates --sex --vcf-ids --gvcf2vcf -f --fasta-ref --hapsample2vcf --hapsample --haploid2diploid --vcf-ids -H --haplegendsample2vcf -h --haplegendsample --tsv2vcf -c --columns -s --samples -S --samples-file"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )

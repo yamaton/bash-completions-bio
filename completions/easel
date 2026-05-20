@@ -40,30 +40,7 @@ _easel()
 
 _easel_alistat()
 {
-    local cmd i subcommands
-    local subcommands=" easel"
-
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
-
-    case "$cmd" in
-        easel) _easel_alistat_easel
-            return
-            ;;
-
-    esac
-
-    local word_list=" easel -h -1 --dna --rna --amino"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_easel_alistat_easel()
-{
-    local word_list="  "
+    local word_list="  -h -1 --dna --rna --amino"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
@@ -75,59 +52,13 @@ _easel_downsample()
 
 _easel_filter()
 {
-    local cmd i subcommands
-    local subcommands=" easel"
-
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
-
-    case "$cmd" in
-        easel) _easel_filter_easel
-            return
-            ;;
-
-    esac
-
-    local word_list=" easel -h -o --informat --outformat --dna --rna --amino --ignore-rf --fragthresh --symfrac --no-sampling --nsamp --sampthresh --maxfrag -s --conscover --randorder --origorder"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_easel_filter_easel()
-{
-    local word_list="  "
+    local word_list="  -h -o --informat --outformat --dna --rna --amino --ignore-rf --fragthresh --symfrac --no-sampling --nsamp --sampthresh --maxfrag -s --conscover --randorder --origorder"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 
 _easel_index()
 {
-    local cmd i subcommands
-    local subcommands=" easel"
-
-    for (( i=1; i < cword; i++ )); do
-        if [[ " ${subcommands[*]} " == *" ${words[i]} "* ]]; then
-            cmd=${words[i]}
-            break
-        fi
-    done
-
-    case "$cmd" in
-        easel) _easel_index_easel
-            return
-            ;;
-
-    esac
-
-    local word_list=" easel -h -a -u --informat"
-    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
-}
-
-_easel_index_easel()
-{
-    local word_list="  "
+    local word_list="  -h -a -u --informat"
     COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
 }
 

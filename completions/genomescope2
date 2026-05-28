@@ -1,0 +1,13 @@
+# Auto-generated with h2o
+
+_genomescope2()
+{
+    local cur prev words cword
+    _init_completion -s || return
+
+    local word_list="  -h --help -v --version -i --input -o --output -p --ploidy -k --kmer_length -n --name_prefix -l --lambda --kcov --kmercov -m --max_kmercov --verbose --no_unique_sequence --json_report -t --topology --initial_repetitiveness --initial_heterozygosities --transform_exp --testing --true_params --trace_flag --num_rounds --fitted_hist --start_shift --typical_error"
+    COMPREPLY=( $(compgen -W "${word_list}" -- "$cur") )
+}
+
+## -o bashdefault and -o default are fallback
+complete -o bashdefault -o default -F _genomescope2 genomescope2
